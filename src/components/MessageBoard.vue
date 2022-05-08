@@ -31,6 +31,7 @@ export default {
 
       console.log(res);
 
+      //dummie posts to test
       let allPosts = [
         {
           title: "Online class",
@@ -50,11 +51,6 @@ export default {
 
       this.posts[0] = allPosts[0];
       this.posts[1] = allPosts[1];
-      // this.username = posts[0].username;
-      // this.title = posts[0].title;
-      // this.text = posts[0].text;
-      // this.upVotes = posts[0].upVotes;
-      // this.downVotes = posts[0].downVotes;
     },
   },
 };
