@@ -7,8 +7,8 @@
   <input type="text" placeholder="content" v-model="content" />
   <br />
   
-  <input type="checkbox" name="Important" v-model="important">
-
+  <input type="checkbox" name="Important" v-model="important"> <p> Important</p>
+  <br />
   <input type="text" placeholder="balance" v-model="balance" />
 
   <br />
