@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import MessageBoard from "@/components/MessageBoard.vue";
+import MessageBoard from "../components/MessageBoard.vue";
 
 export default {
   name: "MessageBoard",
