@@ -4,7 +4,7 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/createpost" >Create a Post</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>

@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
     <MessageBoard />
   </div>
 </template>
@@ -10,7 +9,6 @@
 import MessageBoard from "@/components/MessageBoard.vue";
 
 export default {
-  name: "MessageBoard",
   components: {
     MessageBoard,
   },
