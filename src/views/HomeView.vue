@@ -1,13 +1,13 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <MessageBoard ref="" />
+    <MessageBoard />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/MessageBoard.vue";
+import MessageBoard from "@/components/MessageBoard.vue";
 
 export default {
   name: "MessageBoard",

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="posts"></div>
+    <div class="posts">
+      <h3 class="title">Online</h3>
+    </div>
   </div>
 </template>
 
