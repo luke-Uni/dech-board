@@ -1,39 +1,70 @@
 <template>
+  
+  <br />
+  <div class="pp">
+    <table class="centering">
+      <tr><td><input type="text" placeholder="Title"  v-model="title" /></td></tr>
+      <tr>
+        <td>
+          <textarea
+            name="content"
+            rows="4"
+            cols="50"
+            placeholder="content"
+            v-model="content"
+          >
+          </textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <DropZone @drop.prevent="drop" @change="selectedFile" />
+          <span class="file-info">File: {{ dropzoneFile.name }}</span>
+        </td>
+      </tr>
+      <tr><td><p>
+    Important
+    <input type="checkbox" name="Important" v-model="important" />
+  </p></td></tr>
+    </table>
+  </div>
 
-  <input type="text" placeholder="Username" v-model="username" />
-  <br />
-  <input type="text" placeholder="Title" v-model="title" />
-  <br />
-  <input type="text" placeholder="content" v-model="content" />
   <br />
   
-  <input type="checkbox" name="Important" v-model="important">
 
-  <input type="text" placeholder="balance" v-model="balance" />
-
-  <br />
-
-  <button v-on:click="addUser()">Create User</button>
+  <button v-on:click="createPost()">Create Post</button>
 </template>
 
 <script>
+import DropZone from "../components/DropZone.vue";
+import { ref } from "vue";
 import axios from "axios";
 
 export default {
   name: "CreatePost",
+  components: {
+    DropZone,
+  },
+  setup() {
+    let dropzoneFile = ref("");
+    const drop = (e) => {
+      dropzoneFile.value = e.dataTransfer.files[0];
+    };
+    const selectedFile = () => {
+      dropzoneFile.value = document.querySelector(".dropzoneFile").files[0];
+    };
+    return { dropzoneFile, drop, selectedFile };
+  },
   data() {
     return {
-      email: "",
       username: "",
-      firstname: "",
-      lastName: "",
-      birthday: "",
-      balance: "",
-      token: "",
+      title: "",
+      content: "",
+      file: "",
     };
   },
   methods: {
-    async addUser() {
+    async createPost() {
       let headers = {
         "Content-Type": "application/json",
         token: this.token,
@@ -41,12 +72,12 @@ export default {
       let result = await axios.post(
         "http://localhost:8090/",
         {
-          email: this.email,
           username: this.username,
-          firstName: this.firstName,
-          lastName: this.lastName,
-          birthday: this.birthday,
-          balance: this.balance,
+
+          title: this.title,
+          content: this.content,
+          important: this.important,
+          file: this.file,
         },
 
         {
@@ -61,12 +92,26 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+input {
+    background-color: transparent;
+    border: 0px solid;
+    height: 20px;
+    width: 160px;
+    color: rgb(93, 170, 233);
 }
+ input:focus{
+    outline: none;
+}
+
+table{
+  
+}
+
+.pp{
+   margin: auto;
+  width: 50%;
+  border: 3px solid rgb(93, 170, 233);
+  padding: 10px;
+}
+
 </style>
