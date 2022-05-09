@@ -85,7 +85,7 @@ export default {
           title: this.title,
           content: this.content,
           important: this.important,
-          file: this.dropzoneFile,
+          file: this.dropzoneFile.querySelector(".dropzoneFile").files[0],
         }
 
         // {
