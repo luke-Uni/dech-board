@@ -26,13 +26,14 @@ export default {
     //To display all the Posts we need to get them from the Server
     getAllPosts() {
       console.log("I am in the getAllPosts function");
-      let headers = {};
 
-      let uri = "";
+      //let headers = {};
 
-      let res = axios.get(uri, { headers: headers });
+      let uri = "http://localhost:8090/posts/getall";
 
-      console.log(res);
+      let response = axios.get(uri);
+
+      console.log(response.status);
 
       //dummie posts to test
       let allPosts = [
@@ -53,6 +54,7 @@ export default {
         },
       ];
 
+      //Input all data into local array of posts from the server
       for (let index = 0; index < allPosts.length; index++) {
         this.posts[index] = allPosts[index];
       }
