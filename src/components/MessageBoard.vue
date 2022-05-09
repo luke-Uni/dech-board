@@ -3,10 +3,11 @@
     <div class="posts" v-for="post in posts" :key="post.username">
       <h2 class="title">{{ post.title }}</h2>
       <h4>{{ post.username }}</h4>
-      <p>{{ post.text }}</p>
+      <p>{{ post.content }}</p>
       <p>
         <b> {{ post.creationDate }} </b>
       </p>
+      <p v-if="post.important">Yeah</p>
     </div>
   </div>
 </template>
@@ -27,37 +28,23 @@ export default {
     getAllPosts() {
       console.log("I am in the getAllPosts function");
 
-      //let headers = {};
+      let headers = { "Content-Type": "application/json" };
 
       let uri = "http://localhost:8090/posts/getall";
 
-      let response = axios.get(uri);
+      let response = axios
+        .get(uri, { headers: headers })
+        .then((response) => {
+          console.log(response);
 
-      console.log(response.status);
+          this.posts = response.data;
+        })
+        .then((data) => (this.user = data))
+        .catch((e) => {
+          this.errors.push(e);
+        });
 
-      //dummie posts to test
-      let allPosts = [
-        {
-          title: "Online class",
-          username: "John",
-          text: "Online class is so boring. I want to have class at the university and want to see my fellow student.     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-          upVotes: 12,
-          downVotes: 4,
-          creationDate: "2022-05-06T20:14:22.511Z",
-        },
-        {
-          title: "The Weather",
-          username: "Lao",
-          text: "I am currently in germany in summer. I love the weather it is very nice here.     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-          upVotes: 9,
-          downVotes: 0,
-        },
-      ];
-
-      //Input all data into local array of posts from the server
-      for (let index = 0; index < allPosts.length; index++) {
-        this.posts[index] = allPosts[index];
-      }
+      console.log(response.constructor);
     },
   },
 };
