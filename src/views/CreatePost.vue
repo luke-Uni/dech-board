@@ -1,9 +1,13 @@
 <template>
-  
   <br />
   <div class="pp">
     <table class="centering">
-      <tr><td><input type="text" placeholder="Title"  v-model="title" /></td></tr>
+      <tr>
+        <td><input type="text" placeholder="Username" v-model="username" /></td>
+      </tr>
+      <tr>
+        <td><input type="text" placeholder="Title" v-model="title" /></td>
+      </tr>
       <tr>
         <td>
           <textarea
@@ -18,19 +22,23 @@
       </tr>
       <tr>
         <td>
+          <!--Dropzone for the file the user wants to upload-->
           <DropZone @drop.prevent="drop" @change="selectedFile" />
           <span class="file-info">File: {{ dropzoneFile.name }}</span>
         </td>
       </tr>
-      <tr><td><p>
-    Important
-    <input type="checkbox" name="Important" v-model="important" />
-  </p></td></tr>
+      <tr>
+        <td>
+          <p>
+            Important
+            <input type="checkbox" name="Important" v-model="important" />
+          </p>
+        </td>
+      </tr>
     </table>
   </div>
 
   <br />
-  
 
   <button v-on:click="createPost()">Create Post</button>
 </template>
@@ -60,32 +68,35 @@ export default {
       username: "",
       title: "",
       content: "",
-      file: "",
+      important: ""
+      //,
+      //file: "",
     };
   },
   methods: {
     async createPost() {
-      let headers = {
-        "Content-Type": "application/json",
-        token: this.token,
-      };
+      //   let headers = {
+      //    "Content-Type": "application/json",
+      //   token: this.token,
+      // };
       let result = await axios.post(
-        "http://localhost:8090/",
+        "http://localhost:8090/posts/create",
         {
           username: this.username,
-
           title: this.title,
           content: this.content,
           important: this.important,
-          file: this.file,
-        },
+         // file: this.dropzoneFile
 
-        {
-          headers: headers,
+
         }
+   
+        // {
+        //   headers: headers,
+        // }
       );
-
-      console.warn(result);
+       console.log(this.dropzoneFile);
+      console.log(result);
     },
   },
 };
@@ -93,25 +104,20 @@ export default {
 
 <style>
 input {
-    background-color: transparent;
-    border: 0px solid;
-    height: 20px;
-    width: 160px;
-    color: rgb(93, 170, 233);
+  background-color: transparent;
+  border: 0px solid;
+  height: 20px;
+  width: 160px;
+  color: rgb(93, 170, 233);
 }
- input:focus{
-    outline: none;
-}
-
-table{
-  
+input:focus {
+  outline: none;
 }
 
-.pp{
-   margin: auto;
+.pp {
+  margin: auto;
   width: 50%;
   border: 3px solid rgb(93, 170, 233);
   padding: 10px;
 }
-
 </style>
