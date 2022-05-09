@@ -68,7 +68,9 @@ export default {
       username: "",
       title: "",
       content: "",
-      file: "",
+      important: ""
+      //,
+      //file: "",
     };
   },
   methods: {
@@ -78,14 +80,13 @@ export default {
       //   token: this.token,
       // };
       let result = await axios.post(
-        "http://localhost:8090/username/createpost",
+        "http://localhost:8090/posts/create",
         {
           username: this.username,
-
           title: this.title,
           content: this.content,
           important: this.important,
-          file: this.dropzoneFile
+         // file: this.dropzoneFile
 
 
         }
