@@ -103,9 +103,7 @@ input {
     outline: none;
 }
 
-table{
-  
-}
+
 
 .pp{
    margin: auto;
