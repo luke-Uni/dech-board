@@ -85,15 +85,17 @@ export default {
           title: this.title,
           content: this.content,
           important: this.important,
-          file: this.dropzoneFile.querySelector(".dropzoneFile").files[0],
-        }
+          file: this.dropzoneFile
 
+
+        }
+   
         // {
         //   headers: headers,
         // }
       );
-
-      console.warn(result);
+       console.log(this.dropzoneFile);
+      console.log(result);
     },
   },
 };
