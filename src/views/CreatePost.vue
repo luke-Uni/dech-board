@@ -20,13 +20,13 @@
           </textarea>
         </td>
       </tr>
-      <tr>
-        <td>
+      <!--<tr>-->
+       <!-- <td>-->
           <!--Dropzone for the file the user wants to upload-->
-          <DropZone @drop.prevent="drop" @change="selectedFile" />
-          <span class="file-info">File: {{ dropzoneFile.name }}</span>
-        </td>
-      </tr>
+          <!-- <DropZone @drop.prevent="drop" @change="selectedFile" />
+           <span class="file-info">File: {{ dropzoneFile.name }}</span> -->
+       <!-- </td>
+      </tr>-->
       <tr>
         <td>
           <p>
@@ -50,19 +50,19 @@ import axios from "axios";
 
 export default {
   name: "CreatePost",
-  components: {
-    DropZone,
-  },
-  setup() {
-    let dropzoneFile = ref("");
-    const drop = (e) => {
-      dropzoneFile.value = e.dataTransfer.files[0];
-    };
-    const selectedFile = () => {
-      dropzoneFile.value = document.querySelector(".dropzoneFile").files[0];
-    };
-    return { dropzoneFile, drop, selectedFile };
-  },
+  //components: {
+  //  DropZone,
+  //},
+  //setup() {
+  //  let dropzoneFile = ref("");
+  //  const drop = (e) => {
+  //    dropzoneFile.value = e.dataTransfer.files[0];
+  //  };
+  //  const selectedFile = () => {
+  //    dropzoneFile.value = document.querySelector(".dropzoneFile").files[0];
+  //  };
+  //  return { dropzoneFile, drop, selectedFile };
+  //},
   data() {
     return {
       username: "",
@@ -96,14 +96,14 @@ export default {
         //   headers: headers,
         // }
       );
-       console.log(this.dropzoneFile);
+      /// console.log(this.dropzoneFile);
       console.log(result);
     },
   },
 };
 </script>
 
-<style>
+<style scoped >
 input {
   background-color: transparent;
   border: 0px solid;
@@ -121,4 +121,8 @@ input:focus {
   border: 3px solid rgb(93, 170, 233);
   padding: 10px;
 }
+textarea {
+   resize: none;
+}
+
 </style>
