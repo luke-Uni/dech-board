@@ -116,13 +116,16 @@ input:focus {
 }
 
 .pp {
-  margin: auto;
-  width: 50%;
+ width: 500px;
   border: 3px solid rgb(93, 170, 233);
   padding: 10px;
+  margin: auto;
 }
 textarea {
    resize: none;
+   -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 </style>
