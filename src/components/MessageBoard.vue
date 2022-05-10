@@ -2,13 +2,14 @@
   <div>
     <div class="postComplete" v-for="post in posts" :key="post.username">
       <h4 class="postUsername">{{ post.username }}</h4>
-      <div :class="[post.important ? postsInside : importantPost]">
-        <h3 class="postTitle">{{ post.title }}</h3>
+      <div :class="[post.important ? 'importantPost' : 'postsInside']">
+        <h3 :class="[post.important ? 'importantTitle' : 'postTitle']">
+          {{ post.title }}
+        </h3>
         <p class="postText">{{ post.content }}</p>
         <p>
           <b> {{ post.creationDate }} </b>
         </p>
-        <p v-if="post.important">Yeah</p>
       </div>
     </div>
   </div>
@@ -56,15 +57,27 @@ export default {
 <style scoped>
 .postComplete {
   margin: auto;
-  width: 45%;
+  width: 50em;
   border: 1px solid rgb(255, 255, 255);
+  text-align: left;
 }
 .postsInside {
+  background-color: rgb(244, 247, 255, 255);
   text-align: left;
   margin: 0%;
-  margin-top: 3%;
   align-items: flex-start;
   border: 1px solid black;
+  width: 100%;
+  height: 10em;
+  margin-bottom: 2%;
+  border-radius: 10px;
+}
+.importantPost {
+  background-color: rgb(244, 247, 255, 255);
+  text-align: left;
+  margin: 0%;
+  align-items: flex-start;
+  border: 1px solid rgb(220, 46, 46);
   width: 100%;
   height: 10em;
   margin-bottom: 2%;
@@ -74,16 +87,27 @@ export default {
 .postTitle {
   float: left;
   margin: 0%;
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
+
+.importantTitle {
+  float: left;
+  margin: 0%;
+  margin-left: 1em;
+  margin-top: 0.5em;
+  color: red;
 }
 
 .postUsername {
-  float: left;
-  margin-top: 0%;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .postText {
   margin: 0%;
-  margin-left: 0%;
+  margin-left: 3em;
   margin-top: 5%;
+  margin-right: 3em;
 }
 </style>
