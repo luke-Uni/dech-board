@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <div class="posts" v-for="post in posts" :key="post.username">
       <h2 class="title">{{ post.title }}</h2>
       <h4>{{ post.username }}</h4>
