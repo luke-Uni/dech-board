@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import DropZone from "../components/DropZone.vue";
-import { ref } from "vue";
+//import DropZone from "../components/DropZone.vue";
+//import { ref } from "vue";
 import axios from "axios";
 
 export default {
