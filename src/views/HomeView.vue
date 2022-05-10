@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     <MessageBoard />
+
+    
   </div>
 </template>
 
