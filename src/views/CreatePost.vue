@@ -37,10 +37,15 @@
     
       <tr>
         <td >
-      <p>
-        Important
-        <input type="checkbox" name="Important" v-model="important" />
-      </p></td>
+          
+      
+        
+        <input type="checkbox" name="Important" v-model="important" value="Important"  class="switch_1" />
+      
+        <label for="Important" >Important</label>
+      
+      
+      </td>
     
    
     
@@ -200,4 +205,46 @@ input:focus {
     padding: 1rem 2rem;
   }
 }
+
+
+
+input[type="checkbox"].switch_1{
+  font-size: 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 3.5em;
+  height: 1.5em;
+  background: #ddd;
+  border-radius: 3em;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  }
+  
+  input[type="checkbox"].switch_1:checked{
+  background: rgb(227, 238, 248);
+  }
+  
+  input[type="checkbox"].switch_1:after{
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
+          box-shadow: 0 0 .25em rgba(0,0,0,.3);
+  -webkit-transform: scale(.7);
+          transform: scale(.7);
+  left: 0;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  }
+  
+  input[type="checkbox"].switch_1:checked:after{
+  left: calc(100% - 1.5em);
+  }
 </style>
