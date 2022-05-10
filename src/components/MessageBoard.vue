@@ -98,12 +98,10 @@ export default {
   margin-top: 0.5em;
   color: red;
 }
-
 .postUsername {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-
 .postText {
   margin: 0%;
   margin-left: 3em;
