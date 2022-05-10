@@ -12,7 +12,7 @@
       <input
         type="text"
         class="input-title"
-        placeholder="Title"
+        placeholder="Title..."
         v-model="title"
       />
       <br />
@@ -23,7 +23,7 @@
         name="content"
         rows="10"
         cols="55"
-        placeholder="content"
+        placeholder="content..."
         v-model="content"
       >
       </textarea>
@@ -112,11 +112,15 @@ export default {
 
 .input-title {
   float: left;
-  background-color: transparent;
+  margin-left: -1em;
+  background-color: white;
   border: 0px solid;
   height: 20px;
   width: 160px;
-  color: rgb(93, 170, 233);
+  color: rgb(0, 0, 0);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 input:focus {
@@ -161,7 +165,7 @@ input:focus {
 
 /* CSS */
 .button-81 {
-  background-color: #fff;
+  background-color: rgb(227, 238, 248);
   border: 0 solid #e2e8f0;
   border-radius: 1.5rem;
   box-sizing: border-box;
@@ -179,14 +183,14 @@ input:focus {
   text-decoration: none rgb(227, 238, 248) solid;
   text-decoration-thickness: auto;
   transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+  box-shadow: 0px 1px 2px rgba(118, 162, 255, 0.25);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
 
 .button-81:hover {
-  background-color: rgb(227, 238, 248);
+  background-color: rgb(78, 20, 20);
   color: rgb(0, 0, 0);
 }
 
