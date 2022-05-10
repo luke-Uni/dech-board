@@ -29,29 +29,23 @@
       </textarea>
     </div>
   </div>
-  <br>
-  <br>
+  <br />
+  <br />
   <table class="table-left">
-    
-  
-    
-      <tr>
-        <td >
-      <p>
-        Important
-        <input type="checkbox" name="Important" v-model="important" />
-      </p></td>
-    
-   
-    
-    <td class="td-left">
-    <button class="button-81" v-on:click="createPost()" role="button">
-      Create Post
-    </button>
-    </td>
+    <tr>
+      <td>
+        <p>
+          Important
+          <input type="checkbox" name="Important" v-model="important" />
+        </p>
+      </td>
+
+      <td class="td-left">
+        <button class="button-81" v-on:click="createPost()" role="button">
+          Create Post
+        </button>
+      </td>
     </tr>
- 
-  
   </table>
 </template>
 
@@ -86,15 +80,13 @@ export default {
 </script>
 
 <style scoped >
-.table-left{
+.table-left {
   margin: auto;
- 
 }
 
-.td-left{
+.td-left {
   padding-left: 35em;
 }
-
 
 .message-create {
   display: block;
@@ -130,7 +122,6 @@ input:focus {
 .important {
   float: left;
 }
-
 
 .float-right {
   float: right;
