@@ -36,13 +36,15 @@
   
     
       <tr>
+        
+        <br>
         <td >
           
       
         
         <input type="checkbox" name="Important" v-model="important" value="Important"  class="switch_1" />
       
-        <label for="Important" >Important</label>
+        
       
       
       </td>
@@ -225,7 +227,7 @@ input[type="checkbox"].switch_1{
   }
   
   input[type="checkbox"].switch_1:checked{
-  background: rgb(227, 238, 248);
+  background: rgb(255, 100, 100);
   }
   
   input[type="checkbox"].switch_1:after{
