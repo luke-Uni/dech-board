@@ -37,7 +37,7 @@ export default {
 
   methods: {
      registerUser() {
-      let result = await axios.post("http://localhost:8090/posts/create", {
+      let result = await axios.post("http://localhost:8090/login", {
         username: this.username,
         password: this.password
         
