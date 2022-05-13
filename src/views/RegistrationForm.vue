@@ -25,7 +25,7 @@
 import axios from "axios";
 
 export default {
-  name: "Registration",
+  name: "RegistrationForm",
 
   data() {
     return {
@@ -37,7 +37,7 @@ export default {
 
   methods: {
      registerUser() {
-      let result = await axios.post("http://localhost:8090/login", {
+      let result =  axios.post("http://localhost:8090/register", {
         username: this.username,
         password: this.password
         

@@ -75,6 +75,10 @@ export default {
         title: this.title,
         content: this.content,
         important: this.important,
+
+        headers:{
+          Authorization: 'Bearer'+ localStorage.getItem('token')
+        }
       });
 
       console.log(result);

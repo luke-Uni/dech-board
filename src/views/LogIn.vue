@@ -36,8 +36,8 @@ export default {
   },
 
   methods: {
-     loginUser() {
-      let result = await axios.get("http://localhost:8090/register", {
+      loginUser() {
+      let result =  axios.get("http://localhost:8090/login", {
         username: this.username,
         password: this.password,
         
