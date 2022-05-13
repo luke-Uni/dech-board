@@ -37,7 +37,7 @@ export default {
 
   methods: {
       loginUser() {
-      let result =  axios.get("http://localhost:8090/login", {
+      let result =  axios.post("http://localhost:8090/login", {
         username: this.username,
         password: this.password,
         
@@ -45,7 +45,7 @@ export default {
       }
       
       );
-      localStorage.setItem('token', result.data.token);
+      localStorage.setItem('token', result.data);
 
       console.log(result);
     },

@@ -76,10 +76,12 @@ export default {
         content: this.content,
         important: this.important,
 
-        headers:{
-          Authorization: 'Bearer'+ localStorage.getItem('token')
-        }
-      });
+        
+      },
+     { headers:{
+          'authorization':  'd6e11753-a623-443b-85f7-e4c80a1db9e9'
+       }  }
+      );
 
       console.log(result);
     },
