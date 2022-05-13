@@ -32,32 +32,23 @@
   <br />
   <br />
   <table class="table-left">
-
-    
-  
-    
-      <tr>
-        
-        <br>
-        <td >
-          
-      
-        
-        <input type="checkbox" name="Important" v-model="important" value="Important"  class="switch_1" />
-      
-        
-      
-      
+    <tr>
+      <br />
+      <td>
+        <input
+          type="checkbox"
+          name="Important"
+          v-model="important"
+          value="Important"
+          class="switch_1"
+        />
       </td>
-    
-   
-    
-    <td class="td-left">
-    <button class="button-81" v-on:click="createPost()" role="button">
-      Create Post
-    </button>
-    </td>
->>>>>>> 930f70691e115e41f7a1f7c275cc52802d8f5cd7
+
+      <td class="td-left">
+        <button class="button-81" v-on:click="createPost()" role="button">
+          Create Post
+        </button>
+      </td>
     </tr>
   </table>
 </template>
@@ -205,13 +196,11 @@ input:focus {
   }
 }
 
-
-
-input[type="checkbox"].switch_1{
+input[type="checkbox"].switch_1 {
   font-size: 20px;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   width: 3.5em;
   height: 1.5em;
   background: #ddd;
@@ -219,31 +208,31 @@ input[type="checkbox"].switch_1{
   position: relative;
   cursor: pointer;
   outline: none;
-  -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
-  }
-  
-  input[type="checkbox"].switch_1:checked{
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="checkbox"].switch_1:checked {
   background: rgb(255, 100, 100);
-  }
-  
-  input[type="checkbox"].switch_1:after{
+}
+
+input[type="checkbox"].switch_1:after {
   position: absolute;
   content: "";
   width: 1.5em;
   height: 1.5em;
   border-radius: 50%;
   background: #fff;
-  -webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
-          box-shadow: 0 0 .25em rgba(0,0,0,.3);
-  -webkit-transform: scale(.7);
-          transform: scale(.7);
+  -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
   left: 0;
-  -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
-  }
-  
-  input[type="checkbox"].switch_1:checked:after{
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="checkbox"].switch_1:checked:after {
   left: calc(100% - 1.5em);
-  }
+}
 </style>
