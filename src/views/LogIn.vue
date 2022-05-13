@@ -30,9 +30,11 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      tokens:[]
       
     };
+    
   },
 
   methods: {
@@ -44,10 +46,20 @@ export default {
        
       }
       
-      );
-      localStorage.setItem('token', result.data);
+      ).then((result) => {
+          console.log(result);
 
-      console.log(result);
+          this.tokens[0] = result.data;
+          localStorage.setItem('token', this.tokens[0].token);
+        });
+      
+//     console.log(result.data);
+//     console.log(result.constructor);
+//    // console.log(result.Object.data);
+//     console.log(result.constructor.data);
+    console.log(result)
+   
+      
     },
   },
 };
