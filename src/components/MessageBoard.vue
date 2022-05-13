@@ -35,7 +35,7 @@ export default {
 
       let uri = "http://localhost:8090/posts/getall";
 
-      //
+      //send synchron Request to Server
       let response = axios
         .get(uri, { headers: headers })
         .then((response) => {
@@ -43,6 +43,7 @@ export default {
 
           this.posts = response.data;
         })
+        //save all Posts locally
         .then((data) => (this.user = data))
         .catch((e) => {
           this.errors.push(e);
