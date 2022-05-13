@@ -30,7 +30,7 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'CreatePost',
+    name: 'LogIn',
     component: LogIn
   }
 ]
