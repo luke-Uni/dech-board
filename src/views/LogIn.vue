@@ -15,7 +15,7 @@
         v-model="password"
       />
 <br>
-      <button class="button-81" v-on:click="createPost()" role="button">
+      <button class="button-81" v-on:click="loginUser()" role="button">
           Login
         </button>
       
@@ -36,7 +36,7 @@ export default {
   },
 
   methods: {
-     createPost() {
+     loginUser() {
       let result = await axios.post("http://localhost:8090/register", {
         username: this.username,
         password: this.password
