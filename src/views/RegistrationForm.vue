@@ -1,24 +1,12 @@
 <template>
-  
-      <input
-        type="text"
-        
-        placeholder="Username"
-        v-model="username"
-      />
+  <input type="text" placeholder="Username" v-model="username" />
 
-<br>
-      <input
-        type="text"
-        
-        placeholder="Password"
-        v-model="password"
-      />
-<br>
-      <button class="button-81" v-on:click="registerUser()" role="button">
-         Create User
-        </button>
-      
+  <br />
+  <input type="text" placeholder="Password" v-model="password" />
+  <br />
+  <button class="button-81" v-on:click="registerUser()" role="button">
+    Create User
+  </button>
 </template>
 
 <script>
@@ -30,17 +18,15 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
-      
+      password: "",
     };
   },
 
   methods: {
-     registerUser() {
-      let result =  axios.post("http://localhost:8090/register", {
+    registerUser() {
+      let result = axios.post("http://localhost:8090/register", {
         username: this.username,
-        password: this.password
-        
+        password: this.password,
       });
 
       console.log(result);
@@ -50,5 +36,4 @@ export default {
 </script>
 
 <style scoped >
-
 </style>
