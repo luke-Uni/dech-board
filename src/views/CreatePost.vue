@@ -32,21 +32,7 @@
   <br />
   <br />
   <table class="table-left">
-<<<<<<< HEAD
-    <tr>
-      <td>
-        <p>
-          Important
-          <input type="checkbox" name="Important" v-model="important" />
-        </p>
-      </td>
 
-      <td class="td-left">
-        <button class="button-81" v-on:click="createPost()" role="button">
-          Create Post
-        </button>
-      </td>
-=======
     
   
     
