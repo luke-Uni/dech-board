@@ -37,11 +37,15 @@ export default {
 
   methods: {
      loginUser() {
-      let result = await axios.post("http://localhost:8090/register", {
+      let result = await axios.get("http://localhost:8090/register", {
         username: this.username,
-        password: this.password
+        password: this.password,
+        
        
-      });
+      }
+      
+      );
+      localStorage.setItem('token', result.data.token);
 
       console.log(result);
     },
