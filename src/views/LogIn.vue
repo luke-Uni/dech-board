@@ -60,8 +60,6 @@
       <!-- <img src="../assets/logo.svg" alt="" /> -->
     </div>
   </div>
-
-  
 </template>
 
 <script>
@@ -74,7 +72,7 @@ export default {
     return {
       username: "",
       password: "",
-       currentUser: "flo",
+      currentUser: "flo",
       feedback: "",
       tokens: [],
     };
@@ -128,34 +126,34 @@ export default {
 </script>
 
 <style scoped>
-#logo{
+#logo {
   margin-bottom: 30px;
 }
-#leftImg{
+#leftImg {
   /* background-color: black; */
   height: 40px;
   width: 20%;
   float: left;
 }
-#leftImg img{
+#leftImg img {
   width: 65%;
   opacity: 0.7;
-  
 }
-#rightImg img{
-  width:65%;
+#rightImg img {
+  width: 65%;
 }
-#rightImg{
+#rightImg {
   /* background-color: blue; */
   height: 40px;
   width: 20%;
   float: right;
 }
-.top,.footer{
+.top,
+.footer {
   height: 60px;
   background-color: aqua;
 }
-.footer{
+.footer {
 }
 .container {
   border: 1px solid black;
@@ -194,28 +192,28 @@ export default {
   background-color: cadetblue;
   margin-left: 35px;
 }
-#registerButton{
+#registerButton {
   border-radius: 20px;
   margin-bottom: 40px;
   width: 200px;
   height: 40px;
-  background-color:rgb(63, 218, 63);
+  background-color: rgb(63, 218, 63);
   margin-left: 75px;
 }
-#fotgotten{
-    margin-left: 90px;
-    margin-bottom: 20px;
+#fotgotten {
+  margin-left: 90px;
+  margin-bottom: 20px;
 }
-input{
+input {
   margin: 0 auto;
 }
-img{
+img {
   width: 300px;
   height: 50px;
   margin-bottom: 5px;
   margin-left: 35px;
 }
-.bottom{
+.bottom {
   /* background-color: black; */
   width: 300px;
   height: 2px;
