@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import CreatePost from "../views/CreatePost";
+import CreatePost from "../components/CreatePost";
 import RegistrationFrom from "../views/RegistrationForm";
 import LogIn from "../views/LogIn";
 

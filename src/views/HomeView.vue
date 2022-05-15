@@ -1,6 +1,10 @@
 <template>
   <div class="home">
     <MessageBoard />
+  
+    <CreatePost v-if="popupTriggers.buttonTrigger">
+    
+      </CreatePost>
 
     <div id="addButtonOutsite">
       <div class="button_plus"></div>
@@ -10,12 +14,28 @@
 
 <script>
 // @ is an alias to /src
+import {ref} from 'vue';
 import MessageBoard from "@/components/MessageBoard.vue";
+import CreatePost from "@/components/CreatePost.vue"
+
 
 export default {
+
+setup(){
+  const popupTriggers = ref({
+    buttonTrigger: true,
+    timedTrigger: false
+  });
+  return{
+    popupTriggers
+  }
+},
+
   components: {
     MessageBoard,
-  },
+    CreatePost
+    
+},
 };
 </script>
 
