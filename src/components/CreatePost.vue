@@ -3,7 +3,16 @@
   <div class="popup">
     <div class="popup-inner">
       <slot/>
-      <button class="popup-close" @click="TogglePopup()">Close Popup</button>
+      <button type="button" class="btn-close popup-close"  @click="TogglePopup()">
+<span class="icon-cross"></span>
+  <span class="visually-hidden"></span>
+</button>
+<br>
+
+
+
+      <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
+      
   <div>
     <div class="message-create">
       <input
@@ -277,4 +286,73 @@ input[type="checkbox"].switch_1:after {
 input[type="checkbox"].switch_1:checked:after {
   left: calc(100% - 1.5em);
 }
+
+@mixin cross($size: 20px, $color: currentColor, $thickness: 1px) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  position: relative;
+  width: $size;
+  height: $size;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: ($size - $thickness) / 2;
+    left: 0;
+    right: 0;
+    height: $thickness;
+    background: $color;
+    border-radius: $thickness;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+
+  span {
+    display: block;
+  }
+
+}
+
+
+// Example 1.
+.btn-close {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: rgb(255, 150, 150);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 150ms;
+  float: right;
+  
+  .icon-cross {
+    @include cross(20px, #fff, 6px);   
+  }
+  
+  &:hover,
+  &:focus {
+    transform: rotateZ(90deg);
+    background: rgb(253, 78, 78);
+  }
+
+}
+
+
+
+
 </style>
