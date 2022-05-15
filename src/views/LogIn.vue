@@ -1,7 +1,4 @@
 
-
-
-
 <template>
   <!-- <input
         type="text"
@@ -77,6 +74,8 @@ export default {
     return {
       username: "",
       password: "",
+       currentUser: "flo",
+      feedback: "",
       tokens: [],
     };
   },
