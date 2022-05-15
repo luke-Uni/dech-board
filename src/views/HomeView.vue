@@ -1,43 +1,40 @@
 <template>
   <div class="home">
     <MessageBoard />
-  
-    
 
     <div id="addButtonOutsite">
+
       <div class="button_plus" @click="() => TogglePopup('buttonTrigger') "></div>
 
-    <CreatePost v-if="popupTriggers.buttonTrigger" :TogglePopup="() => TogglePopup2('buttonTrigger')">
-
+    
 
       
 
+
+      <CreatePost
+        v-if="popupTriggers.buttonTrigger"
+        :TogglePopup="() => TogglePopup2('buttonTrigger')"
+      >
       </CreatePost>
-
-
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import {ref} from 'vue';
+import { ref } from "vue";
 import MessageBoard from "@/components/MessageBoard.vue";
-import CreatePost from "@/components/CreatePost.vue"
-
+import CreatePost from "@/components/CreatePost.vue";
 
 export default {
+  setup() {
+    const popupTriggers = ref({
+      buttonTrigger: false,
+    });
 
-setup(){
-  const popupTriggers = ref({
-    buttonTrigger: false
-   
-  });
-
-const TogglePopup = (trigger) => {
-  popupTriggers.value[trigger] = !popupTriggers.value[trigger]
-}
-
+    const TogglePopup = (trigger) => {
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+    };
 
 const TogglePopup2 = (trigger) => {
   popupTriggers.value[trigger] = !popupTriggers.value[trigger]
@@ -60,6 +57,7 @@ const TogglePopup2 = (trigger) => {
 methods:{
    
 },
+
 
 };
 </script>
