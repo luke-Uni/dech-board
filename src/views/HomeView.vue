@@ -3,7 +3,7 @@
     <MessageBoard />
 
     <div id="addButtonOutsite">
-      <div class="button_plus"></div>
+      <div class="button_plus" @click="showCreatePost()"></div>
     </div>
   </div>
 </template>
@@ -15,6 +15,10 @@ import MessageBoard from "@/components/MessageBoard.vue";
 export default {
   components: {
     MessageBoard,
+  },
+
+  methods: {
+    showCreatePost() {},
   },
 };
 </script>
@@ -36,7 +40,6 @@ export default {
   cursor: pointer;
   border: 2px solid #095776;
 
-  /* Mittig */
   top: 50%;
   left: 50%;
 }
