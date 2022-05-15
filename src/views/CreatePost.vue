@@ -42,6 +42,8 @@
           value="Important"
           class="switch_1"
         />
+        <br>
+        <label for="important">Important</label>
       </td>
 
       <td class="td-left">
