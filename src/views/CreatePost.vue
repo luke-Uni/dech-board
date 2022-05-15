@@ -151,7 +151,7 @@ input:focus {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  background-color: rgb(227, 238, 248);
+  background-color: rgba(244,247,255,255);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
@@ -166,7 +166,7 @@ input:focus {
 
 /* CSS */
 .button-81 {
-  background-color: rgb(227, 238, 248);
+  background-color: rgba(244,247,255,255);
   border: 0 solid #e2e8f0;
   border-radius: 1.5rem;
   box-sizing: border-box;
@@ -181,7 +181,7 @@ input:focus {
   line-height: 1;
   padding: 1rem 1.6rem;
   text-align: center;
-  text-decoration: none rgb(227, 238, 248) solid;
+  text-decoration: none rgba(244,247,255,255) solid;
   text-decoration-thickness: auto;
   transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0px 1px 2px rgba(118, 162, 255, 0.25);
@@ -191,7 +191,7 @@ input:focus {
 }
 
 .button-81:hover {
-  background-color: rgb(197, 223, 247);
+  background-color: rgba(244,247,255,255);
   color: rgb(0, 0, 0);
 }
 
