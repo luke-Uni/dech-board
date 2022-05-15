@@ -2,63 +2,69 @@
   <br />
   <div class="popup">
     <div class="popup-inner">
-      <slot/>
+      <slot />
       <button class="popup-close" @click="TogglePopup()">Close Popup</button>
-  <div>
-    <div class="message-create">
-      <input
-        type="text"
-        class="input-username"
-        placeholder="Username"
-        v-model="username"
-      />
-      
+      <div>
+        <div class="message-create">
+          <input
+            type="text"
+            class="input-username"
+            placeholder="Username"
+            v-model="username"
+          />
 
-      <input
-        type="text"
-        class="input-title"
-        placeholder="Title..."
-        v-model="title"
-      />
+          <input
+            type="text"
+            class="input-title"
+            placeholder="Title..."
+            v-model="title"
+          />
+          <br />
+          <br />
+
+          <textarea
+            class="textarea-content"
+            name="content"
+            rows="10"
+            cols="55"
+            placeholder="content..."
+            v-model="content"
+          >
+          </textarea>
+        </div>
+      </div>
       <br />
       <br />
+      <table class="table-left">
+        <tr>
+          <br />
+          <td>
+            <input
+              type="checkbox"
+              name="Important"
+              v-model="important"
+              value="Important"
+              class="switch_1"
+            />
+            <br />
+            <label for="important">Important</label>
+          </td>
 
-      <textarea
-        class="textarea-content"
-        name="content"
-        rows="10"
-        cols="55"
-        placeholder="content..."
-        v-model="content"
-      >
-      </textarea>
+          <td class="td-left">
+            <button
+              class="button-81"
+              v-on:click="
+                createPost();
+                TogglePopup();
+              "
+              role="button"
+            >
+              Create Post
+            </button>
+          </td>
+        </tr>
+      </table>
     </div>
-  </div>
-  <br />
-  <br />
-  <table class="table-left">
-    <tr>
-      <br />
-      <td>
-        <input
-          type="checkbox"
-          name="Important"
-          v-model="important"
-          value="Important"
-          class="switch_1"
-        />
-        <br>
-        <label for="important">Important</label>
-      </td>
-
-      <td class="td-left">
-        <button class="button-81" v-on:click="createPost();TogglePopup()" role="button">
-          Create Post
-        </button>
-      </td>
-    </tr>
-  </table>
-  </div>
   </div>
 </template>
 
@@ -68,7 +74,7 @@ import axios from "axios";
 export default {
   name: "CreatePost",
 
-  props:[ 'TogglePopup'],
+  props: ["TogglePopup"],
 
   data() {
     return {
@@ -81,18 +87,19 @@ export default {
 
   methods: {
     async createPost() {
-      let result = await axios.post("http://localhost:8090/posts/create", {
-        username: this.username,
-        title: this.title,
-        content: this.content,
-        important: this.important,
-
-        
-      },
-     { headers:{
-          'authorization':  localStorage.getItem('token')
-
-       }  }
+      let result = await axios.post(
+        "http://localhost:8090/posts/create",
+        {
+          username: this.username,
+          title: this.title,
+          content: this.content,
+          important: this.important,
+        },
+        {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        }
       );
 
       console.log(result);
@@ -102,28 +109,23 @@ export default {
 </script>
 
 <style scoped lang="scss" >
-
-.popup{
+.popup {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 99;
-  background-color:rgba(0,0,0,0.2) ;
-display: flex;
-align-items: center;
-justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
-
-.popup-inner{
-
-background: white;
-padding: 32px;
-border-radius:10px;
-
+.popup-inner {
+  background: white;
+  padding: 32px;
+  border-radius: 10px;
 }
 
 .table-left {
@@ -187,7 +189,7 @@ input:focus {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  background-color: rgba(244,247,255,255);
+  background-color: rgba(244, 247, 255, 255);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
@@ -202,7 +204,7 @@ input:focus {
 
 /* CSS */
 .button-81 {
-  background-color: rgba(244,247,255,255);
+  background-color: rgba(244, 247, 255, 255);
   border: 0 solid #e2e8f0;
   border-radius: 1.5rem;
   box-sizing: border-box;
@@ -217,7 +219,7 @@ input:focus {
   line-height: 1;
   padding: 1rem 1.6rem;
   text-align: center;
-  text-decoration: none rgba(244,247,255,255) solid;
+  text-decoration: none rgba(244, 247, 255, 255) solid;
   text-decoration-thickness: auto;
   transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0px 1px 2px rgba(118, 162, 255, 0.25);
