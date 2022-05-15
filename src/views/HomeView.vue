@@ -2,12 +2,18 @@
   <div class="home">
     <MessageBoard />
   
-    <CreatePost v-if="popupTriggers.buttonTrigger">
     
-      </CreatePost>
 
     <div id="addButtonOutsite">
-      <div class="button_plus"></div>
+      <div class="button_plus" @click="()=> TogglePopup('buttonTrigger')"></div>
+
+    <CreatePost v-if="popupTriggers.buttonTrigger">
+    
+      
+
+      </CreatePost>
+
+
     </div>
   </div>
 </template>
@@ -23,7 +29,7 @@ export default {
 
 setup(){
   const popupTriggers = ref({
-    buttonTrigger: true,
+    buttonTrigger: false,
     timedTrigger: false
   });
   return{
@@ -33,9 +39,11 @@ setup(){
 
   components: {
     MessageBoard,
+
     CreatePost
     
 },
+
 };
 </script>
 
@@ -43,20 +51,20 @@ setup(){
 #addButtonOutsite {
   position: -webkit-sticky;
   position: sticky;
-  bottom: 0;
+  bottom: 3em;
   height: 5em;
   width: 100vw;
 }
 
 .button_plus {
   position: absolute;
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   background: #fff;
   cursor: pointer;
   border: 2px solid #095776;
+  border-radius: 50%;
 
-  /* Mittig */
   top: 50%;
   left: 50%;
 }
@@ -90,7 +98,7 @@ setup(){
 }
 
 .button_plus:hover {
-  background-color: #095776;
+  background-color: #6dfaff;
   transition: 0.2s;
 }
 </style>
