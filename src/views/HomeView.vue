@@ -6,10 +6,6 @@
 
       <div class="button_plus" @click="() => TogglePopup('buttonTrigger') "></div>
 
-    
-
-      
-
 
       <CreatePost
         v-if="popupTriggers.buttonTrigger"
@@ -36,10 +32,13 @@ export default {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
 
+
 const TogglePopup2 = (trigger) => {
   popupTriggers.value[trigger] = !popupTriggers.value[trigger]
   
 }
+
+
 
 
   return{
