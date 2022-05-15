@@ -5,10 +5,11 @@
     
 
     <div id="addButtonOutsite">
-      <div class="button_plus" @click="()=> TogglePopup('buttonTrigger')"></div>
+      <div class="button_plus" @click="() => TogglePopup('buttonTrigger')"></div>
 
-    <CreatePost v-if="popupTriggers.buttonTrigger">
-    
+    <CreatePost v-if="popupTriggers.buttonTrigger" :TogglePopup="() => TogglePopup('buttonTrigger') ">
+
+
       
 
       </CreatePost>
@@ -29,11 +30,18 @@ export default {
 
 setup(){
   const popupTriggers = ref({
-    buttonTrigger: false,
-    timedTrigger: false
+    buttonTrigger: false
+   
   });
+
+const TogglePopup = (trigger) => {
+  popupTriggers.value[trigger] = !popupTriggers.value[trigger]
+}
+
+
   return{
-    popupTriggers
+    popupTriggers,
+    TogglePopup
   }
 },
 
