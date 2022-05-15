@@ -8,6 +8,7 @@
         placeholder="Username"
         v-model="username"
       />
+      
 
       <input
         type="text"
@@ -82,6 +83,7 @@ export default {
       },
      { headers:{
           'authorization':  localStorage.getItem('token')
+
        }  }
       );
 
