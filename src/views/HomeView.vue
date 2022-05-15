@@ -7,7 +7,7 @@
     <div id="addButtonOutsite">
       <div class="button_plus" @click="() => TogglePopup('buttonTrigger') "></div>
 
-    <CreatePost v-if="popupTriggers.buttonTrigger" :TogglePopup="() => TogglePopup2('buttonTrigger') ">
+    <CreatePost v-if="popupTriggers.buttonTrigger" :TogglePopup="() => TogglePopup2('buttonTrigger')">
 
 
       
@@ -41,7 +41,7 @@ const TogglePopup = (trigger) => {
 
 const TogglePopup2 = (trigger) => {
   popupTriggers.value[trigger] = !popupTriggers.value[trigger]
-  window.location.reload();
+  
 }
 
 
@@ -54,14 +54,11 @@ const TogglePopup2 = (trigger) => {
 
   components: {
     MessageBoard,
-
     CreatePost
     
 },
 methods:{
-   reloadPage(){
-  window.location.reload();
-}
+   
 },
 
 };

@@ -52,7 +52,7 @@
       </td>
 
       <td class="td-left">
-        <button class="button-81" v-on:click="createPost()" role="button">
+        <button class="button-81" v-on:click="createPost();TogglePopup()" role="button">
           Create Post
         </button>
       </td>
