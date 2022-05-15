@@ -13,8 +13,6 @@
       </div>
     </div>
   </div>
-
-
 </template>
 
 <script>
@@ -56,11 +54,8 @@ export default {
 
       console.log(response.constructor);
     },
-  }
-
+  },
 };
-  
-
 </script>
 
 <style scoped>
@@ -117,8 +112,4 @@ export default {
   margin-top: 5%;
   margin-right: 3em;
 }
-
-
-
-
 </style>
