@@ -227,7 +227,7 @@ input:focus {
 }
 
 .button-81:hover {
-  background-color: rgba(244,247,255,255);
+  background-color: rgba(102, 194, 247, 0.25);
   color: rgb(0, 0, 0);
 }
 
