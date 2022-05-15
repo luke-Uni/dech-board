@@ -31,7 +31,10 @@ export default {
     getAllPosts() {
       console.log("I am in the getAllPosts function");
 
-      let headers = { "Content-Type": "application/json" };
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
 
       let uri = "http://localhost:8090/posts/getall";
 
