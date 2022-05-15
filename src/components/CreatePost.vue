@@ -122,7 +122,7 @@ justify-content: center;
 
 background: white;
 padding: 32px;
-
+border-radius:10px;
 
 }
 
