@@ -35,7 +35,6 @@ export default {
 
     const TogglePopup2 = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
-      window.location.reload();
     };
 
     return {
