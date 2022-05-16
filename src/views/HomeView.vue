@@ -3,9 +3,10 @@
     <MessageBoard />
 
     <div id="addButtonOutsite">
-
-      <div class="button_plus" @click="() => TogglePopup('buttonTrigger') "></div>
-
+      <div
+        class="button_plus"
+        @click="() => TogglePopup('buttonTrigger')"
+      ></div>
 
       <CreatePost
         v-if="popupTriggers.buttonTrigger"
@@ -32,32 +33,22 @@ export default {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
 
+    const TogglePopup2 = (trigger) => {
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+    };
 
-const TogglePopup2 = (trigger) => {
-  popupTriggers.value[trigger] = !popupTriggers.value[trigger]
-  
-}
-
-
-
-
-  return{
-    popupTriggers,
-    TogglePopup,
-    TogglePopup2
-  }
-},
+    return {
+      popupTriggers,
+      TogglePopup,
+      TogglePopup2,
+    };
+  },
 
   components: {
     MessageBoard,
-    CreatePost
-    
-},
-methods:{
-   
-},
-
-
+    CreatePost,
+  },
+  methods: {},
 };
 </script>
 
@@ -68,6 +59,7 @@ methods:{
   bottom: 3em;
   height: 5em;
   width: 100vw;
+  margin: 50%;
 }
 
 .button_plus {
