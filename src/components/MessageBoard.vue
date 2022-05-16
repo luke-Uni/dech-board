@@ -75,6 +75,7 @@ export default {
   height: 10em;
   margin-bottom: 2%;
   border-radius: 10px;
+  box-shadow: 5px 10px 8px #888888;
 }
 .importantPost {
   background-color: rgb(244, 247, 255, 255);
