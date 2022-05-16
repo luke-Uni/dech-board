@@ -2,28 +2,27 @@
   <br />
   <div class="popup">
     <div class="popup-inner">
-
-      <slot/>
-      <button type="button" class="btn-close popup-close"  @click="TogglePopup()">
-<span class="icon-cross"></span>
-  <span class="visually-hidden"></span>
-</button>
-<br>
-
-
+      <slot />
+      <button
+        type="button"
+        class="btn-close popup-close"
+        @click="TogglePopup()"
+      >
+        <span class="icon-cross"></span>
+        <span class="visually-hidden"></span>
+      </button>
+      <br />
 
       <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
-      
-  <div>
-    <div class="message-create">
-      <input
-        type="text"
-        class="input-username"
-        placeholder="Username"
-        v-model="username"
-      />
-      
 
+      <div>
+        <div class="message-create">
+          <input
+            type="text"
+            class="input-username"
+            placeholder="Username"
+            v-model="username"
+          />
 
           <input
             type="text"
@@ -100,7 +99,7 @@ export default {
   methods: {
     async createPost() {
       let result = await axios.post(
-        "http://localhost:8090/posts/create",
+        "https://dech-board-rest-server.herokuapp.com/posts/create",
         {
           username: this.username,
           title: this.title,
@@ -303,7 +302,7 @@ input[type="checkbox"].switch_1:checked:after {
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: ($size - $thickness) / 2;
     left: 0;
@@ -324,9 +323,7 @@ input[type="checkbox"].switch_1:checked:after {
   span {
     display: block;
   }
-
 }
-
 
 // Example 1.
 .btn-close {
@@ -344,20 +341,15 @@ input[type="checkbox"].switch_1:checked:after {
   cursor: pointer;
   transition: all 150ms;
   float: right;
-  
+
   .icon-cross {
-    @include cross(20px, #fff, 6px);   
+    @include cross(20px, #fff, 6px);
   }
-  
+
   &:hover,
   &:focus {
     transform: rotateZ(90deg);
     background: rgb(253, 78, 78);
   }
-
 }
-
-
-
-
 </style>
