@@ -59,7 +59,6 @@ export default {
   bottom: 3em;
   height: 5em;
   width: 100vw;
-  margin: 50%;
 }
 
 .button_plus {
