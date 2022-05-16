@@ -86,6 +86,7 @@ export default {
   height: 10em;
   margin-bottom: 2%;
   border-radius: 10px;
+  box-shadow: 5px 10px 18px red;
 }
 
 .postTitle {
