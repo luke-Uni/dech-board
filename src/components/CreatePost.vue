@@ -17,12 +17,12 @@
 
       <div>
         <div class="message-create">
-          <input
+          <!-- <input
             type="text"
             class="input-username"
             placeholder="Username"
             v-model="username"
-          />
+          />  -->
 
           <input
             type="text"
@@ -89,7 +89,7 @@ export default {
 
   data() {
     return {
-      username: "",
+    //  username: "",
       title: "",
       content: "",
       important: "",
@@ -99,9 +99,10 @@ export default {
   methods: {
     async createPost() {
       let result = await axios.post(
-        "https://dech-board-rest-server.herokuapp.com/posts/create",
+        //"https://dech-board-rest-server.herokuapp.com/posts/create",
+        "http://localhost:8090/posts/create",
         {
-          username: this.username,
+          //username: this.username,
           title: this.title,
           content: this.content,
           important: this.important,
@@ -163,7 +164,7 @@ export default {
 
 .input-title {
   float: left;
-  margin-left: -1em;
+  margin-left: 11em;
   background-color: white;
   border: 0px solid;
   height: 20px;

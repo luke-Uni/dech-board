@@ -36,8 +36,8 @@ export default {
         authorization: localStorage.getItem("token"),
       };
 
-      let uri = "https://dech-board-rest-server.herokuapp.com/posts/getall";
-
+     // let uri = "https://dech-board-rest-server.herokuapp.com/posts/getall";
+        let uri = "http://localhost:8090/posts/getall";
       //send synchron Request to Server
       let response = axios
         .get(uri, { headers: headers })
