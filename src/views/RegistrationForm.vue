@@ -161,7 +161,7 @@ input {
   /* width: 23%; */
   border-radius: 60px;
   margin: 3% auto;
-  width: 17em;
+  width: 20em;
 }
 .form {
   display: block;
@@ -174,6 +174,7 @@ input {
   border-radius: 20px;
   margin-bottom: 10%;
   /* width: 80%; */
+  width: 18em ;
   height: 40px;
   
   box-shadow: 0px 0px 5px grey;
@@ -184,6 +185,7 @@ input {
   margin-bottom: 10%;
   /* width: 80%; */
   height: 40px;
+  width: 18em;
   /* margin-left: 10%; */
   box-shadow: 0px 0px 5px grey;
   border: 0 grey solid;
@@ -191,7 +193,8 @@ input {
 #loginButton {
   border-radius: 20px;
   margin-bottom: 10%;
-  width: 80%;
+  /* width: 80%; */
+  width: 19em;
   height: 40px;
   background-color: rgba(30, 203, 58, 255);
   border: 0ch white solid;
@@ -208,7 +211,7 @@ input {
   text-align: center;
 }
 #span {
-  font-size: 30%;
+  font-size: 85%;
   display: block;
   width: 60%;
   margin-left: 20%;
