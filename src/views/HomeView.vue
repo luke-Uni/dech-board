@@ -2,28 +2,21 @@
   <div class="home">
     <MessageBoard />
 
-    <div id="addButtonOutsite">
-      <div
-        class="button_plus"
+    <div class="" style="text-align: center; margin-top: 5%">
+      <button
+        class="icon-btn add-btn"
         @click="() => TogglePopup('buttonTrigger')"
-      ></div>
-
-      <div class="" style="text-align: center; margin-top: 5%">
-        <button
-          class="icon-btn add-btn"
-          @click="() => TogglePopup('buttonTrigger')"
-        >
-          <div class="add-icon"></div>
-          <div class="btn-txt">Add Post</div>
-        </button>
-      </div>
-
-      <CreatePost
-        v-if="popupTriggers.buttonTrigger"
-        :TogglePopup="() => TogglePopup2('buttonTrigger')"
       >
-      </CreatePost>
+        <div class="add-icon"></div>
+        <div class="btn-txt">Add Post</div>
+      </button>
     </div>
+
+    <CreatePost
+      v-if="popupTriggers.buttonTrigger"
+      :TogglePopup="() => TogglePopup2('buttonTrigger')"
+    >
+    </CreatePost>
   </div>
 </template>
 
