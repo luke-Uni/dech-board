@@ -8,6 +8,16 @@
         @click="() => TogglePopup('buttonTrigger')"
       ></div>
 
+      <div class="" style="text-align: center; margin-top: 5%">
+        <button
+          class="icon-btn add-btn"
+          @click="() => TogglePopup('buttonTrigger')"
+        >
+          <div class="add-icon"></div>
+          <div class="btn-txt">Add Post</div>
+        </button>
+      </div>
+
       <CreatePost
         v-if="popupTriggers.buttonTrigger"
         :TogglePopup="() => TogglePopup2('buttonTrigger')"
@@ -53,57 +63,89 @@ export default {
 </script>
 
 <style scoped>
-#addButtonOutsite {
-  position: -webkit-sticky;
-  position: sticky;
-  bottom: 3em;
-  height: 5em;
+.main-hr {
+  width: 30%;
+  border: none;
+  border-top: 1px solid #c3c3c3;
 }
-
-.button_plus {
-  position: absolute;
-  margin-left: auto;
+.icon-btn {
   width: 50px;
   height: 50px;
-  background: #fff;
-  cursor: pointer;
-  border: 2px solid #095776;
-  border-radius: 100%;
-
-  top: 50%;
-  left: 50%;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
 }
-
-.button_plus:after {
+.add-btn:hover {
+  width: 120px;
+}
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
   content: "";
   position: absolute;
-  transform: translate(-50%, -50%);
   height: 4px;
-  width: 50%;
-  background: #095776;
-  top: 50%;
-  left: 50%;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: rgb(117, 232, 255);
 }
-
-.button_plus:before {
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.icon-btn:focus {
+  outline: none;
+}
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #095776;
-  height: 50%;
-  width: 4px;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: rgb(117, 232, 255);
+  overflow: hidden;
 }
-
-.button_plus:hover:before,
-.button_plus:hover:after {
-  background: #fff;
-  transition: 0.2s;
+.add-icon::before {
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
 }
-
-.button_plus:hover {
-  background-color: #6dfaff;
-  transition: 0.2s;
+.add-icon::after {
+  right: 22px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
 }
 </style>
