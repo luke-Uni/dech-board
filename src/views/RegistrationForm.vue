@@ -3,57 +3,57 @@
   <div class="container">
     <form class="form">
       <!-- <fieldset> -->
-        <img src="../assets/1.png" alt="HeNan" id="logo" />
-        <label for="username"></label>
-        <input
-          type="text"
-          id="username"
-          placeholder=" &nbsp;&nbsp;Username"
-          v-model="username"
-        />
-        <br />
-        <label for="password"></label>
-        <input
-          type="password"
-          id="password"
-          placeholder=" &nbsp;&nbsp;Password"
-          v-model="password"
-        />
-        <br />
-        <label for="username"></label>
-        <input
-          type="text"
-          id="firstName"
-          placeholder=" &nbsp;&nbsp;First name"
-          v-model="firstName"
-        />
-        <br />
-        <label for="password"></label>
-        <input
-          type="password"
-          id="lastName"
-          placeholder=" &nbsp;&nbsp;Last name"
-          v-model="lastName"
-        />
-        <br />
-        <label for="email"></label>
-        <input
-          type="text"
-          id="birthdy"
-          placeholder=" &nbsp;&nbsp;E-Mail"
-          v-model="email"
-        />
-        
-        <br />
-        <!-- <div id="radio">
+      <img src="../assets/1.png" alt="HeNan" id="logo" />
+      <label for="username"></label>
+      <input
+        type="text"
+        id="username"
+        placeholder=" &nbsp;&nbsp;Username"
+        v-model="username"
+      />
+      <br />
+      <label for="password"></label>
+      <input
+        type="password"
+        id="password"
+        placeholder=" &nbsp;&nbsp;Password"
+        v-model="password"
+      />
+      <br />
+      <label for="username"></label>
+      <input
+        type="text"
+        id="firstName"
+        placeholder=" &nbsp;&nbsp;First name"
+        v-model="firstName"
+      />
+      <br />
+      <label for="password"></label>
+      <input
+        type="password"
+        id="lastName"
+        placeholder=" &nbsp;&nbsp;Last name"
+        v-model="lastName"
+      />
+      <br />
+      <label for="email"></label>
+      <input
+        type="text"
+        id="birthdy"
+        placeholder=" &nbsp;&nbsp;E-Mail"
+        v-model="email"
+      />
+
+      <br />
+      <!-- <div id="radio">
           <input type="radio" />i've read and accepted the
           <a href="">Privacy Policy</a> -->
-        <!-- </div> -->
-        <br />
-        <button class="primary" @click="registerAcc($event)" id="loginButton">
-          Sign up
-        </button>
-        <span id="span">Have an account?<a href="">Log in</a></span>
+      <!-- </div> -->
+      <br />
+      <button class="primary" @click="registerAcc($event)" id="loginButton">
+        Sign up
+      </button>
+      <span id="span">Have an account?<a href="">Log in</a></span>
       <!-- </fieldset> -->
     </form>
   </div>
@@ -83,8 +83,6 @@ export default {
     };
   },
 
-
-
   methods: {
     goToLogin(event) {
       event.preventDefault();
@@ -109,11 +107,9 @@ export default {
 </script>
 
 <style scoped>
-
-input { 
-    text-align: center; 
+input {
+  text-align: center;
 }
-
 
 * {
   margin: 0;
@@ -176,7 +172,7 @@ input {
   /* width: 80%; */
   width: 18em ;
   height: 40px;
-  
+
   box-shadow: 0px 0px 5px grey;
   border: 0 grey solid;
 }
