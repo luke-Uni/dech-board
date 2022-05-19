@@ -155,8 +155,9 @@ input {
 .container {
   border: 1px solid black;
   /* width: 23%; */
-  border-radius: 60px;
   margin: 3% auto;
+  border-radius: 60px;
+  
   width: 20em;
 }
 .form {
