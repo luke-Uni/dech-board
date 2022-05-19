@@ -58,7 +58,7 @@ export default {
   position: sticky;
   bottom: 3em;
   height: 5em;
-  width: 100vw;
+  width: 90em;
 }
 
 .button_plus {
