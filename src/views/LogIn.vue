@@ -155,7 +155,7 @@ export default {
 
 .container {
   border: 1px solid black;
-  width: 23%;
+  width: 20em;
   border-radius: 60px;
   margin: 2% auto;
 }
@@ -169,7 +169,7 @@ export default {
 #username {
   border-radius: 20px;
   margin-bottom: 10%;
-  width: 80%;
+  width: 18em;
   height: 40px;
   box-shadow: 0px 0px 5px grey;
   border: 0 grey solid;
@@ -178,7 +178,7 @@ export default {
 #password {
   border-radius: 20px;
   margin-bottom: 40px;
-  width: 80%;
+  width: 18em;
   height: 40px;
   box-shadow: 0px 0px 5px grey;
   border: 0 grey solid;
@@ -187,7 +187,7 @@ export default {
 #loginButton {
   border-radius: 20px;
   margin-bottom: 10%;
-  width: 80%;
+  width: 19em;
   height: 40px;
   background-color: rgba(146, 196, 224, 255);
   border: 0ch white solid;
@@ -198,7 +198,7 @@ export default {
 #registerButton {
   border-radius: 20px;
   /* margin-bottom: 40px; */
-  width: 60%;
+  width: 15em;
   height: 40px;
   background-color: rgba(30, 203, 58, 255);
   color: white;
