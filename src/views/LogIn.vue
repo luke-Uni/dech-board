@@ -163,7 +163,7 @@ export default {
 .form {
   display: block;
   margin: 10% auto;
-  width: 90%;
+  width: 2oem;
 }
 
 #username {
