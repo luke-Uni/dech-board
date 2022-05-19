@@ -92,7 +92,7 @@ export default {
       let headers = { "Content-Type": "application/json" };
       let res = await axios.post(
         "http://localhost:8090/register",
-      // "https://dech-board-rest-server.herokuapp.com/register",
+        // "https://dech-board-rest-server.herokuapp.com/register",
         { username: this.username, password: this.password },
         {
           headers: headers,
@@ -146,8 +146,7 @@ export default {
   width: 100%;
   height: 80px;
 }
-.footer {
-}
+
 .container {
   border: 1px solid black;
   width: 23%;
