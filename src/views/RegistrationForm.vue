@@ -2,7 +2,7 @@
   <div class="top"></div>
   <div class="container">
     <form class="form">
-      <fieldset>
+      <!-- <fieldset> -->
         <img src="../assets/1.png" alt="HeNan" id="logo" />
         <label for="username"></label>
         <input
@@ -54,7 +54,7 @@
           Sign up
         </button>
         <span id="span">Have an account?<a href="">Log in</a></span>
-      </fieldset>
+      <!-- </fieldset> -->
     </form>
   </div>
   <div class="footer">
@@ -158,9 +158,10 @@ input {
 
 .container {
   border: 1px solid black;
-  width: 23%;
+  /* width: 23%; */
   border-radius: 60px;
   margin: 3% auto;
+  width: 17em;
 }
 .form {
   display: block;
@@ -172,18 +173,18 @@ input {
 #birthdy {
   border-radius: 20px;
   margin-bottom: 10%;
-  width: 80%;
+  /* width: 80%; */
   height: 40px;
-  margin-left: 10%;
+  
   box-shadow: 0px 0px 5px grey;
   border: 0 grey solid;
 }
 #password {
   border-radius: 20px;
   margin-bottom: 10%;
-  width: 80%;
+  /* width: 80%; */
   height: 40px;
-  margin-left: 10%;
+  /* margin-left: 10%; */
   box-shadow: 0px 0px 5px grey;
   border: 0 grey solid;
 }
@@ -194,7 +195,7 @@ input {
   height: 40px;
   background-color: rgba(30, 203, 58, 255);
   border: 0ch white solid;
-  margin-left: 10%;
+  /* margin-left: 10%; */
   box-shadow: 0px 0px 5px rgba(30, 203, 58, 255);
   color: white;
 }
