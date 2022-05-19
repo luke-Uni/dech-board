@@ -156,7 +156,7 @@ export default {
   border: 1px solid black;
   width: 20em;
   border-radius: 60px;
-  margin: 2% auto;
+  margin: 3% auto;
 }
 
 .form {
