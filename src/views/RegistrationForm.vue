@@ -49,7 +49,7 @@
           <a href="">Privacy Policy</a>
         </div>
         <br />
-        <button class="primary" @click="goToLogin($event)" id="loginButton">
+        <button class="primary" @click="registerAcc($event)" id="loginButton">
           Sign up
         </button>
         <span id="span">Have an account?<a href="">Log in</a></span>
@@ -92,12 +92,14 @@ export default {
       let headers = { "Content-Type": "application/json" };
       let res = await axios.post(
         "http://localhost:8090/register",
+      // "https://dech-board-rest-server.herokuapp.com/register",
         { username: this.username, password: this.password },
         {
           headers: headers,
         }
       );
       console.log(res.status);
+      this.$router.push("/login");
     },
   },
 };
