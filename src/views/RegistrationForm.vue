@@ -36,18 +36,19 @@
           v-model="lastName"
         />
         <br />
-        <label for="username"></label>
+        <label for="email"></label>
         <input
           type="text"
           id="birthdy"
-          placeholder=" &nbsp;&nbsp;Birthdy"
-          v-model="birthdy"
+          placeholder=" &nbsp;&nbsp;E-Mail"
+          v-model="email"
         />
+        
         <br />
-        <div id="radio">
+        <!-- <div id="radio">
           <input type="radio" />i've read and accepted the
-          <a href="">Privacy Policy</a>
-        </div>
+          <a href="">Privacy Policy</a> -->
+        <!-- </div> -->
         <br />
         <button class="primary" @click="registerAcc($event)" id="loginButton">
           Sign up
@@ -82,6 +83,8 @@ export default {
     };
   },
 
+
+
   methods: {
     goToLogin(event) {
       event.preventDefault();
@@ -106,6 +109,12 @@ export default {
 </script>
 
 <style scoped>
+
+input { 
+    text-align: center; 
+}
+
+
 * {
   margin: 0;
   padding: 0;
