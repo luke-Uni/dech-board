@@ -58,17 +58,17 @@ export default {
   position: sticky;
   bottom: 3em;
   height: 5em;
-  width: 90em;
 }
 
 .button_plus {
   position: absolute;
+  margin-left: auto;
   width: 50px;
   height: 50px;
   background: #fff;
   cursor: pointer;
   border: 2px solid #095776;
-  border-radius: 50%;
+  border-radius: 100%;
 
   top: 50%;
   left: 50%;
