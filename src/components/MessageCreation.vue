@@ -15,8 +15,18 @@
 
       <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
 
+
+
+
       <div>
         <div class="message-create">
+            
+            <input
+            type="text"
+            class="input-title"
+            placeholder="Recipient..."
+            v-model="recipient"
+          />
           <br />
           <br />
 
@@ -76,8 +86,8 @@ export default {
 
   data() {
     return {
-      //  username: "",
-      
+      //username: "",
+      recipient: "",
       content: ""
       
     };
@@ -89,8 +99,8 @@ export default {
         //"https://dech-board-rest-server.herokuapp.com/posts/create",
         "http://localhost:8090/message/create",
         {
-          //username: this.username,
-          
+         // username: this.username,
+          recipient: this.recipient,
           content: this.content
           
         },
