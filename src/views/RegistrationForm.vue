@@ -53,7 +53,7 @@
       <button class="primary" @click="registerAcc($event)" id="loginButton">
         Sign up
       </button>
-      <span id="span">Have an account?<a href="">Log in</a></span>
+      <span id="span">Have an account? <a href="Login" @click="goToLogin($event)">Log in</a></span>
       <!-- </fieldset> -->
     </form>
   </div>
