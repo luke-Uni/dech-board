@@ -8,7 +8,7 @@
 <script>
 import InvitationLink from "@/components/InvitationLink.vue";
 export default {
-  name: {
+  components: {
     InvitationLink,
   },
 };

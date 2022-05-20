@@ -1,7 +1,12 @@
 <template>
   <div>
-    <p>{{ link }}</p>
-    <button @click="showLink()">Invitation Link</button>
+    <div>
+      <p class="linkText">{{ inviteLink }}</p>
+      <div class="bookmark icon"></div>
+    </div>
+    <button type="button" class="button-81" @click="showLink()">
+      Invitation Link
+    </button>
   </div>
 </template>
 
@@ -9,12 +14,12 @@
 import axios from "axios";
 export default {
   data() {
-    return { link: "" };
+    return { inviteLink: "HI" };
   },
 
   methods: {
     showLink() {
-      this.link = "http://localhost:8080/#/registeruser";
+      this.inviteLink = "http://localhost:8080/#/registeruser";
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
@@ -31,4 +36,67 @@ export default {
 </script>
 
 <style scoped>
+.linkText {
+}
+.button-81 {
+  background-color: rgba(244, 247, 255, 255);
+  border: 0 solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  color: #0d222a;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1rem 1.6rem;
+  text-align: center;
+  text-decoration: none rgba(244, 247, 255, 255) solid;
+  text-decoration-thickness: auto;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0px 1px 2px rgba(118, 162, 255, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-81:hover {
+  background-color: rgba(102, 194, 247, 0.25);
+  color: rgb(0, 0, 0);
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+  }
+}
+
+.bookmark.icon {
+  color: #000;
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 3px;
+  width: 10px;
+  height: 15px;
+  border-radius: 1px 1px 0 0;
+  border-top: solid 1px currentColor;
+  border-left: solid 1px currentColor;
+  border-right: solid 1px currentColor;
+}
+.bookmark.icon:before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 1px;
+  width: 7px;
+  height: 7px;
+  border-top: solid 1px currentColor;
+  border-left: solid 1px currentColor;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 </style>
