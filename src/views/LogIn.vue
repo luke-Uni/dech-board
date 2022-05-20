@@ -28,6 +28,7 @@
       </button>
     </form>
   </div>
+  <InvitationLink />
   <div class="footer">
     <div id="leftImg">
       <img src="../assets/河南师范大学.png" alt="" />
@@ -40,8 +41,12 @@
 
 <script>
 import axios from "axios";
+import InvitationLink from "../components/InvitationLink.vue";
 
 export default {
+  components: {
+    InvitationLink: InvitationLink,
+  },
   data() {
     return {
       username: "",
@@ -157,7 +162,7 @@ export default {
 .container {
   border: 1px solid black;
   width: 20em;
-  border-radius: 60px;
+  border-radius: 40px;
   margin: 3% auto;
 }
 

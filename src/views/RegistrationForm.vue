@@ -53,7 +53,10 @@
       <button class="primary" @click="registerAcc($event)" id="loginButton">
         Sign up
       </button>
-      <span id="span">Have an account? <a href="Login" @click="goToLogin($event)">Log in</a></span>
+      <span id="span"
+        >Have an account?
+        <a href="Login" @click="goToLogin($event)">Log in</a></span
+      >
       <!-- </fieldset> -->
     </form>
   </div>
@@ -156,7 +159,7 @@ input {
   border: 1px solid black;
   /* width: 23%; */
   margin: 3% auto;
-  border-radius: 30px;
+  border-radius: 40px;
   width: 20em;
 }
 
@@ -172,7 +175,7 @@ input {
   border-radius: 20px;
   margin-bottom: 10%;
   /* width: 80%; */
-  width: 18em ;
+  width: 18em;
   height: 40px;
 
   box-shadow: 0px 0px 5px grey;
