@@ -52,8 +52,8 @@
             <button
               class="button-81"
               v-on:click="
-                createPost();
-                TogglePopup();
+                createMessage();
+                // TogglePopup();
               "
               role="button"
             >
@@ -72,7 +72,7 @@ import axios from "axios";
 export default {
   name: "MessageCreation",
 
-  props: ["TogglePopup"],
+//   props: ["TogglePopup"],
 
   data() {
     return {
@@ -84,7 +84,7 @@ export default {
   },
 
   methods: {
-    async createPost() {
+    async createMessage() {
       let result = await axios.post(
         //"https://dech-board-rest-server.herokuapp.com/posts/create",
         "http://localhost:8090/message/create",
