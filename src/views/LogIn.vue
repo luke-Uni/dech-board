@@ -117,6 +117,7 @@ export default {
 #logo {
   margin-bottom: 10%;
   width: 80%;
+  margin-left: 10%;
 }
 
 #rightImg {
