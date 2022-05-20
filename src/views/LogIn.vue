@@ -162,7 +162,7 @@ export default {
 .container {
   border: 1px solid black;
   width: 20em;
-  border-radius: 40px;
+  border-radius: 35px;
   margin: 3% auto;
 }
 

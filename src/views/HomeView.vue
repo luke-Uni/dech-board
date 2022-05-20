@@ -37,7 +37,7 @@ export default {
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
-
+  
     const TogglePopup2 = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
