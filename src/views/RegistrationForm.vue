@@ -53,7 +53,7 @@
       <button class="primary" @click="registerAcc($event)" id="loginButton">
         Sign up
       </button>
-      <span id="span">Have an account?<a href="">Log in</a></span>
+      <span id="span">Have an account? <a href="Login" @click="goToLogin($event)">Log in</a></span>
       <!-- </fieldset> -->
     </form>
   </div>
@@ -156,14 +156,15 @@ input {
   border: 1px solid black;
   /* width: 23%; */
   margin: 3% auto;
-  border-radius: 60px;
-  
+  border-radius: 30px;
   width: 20em;
 }
+
 .form {
   display: block;
   margin: 10% auto;
 }
+
 #username,
 #firstName,
 #lastName,

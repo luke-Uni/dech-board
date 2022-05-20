@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    
     <MessageBoard />
 
     <div class="" style="text-align: center; margin-top: 5%">
@@ -26,6 +27,7 @@ import { ref } from "vue";
 import MessageBoard from "@/components/MessageBoard.vue";
 import CreatePost from "@/components/CreatePost.vue";
 
+
 export default {
   setup() {
     const popupTriggers = ref({
@@ -49,8 +51,8 @@ export default {
 
   components: {
     MessageBoard,
-    CreatePost,
-  },
+    CreatePost
+},
   methods: {},
 };
 </script>
