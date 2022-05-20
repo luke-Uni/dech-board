@@ -9,11 +9,12 @@
 import axios from "axios";
 export default {
   data() {
-    link: "http://localhost:8080/#/registeruser";
+    return { link: "" };
   },
 
   methods: {
     showLink() {
+      this.link = "http://localhost:8080/#/registeruser";
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),

@@ -1,5 +1,8 @@
 <template>
-  <InvitationLink />
+  <div>
+    <h1>Only Test Components</h1>
+    <InvitationLink />
+  </div>
 </template>
 
 <script>
