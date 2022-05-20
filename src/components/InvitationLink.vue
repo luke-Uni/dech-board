@@ -36,8 +36,6 @@ export default {
 </script>
 
 <style scoped>
-.linkText {
-}
 .button-81 {
   background-color: rgba(244, 247, 255, 255);
   border: 0 solid #e2e8f0;
