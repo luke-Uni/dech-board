@@ -28,9 +28,9 @@
         v-model="firstName"
       />
       <br />
-      <label for="password"></label>
+      <label for="last name"></label>
       <input
-        type="password"
+        type="text"
         id="lastName"
         placeholder=" &nbsp;&nbsp;Last name"
         v-model="lastName"
@@ -159,7 +159,7 @@ input {
   border: 1px solid black;
   /* width: 23%; */
   margin: 3% auto;
-  border-radius: 40px;
+  border-radius: 35px;
   width: 20em;
 }
 
