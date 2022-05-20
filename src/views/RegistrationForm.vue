@@ -156,14 +156,15 @@ input {
   border: 1px solid black;
   /* width: 23%; */
   margin: 3% auto;
-  border-radius: 60px;
-  
+  border-radius: 30px;
   width: 20em;
 }
+
 .form {
   display: block;
   margin: 10% auto;
 }
+
 #username,
 #firstName,
 #lastName,
