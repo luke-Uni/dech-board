@@ -28,9 +28,9 @@
         v-model="firstName"
       />
       <br />
-      <label for="password"></label>
+      <label for="last name"></label>
       <input
-        type="password"
+        type="text"
         id="lastName"
         placeholder=" &nbsp;&nbsp;Last name"
         v-model="lastName"
