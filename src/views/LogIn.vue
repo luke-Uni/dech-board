@@ -63,6 +63,8 @@ export default {
           console.log(result);
 
           this.tokens[0] = result.data;
+
+          //Bug
           localStorage.setItem("token", this.tokens[0].token);
           // localStorage.setItem("username", this.username);
         });
