@@ -76,7 +76,9 @@ a:hover {
     right: 0%;
     top: 0%;
     bottom: 0%;
-    margin-left: 2.0em;
+  
+    margin-top: 2em;
+    margin-left: 80em; 
 
     background: #F4F7FF;
     border-radius: 10px;

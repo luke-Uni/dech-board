@@ -113,6 +113,7 @@ export default {
   background: #F4F7FF;
   border: 1px solid #B4ADAD;
   border-radius: 22px;
+  
 }
 
 
