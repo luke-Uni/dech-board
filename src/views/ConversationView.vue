@@ -1,10 +1,8 @@
 <template>
-  <div class="home">
+  <LeftSideMenu />
 
-<ChatView/>
-    
-    
-  
+  <div class="home">
+    <ChatView />
   </div>
 </template>
 
@@ -12,33 +10,32 @@
 // @ is an alias to /src
 // import { ref } from "vue";
 import ChatView from "@/components/ChatView.vue";
-
-
-
+import LeftSideMenu from "@/components/LeftSideMenu.vue";
 export default {
-//   setup() {
-//     const popupTriggers = ref({
-//       buttonTrigger: false,
-//     });
+  //   setup() {
+  //     const popupTriggers = ref({
+  //       buttonTrigger: false,
+  //     });
 
-//     const TogglePopup = (trigger) => {
-//       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
-//     };
-  
-//     const TogglePopup2 = (trigger) => {
-//       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
-//     };
+  //     const TogglePopup = (trigger) => {
+  //       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+  //     };
 
-//     return {
-//       popupTriggers,
-//       TogglePopup,
-//       TogglePopup2,
-//     };
-//   },
+  //     const TogglePopup2 = (trigger) => {
+  //       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+  //     };
+
+  //     return {
+  //       popupTriggers,
+  //       TogglePopup,
+  //       TogglePopup2,
+  //     };
+  //   },
 
   components: {
-    ChatView
-},
+    ChatView,
+    LeftSideMenu,
+  },
   methods: {},
 };
 </script>

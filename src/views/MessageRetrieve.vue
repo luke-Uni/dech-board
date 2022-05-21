@@ -1,23 +1,30 @@
 <template>
+  <LeftSideMenu />
   <div>
-    
-    <div class="postComplete" v-for="message in messages" :key="message.username">
+    <div
+      class="postComplete"
+      v-for="message in messages"
+      :key="message.username"
+    >
       <h4 class="postUsername">User: {{ message.username }}</h4>
-        <div class=" postsInside" >
-         <p class="recipient"> Recipient: {{ message.recipient }} </p>
-        
-         <p class="postText">{{ message.content }}</p>
-         <p class="timeStamp">{{message.time}} </p>
-         <p class="directionState">{{message.state}} </p>
-       </div>
-       </div>
-    </div> 
-  
+      <div class="postsInside">
+        <p class="recipient">Recipient: {{ message.recipient }}</p>
+
+        <p class="postText">{{ message.content }}</p>
+        <p class="timeStamp">{{ message.time }}</p>
+        <p class="directionState">{{ message.state }}</p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
+import LeftSideMenu from "@/components/LeftSideMenu.vue";
 export default {
+  components: {
+    LeftSideMenu,
+  },
   data() {
     return {
       messages: [],
@@ -35,15 +42,15 @@ export default {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-//console.log(localStorage.getItem("currentuser"));
-     // let uri = "http://localhost:8090/message/getall";
-     var  name = localStorage.getItem("recipient");
-      let uri = "http://localhost:8090/message/getall/"+ name;
+      //console.log(localStorage.getItem("currentuser"));
+      // let uri = "http://localhost:8090/message/getall";
+      var name = localStorage.getItem("recipient");
+      let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
       let response = axios
         .get(uri, { headers: headers })
         .then((response) => {
-         console.log(response);
+          console.log(response);
 
           this.messages = response.data;
         })
@@ -60,17 +67,15 @@ export default {
 </script>
 
 <style scoped>
-.timeStamp{
+.timeStamp {
   margin-right: 2em;
   text-align: right;
 }
 
-
-.recipient{
+.recipient {
   margin-left: 1em;
   color: rgb(255, 40, 165);
 }
-
 
 .postComplete {
   margin: auto;
@@ -108,7 +113,6 @@ export default {
   margin: 0%;
   margin-left: 1em;
   margin-top: 0.5em;
-  
 }
 
 .importantTitle {
