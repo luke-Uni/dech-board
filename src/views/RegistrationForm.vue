@@ -10,6 +10,7 @@
         id="username"
         placeholder=" &nbsp;&nbsp;Username"
         v-model="username"
+        required
       />
       <br />
       <label for="password"></label>
@@ -18,6 +19,7 @@
         id="password"
         placeholder=" &nbsp;&nbsp;Password"
         v-model="password"
+        required
       />
       <br />
       <label for="username"></label>
@@ -42,6 +44,7 @@
         id="birthdy"
         placeholder=" &nbsp;&nbsp;E-Mail"
         v-model="email"
+        required
       />
 
       <br />
@@ -50,7 +53,7 @@
           <a href="">Privacy Policy</a> -->
       <!-- </div> -->
       <br />
-      <button class="primary" @click="registerAcc($event)" id="loginButton">
+      <button class="primary" @click="registerAcc()" id="loginButton">
         Sign up
       </button>
       <span id="span"
@@ -87,8 +90,8 @@ export default {
   },
 
   methods: {
-    goToLogin(event) {
-      event.preventDefault();
+    goToLogin() {
+      // event.preventDefault();
       this.$router.push("/login");
     },
     async registerAcc(event) {
