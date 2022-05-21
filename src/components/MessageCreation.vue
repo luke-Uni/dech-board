@@ -110,7 +110,7 @@ export default {
           },
         }
       );
-
+      localStorage.setItem("recipient", this.recipient);
       console.log(result);
     },
   },

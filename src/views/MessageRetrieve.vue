@@ -1,14 +1,13 @@
 <template>
   <div>
+    
     <div class="postComplete" v-for="message in messages" :key="message.username">
       <h4 class="postUsername">{{ message.username }}</h4>
         
           {{ message.recipient }} 
         
          <p class="postText">{{ message.content }}</p>
-        <p> 
-           <b> {{ post.creationDate }} </b> 
-         </p>
+       
        </div>
     </div> 
   
@@ -34,9 +33,10 @@ export default {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-
+console.log(localStorage.getItem("currentuser"));
      // let uri = "http://localhost:8090/message/getall";
-      let uri = "http://localhost:8090/message/getall";
+     var  name = localStorage.getItem("recipient");
+      let uri = "http://localhost:8090/message/getall/"+ name;
       //send synchron Request to Server
       let response = axios
         .get(uri, { headers: headers })

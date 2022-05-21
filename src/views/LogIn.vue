@@ -49,6 +49,7 @@ export default {
       currentUser: "",
       feedback: "",
       tokens: [],
+     
     };
   },
 
@@ -66,6 +67,7 @@ export default {
 
           //Bug
           localStorage.setItem("token", this.tokens[0].token);
+          localStorage.setItem("currentuser", this.username);
           // localStorage.setItem("username", this.username);
         });
 
