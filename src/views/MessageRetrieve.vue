@@ -7,6 +7,8 @@
          <p class="recipient"> Recipient: {{ message.recipient }} </p>
         
          <p class="postText">{{ message.content }}</p>
+         <p class="timeStamp">{{message.time}} </p>
+         <p class="directionState">{{message.state}} </p>
        </div>
        </div>
     </div> 
@@ -58,6 +60,12 @@ console.log(localStorage.getItem("currentuser"));
 </script>
 
 <style scoped>
+.timeStamp{
+  margin-right: 2em;
+  text-align: right;
+}
+
+
 .recipient{
   margin-left: 1em;
   color: rgb(255, 40, 165);
