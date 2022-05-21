@@ -67,12 +67,12 @@ export default {
   right: 0%;
   top: 0%;
   bottom: 0%;
-  width: 605px;
-  height: 60px;
-  left: 100px;
-  top: 54px;
+  width: 37.8125em;
+  height: 3.75em;
+  left: 6.25em;
+  top: 3.375em;
   background: #F4F7FF;
-  border-radius: 10px;
+  border-radius: 0.625em;
     margin-top: 7em;
    margin-left: 25em;
 }
