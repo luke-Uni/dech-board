@@ -10,7 +10,7 @@
         id="username"
         placeholder=" &nbsp;&nbsp;Username"
         v-model="username"
-        required
+        
       />
       <br />
       <label for="password"></label>
@@ -19,7 +19,7 @@
         id="password"
         placeholder=" &nbsp;&nbsp;Password"
         v-model="password"
-        required
+        
       />
       <br />
       <label for="username"></label>
@@ -44,7 +44,7 @@
         id="birthdy"
         placeholder=" &nbsp;&nbsp;E-Mail"
         v-model="email"
-        required
+       
       />
 
       <br />

@@ -25,13 +25,12 @@
           />
           <br />
           <br />
-          
-          <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
+          <div class="chooseuser" v-for="user in users" :key="user.username">
+          <select name="user" id="user">
+            <option value="volvo">{{user.username}} </option>
+           
           </select>
+          </div>
           <br />
           <br />
           <textarea
@@ -93,6 +92,7 @@ export default {
       //username: "",
       recipient: "",
       content: "",
+      users: [],
     };
   },
 
@@ -115,6 +115,28 @@ export default {
       localStorage.setItem("recipient", this.recipient);
       console.log(result);
     },
+    async getUserList(){
+
+ let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+
+      let response = await axios.get(
+        "http://localhost:8090/user/getall",
+      { headers: headers }
+
+      ).then((response) => {
+            this.users=response.data;
+      }).then((data) => (this.user = data))
+        .catch((e) => {
+          this.errors.push(e);
+        });
+
+        console.log(response);
+
+
+    }
   },
 };
 </script>
