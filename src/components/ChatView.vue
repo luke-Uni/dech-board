@@ -3,14 +3,7 @@
   <div>
     
     <div class="postComplete" v-for="message in messages" :key="message.username">
-      <h4 class="postUsername">User: {{ message.username }}</h4>
-        <div class=" postsInside" >
-         <p class="recipient"> Recipient: {{ message.recipient }} </p>
-        
-         <p class="postText">{{ message.content }}</p>
-         <p class="timeStamp">{{message.time}} </p>
-         <p class="directionState">{{message.state}} </p>
-       </div>
+      
        </div>
     </div> 
   
@@ -28,7 +21,7 @@ export default {
     this.getAllConversations();
   },
   methods: {
-    //To display all the Posts we need to get them from the Server
+    //To display all the Conversations we need to get them from the Server
     getAllConversations() {
       console.log("I am in the getAllPosts function");
 
@@ -36,9 +29,9 @@ export default {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-    // var  name = localStorage.getItem("recipient");
+    
       let uri = "http://localhost:8090/conversation/getall/";
-      //send synchron Request to Server
+      
       let response = axios
         .get(uri, { headers: headers })
         .then((response) => {
@@ -46,7 +39,7 @@ export default {
 
           this.messages = response.data;
         })
-        //save all Posts locally
+        //save all Conversations 
         .then((data) => (this.user = data))
         .catch((e) => {
           this.errors.push(e);
