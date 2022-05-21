@@ -7,6 +7,21 @@
       <div class="chat"></div>
 
 <div class="conversationview">
+<div class="postComplete" v-for="conversation in conversations" :key="conversation.user1">
+      
+      <p class="postUsername"  >{{ conversation.user1 }}</p>
+      
+        
+          {{ conversation.title }}
+        
+        <p class="postText">{{ conversation.lastMessageSend }}</p>
+        <p>
+          
+        </p>
+      
+    </div>
+
+
 </div>
 
     
@@ -19,7 +34,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      messages: [],
+      conversations: [],
     };
   },
   beforeMount() {
@@ -41,8 +56,8 @@ export default {
         .get(uri, { headers: headers })
         .then((response) => {
          console.log(response);
-
-          this.messages = response.data;
+        
+          this.conversations = response.data;
         })
         //save all Conversations 
         .then((data) => (this.user = data))
