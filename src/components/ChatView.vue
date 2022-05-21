@@ -2,7 +2,8 @@
 <template>
   <div>
       <div class="selecteduser">
-
+          <div class= "myUserAcc">
+          </div>
       </div>
 
       <div class="chat"></div>
@@ -94,6 +95,19 @@ export default {
 
   background: #F4F7FF;
   border-radius: 21px;
+}
+
+.myUseracc{
+  box-sizing: border-box;
+  position: absolute;
+  width: 402px;
+  height: 83px;
+  left: 723px;
+  top: 51px;
+
+  background: #F4F7FF;
+  border: 1px solid #B4ADAD;
+  border-radius: 22px;
 }
 
 
