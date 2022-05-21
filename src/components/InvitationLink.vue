@@ -1,8 +1,9 @@
 <template>
   <div>
     <div>
-      <p class="linkText">{{ inviteLink }}</p>
       <div class="bookmark icon"></div>
+      <p class="linkText">{{ inviteLink }}</p>
+      
     </div>
     <button type="button" class="button-81" @click="showLink()">
       Invitation Link
@@ -76,14 +77,15 @@ export default {
 .bookmark.icon {
   color: #000;
   position: absolute;
-  margin-left: 5px;
-  margin-top: 3px;
-  width: 10px;
+  margin-left: 33.5em;
+  margin-top: 0.1em;
+  width: 0.6em;
   height: 15px;
   border-radius: 1px 1px 0 0;
   border-top: solid 1px currentColor;
   border-left: solid 1px currentColor;
   border-right: solid 1px currentColor;
+ 
 }
 .bookmark.icon:before {
   content: "";
@@ -96,5 +98,6 @@ export default {
   border-left: solid 1px currentColor;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
+  
 }
 </style>
