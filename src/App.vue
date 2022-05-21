@@ -4,7 +4,7 @@
     <router-link to="/registeruser">Register</router-link> |
     <router-link to="/login">Login</router-link>|
     <router-link to="test">Test</router-link>|
-    <router-link to="/Messages">Messages with Rachid</router-link>
+    <router-link to="/Messages">Messages</router-link>
     
   </nav>
   <router-view />

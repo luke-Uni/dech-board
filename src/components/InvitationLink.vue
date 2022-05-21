@@ -1,9 +1,23 @@
 <template>
   <div>
-    <div>
-      <p class="linkText">{{ inviteLink }}</p>
-      <div class="bookmark icon"></div>
-    </div>
+    <table>
+      <tr>
+        <td>
+          <p class="linkText">{{ inviteLink }}</p>
+        </td>
+        <td>
+          <div>
+            <img
+              src="@/assets/save.png"
+              alt="saveButton"
+              id="saveIcon"
+              @click="copyToClipboard()"
+            />
+          </div>
+        </td>
+      </tr>
+    </table>
+
     <button type="button" class="button-81" @click="showLink()">
       Invitation Link
     </button>
@@ -14,7 +28,7 @@
 import axios from "axios";
 export default {
   data() {
-    return { inviteLink: "Invite Link" };
+    return { inviteLink: "Invite Link", tooltipText: "" };
   },
 
   methods: {
@@ -31,11 +45,42 @@ export default {
 
       console.log(response.status);
     },
+
+    showHoverText() {
+      this.tooltip = "Copy Me";
+      console.log("MouseOverEvent");
+    },
+
+    copyToClipboard() {
+      var copyText = this.inviteLink;
+
+      /* Select the text field */
+      //copyText.select();
+      //copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+      /* Copy the text inside the text field */
+      navigator.clipboard.writeText(copyText);
+
+      this.tooltipText = "Copied to Clipboard";
+
+      /* Alert the copied text */
+      alert("Copied the text: " + copyText);
+    },
   },
 };
 </script>
 
 <style scoped>
+table {
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+#saveIcon {
+  width: 1em;
+  margin-left: 1em;
+}
+
 .button-81 {
   background-color: rgba(244, 247, 255, 255);
   border: 0 solid #e2e8f0;
@@ -76,18 +121,47 @@ export default {
 .bookmark.icon {
   color: #000;
   position: absolute;
-  margin-left: 5px;
-  margin-top: 3px;
-  width: 10px;
+  margin-left: 33.5em;
+  margin-top: 0.1em;
+  width: 0.6em;
   height: 15px;
   border-radius: 1px 1px 0 0;
   border-top: solid 1px currentColor;
   border-left: solid 1px currentColor;
   border-right: solid 1px currentColor;
 }
-.bookmark.icon:before {
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
   content: "";
   position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
   top: 10px;
   left: 1px;
   width: 7px;

@@ -35,7 +35,7 @@ export default {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-console.log(localStorage.getItem("currentuser"));
+//console.log(localStorage.getItem("currentuser"));
      // let uri = "http://localhost:8090/message/getall";
      var  name = localStorage.getItem("recipient");
       let uri = "http://localhost:8090/message/getall/"+ name;

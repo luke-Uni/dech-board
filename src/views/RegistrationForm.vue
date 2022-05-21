@@ -10,7 +10,6 @@
         id="username"
         placeholder=" &nbsp;&nbsp;Username"
         v-model="username"
-        required
       />
       <br />
       <label for="password"></label>
@@ -19,7 +18,6 @@
         id="password"
         placeholder=" &nbsp;&nbsp;Password"
         v-model="password"
-        required
       />
       <br />
       <label for="username"></label>
@@ -44,7 +42,6 @@
         id="birthdy"
         placeholder=" &nbsp;&nbsp;E-Mail"
         v-model="email"
-        required
       />
 
       <br />
@@ -94,8 +91,7 @@ export default {
       // event.preventDefault();
       this.$router.push("/login");
     },
-    async registerAcc(event) {
-      event.preventDefault();
+    async registerAcc() {
       let headers = { "Content-Type": "application/json" };
       let res = await axios.post(
         "http://localhost:8090/register",
