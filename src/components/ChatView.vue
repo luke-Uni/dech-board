@@ -2,8 +2,6 @@
 <template>
   <div>
       <div class="selecteduser">
-          <div class= "myUserAcc">
-          </div>
       </div>
 
       <div class="chat"></div>
@@ -63,58 +61,39 @@ export default {
 .selecteduser{
 
   position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
+  
   width: 37.8125em;
   height: 3.75em;
   left: 6.25em;
   top: 3.375em;
   background: #F4F7FF;
   border-radius: 0.625em;
-    margin-top: 7em;
-   margin-left: 25em;
+  margin-top: 7em;
+  margin-left: 25em;
 }
 
 .chat{
   position: absolute;
-  width: 605px;
-  height: 548px;
-  left: 100px;
-  top: 134px;
+  width: 37.8125em;
+  height: 34.25em;
+  left: 6.25em;
+  top: 8.375em;
   background: #F4F7FF;
-  border-radius: 19px;  
-   margin-top: 7em;
+  border-radius: 1.1875em;  
+  margin-top: 7.4375em;
   margin-left: 25em;
 }
 
 .conversationview{
   position: absolute;
-  width: 402px;
-  height: 612px;
-  left: 723px;
-  top: 70px;
+  width: 25.125em;
+  height: 39.40em;
+  left: 45.1875em;
+  top: 4.375em;
 
   background: #F4F7FF;
-  border-radius: 21px;
-   margin-top: 7em;
+  border-radius: 1.3125em;
+   margin-top: 6em;
    margin-left: 25em;
 }
-
-.myUseracc{
-  box-sizing: border-box;
-  position: absolute;
-  width: 402px;
-  height: 83px;
-  left: 723px;
-  top: 51px;
-
-  background: #F4F7FF;
-  border: 1px solid #B4ADAD;
-  border-radius: 22px;
-  
-}
-
-
 </style>
