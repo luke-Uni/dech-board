@@ -25,12 +25,15 @@
           />
           <br />
           <br />
+          <button v-on:click="getUserList()">GetUser</button>
+          
           <div class="chooseuser" v-for="user in users" :key="user.username">
-          <select name="user" id="user">
-            <option value="volvo">{{user.username}} </option>
-           
-          </select>
-          </div>
+          <select name="user" id="user" @change="e => $emit('input', e.target.value)">
+            <option value="{{user.username}}" >{{user.username}} </option>
+            </select>
+           </div>
+         
+          
           <br />
           <br />
           <textarea
@@ -84,6 +87,9 @@ import axios from "axios";
 
 export default {
   name: "MessageCreation",
+  props: {
+    value: String,
+  },
 
   //   props: ["TogglePopup"],
 
