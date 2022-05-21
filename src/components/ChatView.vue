@@ -9,9 +9,7 @@
 
 <div class="conversationview"></div>
 
-    <div class="postComplete" v-for="message in messages" :key="message.username">
-      
-       </div>
+    
     </div> 
   
 </template>
