@@ -37,7 +37,7 @@ export default {
         authorization: localStorage.getItem("token"),
       };
     
-      let uri = "http://localhost:8090/conversation/getall/";
+      let uri = "http://localhost:8090/conversation/getall";
       
       let response = axios
         .get(uri, { headers: headers })
