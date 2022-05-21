@@ -71,9 +71,10 @@ export default {
   height: 60px;
   left: 100px;
   top: 54px;
-
   background: #F4F7FF;
   border-radius: 10px;
+    margin-top: 7em;
+   margin-left: 25em;
 }
 
 .chat{
@@ -84,6 +85,8 @@ export default {
   top: 134px;
   background: #F4F7FF;
   border-radius: 19px;  
+   margin-top: 7em;
+  margin-left: 25em;
 }
 
 .conversationview{
@@ -95,6 +98,8 @@ export default {
 
   background: #F4F7FF;
   border-radius: 21px;
+   margin-top: 7em;
+   margin-left: 25em;
 }
 
 .myUseracc{
