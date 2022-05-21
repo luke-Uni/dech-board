@@ -1,12 +1,20 @@
 <template>
   <div>
-
     <table>
       <tr>
         <td>
           <p class="linkText">{{ inviteLink }}</p>
         </td>
-        <td><img src="@/assets/save.png" alt="saveButton" id="saveIcon" /></td>
+        <td>
+          <div>
+            <img
+              src="@/assets/save.png"
+              alt="saveButton"
+              id="saveIcon"
+              @click="copyToClipboard()"
+            />
+          </div>
+        </td>
       </tr>
     </table>
 
@@ -20,7 +28,7 @@
 import axios from "axios";
 export default {
   data() {
-    return { inviteLink: "Invite Link" };
+    return { inviteLink: "Invite Link", tooltipText: "" };
   },
 
   methods: {
@@ -36,6 +44,27 @@ export default {
       let response = axios.get(uri, { headers: headers });
 
       console.log(response.status);
+    },
+
+    showHoverText() {
+      this.tooltip = "Copy Me";
+      console.log("MouseOverEvent");
+    },
+
+    copyToClipboard() {
+      var copyText = this.inviteLink;
+
+      /* Select the text field */
+      //copyText.select();
+      //copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+      /* Copy the text inside the text field */
+      navigator.clipboard.writeText(copyText);
+
+      this.tooltipText = "Copied to Clipboard";
+
+      /* Alert the copied text */
+      alert("Copied the text: " + copyText);
     },
   },
 };
@@ -100,12 +129,39 @@ table {
   border-top: solid 1px currentColor;
   border-left: solid 1px currentColor;
   border-right: solid 1px currentColor;
- 
 }
 
-.bookmark.icon:before {
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
   content: "";
   position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
   top: 10px;
   left: 1px;
   width: 7px;
@@ -114,6 +170,5 @@ table {
   border-left: solid 1px currentColor;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
-  
 }
 </style>
