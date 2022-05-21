@@ -9,6 +9,7 @@
         id="username"
         placeholder=" &nbsp;&nbsp;Username"
         v-model="username"
+        required
       />
       <br />
       <label for="password"></label>
@@ -17,11 +18,13 @@
         id="password"
         placeholder=" &nbsp;&nbsp;Password"
         v-model="password"
+        required
       />
       <br />
       <button @click="loginUser()" id="loginButton">Log In</button>
+      <p id="feedback"></p>
       <div class="bottom"></div>
-      <button @click="goToRegister($event)" id="registerButton">
+      <button @click="goToRegister()" id="registerButton">
         Create new account
       </button>
     </form>
@@ -47,7 +50,6 @@ export default {
       currentUser: "",
       feedback: "",
       tokens: [],
-     
     };
   },
 
@@ -81,8 +83,8 @@ export default {
       return this.users.filter((user) => password === user.password);
     },
 
-    checkCredentials(event) {
-      event.preventDefault();
+    checkCredentials() {
+      //event.preventDefault();
 
       if (
         this.username === this.currentUser &&
