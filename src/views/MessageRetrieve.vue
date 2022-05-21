@@ -2,12 +2,12 @@
   <div>
     
     <div class="postComplete" v-for="message in messages" :key="message.username">
-      <h4 class="postUsername">{{ message.username }}</h4>
-        
-          {{ message.recipient }} 
+      <h4 class="postUsername">User: {{ message.username }}</h4>
+        <div class=" postsInside" >
+         <p class="recipient"> Recipient: {{ message.recipient }} </p>
         
          <p class="postText">{{ message.content }}</p>
-       
+       </div>
        </div>
     </div> 
   
@@ -58,6 +58,12 @@ console.log(localStorage.getItem("currentuser"));
 </script>
 
 <style scoped>
+.recipient{
+  margin-left: 1em;
+  color: rgb(255, 40, 165);
+}
+
+
 .postComplete {
   margin: auto;
   width: 50em;
@@ -94,6 +100,7 @@ console.log(localStorage.getItem("currentuser"));
   margin: 0%;
   margin-left: 1em;
   margin-top: 0.5em;
+  
 }
 
 .importantTitle {
@@ -106,6 +113,7 @@ console.log(localStorage.getItem("currentuser"));
 .postUsername {
   margin-top: 1em;
   margin-bottom: 1em;
+  float: right;
 }
 .postText {
   margin: 0%;
