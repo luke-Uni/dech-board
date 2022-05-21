@@ -1,9 +1,13 @@
 <template>
   <div>
-    <div>
-      <p class="linkText">{{ inviteLink }}</p>
-      <div class="bookmark icon"></div>
-    </div>
+    <table>
+      <tr>
+        <td>
+          <p class="linkText">{{ inviteLink }}</p>
+        </td>
+        <td><img src="@/assets/save.png" alt="saveButton" id="saveIcon" /></td>
+      </tr>
+    </table>
     <button type="button" class="button-81" @click="showLink()">
       Invitation Link
     </button>
@@ -36,6 +40,16 @@ export default {
 </script>
 
 <style scoped>
+table {
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+#saveIcon {
+  width: 1em;
+  margin-left: 1em;
+}
+
 .button-81 {
   background-color: rgba(244, 247, 255, 255);
   border: 0 solid #e2e8f0;
@@ -85,6 +99,7 @@ export default {
   border-left: solid 1px currentColor;
   border-right: solid 1px currentColor;
 }
+
 .bookmark.icon:before {
   content: "";
   position: absolute;
