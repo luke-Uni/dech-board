@@ -27,11 +27,7 @@
           <br />
           <button v-on:click="getUserList()">GetUser</button>
           
-          <div class="chooseuser" v-for="user in users" :key="user.username">
-          <select name="user" id="user" @change="e => $emit('input', e.target.value)">
-            <option value="{{user.username}}" >{{user.username}} </option>
-            </select>
-           </div>
+         
          
           
           <br />
@@ -87,9 +83,7 @@ import axios from "axios";
 
 export default {
   name: "MessageCreation",
-  props: {
-    value: String,
-  },
+
 
   //   props: ["TogglePopup"],
 
@@ -121,28 +115,28 @@ export default {
       localStorage.setItem("recipient", this.recipient);
       console.log(result);
     },
-    async getUserList(){
+//     async getUserList(){
 
- let headers = {
-        "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
-      };
+//  let headers = {
+//         "Content-Type": "application/json",
+//         authorization: localStorage.getItem("token"),
+//       };
 
-      let response = await axios.get(
-        "http://localhost:8090/user/getall",
-      { headers: headers }
+//       let response = await axios.get(
+//         "http://localhost:8090/user/getall",
+//       { headers: headers }
 
-      ).then((response) => {
-            this.users=response.data;
-      }).then((data) => (this.user = data))
-        .catch((e) => {
-          this.errors.push(e);
-        });
+//       ).then((response) => {
+//             this.users=response.data;
+//       }).then((data) => (this.user = data))
+//         .catch((e) => {
+//           this.errors.push(e);
+//         });
 
-        console.log(response);
+//         console.log(response);
 
 
-    }
+//     }
   },
 };
 </script>
