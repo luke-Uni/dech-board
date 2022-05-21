@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <table>
       <tr>
         <td>
@@ -17,11 +18,18 @@
         </td>
       </tr>
     </table>
+<<<<<<< HEAD
     <div class="tooltip">
       <button type="button" class="button-81" @click="showLink()">
         Invitation Link
       </button>
     </div>
+=======
+
+    <button type="button" class="button-81" @click="showLink()">
+      Invitation Link
+    </button>
+>>>>>>> b13826616d52d6da1ccb64d2d4f69c8c5feba55e
   </div>
 </template>
 
@@ -119,9 +127,24 @@ table {
   }
 }
 
+<<<<<<< HEAD
 .tooltip {
   position: relative;
   display: inline-block;
+=======
+.bookmark.icon {
+  color: #000;
+  position: absolute;
+  margin-left: 33.5em;
+  margin-top: 0.1em;
+  width: 0.6em;
+  height: 15px;
+  border-radius: 1px 1px 0 0;
+  border-top: solid 1px currentColor;
+  border-left: solid 1px currentColor;
+  border-right: solid 1px currentColor;
+ 
+>>>>>>> b13826616d52d6da1ccb64d2d4f69c8c5feba55e
 }
 
 .tooltip .tooltiptext {
@@ -144,6 +167,7 @@ table {
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
+<<<<<<< HEAD
   top: 100%;
   left: 50%;
   margin-left: -5px;
@@ -155,5 +179,16 @@ table {
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+=======
+  top: 10px;
+  left: 1px;
+  width: 7px;
+  height: 7px;
+  border-top: solid 1px currentColor;
+  border-left: solid 1px currentColor;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  
+>>>>>>> b13826616d52d6da1ccb64d2d4f69c8c5feba55e
 }
 </style>

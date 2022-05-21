@@ -15,13 +15,9 @@
 
       <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
 
-
-
-
       <div>
         <div class="message-create">
-            
-            <input
+          <input
             type="text"
             class="input-title"
             placeholder="Recipient..."
@@ -29,7 +25,14 @@
           />
           <br />
           <br />
-
+          <div class="chooseuser" v-for="user in users" :key="user.username">
+          <select name="user" id="user">
+            <option value="volvo">{{user.username}} </option>
+           
+          </select>
+          </div>
+          <br />
+          <br />
           <textarea
             class="textarea-content"
             name="content"
@@ -62,7 +65,7 @@
             <button
               class="button-81"
               v-on:click="
-                createMessage();
+                createMessage()
                 // TogglePopup();
               "
               role="button"
@@ -82,14 +85,14 @@ import axios from "axios";
 export default {
   name: "MessageCreation",
 
-//   props: ["TogglePopup"],
+  //   props: ["TogglePopup"],
 
   data() {
     return {
       //username: "",
       recipient: "",
-      content: ""
-      
+      content: "",
+      users: [],
     };
   },
 
@@ -99,10 +102,9 @@ export default {
         //"https://dech-board-rest-server.herokuapp.com/posts/create",
         "http://localhost:8090/message/create",
         {
-         // username: this.username,
+          // username: this.username,
           recipient: this.recipient,
-          content: this.content
-          
+          content: this.content,
         },
         {
           headers: {
@@ -113,6 +115,28 @@ export default {
       localStorage.setItem("recipient", this.recipient);
       console.log(result);
     },
+    async getUserList(){
+
+ let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+
+      let response = await axios.get(
+        "http://localhost:8090/user/getall",
+      { headers: headers }
+
+      ).then((response) => {
+            this.users=response.data;
+      }).then((data) => (this.user = data))
+        .catch((e) => {
+          this.errors.push(e);
+        });
+
+        console.log(response);
+
+
+    }
   },
 };
 </script>
