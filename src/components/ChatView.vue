@@ -7,7 +7,8 @@
 
       <div class="chat"></div>
 
-<div class="conversationview"></div>
+<div class="conversationview">
+</div>
 
     
     </div> 
@@ -60,14 +61,39 @@ export default {
 
 .selecteduser{
 
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  width: 605px;
+  height: 60px;
+  left: 100px;
+  top: 54px;
+
+  background: #F4F7FF;
+  border-radius: 10px;
 }
 
 .chat{
-    
+  position: absolute;
+  width: 605px;
+  height: 548px;
+  left: 100px;
+  top: 134px;
+  background: #F4F7FF;
+  border-radius: 19px;  
 }
 
 .conversationview{
+  position: absolute;
+  width: 402px;
+  height: 612px;
+  left: 723px;
+  top: 70px;
 
+  background: #F4F7FF;
+  border-radius: 21px;
 }
 
 
