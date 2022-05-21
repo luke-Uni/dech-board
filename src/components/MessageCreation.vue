@@ -15,13 +15,9 @@
 
       <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
 
-
-
-
       <div>
         <div class="message-create">
-            
-            <input
+          <input
             type="text"
             class="input-title"
             placeholder="Recipient..."
@@ -30,6 +26,14 @@
           <br />
           <br />
 
+          <select name="cars" id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+          </select>
+          <br />
+          <br />
           <textarea
             class="textarea-content"
             name="content"
@@ -62,7 +66,7 @@
             <button
               class="button-81"
               v-on:click="
-                createMessage();
+                createMessage()
                 // TogglePopup();
               "
               role="button"
@@ -82,14 +86,13 @@ import axios from "axios";
 export default {
   name: "MessageCreation",
 
-//   props: ["TogglePopup"],
+  //   props: ["TogglePopup"],
 
   data() {
     return {
       //username: "",
       recipient: "",
-      content: ""
-      
+      content: "",
     };
   },
 
@@ -99,10 +102,9 @@ export default {
         //"https://dech-board-rest-server.herokuapp.com/posts/create",
         "http://localhost:8090/message/create",
         {
-         // username: this.username,
+          // username: this.username,
           recipient: this.recipient,
-          content: this.content
-          
+          content: this.content,
         },
         {
           headers: {
