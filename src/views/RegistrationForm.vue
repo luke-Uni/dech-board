@@ -94,8 +94,7 @@ export default {
       // event.preventDefault();
       this.$router.push("/login");
     },
-    async registerAcc(event) {
-      event.preventDefault();
+    async registerAcc() {
       let headers = { "Content-Type": "application/json" };
       let res = await axios.post(
         "http://localhost:8090/register",
