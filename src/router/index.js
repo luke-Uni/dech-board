@@ -4,6 +4,7 @@ import TestingView from "../views/TestingView.vue";
 import CreatePost from "../components/CreatePost";
 import RegistrationFrom from "../views/RegistrationForm";
 import LogIn from "../views/LogIn";
+import MessageRetrieve from "../views/MessageRetrieve"
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     name: "LogIn",
     component: LogIn,
   },
+  {
+    path: "/Messages",
+    name: "MessageRetrieve",
+    component: MessageRetrieve,
+  }
 ];
 
 const router = createRouter({
