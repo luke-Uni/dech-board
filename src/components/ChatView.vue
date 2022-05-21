@@ -61,7 +61,15 @@ export default {
 <style scoped>
 
 .selecteduser{
+
+}
+
+.chat{
     
+}
+
+.conversationview{
+
 }
 
 
