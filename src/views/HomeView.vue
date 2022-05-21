@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+
+
+    
     
     <MessageBoard />
 
