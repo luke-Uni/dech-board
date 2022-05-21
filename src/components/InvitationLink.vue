@@ -14,7 +14,7 @@
 import axios from "axios";
 export default {
   data() {
-    return { inviteLink: "HI" };
+    return { inviteLink: "Invite Link" };
   },
 
   methods: {

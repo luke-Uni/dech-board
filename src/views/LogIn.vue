@@ -19,11 +19,9 @@
         v-model="password"
       />
       <br />
-      <button  @click="loginUser()" id="loginButton">
-        Log In
-      </button>
+      <button @click="loginUser()" id="loginButton">Log In</button>
       <div class="bottom"></div>
-      <button  @click="goToRegister($event)" id="registerButton">
+      <button @click="goToRegister($event)" id="registerButton">
         Create new account
       </button>
     </form>
