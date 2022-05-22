@@ -6,7 +6,23 @@
 
       <div class="chat">
         <div class="messages_view">
-        <MessageRetrieve ref="messageRetrieve"/>
+        <!-- <MessageRetrieve ref="messageRetrieve"/> -->
+        <div>
+    <div
+      class="postComplete"
+      v-for="message in messages"
+      :key="message.username"
+    >
+      <h4 class="postUsername">User: {{ message.username }}</h4>
+      <div class="postsInside">
+        <p class="recipient">Recipient: {{ message.recipient }}</p>
+
+        <p class="postText">{{ message.content }}</p>
+        <p class="timeStamp">{{ message.time }}</p>
+        <p class="directionState">{{ message.state }}</p>
+      </div>
+    </div>
+  </div>
     </div>
     <div class="send_messages">
 
@@ -43,7 +59,7 @@
 </template>
 
 <script>
-import MessageRetrieve from "./MessageRetrieve.vue";
+//import MessageRetrieve from "./MessageRetrieve.vue";
 import MessageCreation from "./MessageCreation.vue";
 import axios from "axios";
 
@@ -60,7 +76,7 @@ export default {
     
   },
   components: {
-    MessageRetrieve,
+   // MessageRetrieve,
     MessageCreation
 },
   methods: {
@@ -202,4 +218,73 @@ export default {
    margin-left: 25em;
    box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
+
+.timeStamp {
+  margin-right: 2em;
+  text-align: right;
+}
+
+.recipient {
+  margin-left: 1em;
+  color: rgb(255, 40, 165);
+}
+
+.postComplete {
+  margin: auto;
+  width: 50em;
+  border: 1px solid rgb(255, 255, 255);
+  text-align: left;
+}
+.postsInside {
+  background-color: rgb(244, 247, 255, 255);
+  text-align: left;
+  margin: 0%;
+  align-items: flex-start;
+  border: 1px solid black;
+  width: 34em;
+  height: 10em;
+  margin-bottom: 1em;
+  margin-left: 0.5em;
+  border-radius: 10px;
+  box-shadow: 5px 10px 8px #888888;
+}
+.importantPost {
+  background-color: rgb(244, 247, 255, 255);
+  text-align: left;
+  margin: 0%;
+  align-items: flex-start;
+  border: 1px solid rgb(220, 46, 46);
+  width: 100%;
+  height: 10em;
+  margin-bottom: 2%;
+  border-radius: 10px;
+  box-shadow: 5px 10px 18px red;
+}
+
+.postTitle {
+  float: left;
+  margin: 0%;
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
+
+.importantTitle {
+  float: left;
+  margin: 0%;
+  margin-left: 1em;
+  margin-top: 0.5em;
+  color: red;
+}
+.postUsername {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  float: right;
+}
+.postText {
+  margin: 0%;
+  margin-left: 3em;
+  margin-top: 5%;
+  margin-right: 3em;
+}
+
 </style>
