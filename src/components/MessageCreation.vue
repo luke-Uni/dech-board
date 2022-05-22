@@ -1,8 +1,19 @@
 <template>
-  <br />
+  
+ <div>
+    <input
+            type="text"
+            class="input-recipient"
+            placeholder="Recipient..."
+            v-model="recipient"
+          /> 
+ </div>
   <div class="popup">
+
+
     <div class="popup-inner">
       <slot />
+       
       <!-- <button
         type="button"
         class="btn-close popup-close"
@@ -12,56 +23,35 @@
         <span class="visually-hidden"></span>
       </button> -->
       <br />
+     
 
       <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
 
       <div>
         <div class="message-create">
-          <input
-            type="text"
-            class="input-title"
-            placeholder="Recipient..."
-            v-model="recipient"
-          />
-          <br />
-          <br />
-          <button v-on:click="getUserList()">GetUser</button>
+          <!--  -->
+          <!-- <br />
+          <br /> -->
+          <!-- <button v-on:click="getUserList()">GetUser</button> -->
           
          
          
           
           <br />
           <br />
+          
           <textarea
             class="textarea-content"
             name="content"
-            rows="10"
+            rows="3"
             cols="55"
             placeholder="content..."
             v-model="content"
           >
+          
           </textarea>
-        </div>
-      </div>
-      <br />
-      <br />
-      <table class="table-left">
-        <tr>
-          <br />
-          <td>
-            <!-- <input
-              type="checkbox"
-              name="Important"
-              v-model="important"
-              value="Important"
-              class="switch_1"
-            /> -->
-            <br />
-            <label for="important">Important</label>
-          </td>
 
-          <td class="td-left">
-            <button
+          <button style="float:right"
               class="button-81"
               v-on:click="
                 createMessage()
@@ -71,9 +61,39 @@
             >
               Create Post
             </button>
-          </td>
+        </div>
+      </div>
+      <br />
+      <br />
+      <!-- <table class="table-left">
+        <tr>
+          <br />
+          <td> -->
+            <!-- <input
+              type="checkbox"
+              name="Important"
+              v-model="important"
+              value="Important"
+              class="switch_1"
+            /> -->
+            <!-- <br /> -->
+            <!-- <label for="important">Important</label> -->
+          <!-- </td>
+
+          <td class="td-left"> -->
+            <!-- <button
+              class="button-81"
+              v-on:click="
+                createMessage()
+                // TogglePopup();
+              "
+              role="button"
+            >
+              Create Post
+            </button> -->
+          <!-- </td>
         </tr>
-      </table>
+      </table> -->
     </div>
   </div>
 </template>
@@ -155,6 +175,12 @@ export default {
 //   justify-content: center;
 // }
 
+.input-recipient{
+  position: absolute;
+  margin-top:-41.5em;
+  margin-left:-20em ;
+}
+
 .popup-inner {
   background: white;
   padding: 32px;
@@ -172,6 +198,7 @@ export default {
 .message-create {
   display: block;
   white-space: pre;
+  
 }
 
 .input-username {
@@ -215,10 +242,12 @@ input:focus {
 }
 
 .message-create {
-  width: 50em;
+  width: 38em;
 
-  padding: 1em;
-  margin: auto;
+  padding: 0em;
+  // margin: auto;
+  margin-left: -2em;
+  margin-top: -3em;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -227,12 +256,14 @@ input:focus {
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .textarea-content {
+  margin-left: 1em;
   resize: none;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   border: none;
   outline: none;
+  
 }
 
 /* CSS */
@@ -268,50 +299,12 @@ input:focus {
 
 @media (min-width: 768px) {
   .button-81 {
-    font-size: 1.125rem;
-    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    padding: 0.5rem 2rem;
   }
 }
 
-input[type="checkbox"].switch_1 {
-  font-size: 20px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 3.5em;
-  height: 1.5em;
-  background: #ddd;
-  border-radius: 3em;
-  position: relative;
-  cursor: pointer;
-  outline: none;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
 
-input[type="checkbox"].switch_1:checked {
-  background: rgb(253, 78, 78);
-}
-
-input[type="checkbox"].switch_1:after {
-  position: absolute;
-  content: "";
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  background: #fff;
-  -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
-  -webkit-transform: scale(0.7);
-  transform: scale(0.7);
-  left: 0;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-input[type="checkbox"].switch_1:checked:after {
-  left: calc(100% - 1.5em);
-}
 
 @mixin cross($size: 20px, $color: currentColor, $thickness: 1px) {
   margin: 0;

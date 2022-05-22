@@ -90,8 +90,8 @@ export default {
   align-items: flex-start;
   border: 1px solid black;
   width: 34em;
-  height: 28em;
-  margin-bottom: 2%;
+  height: 10em;
+  margin-bottom: 1em;
   margin-left: 0.5em;
   border-radius: 10px;
   box-shadow: 5px 10px 8px #888888;
