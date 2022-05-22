@@ -132,7 +132,7 @@ export default {
           },
         }
       );
-      localStorage.setItem("recipient", this.recipient);
+     localStorage.setItem("recipient", this.recipient);
       console.log(result);
     },
 //     async getUserList(){

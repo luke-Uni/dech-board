@@ -80,16 +80,16 @@ export default {
     MessageCreation
 },
   methods: {
-    getAllPosts(name) {
+    async getAllPosts(name) {
       //console.log("I am in the getAllPosts function");
-
+      localStorage.setItem("recipient", name);
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
       //console.log(localStorage.getItem("currentuser"));
       // let uri = "http://localhost:8090/message/getall";
-      // var name = localStorage.getItem("recipient");
+      // localStorage.getItem("recipient");
       //var name =this.recipient ;
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
@@ -112,7 +112,7 @@ export default {
     //   this.$refs.messageRetrieve.getAllPosts();
     // },
     //To display all the Conversations we need to get them from the Server
-    getAllConversations() {
+    async  getAllConversations() {
       console.log("I am in the getAllPosts function");
 
       let headers = {
