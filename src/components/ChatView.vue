@@ -1,49 +1,44 @@
 
 <template>
   <div>
-      <div class="selecteduser">
-      </div>
+    <div class="selecteduser"></div>
 
-      <div class="chat">
-        <div class="messages_view">
+    <div class="chat">
+      <div class="messages_view">
         <!-- <MessageRetrieve ref="messageRetrieve"/> -->
         <div>
-    <div
-      class="postComplete"
-      v-for="message in messages"
-      :key="message.username"
-    >
-      <h4 class="postUsername">User: {{ message.username }}</h4>
-      <div class="postsInside">
-        <p class="recipient">Recipient: {{ message.recipient }}</p>
+          <div
+            class="postComplete"
+            v-for="message in messages"
+            :key="message.username"
+          >
+            <h4 class="postUsername">User: {{ message.username }}</h4>
+            <div class="postsInside">
+              <p class="recipient">Recipient: {{ message.recipient }}</p>
 
-        <p class="postText">{{ message.content }}</p>
-        <p class="timeStamp">{{ message.time }}</p>
-        <p class="directionState">{{ message.state }}</p>
+              <p class="postText">{{ message.content }}</p>
+              <p class="timeStamp">{{ message.time }}</p>
+              <p class="directionState">{{ message.state }}</p>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="send_messages"></div>
     </div>
-  </div>
-    </div>
-    <div class="send_messages">
-
-    </div>
+    <div class="insert_message">
+      <div>
+        <input
+          type="text"
+          class="input-recipient"
+          placeholder="Recipient..."
+          v-model="recipient"
+        />
       </div>
-      <div class="insert_message">
-        <div>
-    <input
-            type="text"
-            class="input-recipient"
-            placeholder="Recipient..."
-            v-model="recipient"
-          /> 
- </div>
-  <div class="popup">
+      <div class="popup">
+        <div class="popup-inner">
+          <slot />
 
-
-    <div class="popup-inner">
-      <slot />
-       
-      <!-- <button
+          <!-- <button
         type="button"
         class="btn-close popup-close"
         @click="TogglePopup()"
@@ -51,78 +46,68 @@
         <span class="icon-cross"></span>
         <span class="visually-hidden"></span>
       </button> -->
-      <br />
-     
+          <br />
 
-      <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
+          <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
 
-      <div>
-        <div class="message-create">
-          <!--  -->
-          <!-- <br />
+          <div>
+            <div class="message-create">
+              <!--  -->
+              <!-- <br />
           <br /> -->
-          <!-- <button v-on:click="getUserList()">GetUser</button> -->
-          
-         
-         
-          
-          <br />
-          <br />
-          
-          <textarea
-            class="textarea-content"
-            name="content"
-            rows="3"
-            cols="55"
-            placeholder="content..."
-            v-model="content"
-          >
-          
-          </textarea>
+              <!-- <button v-on:click="getUserList()">GetUser</button> -->
 
-          <button style="float:right"
-              class="button-81"
-              v-on:click="
-                createMessage(); getAllPostsNoParameter();
-                // TogglePopup();
-              "
-              role="button"
-            >
-              Create Post
-            </button>
+              <br />
+              <br />
+
+              <textarea
+                class="textarea-content"
+                name="content"
+                rows="3"
+                cols="55"
+                placeholder="content..."
+                v-model="content"
+              >
+              </textarea>
+
+              <button
+                style="float: right"
+                class="button-81"
+                v-on:click="
+                  createMessage();
+                  getAllPostsNoParameter();
+                  // TogglePopup();
+                "
+                role="button"
+              >
+                Create Post
+              </button>
+            </div>
+          </div>
+          <br />
+          <br />
         </div>
       </div>
-      <br />
-      <br />
-      
+    </div>
+
+    <div class="conversationview">
+      <div
+        class="postComplete"
+        v-for="conversation in conversations"
+        :key="conversation.user1"
+      >
+        <div class="conversation_segment">
+          <button v-on:click="getAllPosts(conversation.user2)">
+            {{ conversation.user2 }}
+          </button>
+          <p>{{ conversation.lastMessageSend }}</p>
+        </div>
+
+        <!-- <p class="postText">{{ conversation.lastMessageSend }}</p> -->
+        <p></p>
+      </div>
     </div>
   </div>
-      </div>
-
-<div class="conversationview">
-<div class="postComplete" v-for="conversation in conversations" :key="conversation.user1">
-    <div class="conversation_segment"> 
-      <!-- <input type="button" v-on:click="getAllPosts()" v-model="recipient">{{ conversation.user2 }} </input> -->
-      
-      <button v-on:click="getAllPosts( conversation.user2 )">{{conversation.user2}}</button>
-     <p> {{ conversation.lastMessageSend }}</p>
-      </div> 
-        
-          
-        
-        <!-- <p class="postText">{{ conversation.lastMessageSend }}</p> -->
-        <p>
-          
-        </p>
-      
-    </div>
-
-
-</div>
-
-    
-    </div> 
-  
 </template>
 
 <script>
@@ -134,32 +119,28 @@ export default {
   data() {
     return {
       conversations: [],
-      messages:[],
-      recipient:"",
-      content: ""
+      messages: [],
+      recipient: "",
+      content: "",
     };
   },
   beforeMount() {
     this.getAllConversations();
-    
   },
-  components: {
-   // MessageRetrieve,
-    //MessageCreation
-},
+  //   components: {
+  //     MessageRetrieve,
+  //     MessageCreation
+  // },
   methods: {
+    //Get all Messages for one conversation using the other users username as a parameter
     async getAllPosts(name) {
-      //console.log("I am in the getAllPosts function");
       localStorage.setItem("recipient", name);
-      
+
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-      //console.log(localStorage.getItem("currentuser"));
-      // let uri = "http://localhost:8090/message/getall";
-      // localStorage.getItem("recipient");
-      //var name =this.recipient ;
+
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
       let response = axios
@@ -178,17 +159,14 @@ export default {
       console.log(response.constructor);
     },
 
-async getAllPostsNoParameter() {
-      //console.log("I am in the getAllPosts function");
-      //localStorage.setItem("recipient", name);
+    //get all Messages from one Conversation without having to use parameters
+    async getAllPostsNoParameter() {
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-      //console.log(localStorage.getItem("currentuser"));
-      // let uri = "http://localhost:8090/message/getall";
-      // localStorage.getItem("recipient");
-      let name =localStorage.getItem("recipient") ;
+
+      let name = localStorage.getItem("recipient");
       console.log(localStorage.getItem("recipient"));
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
@@ -208,28 +186,25 @@ async getAllPostsNoParameter() {
       console.log(response.constructor);
     },
 
-    // getAllPosts(){
-    //   this.$refs.messageRetrieve.getAllPosts();
-    // },
     //To display all the Conversations we need to get them from the Server
-    async  getAllConversations() {
+    async getAllConversations() {
       console.log("I am in the getAllPosts function");
 
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-    
+
       let uri = "http://localhost:8090/conversation/getall";
-      
+
       let response = axios
         .get(uri, { headers: headers })
         .then((response) => {
-         console.log(response);
-        
+          console.log(response);
+
           this.conversations = response.data;
         })
-        //save all Conversations 
+        //save all Conversations
         .then((data) => (this.user = data))
         .catch((e) => {
           this.errors.push(e);
@@ -237,85 +212,70 @@ async getAllPostsNoParameter() {
 
       console.log(response.constructor);
     },
+    //Create a message
     async createMessage() {
-      // if (localStorage.getItem("recipient") == this.recipient){
-      //     console.log(localStorage.getItem("recipient"));
-      //   }
-      //   else{
-      //       localStorage.setItem("recipient", this.recipient);
-      //   }
-      if(this.recipient.length>3){
+      if (this.recipient.length > 3) {
         let result = await axios.post(
-        
-        //"https://dech-board-rest-server.herokuapp.com/posts/create",
-        "http://localhost:8090/message/create",
-        {
-          // username: this.username,
-          
-          recipient: this.recipient,
-          content: this.content,
-        },
-        {
-          headers: {
-            authorization: localStorage.getItem("token"),
+          //"https://dech-board-rest-server.herokuapp.com/posts/create",
+          "http://localhost:8090/message/create",
+          {
+            recipient: this.recipient,
+            content: this.content,
           },
-        }
-        
-      );
-      console.log(result);
+          {
+            headers: {
+              authorization: localStorage.getItem("token"),
+            },
+          }
+        );
+        console.log(result);
+      } else {
+        let result = await axios.post(
+          //"https://dech-board-rest-server.herokuapp.com/posts/create",
+          "http://localhost:8090/message/create",
+          {
+            recipient: localStorage.getItem("recipient"),
+            content: this.content,
+          },
+          {
+            headers: {
+              authorization: localStorage.getItem("token"),
+            },
+          }
+        );
+
+        console.log(result);
       }
-      else{
-      let result = await axios.post(
-        
-        //"https://dech-board-rest-server.herokuapp.com/posts/create",
-        "http://localhost:8090/message/create",
-        {
-          // username: this.username,
-          
-          recipient: localStorage.getItem("recipient"),
-          content: this.content,
-        },
-        {
-          headers: {
-            authorization: localStorage.getItem("token"),
-          },
-        }
-      );
-     //localStorage.setItem("recipient", this.recipient);
-      console.log(result);
-    }}
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-
-.insert_message{
+.insert_message {
   position: absolute;
-  
+
   width: 37.8125em;
   height: 3.75em;
   left: 6.25em;
   top: 3.375em;
-  background: #F4F7FF;
+  background: #f4f7ff;
   border-radius: 0.625em;
   margin-top: 42.5em;
   margin-left: 25em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
 
-.messages_view{
-  
+.messages_view {
   margin-bottom: 2em;
   height: 1em;
-  
 }
 
-.conversation_segment{
+.conversation_segment {
   height: 5em;
   width: 23.7em;
   background: rgb(230, 246, 255);
-  text-align:center;
+  text-align: center;
   border-radius: 1.3125em;
   margin-top: 0.1em;
   margin-left: 0.4em;
@@ -323,54 +283,52 @@ async getAllPostsNoParameter() {
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
   border: 1px solid rgb(230, 230, 230);
   padding: 0.2em;
-  
 }
 
-.selecteduser{
-
+.selecteduser {
   position: absolute;
-  
+
   width: 37.8125em;
   height: 3.75em;
   left: 6.25em;
   top: 3.375em;
-  background: #F4F7FF;
+  background: #f4f7ff;
   border-radius: 0.625em;
   margin-top: 7em;
   margin-left: 25em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
 
-.chat{
+.chat {
   position: absolute;
   width: 37.8125em;
   height: 28.9em;
   left: 6.25em;
   top: 8.375em;
-  background: #F4F7FF;
-  border-radius: 1.1875em;  
+  background: #f4f7ff;
+  border-radius: 1.1875em;
   margin-top: 7.4375em;
   margin-left: 25em;
-  box-shadow: 2px 2px 7px rgb(198, 227, 255)  ;
-  overflow:scroll;
-    overflow-x:hidden
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
-.conversationview{
+.conversationview {
   position: absolute;
   width: 25.125em;
-  height: 39.40em;
+  height: 39.4em;
   left: 45.1875em;
   top: 4.375em;
 
-  background: #F4F7FF;
+  background: #f4f7ff;
   border-radius: 1.3125em;
-   margin-top: 6em;
-   margin-left: 25em;
-   box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  margin-top: 6em;
+  margin-left: 25em;
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
 
-   overflow:scroll;
-    overflow-x:hidden ;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .timeStamp {
@@ -441,11 +399,10 @@ async getAllPostsNoParameter() {
   margin-right: 3em;
 }
 
-
-.input-recipient{
+.input-recipient {
   position: absolute;
-  margin-top:-41.5em;
-  margin-left:-20em ;
+  margin-top: -41.5em;
+  margin-left: -20em;
 }
 
 .popup-inner {
@@ -465,7 +422,6 @@ async getAllPostsNoParameter() {
 .message-create {
   display: block;
   white-space: pre;
-  
 }
 
 .input-username {
@@ -530,7 +486,6 @@ input:focus {
   border-radius: 5px;
   border: none;
   outline: none;
-  
 }
 
 /* CSS */
@@ -570,10 +525,4 @@ input:focus {
     padding: 0.5rem 2rem;
   }
 }
-
-
-
-
-
-
 </style>
