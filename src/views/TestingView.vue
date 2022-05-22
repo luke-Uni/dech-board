@@ -7,20 +7,20 @@
     <InvitationLink />
     <br>
     <br>
-    <MessageCreation/>
+    
   </div>
 </template>
 
 <script>
 import InvitationLink from "@/components/InvitationLink.vue";
-import MessageCreation from "@/components/MessageCreation.vue";
+
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
 
 
 export default {
   components: {
     InvitationLink,
-    MessageCreation,
+    
     LeftSideMenu
 },
 };

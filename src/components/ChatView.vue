@@ -157,8 +157,10 @@ export default {
 }
 
 .messages_view{
+  
   margin-bottom: 2em;
   height: 1em;
+  
 }
 
 .conversation_segment{
@@ -173,6 +175,7 @@ export default {
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
   border: 1px solid rgb(230, 230, 230);
   padding: 0.2em;
+  
 }
 
 .selecteduser{
@@ -217,6 +220,9 @@ export default {
    margin-top: 6em;
    margin-left: 25em;
    box-shadow: 2px 2px 7px rgb(198, 227, 255);
+
+   overflow:scroll;
+    overflow-x:hidden ;
 }
 
 .timeStamp {
