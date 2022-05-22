@@ -77,13 +77,16 @@ export default {
 
 .conversation_segment{
   height: 5em;
-  width: 24.35em;
-  background: rgb(171, 224, 255);
+  width: 23.7em;
+  background: rgb(230, 246, 255);
   text-align:center;
   border-radius: 1.3125em;
   margin-top: 0.1em;
   margin-left: 0.4em;
-  margin-bottom: -0.5em;;
+  margin-bottom: -0.5em;
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  border: 1px solid rgb(230, 230, 230);
+  padding: 0.2em;
 }
 
 .selecteduser{
@@ -98,6 +101,7 @@ export default {
   border-radius: 0.625em;
   margin-top: 7em;
   margin-left: 25em;
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
 
 .chat{
@@ -110,6 +114,7 @@ export default {
   border-radius: 1.1875em;  
   margin-top: 7.4375em;
   margin-left: 25em;
+  box-shadow: 2px 2px 7px rgb(198, 227, 255)
 }
 
 .conversationview{
@@ -123,5 +128,6 @@ export default {
   border-radius: 1.3125em;
    margin-top: 6em;
    margin-left: 25em;
+   box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
 </style>
