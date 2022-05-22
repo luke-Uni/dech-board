@@ -29,7 +29,74 @@
     </div>
       </div>
       <div class="insert_message">
-        <MessageCreation/>
+        <div>
+    <input
+            type="text"
+            class="input-recipient"
+            placeholder="Recipient..."
+            v-model="recipient"
+          /> 
+ </div>
+  <div class="popup">
+
+
+    <div class="popup-inner">
+      <slot />
+       
+      <!-- <button
+        type="button"
+        class="btn-close popup-close"
+        @click="TogglePopup()"
+      >
+        <span class="icon-cross"></span>
+        <span class="visually-hidden"></span>
+      </button> -->
+      <br />
+     
+
+      <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
+
+      <div>
+        <div class="message-create">
+          <!--  -->
+          <!-- <br />
+          <br /> -->
+          <!-- <button v-on:click="getUserList()">GetUser</button> -->
+          
+         
+         
+          
+          <br />
+          <br />
+          
+          <textarea
+            class="textarea-content"
+            name="content"
+            rows="3"
+            cols="55"
+            placeholder="content..."
+            v-model="content"
+          >
+          
+          </textarea>
+
+          <button style="float:right"
+              class="button-81"
+              v-on:click="
+                createMessage(); getAllPostsNoParameter();
+                // TogglePopup();
+              "
+              role="button"
+            >
+              Create Post
+            </button>
+        </div>
+      </div>
+      <br />
+      <br />
+      
+    </div>
+  </div>
       </div>
 
 <div class="conversationview">
@@ -60,7 +127,7 @@
 
 <script>
 //import MessageRetrieve from "./MessageRetrieve.vue";
-import MessageCreation from "./MessageCreation.vue";
+//import MessageCreation from "./MessageCreation.vue";
 import axios from "axios";
 
 export default {
@@ -68,7 +135,8 @@ export default {
     return {
       conversations: [],
       messages:[],
-      recipient:""
+      recipient:"",
+      content: ""
     };
   },
   beforeMount() {
@@ -77,12 +145,13 @@ export default {
   },
   components: {
    // MessageRetrieve,
-    MessageCreation
+    //MessageCreation
 },
   methods: {
     async getAllPosts(name) {
       //console.log("I am in the getAllPosts function");
       localStorage.setItem("recipient", name);
+      
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
@@ -108,6 +177,37 @@ export default {
 
       console.log(response.constructor);
     },
+
+async getAllPostsNoParameter() {
+      //console.log("I am in the getAllPosts function");
+      //localStorage.setItem("recipient", name);
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+      //console.log(localStorage.getItem("currentuser"));
+      // let uri = "http://localhost:8090/message/getall";
+      // localStorage.getItem("recipient");
+      let name =localStorage.getItem("recipient") ;
+      console.log(localStorage.getItem("recipient"));
+      let uri = "http://localhost:8090/message/getall/" + name;
+      //send synchron Request to Server
+      let response = axios
+        .get(uri, { headers: headers })
+        .then((response) => {
+          console.log(response);
+
+          this.messages = response.data;
+        })
+        //save all Posts locally
+        .then((data) => (this.user = data))
+        .catch((e) => {
+          this.errors.push(e);
+        });
+
+      console.log(response.constructor);
+    },
+
     // getAllPosts(){
     //   this.$refs.messageRetrieve.getAllPosts();
     // },
@@ -137,11 +237,37 @@ export default {
 
       console.log(response.constructor);
     },
+    async createMessage() {
+      // if (localStorage.getItem("recipient") == this.recipient){
+      //     console.log(localStorage.getItem("recipient"));
+      //   }
+      //   else{
+      //       localStorage.setItem("recipient", this.recipient);
+      //   }
+      let result = await axios.post(
+        
+        //"https://dech-board-rest-server.herokuapp.com/posts/create",
+        "http://localhost:8090/message/create",
+        {
+          // username: this.username,
+          recipient: localStorage.getItem("recipient"),
+          content: this.content,
+        },
+        {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+     //localStorage.setItem("recipient", this.recipient);
+      console.log(result);
+    },
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
 .insert_message{
   position: absolute;
   
@@ -242,7 +368,7 @@ export default {
   text-align: left;
 }
 .postsInside {
-  background-color: rgb(244, 247, 255, 255);
+  // background-color: rgb(244, 247, 255, 255);
   text-align: left;
   margin: 0%;
   align-items: flex-start;
@@ -255,7 +381,7 @@ export default {
   box-shadow: 5px 10px 8px #888888;
 }
 .importantPost {
-  background-color: rgb(244, 247, 255, 255);
+  // background-color: rgb(244, 247, 255, 255);
   text-align: left;
   margin: 0%;
   align-items: flex-start;
@@ -292,5 +418,140 @@ export default {
   margin-top: 5%;
   margin-right: 3em;
 }
+
+
+.input-recipient{
+  position: absolute;
+  margin-top:-41.5em;
+  margin-left:-20em ;
+}
+
+.popup-inner {
+  background: white;
+  padding: 32px;
+  border-radius: 10px;
+}
+
+.table-left {
+  margin: auto;
+}
+
+.td-left {
+  padding-left: 35em;
+}
+
+.message-create {
+  display: block;
+  white-space: pre;
+  
+}
+
+.input-username {
+  float: left;
+  background-color: transparent;
+  border: 0px solid;
+  height: 20px;
+  width: 160px;
+  color: rgb(93, 170, 233);
+}
+
+.input-title {
+  float: left;
+  margin-left: 11em;
+  background-color: white;
+  border: 0px solid;
+  height: 20px;
+  width: 160px;
+  color: rgb(0, 0, 0);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.important {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.label-left {
+  text-align: left;
+  margin-right: 40em;
+  padding-bottom: 10em;
+}
+
+.message-create {
+  width: 38em;
+
+  padding: 0em;
+  // margin: auto;
+  margin-left: -2em;
+  margin-top: -3em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: rgba(244, 247, 255, 255);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.textarea-content {
+  margin-left: 1em;
+  resize: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  
+}
+
+/* CSS */
+.button-81 {
+  background-color: rgba(244, 247, 255, 255);
+  border: 0 solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  color: #0d222a;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1rem 1.6rem;
+  text-align: center;
+  text-decoration: none rgba(244, 247, 255, 255) solid;
+  text-decoration-thickness: auto;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0px 1px 2px rgba(118, 162, 255, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-81:hover {
+  background-color: rgba(102, 194, 247, 0.25);
+  color: rgb(0, 0, 0);
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 0.9rem;
+    padding: 0.5rem 2rem;
+  }
+}
+
+
+
+
+
 
 </style>
