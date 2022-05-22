@@ -8,13 +8,15 @@
 
 <div class="conversationview">
 <div class="postComplete" v-for="conversation in conversations" :key="conversation.user1">
-      
-      <p class="postUsername"  >{{ conversation.user1 }}</p>
-      
+    <div class="conversation_segment"> 
+      {{ conversation.user2 }} <br>
+      <br>
+     <p> {{ conversation.lastMessageSend }}</p>
+      </div> 
         
-          {{ conversation.title }}
+          
         
-        <p class="postText">{{ conversation.lastMessageSend }}</p>
+        <!-- <p class="postText">{{ conversation.lastMessageSend }}</p> -->
         <p>
           
         </p>
@@ -72,6 +74,15 @@ export default {
 </script>
 
 <style scoped>
+
+.conversation_segment{
+  height: 5em;
+  width: 10 em;
+  background: rgb(171, 224, 255);
+  text-align:center;
+  border-radius: 1.3125em;
+  margin-top: -0.8em;
+}
 
 .selecteduser{
 
