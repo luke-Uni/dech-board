@@ -244,12 +244,34 @@ async getAllPostsNoParameter() {
       //   else{
       //       localStorage.setItem("recipient", this.recipient);
       //   }
+      if(this.recipient.length>3){
+        let result = await axios.post(
+        
+        //"https://dech-board-rest-server.herokuapp.com/posts/create",
+        "http://localhost:8090/message/create",
+        {
+          // username: this.username,
+          
+          recipient: this.recipient,
+          content: this.content,
+        },
+        {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        }
+        
+      );
+      console.log(result);
+      }
+      else{
       let result = await axios.post(
         
         //"https://dech-board-rest-server.herokuapp.com/posts/create",
         "http://localhost:8090/message/create",
         {
           // username: this.username,
+          
           recipient: localStorage.getItem("recipient"),
           content: this.content,
         },
@@ -261,7 +283,7 @@ async getAllPostsNoParameter() {
       );
      //localStorage.setItem("recipient", this.recipient);
       console.log(result);
-    },
+    }}
   },
 };
 </script>
