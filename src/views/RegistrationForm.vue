@@ -36,6 +36,7 @@
         v-model="lastName"
       />
       <br />
+      
       <label for="email"></label>
       <input
         type="text"
@@ -82,7 +83,7 @@ export default {
       password: "",
       firstName: "",
       lastName: "",
-      birthdy: "",
+      email: "",
     };
   },
 
@@ -96,7 +97,7 @@ export default {
       let res = await axios.post(
         "http://localhost:8090/register",
         // "https://dech-board-rest-server.herokuapp.com/register",
-        { username: this.username, password: this.password },
+        { username: this.username, password: this.password, email: this.email },
         {
           headers: headers,
         }
