@@ -1,5 +1,5 @@
 <template>
-  <LeftSideMenu />
+  <!-- <LeftSideMenu /> -->
   <div>
     <div
       class="postComplete"
@@ -20,10 +20,10 @@
 
 <script>
 import axios from "axios";
-import LeftSideMenu from "@/components/LeftSideMenu.vue";
+// import LeftSideMenu from "@/components/LeftSideMenu.vue";
 export default {
   components: {
-    LeftSideMenu,
+    // LeftSideMenu,
   },
   data() {
     return {
@@ -36,7 +36,7 @@ export default {
   methods: {
     //To display all the Posts we need to get them from the Server
     getAllPosts() {
-      console.log("I am in the getAllPosts function");
+      //console.log("I am in the getAllPosts function");
 
       let headers = {
         "Content-Type": "application/json",
@@ -89,9 +89,10 @@ export default {
   margin: 0%;
   align-items: flex-start;
   border: 1px solid black;
-  width: 100%;
-  height: 10em;
+  width: 34em;
+  height: 28em;
   margin-bottom: 2%;
+  margin-left: 0.5em;
   border-radius: 10px;
   box-shadow: 5px 10px 8px #888888;
 }

@@ -4,7 +4,7 @@ import TestingView from "../views/TestingView.vue";
 import CreatePost from "../components/CreatePost";
 import RegistrationFrom from "../views/RegistrationForm";
 import LogIn from "../views/LogIn";
-import MessageRetrieve from "../views/MessageRetrieve";
+//import MessageRetrieve from "../views/MessageRetrieve";
 import ConversationView from "../views/ConversationView";
 
 const routes = [
@@ -33,11 +33,11 @@ const routes = [
     name: "LogIn",
     component: LogIn,
   },
-  {
-    path: "/Messages",
-    name: "MessageRetrieve",
-    component: MessageRetrieve,
-  },
+  // {
+  //   path: "/Messages",
+  //   name: "MessageRetrieve",
+  //   component: MessageRetrieve,
+  // },
   {
     path: "/conversationview",
     name: "conversationview",

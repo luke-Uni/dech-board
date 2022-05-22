@@ -4,7 +4,10 @@
       <div class="selecteduser">
       </div>
 
-      <div class="chat"></div>
+      <div class="chat">
+        <MessageRetrieve/>
+
+      </div>
 
 <div class="conversationview">
 <div class="postComplete" v-for="conversation in conversations" :key="conversation.user1">
@@ -32,7 +35,9 @@
 </template>
 
 <script>
+import MessageRetrieve from "./MessageRetrieve.vue";
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -42,6 +47,9 @@ export default {
   beforeMount() {
     this.getAllConversations();
   },
+  components: {
+    MessageRetrieve
+},
   methods: {
     //To display all the Conversations we need to get them from the Server
     getAllConversations() {
@@ -114,7 +122,9 @@ export default {
   border-radius: 1.1875em;  
   margin-top: 7.4375em;
   margin-left: 25em;
-  box-shadow: 2px 2px 7px rgb(198, 227, 255)
+  box-shadow: 2px 2px 7px rgb(198, 227, 255)  ;
+  overflow:scroll;
+    overflow-x:hidden
 }
 
 .conversationview{
