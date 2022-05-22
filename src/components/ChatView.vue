@@ -77,11 +77,13 @@ export default {
 
 .conversation_segment{
   height: 5em;
-  width: 10 em;
+  width: 24.35em;
   background: rgb(171, 224, 255);
   text-align:center;
   border-radius: 1.3125em;
-  margin-top: -0.8em;
+  margin-top: 0.1em;
+  margin-left: 0.4em;
+  margin-bottom: -0.5em;;
 }
 
 .selecteduser{
