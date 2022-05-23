@@ -283,7 +283,7 @@ export default {
   top: 8.375em;
   background: #f4f7ff;
   border-radius: 1.1875em;
-  margin-top: 7.4375em;
+  margin-top: 6.6375em;
   margin-left: 25em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
   overflow: scroll;
@@ -336,18 +336,7 @@ export default {
   border-radius: 10px;
   box-shadow: 5px 10px 8px #888888;
 }
-.importantPost {
-  // background-color: rgb(244, 247, 255, 255);
-  text-align: left;
-  margin: 0%;
-  align-items: flex-start;
-  border: 1px solid rgb(220, 46, 46);
-  width: 100%;
-  height: 10em;
-  margin-bottom: 2%;
-  border-radius: 10px;
-  box-shadow: 5px 10px 18px red;
-}
+
 
 .postTitle {
   float: left;
@@ -356,13 +345,7 @@ export default {
   margin-top: 0.5em;
 }
 
-.importantTitle {
-  float: left;
-  margin: 0%;
-  margin-left: 1em;
-  margin-top: 0.5em;
-  color: red;
-}
+
 .postUsername {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -446,7 +429,7 @@ input:focus {
   padding: 0em;
   // margin: auto;
   margin-left: -2em;
-  margin-top: -3em;
+  margin-top: -4.4em;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -456,6 +439,7 @@ input:focus {
 }
 .textarea-content {
   margin-left: 1em;
+  margin-top: -1em;
   resize: none;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;

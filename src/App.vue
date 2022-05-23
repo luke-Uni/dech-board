@@ -1,12 +1,19 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/registeruser">Register</router-link> |
-    <router-link to="/login">Login</router-link> |
-    <router-link to="test">Test</router-link> |
-    <!-- <router-link to="/Messages">Messages</router-link> | -->
-    <router-link to="/conversationview">conversationview</router-link>
-    
+    <table class="margin_class"><tr><td>
+    <router-link class="router-link_class" to="/">Home</router-link> |
+    </td>
+    <td>
+    <router-link class="router-link_class" to="/registeruser">Register</router-link> |
+    </td><td>
+    <router-link class="router-link_class" to="/login">Login</router-link> |
+   </td><td>
+   <router-link class="router-link_class" to="test">Test</router-link> |
+   </td><td>
+   <!-- <router-link to="/Messages">Messages</router-link> | -->
+    <router-link class="router-link_class" to="/conversationview">conversationview</router-link>
+   </td>
+   </tr></table>
   </nav>
   <router-view />
 </template>
@@ -16,8 +23,13 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+   text-align: center; 
   color: #2c3e50;
+}
+
+.margin_class{
+  margin-left: 45em;
+
 }
 
 nav {
@@ -31,5 +43,11 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #6dfaff;
+  
 }
+
+.router-link_class{
+  margin-right: 1em;
+}
+
 </style>
