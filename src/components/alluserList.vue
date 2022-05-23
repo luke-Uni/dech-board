@@ -1,6 +1,7 @@
 <template>
+
     <div class="see Users">
-      
+      <User />
       <button
         type="userList"
         class=""
@@ -17,16 +18,14 @@
 
 
 <script>
-
+import User from "./user.vue";
  //just testing(copy of the component createPost)
 import axios from "axios";
 
 export default {
-  name: "getUsers",
-
-  props: ["TogglePopup"],
-
+  component:{User},
   data() {
+    
     return {
     //  username: "",
     //  title: "",
