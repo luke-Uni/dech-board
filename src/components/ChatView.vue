@@ -57,14 +57,10 @@
               <button
                 style="float: right"
                 class="button-81"
-                v-on:click="
-                  createMessage();
-                  getAllConversations();
-                  getAllPostsNoParameter();
-                "
+                v-on:click="createMessage()"
                 role="button"
               >
-                Create Post
+                Send Message
               </button>
             </div>
           </div>
@@ -105,13 +101,14 @@ export default {
       content: "",
     };
   },
+  computed: {},
   beforeMount() {
     this.getAllConversations();
   },
 
   methods: {
     //Get all Messages for one conversation using the other users username as a parameter
-    async getAllPosts(name) {
+   async getAllPosts(name) {
       localStorage.setItem("recipient", name);
 
       let headers = {
@@ -121,7 +118,7 @@ export default {
 
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
-      let response = axios
+      let response = await axios
         .get(uri, { headers: headers })
         .then((response) => {
           console.log(response);
@@ -138,7 +135,7 @@ export default {
     },
 
     //get all Messages from one Conversation without having to use parameters
-    async getAllPostsNoParameter() {
+   async getAllPostsNoParameter() {
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
@@ -148,7 +145,7 @@ export default {
       console.log(localStorage.getItem("recipient"));
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
-      let response = axios
+      let response = await axios
         .get(uri, { headers: headers })
         .then((response) => {
           console.log(response);
@@ -165,7 +162,7 @@ export default {
     },
 
     //To display all the Conversations we need to get them from the Server
-    async getAllConversations() {
+   async getAllConversations() {
       console.log("I am in the getAllPosts function");
 
       let headers = {
@@ -175,7 +172,7 @@ export default {
 
       let uri = "http://localhost:8090/conversation/getall";
 
-      let response = axios
+      let response = await axios
         .get(uri, { headers: headers })
         .then((response) => {
           console.log(response);
@@ -192,7 +189,7 @@ export default {
     },
     //Create a message
     async createMessage() {
-      if (this.recipient.length > 3) {
+      if (this.recipient.length > 4) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
@@ -206,7 +203,7 @@ export default {
           }
         );
         console.log(result);
-      } else {
+      }  else {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
@@ -222,6 +219,8 @@ export default {
 
         console.log(result);
       }
+      this.getAllConversations();
+      this.getAllPostsNoParameter();
     },
   },
 };
@@ -337,14 +336,12 @@ export default {
   box-shadow: 5px 10px 8px #888888;
 }
 
-
 .postTitle {
   float: left;
   margin: 0%;
   margin-left: 1em;
   margin-top: 0.5em;
 }
-
 
 .postUsername {
   margin-top: 1em;
