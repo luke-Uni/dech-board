@@ -5,7 +5,6 @@
 
     <div class="chat">
       <div class="messages_view">
-        <!-- <MessageRetrieve ref="messageRetrieve"/> -->
         <div>
           <div
             class="postComplete"
@@ -38,25 +37,10 @@
         <div class="popup-inner">
           <slot />
 
-          <!-- <button
-        type="button"
-        class="btn-close popup-close"
-        @click="TogglePopup()"
-      >
-        <span class="icon-cross"></span>
-        <span class="visually-hidden"></span>
-      </button> -->
           <br />
-
-          <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
 
           <div>
             <div class="message-create">
-              <!--  -->
-              <!-- <br />
-          <br /> -->
-              <!-- <button v-on:click="getUserList()">GetUser</button> -->
-
               <br />
               <br />
 
@@ -76,7 +60,7 @@
                 v-on:click="
                   createMessage();
                   getAllPostsNoParameter();
-                  // TogglePopup();
+                  getAllConversations();
                 "
                 role="button"
               >
@@ -103,7 +87,6 @@
           <p>{{ conversation.lastMessageSend }}</p>
         </div>
 
-        <!-- <p class="postText">{{ conversation.lastMessageSend }}</p> -->
         <p></p>
       </div>
     </div>
@@ -111,8 +94,6 @@
 </template>
 
 <script>
-//import MessageRetrieve from "./MessageRetrieve.vue";
-//import MessageCreation from "./MessageCreation.vue";
 import axios from "axios";
 
 export default {
@@ -127,10 +108,7 @@ export default {
   beforeMount() {
     this.getAllConversations();
   },
-  //   components: {
-  //     MessageRetrieve,
-  //     MessageCreation
-  // },
+
   methods: {
     //Get all Messages for one conversation using the other users username as a parameter
     async getAllPosts(name) {
@@ -216,7 +194,6 @@ export default {
     async createMessage() {
       if (this.recipient.length > 3) {
         let result = await axios.post(
-          //"https://dech-board-rest-server.herokuapp.com/posts/create",
           "http://localhost:8090/message/create",
           {
             recipient: this.recipient,
@@ -231,7 +208,6 @@ export default {
         console.log(result);
       } else {
         let result = await axios.post(
-          //"https://dech-board-rest-server.herokuapp.com/posts/create",
           "http://localhost:8090/message/create",
           {
             recipient: localStorage.getItem("recipient"),
