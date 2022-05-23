@@ -59,8 +59,8 @@
                 class="button-81"
                 v-on:click="
                   createMessage();
-                  getAllPostsNoParameter();
                   getAllConversations();
+                  getAllPostsNoParameter();
                 "
                 role="button"
               >

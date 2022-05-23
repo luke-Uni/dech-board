@@ -67,6 +67,7 @@
               v-on:click="
                 createPost();
                 TogglePopup();
+                getAllPosts();
               "
               role="button"
             >
@@ -81,6 +82,7 @@
 
 <script>
 import axios from "axios";
+// import MessageBoard from "./MessageBoard.vue";
 
 export default {
   name: "CreatePost",
@@ -93,10 +95,17 @@ export default {
       title: "",
       content: "",
       important: "",
+      // posts:[]
     };
   },
 
   methods: {
+
+    // async getAllPosts(){
+    //    MessageBoard.getAllPosts();
+    // },
+
+
     async createPost() {
       let result = await axios.post(
         //"https://dech-board-rest-server.herokuapp.com/posts/create",
