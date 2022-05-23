@@ -105,7 +105,7 @@ export default {
   beforeMount() {
     this.getAllConversations();
   },
-
+  
   methods: {
     //Get all Messages for one conversation using the other users username as a parameter
    async getAllPosts(name) {
