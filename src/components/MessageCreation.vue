@@ -69,7 +69,7 @@
         <tr>
           <br />
           <td> -->
-            <!-- <input
+             <!-- <input
               type="checkbox"
               name="Important"
               v-model="important"

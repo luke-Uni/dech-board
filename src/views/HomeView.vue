@@ -21,6 +21,9 @@
       :TogglePopup="() => TogglePopup2('buttonTrigger')"
     >
     </CreatePost>
+    <AlluserList
+
+    ></AlluserList>
   </div>
 </template>
 

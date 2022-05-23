@@ -1,13 +1,15 @@
 <template>
   <div>
-    <LeftSideMenu/>
-
+    <LeftSideMenu />
 
     <h1>Only Test Components</h1>
+    <h2>bla</h2>
     <InvitationLink />
-    <br>
-    <br>
-    
+
+    <AlluserList />
+
+    <br />
+    <br />
   </div>
 </template>
 
@@ -15,14 +17,15 @@
 import InvitationLink from "@/components/InvitationLink.vue";
 
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
-
+//import AlluserList from "@/components/AlluserList.vue";
 
 export default {
   components: {
     InvitationLink,
-    
-    LeftSideMenu
-},
+
+    LeftSideMenu,
+    AlluserList,
+  },
 };
 </script>
 
