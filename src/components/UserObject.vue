@@ -16,8 +16,7 @@
 <script>
 export default {
 
-
- name: "user",
+ name: "UserObjekt",
  data() {
    
     return {

@@ -6,7 +6,7 @@
     <h2>bla</h2>
     <InvitationLink />
 
-    <AlluserList />
+    <AllUserList />
 
     <br />
     <br />
@@ -17,14 +17,14 @@
 import InvitationLink from "@/components/InvitationLink.vue";
 
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
-//import AlluserList from "@/components/AlluserList.vue";
+import AllUserList from "@/components/AllUserList.Second.vue";
 
 export default {
   components: {
     InvitationLink,
 
     LeftSideMenu,
-    AlluserList,
+    AllUserList,
   },
 };
 </script>
