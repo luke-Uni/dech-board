@@ -7,7 +7,7 @@
       <input
         type="text"
         id="username"
-        placeholder=" &nbsp;&nbsp;Username"
+        placeholder="Username"
         v-model="username"
         required
       />
@@ -16,7 +16,7 @@
       <input
         type="password"
         id="password"
-        placeholder=" &nbsp;&nbsp;Password"
+        placeholder="Password"
         v-model="password"
         required
       />
@@ -173,8 +173,11 @@ export default {
 #username {
   border-radius: 20px;
   margin-bottom: 10%;
-  width: 18em;
+  left: 12%;
+  width: 64%;
   height: 40px;
+  padding-left: 5%;
+  padding-right: 5%;
   box-shadow: 0px 0px 5px grey;
   border: 0 grey solid;
 }
@@ -182,8 +185,11 @@ export default {
 #password {
   border-radius: 20px;
   margin-bottom: 40px;
-  width: 18em;
+  left: 12%;
+  width: 64%;
   height: 40px;
+  padding-left: 5%;
+  padding-right: 5%;
   box-shadow: 0px 0px 5px grey;
   border: 0 grey solid;
 }
