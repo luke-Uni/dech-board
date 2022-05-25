@@ -69,19 +69,31 @@
     </div>
 
     <div class="conversationview">
+      <div class="own_user">
+        
+
+      </div>
       <div
         class="postComplete"
         v-for="conversation in conversations"
         :key="conversation.user1"
       >
-        <div class="conversation_segment">
-          <button v-on:click="getAllPosts(conversation.user2)">
-            {{ conversation.user2 }}
+        <!-- <div class="conversation_segment"> -->
+          <!-- <button v-on:click="getAllPosts(conversation.user2)"> -->
+            <button
+                class="button-conversation"
+                v-on:click="getAllPosts(conversation.user2)"
+                role="button"
+              >
+             
+               {{ conversation.user2 }} 
+                <p>{{ conversation.lastMessageSend }}</p>
+            
           </button>
-          <p>{{ conversation.lastMessageSend }}</p>
-        </div>
+         
+        <!-- </div> -->
 
-        <p></p>
+        
       </div>
     </div>
   </div>
@@ -488,6 +500,37 @@ input:focus {
 }
 
 .button-81:hover {
+  background-color: rgba(102, 194, 247, 0.25);
+  color: rgb(0, 0, 0);
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 0.9rem;
+    padding: 0.8rem 0.5rem;
+  }
+}
+
+
+ .button-conversation {
+//   background-color: rgba(244, 247, 255, 255);
+//   border: 0 solid #e2e8f0;
+//   border-radius: 1.5rem;
+//   box-sizing: border-box;
+ height: 8em;
+  width: 30.7em;
+  background: rgb(230, 246, 255);
+  text-align: center;
+  border-radius: 1.3125em;
+  margin-top: 1.5em;
+  margin-left: 0.4em;
+  margin-bottom: -0.5em;
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  border: 1px solid rgb(230, 230, 230);
+  padding: 0.2em;
+ }
+
+.button-conversation:hover {
   background-color: rgba(102, 194, 247, 0.25);
   color: rgb(0, 0, 0);
 }
