@@ -41,27 +41,25 @@
 
           <div>
             <div class="message-create">
-              <br />
-              <br />
-
-              <textarea
-                class="textarea-content"
-                name="content"
-                rows="3"
-                cols="55"
-                placeholder="content..."
-                v-model="content"
-              >
-              </textarea>
-
+              <div class="message-textarea-div">
+                <textarea
+                  class="textarea-content"
+                  name="content"
+                  rows="3"
+                  cols="55"
+                  v-model="content"
+                >
+                </textarea>
+                <div class="send-button-div">
               <button
-                style="float: right"
                 class="button-81"
                 v-on:click="createMessage()"
                 role="button"
               >
                 Send Message
               </button>
+                </div>
+              </div>
             </div>
           </div>
           <br />
@@ -71,19 +69,31 @@
     </div>
 
     <div class="conversationview">
+      <div class="own_user">
+        
+
+      </div>
       <div
         class="postComplete"
         v-for="conversation in conversations"
         :key="conversation.user1"
       >
-        <div class="conversation_segment">
-          <button v-on:click="getAllPosts(conversation.user2)">
-            {{ conversation.user2 }}
+        <!-- <div class="conversation_segment"> -->
+          <!-- <button v-on:click="getAllPosts(conversation.user2)"> -->
+            <button
+                class="button-conversation"
+                v-on:click="getAllPosts(conversation.user2)"
+                role="button"
+              >
+             
+               {{ conversation.user2 }} 
+                <p>{{ conversation.lastMessageSend }}</p>
+            
           </button>
-          <p>{{ conversation.lastMessageSend }}</p>
-        </div>
+         
+        <!-- </div> -->
 
-        <p></p>
+        
       </div>
     </div>
   </div>
@@ -105,10 +115,10 @@ export default {
   beforeMount() {
     this.getAllConversations();
   },
-  
+
   methods: {
     //Get all Messages for one conversation using the other users username as a parameter
-   async getAllPosts(name) {
+    async getAllPosts(name) {
       localStorage.setItem("recipient", name);
 
       let headers = {
@@ -135,7 +145,7 @@ export default {
     },
 
     //get all Messages from one Conversation without having to use parameters
-   async getAllPostsNoParameter() {
+    async getAllPostsNoParameter() {
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
@@ -162,7 +172,7 @@ export default {
     },
 
     //To display all the Conversations we need to get them from the Server
-   async getAllConversations() {
+    async getAllConversations() {
       console.log("I am in the getAllPosts function");
 
       let headers = {
@@ -203,7 +213,7 @@ export default {
           }
         );
         console.log(result);
-      }  else {
+      } else {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
@@ -433,20 +443,38 @@ input:focus {
   background-color: rgba(244, 247, 255, 255);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  // position: absolute;
+}
+.message-textarea-div{
+  height: 5em;
 }
 .textarea-content {
+  width: 70%;
+  height: 55%;
   margin-left: 1em;
-  margin-top: -1em;
+  margin-top: 1.2em;
   resize: none;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   border: none;
   outline: none;
+  float: left;
+  padding-left: 3px;
+  padding-right: 3px;
 }
-
+.send-button-div{
+  width: 22%;
+  height: 100%;
+  float: right;
+  padding-right: 1em;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
 /* CSS */
 .button-81 {
+  width: 100vh;
   background-color: rgba(244, 247, 255, 255);
   border: 0 solid #e2e8f0;
   border-radius: 1.5rem;
@@ -460,7 +488,7 @@ input:focus {
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 1;
-  padding: 1rem 1.6rem;
+  padding: 0.8rem 0.5rem;
   text-align: center;
   text-decoration: none rgba(244, 247, 255, 255) solid;
   text-decoration-thickness: auto;
@@ -479,7 +507,38 @@ input:focus {
 @media (min-width: 768px) {
   .button-81 {
     font-size: 0.9rem;
-    padding: 0.5rem 2rem;
+    padding: 0.8rem 0.5rem;
+  }
+}
+
+
+ .button-conversation {
+//   background-color: rgba(244, 247, 255, 255);
+//   border: 0 solid #e2e8f0;
+//   border-radius: 1.5rem;
+//   box-sizing: border-box;
+ height: 8em;
+  width: 30.7em;
+  background: rgb(230, 246, 255);
+  text-align: center;
+  border-radius: 1.3125em;
+  margin-top: 1.5em;
+  margin-left: 0.4em;
+  margin-bottom: -0.5em;
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  border: 1px solid rgb(230, 230, 230);
+  padding: 0.2em;
+ }
+
+.button-conversation:hover {
+  background-color: rgba(102, 194, 247, 0.25);
+  color: rgb(0, 0, 0);
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 0.9rem;
+    padding: 0.8rem 0.5rem;
   }
 }
 </style>
