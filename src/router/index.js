@@ -6,6 +6,7 @@ import RegistrationFrom from "../views/RegistrationForm";
 import LogIn from "../views/LogIn";
 //import MessageRetrieve from "../views/MessageRetrieve";
 import ConversationView from "../views/ConversationView";
+import UserConfirmation from "../views/UserConfirmation";
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: "/conversationview",
     name: "conversationview",
     component: ConversationView,
+  },
+  {
+    path: "/confirmuser",
+    name: "UserConfirmation",
+    component: UserConfirmation,
   }
 ];
 
