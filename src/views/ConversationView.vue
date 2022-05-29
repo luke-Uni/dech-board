@@ -4,6 +4,9 @@
   <div class="home">
     <ChatView />
   </div>
+  <div>
+    <InvitationLink />
+  </div>
 </template>
 
 <script>
@@ -11,6 +14,7 @@
 // import { ref } from "vue";
 import ChatView from "@/components/ChatView.vue";
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
+import InvitationLink from "@/components/InvitationLink.vue";
 export default {
   //   setup() {
   //     const popupTriggers = ref({
@@ -35,6 +39,7 @@ export default {
   components: {
     ChatView,
     LeftSideMenu,
+    InvitationLink,
   },
   methods: {},
 };
