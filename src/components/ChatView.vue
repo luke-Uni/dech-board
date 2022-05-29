@@ -199,7 +199,7 @@ export default {
     },
     //Create a message
     async createMessage() {
-      if (this.recipient.length > 4) {
+      if (this.recipient.length >0) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
@@ -218,6 +218,7 @@ export default {
           "http://localhost:8090/message/create",
           {
             recipient: localStorage.getItem("recipient"),
+            //recipient: this.recipient,
             content: this.content,
           },
           {
