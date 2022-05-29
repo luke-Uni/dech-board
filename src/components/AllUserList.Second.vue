@@ -30,7 +30,6 @@ import UserObject from "./UserObject.vue";
 export default {
 
     name: 'AllUserList',
-    component: {},
     data() {
         return {
         //  username: "",
