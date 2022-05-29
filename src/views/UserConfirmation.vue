@@ -21,7 +21,7 @@
         required
       />
       <br />
-      <button @click="ConfirmUser()" id="loginButton">Log In</button>
+      <button @click="confirmUser()" id="loginButton">Log In</button>
       <p id="feedback"></p>
       <div class="bottom"></div>
       <button @click="goToRegister()" id="registerButton">
@@ -54,7 +54,7 @@ export default {
   },
 
   methods: {
-    loginUser() {
+    confirmUser() {
       let result = axios
         .post("http://localhost:8090/confirmuser", {
           email: this.email,
