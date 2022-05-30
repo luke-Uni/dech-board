@@ -455,7 +455,7 @@ export default {
 }
 .postsInside {
   
-  background-color: #fcffe7;
+background-color: #ffffff;
   text-align: left;
   margin: 0%;
   align-items: flex-start;
@@ -468,7 +468,8 @@ export default {
 }
 
 .postsInside2 {
-  background-color: #ffffff;
+  
+    background-color: #94f07b70;
   text-align: left;
   margin: 0%;
   align-items: flex-start;
