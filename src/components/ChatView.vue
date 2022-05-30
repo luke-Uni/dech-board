@@ -457,6 +457,7 @@ export default {
   
 background-color: #ffffff;
   text-align: left;
+ 
   margin: 0%;
   align-items: flex-start;
   width: 34em;
@@ -468,7 +469,7 @@ background-color: #ffffff;
 }
 
 .postsInside2 {
-  
+   color: rgb(78, 78, 78);
     background-color: #94f07b70;
   text-align: left;
   margin: 0%;
