@@ -13,11 +13,13 @@
           >
             <h4 class="postUsername">User: {{ message.username }}</h4>
             <div class="postsInside">
-              <p class="recipient">Recipient: {{ message.recipient }}</p>
+              <!-- <p class="recipient">Recipient: {{ message.recipient }}</p> -->
+              <p class="recipient">Von: {{ message.username }}</p>
 
               <p class="postText">{{ message.content }}</p>
               <p class="timeStamp">{{ message.time }}</p>
-              <p class="directionState">{{ message.state }}</p>
+              <br>
+              <!-- <p class="directionState">{{ message.state }}</p> -->
             </div>
           </div>
         </div>
