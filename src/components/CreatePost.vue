@@ -91,7 +91,7 @@ export default {
 
   data() {
     return {
-    //  username: "",
+      //  username: "",
       title: "",
       content: "",
       important: "",
@@ -100,11 +100,9 @@ export default {
   },
 
   methods: {
-
     // async getAllPosts(){
     //    MessageBoard.getAllPosts();
     // },
-
 
     async createPost() {
       let result = await axios.post(

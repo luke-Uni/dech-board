@@ -1,19 +1,27 @@
 <template>
   <div class="top"></div>
   <div class="container">
-    <form class="form">
+    <form class="form" @submit="checkForm">
       <!-- <fieldset> -->
       <img src="../assets/1.png" alt="HeNan" id="logo" />
+      <!-- <p v-if="errors.length">
+    <b>Please correct the following error(s):</b>
+    <ul>
+      <li v-for="error in errors" :key="error">{{ error }}</li>
+    </ul>
+  </p> -->
       <label for="username"></label>
       <input
         type="text"
         id="username"
+        required
         placeholder=" &nbsp;&nbsp;Username"
         v-model="username"
       />
       <br />
       <label for="password"></label>
       <input
+      required
         type="password"
         id="password"
         placeholder=" &nbsp;&nbsp;Password"
@@ -24,6 +32,7 @@
       <input
         type="text"
         id="firstName"
+        required
         placeholder=" &nbsp;&nbsp;First name"
         v-model="firstName"
       />
@@ -31,6 +40,7 @@
       <label for="last name"></label>
       <input
         type="text"
+        required
         id="lastName"
         placeholder=" &nbsp;&nbsp;Last name"
         v-model="lastName"
@@ -40,6 +50,7 @@
       <label for="email"></label>
       <input
         type="text"
+        required
         id="birthdy"
         placeholder=" &nbsp;&nbsp;E-Mail"
         v-model="email"
@@ -84,6 +95,7 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
+      errors: [],
     };
   },
 
@@ -105,11 +117,34 @@ export default {
       console.log(res.status);
       this.$router.push("/login");
     },
-  },
+
+    
+    checkForm:function(e) {
+      if(this.username && this.email) return true;
+      this.errors = [];
+      if(!this.username) this.errors.push("Username required.");
+      if(!this.email) this.errors.push("E-Mail required.");
+      e.preventDefault();
+    }
+  
+}
+
+
+  
 };
 </script>
 
 <style scoped>
+
+input:required:focus {
+  border: 1px solid red;
+  outline: none;
+}
+
+input:required:hover {
+  opacity: 1;
+}
+
 input {
   text-align: center;
 }

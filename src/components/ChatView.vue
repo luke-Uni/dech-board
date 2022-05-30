@@ -201,7 +201,7 @@ export default {
     },
     //Create a message
     async createMessage() {
-      if (this.recipient.length > 4) {
+      if (this.recipient.length >0) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
@@ -220,6 +220,7 @@ export default {
           "http://localhost:8090/message/create",
           {
             recipient: localStorage.getItem("recipient"),
+            //recipient: this.recipient,
             content: this.content,
           },
           {
@@ -394,28 +395,31 @@ export default {
 }
 
 .recipient {
-  margin-left: 1em;
+  padding-top: 10px;
+  margin-left: 1.5em;
   color: rgb(255, 40, 165);
 }
-
+.directionState{
+  padding-left: 23px;
+  padding-block-end: 12px;
+}
 .postComplete {
   margin: auto;
   width: 50em;
-  border: 1px solid rgb(255, 255, 255);
+  //border: 1px solid rgb(255, 255, 255);
   text-align: left;
 }
 .postsInside {
-  // background-color: rgb(244, 247, 255, 255);
+  background-color:#ffffff;
   text-align: left;
   margin: 0%;
   align-items: flex-start;
-  border: 1px solid black;
   width: 34em;
-  height: 10em;
+  height: auto;
   margin-bottom: 1em;
   margin-left: 0.5em;
   border-radius: 10px;
-  box-shadow: 5px 10px 8px #888888;
+  box-shadow: 3.4px 2.4px 10px rgba(0, 0, 0, 0.014);
 }
 
 .postTitle {
@@ -435,6 +439,8 @@ export default {
   margin-left: 3em;
   margin-top: 5%;
   margin-right: 3em;
+	word-wrap: break-word;
+	word-break: break-all;
 }
 
 .input-recipient {
