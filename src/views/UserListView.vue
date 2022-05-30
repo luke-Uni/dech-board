@@ -1,6 +1,6 @@
 <template>
 <div>
-<h1>Userlist</h1>
+<h1>List of all User</h1>
  <UserObject />
  
 </div>

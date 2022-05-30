@@ -1,9 +1,13 @@
 <template>
+  <div class ="buttonAndUser">
 
-  <button @click="getAllUsers()" class="getUserButton">getAllUsers</button>
-  <div class="layoutUser" v-for="user in usernames" :key="user.username">
-    <h1 class="userUsername">{{ user.username }}</h1>
+    <button @click="getAllUsers()" class="getUserButton">All User</button>
+   <div class="layoutUser" v-for="user in usernames" :key="user.username">
+    <h2 class="userUsername">{{ user.username }}</h2>
+    </div>
   </div>
+  
+
 
 </template>
 
@@ -42,36 +46,48 @@ export default {
 </script>
 
 <style scoped>
+.buttonandUser{
+width: 50em;
+  height: 40px;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  
+  border: 0;
+  padding: 10;
+  border-radius: 20px;
+  color: white;
+  background-color: #6dfaff;
+}
 .getUserButton{
   width: 10%;
   height: 40px;
   margin-top: 1em;
   margin-bottom: 2em;
-  margin-left: 80em;
   border: 0;
   padding: 10;
   border-radius: 20px;
   color: white;
-  background-color: green;
+  background-color: #6dfaff;
 }
 .layoutUser {
   margin-top: 0em;
   margin-bottom: 0em;
-  margin-left: 35em;
+  
 }
 .userUsername{
-  margin-left:11em;
-  width: 25%;
+  margin:auto;
+  margin-bottom:0.4em;
+  width: 5em;
   border: 1px solid black;
   border: 0;
   padding: 20;
   border-radius: 20px;
   color:white;
-  background-color:green;
+  background-color:#6dfaff;
 }
 .layoutUser {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  margin-left: 50em;
+  margin: auto;
+  
+  align-content: center;
 }
 </style>
