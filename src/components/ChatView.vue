@@ -12,12 +12,15 @@
             :key="message.username"
           >
             <h4 class="postUsername">User: {{ message.username }}</h4>
-            <div class="postsInside">
-              <p class="recipient">Recipient: {{ message.recipient }}</p>
+            <div :class="[message.send? 'postsInside2': 'postsInside']">
+               <!-- <div :class="[post.important ? 'importantPost' : 'postsInside']"></div> -->
+              <!-- <p class="recipient">Recipient: {{ message.recipient }}</p> -->
+              <p class="recipient">From: {{ message.username }}</p>
 
               <p class="postText">{{ message.content }}</p>
               <p class="timeStamp">{{ message.time }}</p>
-              <p class="directionState">{{ message.state }}</p>
+              <br>
+              <!-- <p class="directionState">{{ message.state }}</p> -->
             </div>
           </div>
         </div>
@@ -343,37 +346,39 @@ export default {
 
 .chat::-webkit-scrollbar-track {
   background-color: #f5f5f5;
+  border-radius: 1em;
 }
 .chat::-webkit-scrollbar {
   background-color: #f5f5f5;
+  border-radius: 1em;
 }
 .chat::-webkit-scrollbar-thumb {
   background-color: #e1e7f7;
-  border-radius: 1.3125em;
+  border-radius: 1em;
 }
-.chat::-webkit-scrollbar-button:single-button {
-  background-color: #bbbbbb;
-  display: block;
-  border-style: solid;
-  height: 13px;
-  width: 16px;
-}
-.chat::-webkit-scrollbar-button:single-button:vertical:decrement {
-  border-width: 0 8px 8px 8px;
-  border-color: transparent transparent #97a6ce transparent;
-}
+// .chat::-webkit-scrollbar-button:single-button {
+//   background-color: #bbbbbb;
+//   display: block;
+//   border-style: solid;
+//   height: 13px;
+//   width: 16px;
+// }
+// .chat::-webkit-scrollbar-button:single-button:vertical:decrement {
+//   border-width: 0 8px 8px 8px;
+//   border-color: transparent transparent #97a6ce transparent;
+// }
 
-.chat::-webkit-scrollbar-button:single-button:vertical:increment {
-  border-width: 8px 8px 0 8px;
-  border-color: #97a6ce transparent transparent transparent;
-}
+// .chat::-webkit-scrollbar-button:single-button:vertical:increment {
+//   border-width: 8px 8px 0 8px;
+//   border-color: #97a6ce transparent transparent transparent;
+// }
 
-.chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
-  border-color: #778dc9 transparent transparent transparent;
-}
-.chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-  border-color: transparent transparent #778dc9 transparent;
-}
+// .chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+//   border-color: #778dc9 transparent transparent transparent;
+// }
+// .chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+//   border-color: transparent transparent #778dc9 transparent;
+// }
 
 .conversationview {
   position: absolute;
@@ -394,37 +399,39 @@ export default {
 
 .conversationview::-webkit-scrollbar-track {
   background-color: #f5f5f5;
+  border-radius: 1em;
 }
 .conversationview::-webkit-scrollbar {
   background-color: #f5f5f5;
+  border-radius: 1em;
 }
 .conversationview::-webkit-scrollbar-thumb {
   background-color: #e1e7f7;
-  border-radius: 1.3125em;
+  border-radius: 1em;
 }
-.conversationview::-webkit-scrollbar-button:single-button {
-  background-color: #bbbbbb;
-  display: block;
-  border-style: solid;
-  height: 13px;
-  width: 16px;
-}
-.conversationview::-webkit-scrollbar-button:single-button:vertical:decrement {
-  border-width: 0 8px 8px 8px;
-  border-color: transparent transparent #97a6ce transparent;
-}
+// .conversationview::-webkit-scrollbar-button:single-button {
+//   background-color: #bbbbbb;
+//   display: block;
+//   border-style: solid;
+//   height: 13px;
+//   width: 16px;
+// }
+// .conversationview::-webkit-scrollbar-button:single-button:vertical:decrement {
+//   border-width: 0 8px 8px 8px;
+//   border-color: transparent transparent #97a6ce transparent;
+// }
 
-.conversationview::-webkit-scrollbar-button:single-button:vertical:increment {
-  border-width: 8px 8px 0 8px;
-  border-color: #97a6ce transparent transparent transparent;
-}
+// .conversationview::-webkit-scrollbar-button:single-button:vertical:increment {
+//   border-width: 8px 8px 0 8px;
+//   border-color: #97a6ce transparent transparent transparent;
+// }
 
-.conversationview::-webkit-scrollbar-button:vertical:single-button:increment:hover {
-  border-color: #778dc9 transparent transparent transparent;
-}
-.conversationview::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-  border-color: transparent transparent #778dc9 transparent;
-}
+// .conversationview::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+//   border-color: #778dc9 transparent transparent transparent;
+// }
+// .conversationview::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+//   border-color: transparent transparent #778dc9 transparent;
+// }
 
 .timeStamp {
   margin-right: 2em;
@@ -447,6 +454,20 @@ export default {
   text-align: left;
 }
 .postsInside {
+  
+  background-color: #fcffe7;
+  text-align: left;
+  margin: 0%;
+  align-items: flex-start;
+  width: 34em;
+  height: auto;
+  margin-bottom: 1em;
+  margin-left: 0.5em;
+  border-radius: 10px;
+  box-shadow: 3.4px 2.4px 10px rgba(0, 0, 0, 0.014);
+}
+
+.postsInside2 {
   background-color: #ffffff;
   text-align: left;
   margin: 0%;
@@ -458,6 +479,7 @@ export default {
   border-radius: 10px;
   box-shadow: 3.4px 2.4px 10px rgba(0, 0, 0, 0.014);
 }
+
 
 .postTitle {
   float: left;
