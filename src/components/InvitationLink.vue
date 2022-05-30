@@ -33,7 +33,8 @@ export default {
 
   methods: {
     showLink() {
-      this.inviteLink = "http://localhost:8080/#/registeruser";
+      this.inviteLink =
+        "https://6295329f990adc2b2412cef2--dechboard.netlify.app/#/registeruser";
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
