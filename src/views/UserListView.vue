@@ -1,7 +1,8 @@
 <template>
 <div>
+<h1>Userlist</h1>
  <UserObject />
- <h1>Userlist view</h1>
+ 
 </div>
 </template>
 
@@ -18,3 +19,4 @@ export default {
 };
 
 </script>
+

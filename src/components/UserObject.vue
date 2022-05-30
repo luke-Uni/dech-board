@@ -1,7 +1,7 @@
 <template>
 <div class="buttongetallUsers">
 <button @click="getAllUsers()" class="getUserButton">
-get the users
+get Users
 
 </button>
 </div>
@@ -62,12 +62,14 @@ methods: {
 
 <style scoped>
 .getUserButton{
- margin-top: 1em;
+  width: 10%;
+  height:40px;
+   margin-top: 1em;
   margin-bottom: 2em;
   margin-left:80em;
   border:0;
   padding:10;
-  border-radius: 5px;
+  border-radius: 20px;
   color:white;
   background-color: green;
 
@@ -76,15 +78,17 @@ methods: {
 .layoutUser{
   margin-top: 0em;
   margin-bottom: 0em;
-  margin-left:25em; 
+  margin-left:35em; 
   
   
 }
 .userUsername{
+  margin-left:17em;
+  width: 25%;
   border:1px solid black;
   border:0;
   padding:20;
-  border-radius: 5px;
+  border-radius: 20px;
   color:white;
   background-color:green;
 }

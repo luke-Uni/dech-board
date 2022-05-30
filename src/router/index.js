@@ -7,7 +7,8 @@ import LogIn from "../views/LogIn";
 //import MessageRetrieve from "../views/MessageRetrieve";
 import ConversationView from "../views/ConversationView";
 import UserConfirmation from "../views/UserConfirmation";
-
+import UserListView from "../views/UserListView";
+//import UserObject from"../components/UserObject";
 const routes = [
   {
     path: "/",
@@ -28,6 +29,11 @@ const routes = [
     path: "/registeruser",
     name: "RegistrationForm",
     component: RegistrationFrom,
+  },
+  {
+    path: "/userlistview",
+    name: "UserListView",
+    component: UserListView,
   },
   {
     path: "/login",
