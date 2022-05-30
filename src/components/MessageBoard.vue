@@ -61,7 +61,7 @@ export default {
 .postComplete {
   margin: auto;
   width: 50em;
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px;
   text-align: left;
 }
 .postsInside {

@@ -64,7 +64,7 @@ export default {
       this.tooltipText = "Copied to Clipboard";
 
       /* Alert the copied text */
-      alert("Copied the text: " + copyText);
+      alert("Copied the Link to clipboard.");
     },
   },
 };
