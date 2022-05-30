@@ -343,37 +343,39 @@ export default {
 
 .chat::-webkit-scrollbar-track {
   background-color: #f5f5f5;
+  border-radius: 1em;
 }
 .chat::-webkit-scrollbar {
   background-color: #f5f5f5;
+  border-radius: 1em;
 }
 .chat::-webkit-scrollbar-thumb {
   background-color: #e1e7f7;
-  border-radius: 1.3125em;
+  border-radius: 1em;
 }
-.chat::-webkit-scrollbar-button:single-button {
-  background-color: #bbbbbb;
-  display: block;
-  border-style: solid;
-  height: 13px;
-  width: 16px;
-}
-.chat::-webkit-scrollbar-button:single-button:vertical:decrement {
-  border-width: 0 8px 8px 8px;
-  border-color: transparent transparent #97a6ce transparent;
-}
+// .chat::-webkit-scrollbar-button:single-button {
+//   background-color: #bbbbbb;
+//   display: block;
+//   border-style: solid;
+//   height: 13px;
+//   width: 16px;
+// }
+// .chat::-webkit-scrollbar-button:single-button:vertical:decrement {
+//   border-width: 0 8px 8px 8px;
+//   border-color: transparent transparent #97a6ce transparent;
+// }
 
-.chat::-webkit-scrollbar-button:single-button:vertical:increment {
-  border-width: 8px 8px 0 8px;
-  border-color: #97a6ce transparent transparent transparent;
-}
+// .chat::-webkit-scrollbar-button:single-button:vertical:increment {
+//   border-width: 8px 8px 0 8px;
+//   border-color: #97a6ce transparent transparent transparent;
+// }
 
-.chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
-  border-color: #778dc9 transparent transparent transparent;
-}
-.chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-  border-color: transparent transparent #778dc9 transparent;
-}
+// .chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+//   border-color: #778dc9 transparent transparent transparent;
+// }
+// .chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+//   border-color: transparent transparent #778dc9 transparent;
+// }
 
 .conversationview {
   position: absolute;
@@ -394,37 +396,39 @@ export default {
 
 .conversationview::-webkit-scrollbar-track {
   background-color: #f5f5f5;
+  border-radius: 1em;
 }
 .conversationview::-webkit-scrollbar {
   background-color: #f5f5f5;
+  border-radius: 1em;
 }
 .conversationview::-webkit-scrollbar-thumb {
   background-color: #e1e7f7;
-  border-radius: 1.3125em;
+  border-radius: 1em;
 }
-.conversationview::-webkit-scrollbar-button:single-button {
-  background-color: #bbbbbb;
-  display: block;
-  border-style: solid;
-  height: 13px;
-  width: 16px;
-}
-.conversationview::-webkit-scrollbar-button:single-button:vertical:decrement {
-  border-width: 0 8px 8px 8px;
-  border-color: transparent transparent #97a6ce transparent;
-}
+// .conversationview::-webkit-scrollbar-button:single-button {
+//   background-color: #bbbbbb;
+//   display: block;
+//   border-style: solid;
+//   height: 13px;
+//   width: 16px;
+// }
+// .conversationview::-webkit-scrollbar-button:single-button:vertical:decrement {
+//   border-width: 0 8px 8px 8px;
+//   border-color: transparent transparent #97a6ce transparent;
+// }
 
-.conversationview::-webkit-scrollbar-button:single-button:vertical:increment {
-  border-width: 8px 8px 0 8px;
-  border-color: #97a6ce transparent transparent transparent;
-}
+// .conversationview::-webkit-scrollbar-button:single-button:vertical:increment {
+//   border-width: 8px 8px 0 8px;
+//   border-color: #97a6ce transparent transparent transparent;
+// }
 
-.conversationview::-webkit-scrollbar-button:vertical:single-button:increment:hover {
-  border-color: #778dc9 transparent transparent transparent;
-}
-.conversationview::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-  border-color: transparent transparent #778dc9 transparent;
-}
+// .conversationview::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+//   border-color: #778dc9 transparent transparent transparent;
+// }
+// .conversationview::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+//   border-color: transparent transparent #778dc9 transparent;
+// }
 
 .timeStamp {
   margin-right: 2em;
