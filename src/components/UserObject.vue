@@ -1,25 +1,10 @@
 <template>
-<<<<<<< HEAD
-<div class="buttongetallUsers">
-<button @click="getAllUsers()" class="getUserButton">
-get Users
-
-</button>
-</div>
-<div class="layoutUser" v-for="user in usernames" :key="user.username">
-
-<h1 class="userUsername">{{ user.username }}</h1>
-
-
-
-
-</div>
-=======
-  <button @click="getAllUsers()">getAllUsers</button>
+  <div class="buttongetallUsers">
+    <button @click="getAllUsers()" class="getUserButton">get Users</button>
+  </div>
   <div class="layoutUser" v-for="user in usernames" :key="user.username">
     <h1 class="userUsername">{{ user.username }}</h1>
   </div>
->>>>>>> a12a1f3c98febd4ff88b913cc75703520d2fb6e7
 </template>
 
 
@@ -57,46 +42,31 @@ export default {
 </script>
 
 <style scoped>
-<<<<<<< HEAD
-.getUserButton{
+.getUserButton {
   width: 10%;
-  height:40px;
-   margin-top: 1em;
+  height: 40px;
+  margin-top: 1em;
   margin-bottom: 2em;
-  margin-left:80em;
-  border:0;
-  padding:10;
+  margin-left: 80em;
+  border: 0;
+  padding: 10;
   border-radius: 20px;
-  color:white;
+  color: white;
   background-color: green;
-
-
 }
-.layoutUser{
+.layoutUser {
   margin-top: 0em;
   margin-bottom: 0em;
-  margin-left:35em; 
-  
-  
+  margin-left: 35em;
 }
-.userUsername{
-  margin-left:17em;
+.userUsername {
+  margin-left: 17em;
   width: 25%;
-  border:1px solid black;
-  border:0;
-  padding:20;
+  border: 1px solid black;
+  border: 0;
+  padding: 20;
   border-radius: 20px;
-  color:white;
-  background-color:green;
-}
-
-
-</style>
-=======
-.layoutUser {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  margin-left: 50em;
+  color: white;
+  background-color: green;
 }
 </style>
->>>>>>> a12a1f3c98febd4ff88b913cc75703520d2fb6e7
