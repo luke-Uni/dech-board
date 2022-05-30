@@ -68,11 +68,14 @@
       </div>
     </div>
 
-    <div class="conversationview">
-      <div class="own_user">
-        
-
-      </div>
+    <div class="own_user">
+        user.getUsername()
+      </div> 
+    
+        <div class="conversationview">
+       <!--<div class="own_user">
+        "Issam"
+      </div> <!-->
       <div
         class="postComplete"
         v-for="conversation in conversations"
@@ -85,7 +88,6 @@
                 v-on:click="getAllPosts(conversation.user2)"
                 role="button"
               >
-             
                {{ conversation.user2 }} 
                 <p>{{ conversation.lastMessageSend }}</p>
             
@@ -299,22 +301,92 @@ export default {
   overflow-x: hidden;
 }
 
+.chat::-webkit-scrollbar-track{
+  background-color: #F5F5F5;
+}
+.chat::-webkit-scrollbar{
+  background-color: #F5F5F5;
+}
+.chat::-webkit-scrollbar-thumb:{
+  background-color:#e1e7f7;
+  border-radius: 1.3125em;
+}
+.chat::-webkit-scrollbar-button:single-button {
+  background-color: #bbbbbb;
+  display: block;
+  border-style: solid;
+  height: 13px;
+  width: 16px;
+}
+.chat::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #97a6ce transparent;
+}
+
+.chat::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 8px 8px 0 8px;
+  border-color: #97a6ce transparent transparent transparent;
+}
+
+.chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+  border-color: #778dc9 transparent transparent transparent;
+}
+.chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  border-color: transparent transparent #778dc9 transparent;
+}
+
 .conversationview {
   position: absolute;
   width: 25.125em;
-  height: 39.4em;
+  height: 34.4em;
   left: 45.1875em;
-  top: 4.375em;
-
+  top: 9.375em;
   background: #f4f7ff;
   border-radius: 1.3125em;
   margin-top: 6em;
   margin-left: 25em;
-  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  border: 1px solid #f4f7ff;
+  //box-shadow: 2px 2px 7px rgb(198, 227, 255);
 
   overflow: scroll;
   overflow-x: hidden;
 }
+
+.conversationview::-webkit-scrollbar-track{
+  background-color: #F5F5F5;
+}
+.conversationview::-webkit-scrollbar{
+  background-color: #F5F5F5;
+}
+.conversationview::-webkit-scrollbar-thumb{
+  background-color:#e1e7f7;
+  border-radius: 1.3125em;
+}
+.conversationview::-webkit-scrollbar-button:single-button {
+  background-color: #bbbbbb;
+  display: block;
+  border-style: solid;
+  height: 13px;
+  width: 16px;
+}
+.conversationview::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #97a6ce transparent;
+}
+
+.conversationview::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 8px 8px 0 8px;
+  border-color: #97a6ce transparent transparent transparent;
+}
+
+.conversationview::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+  border-color: #778dc9 transparent transparent transparent;
+}
+.conversationview::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  border-color: transparent transparent #778dc9 transparent;
+}
+
+
 
 .timeStamp {
   margin-right: 2em;
@@ -504,35 +576,63 @@ input:focus {
   color: rgb(0, 0, 0);
 }
 
+
 @media (min-width: 768px) {
   .button-81 {
     font-size: 0.9rem;
     padding: 0.8rem 0.5rem;
   }
 }
-
-
- .button-conversation {
-//   background-color: rgba(244, 247, 255, 255);
-//   border: 0 solid #e2e8f0;
-//   border-radius: 1.5rem;
-//   box-sizing: border-box;
- height: 8em;
-  width: 30.7em;
-  background: rgb(230, 246, 255);
+.own_user{
+  position: absolute;
+  width: 25.235em;
+  height: 39.4em;
+  left: 45.17em;
+  top: 4.375em;
+  background: #f4f7ff;
+  border-radius: 1.3125em;
+  margin-top: 6em;
+  margin-left: 25em;
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  
+  
+}
+/*.own_user{
+  height: 3.2em;
+  width: 20.7em;
+  background: #f4f7ff;
   text-align: center;
   border-radius: 1.3125em;
-  margin-top: 1.5em;
+  margin-top: 0.4em;
   margin-left: 0.4em;
-  margin-bottom: -0.5em;
+  margin-bottom: -0,5em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
   border: 1px solid rgb(230, 230, 230);
-  padding: 0.2em;
+  padding: 1.2em;
+
+}
+*/
+ .button-conversation {
+  height: 7em;
+  width: 27.7em;
+  background: #f4f7ff;
+  text-align: center;
+  //border-radius: 1.3125em;
+  margin-top: 0em;
+  margin-left: 0.4em;
+  margin-bottom: -0.5em;
+  //box-shadow: 2px 2px 7px rgb(198, 227, 255);
+   border: 1px solid #f4f7ff;
+  border: 1px solid rgb(230, 230, 230);
+  padding: 1.2em;
  }
 
 .button-conversation:hover {
   background-color: rgba(102, 194, 247, 0.25);
   color: rgb(0, 0, 0);
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  border: 1px solid rgb(230, 230, 230);
+  //border-radius: 1.3125em;
 }
 
 @media (min-width: 768px) {
