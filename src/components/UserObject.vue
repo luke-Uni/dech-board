@@ -1,25 +1,10 @@
 <template>
-<<<<<<< HEAD
-<div class="buttongetallUsers">
-<button @click="getAllUsers()" class="getUserButton">
-get Users
 
-</button>
-</div>
-<div class="layoutUser" v-for="user in usernames" :key="user.username">
-
-<h1 class="userUsername">{{ user.username }}</h1>
-
-
-
-
-</div>
-=======
-  <button @click="getAllUsers()">getAllUsers</button>
+  <button @click="getAllUsers()" class="getUserButton">getAllUsers</button>
   <div class="layoutUser" v-for="user in usernames" :key="user.username">
     <h1 class="userUsername">{{ user.username }}</h1>
   </div>
->>>>>>> a12a1f3c98febd4ff88b913cc75703520d2fb6e7
+
 </template>
 
 
@@ -57,7 +42,7 @@ export default {
 </script>
 
 <style scoped>
-<<<<<<< HEAD
+
 .getUserButton{
   width: 10%;
   height:40px;
@@ -80,7 +65,7 @@ export default {
   
 }
 .userUsername{
-  margin-left:17em;
+  margin-left:11em;
   width: 25%;
   border:1px solid black;
   border:0;
@@ -89,14 +74,9 @@ export default {
   color:white;
   background-color:green;
 }
-
-
-</style>
-=======
 .layoutUser {
   margin-top: 1em;
   margin-bottom: 1em;
   margin-left: 50em;
 }
 </style>
->>>>>>> a12a1f3c98febd4ff88b913cc75703520d2fb6e7
