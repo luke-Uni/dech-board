@@ -12,7 +12,8 @@
             :key="message.username"
           >
             <h4 class="postUsername">User: {{ message.username }}</h4>
-            <div class="postsInside">
+            <div :class="[message.send? 'postsInside2': 'postsInside']">
+               <!-- <div :class="[post.important ? 'importantPost' : 'postsInside']"></div> -->
               <!-- <p class="recipient">Recipient: {{ message.recipient }}</p> -->
               <p class="recipient">From: {{ message.username }}</p>
 
@@ -464,6 +465,20 @@ export default {
   border-radius: 10px;
   box-shadow: 3.4px 2.4px 10px rgba(0, 0, 0, 0.014);
 }
+
+.postsInside2 {
+  background-color: #e8ffff;
+  text-align: left;
+  margin: 0%;
+  align-items: flex-start;
+  width: 34em;
+  height: auto;
+  margin-bottom: 1em;
+  margin-left: 0.5em;
+  border-radius: 10px;
+  box-shadow: 3.4px 2.4px 10px rgba(0, 0, 0, 0.014);
+}
+
 
 .postTitle {
   float: left;
