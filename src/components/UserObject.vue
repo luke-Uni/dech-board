@@ -52,31 +52,27 @@ export default {
 <style scoped>
 .getUserButton{
   width: 10%;
-  height:40px;
-   margin-top: 1em;
+  height: 40px;
+  margin-top: 1em;
   margin-bottom: 2em;
-  margin-left:80em;
-  border:0;
-  padding:10;
+  margin-left: 80em;
+  border: 0;
+  padding: 10;
   border-radius: 20px;
-  color:white;
+  color: white;
   background-color: green;
-
-
 }
-.layoutUser{
+.layoutUser {
   margin-top: 0em;
   margin-bottom: 0em;
-  margin-left:35em; 
-  
-  
+  margin-left: 35em;
 }
-.userUsername{
-  margin-left:17em;
+.userUsername {
+  margin-left: 17em;
   width: 25%;
-  border:1px solid black;
-  border:0;
-  padding:20;
+  border: 1px solid black;
+  border: 0;
+  padding: 20;
   border-radius: 20px;
   color:white;
   background-color:green;
