@@ -1,4 +1,6 @@
 <template>
+
+<LeftSideMenu />
   <div class="home">
 
 
@@ -32,6 +34,7 @@
 import { ref } from "vue";
 import MessageBoard from "@/components/MessageBoard.vue";
 import CreatePost from "@/components/CreatePost.vue";
+import LeftSideMenu from "@/components/LeftSideMenu.vue";
 
 
 export default {
@@ -57,7 +60,8 @@ export default {
 
   components: {
     MessageBoard,
-    CreatePost
+    CreatePost,
+    LeftSideMenu
 },
   methods: {},
 };

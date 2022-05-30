@@ -7,11 +7,12 @@
   <div class="menu-container">
     <img src="../assets/1.png" alt="HeNan" id="logo" class="picture" />
     <div class="navbar">
-      <a href="#">Home</a>
-      <a href="#">Message-Board</a>
-      <a href="#">Direct Message</a>
-      <a href="#">My profile</a>
-      <a href="#">Settings</a>
+      <a @click="this.$router.push('/')">Home</a>
+      <a @click="this.$router.push('/registeruser')">Register</a>
+      <a @click="this.$router.push('/login')">Login</a>
+      <a @click="this.$router.push('/test')">Test</a>
+      <a @click="this.$router.push('/userlistview')">Userlist</a>
+      <a @click="this.$router.push('/conversationview')">conversation</a>
     </div>
   </div>
 </template>
@@ -76,7 +77,7 @@ a:hover {
     right: 0%;
     top: 0%;
     bottom: 0%;
-  
+
     margin-top: 2em;
     margin-left: 80em; 
 
