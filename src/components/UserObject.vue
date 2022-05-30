@@ -1,7 +1,10 @@
 <template>
-<button @click="getAllUsers()" >
-  getAllUsers
+<div class="buttongetallUsers">
+<button @click="getAllUsers()" class="getUserButton">
+get the users
+
 </button>
+</div>
 <div class="layoutUser" v-for="user in usernames" :key="user.username">
 
 <h1 class="userUsername">{{ user.username }}</h1>
@@ -58,12 +61,33 @@ methods: {
 </script>
 
 <style scoped>
-.layoutUser{
-  margin-top: 1em;
-  margin-bottom: 1em;
-  margin-left:50em;
-}
+.getUserButton{
+ margin-top: 1em;
+  margin-bottom: 2em;
+  margin-left:80em;
+  border:0;
+  padding:10;
+  border-radius: 5px;
+  color:white;
+  background-color: green;
 
+
+}
+.layoutUser{
+  margin-top: 0em;
+  margin-bottom: 0em;
+  margin-left:25em; 
+  
+  
+}
+.userUsername{
+  border:1px solid black;
+  border:0;
+  padding:20;
+  border-radius: 5px;
+  color:white;
+  background-color:green;
+}
 
 
 </style>

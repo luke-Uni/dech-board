@@ -10,6 +10,8 @@
    </td><td>
    <router-link class="router-link_class" to="test">Test</router-link> |
    </td><td>
+      <router-link class="router-link_class" to="/userlistview">Userlist</router-link> |
+   </td><td>
    <!-- <router-link to="/Messages">Messages</router-link> | -->
     <router-link class="router-link_class" to="/conversationview">conversationview</router-link>
    </td>
