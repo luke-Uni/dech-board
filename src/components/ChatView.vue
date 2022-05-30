@@ -26,12 +26,28 @@
     </div>
     <div class="insert_message">
       <div>
-        <input
+        <!-- <input
           type="text"
           class="input-recipient"
           placeholder="Recipient..."
           v-model="recipient"
-        />
+        /> -->
+        <!-- <label for="recipient">Choose a car:</label> -->
+
+        <select
+          name="recipient"
+          class="input-recipient"
+          placeholder="Recipient..."
+          v-model="recipient"
+        >
+          <option
+            v-for="user in users"
+            :key="user.username"
+            @click="getAllPosts(user.username)"
+          >
+            {{ user.username }}
+          </option>
+        </select>
       </div>
       <div class="popup">
         <div class="popup-inner">
@@ -51,13 +67,13 @@
                 >
                 </textarea>
                 <div class="send-button-div">
-              <button
-                class="button-81"
-                v-on:click="createMessage()"
-                role="button"
-              >
-                Send Message
-              </button>
+                  <button
+                    class="button-81"
+                    v-on:click="createMessage()"
+                    role="button"
+                  >
+                    Send Message
+                  </button>
                 </div>
               </div>
             </div>
@@ -68,32 +84,38 @@
       </div>
     </div>
 
-    <div class="conversationview">
-      <div class="own_user">
-        
+    <div class="own_user">
+      <!-- <button @click="getAllUsers();">Show Users</button>
+      <div class="layoutUser" v-for="user in users" :key="user.username">
 
-      </div>
+      <h1 class="userUsername">{{ user.username }}</h1> -->
+
+      <!-- 
+</div> -->
+      <!-- user.getUsername() -->
+    </div>
+
+    <div class="conversationview">
+      <!--<div class="own_user">
+        "Issam"
+      </div> <!-->
       <div
         class="postComplete"
         v-for="conversation in conversations"
         :key="conversation.user1"
       >
         <!-- <div class="conversation_segment"> -->
-          <!-- <button v-on:click="getAllPosts(conversation.user2)"> -->
-            <button
-                class="button-conversation"
-                v-on:click="getAllPosts(conversation.user2)"
-                role="button"
-              >
-             
-               {{ conversation.user2 }} 
-                <p>{{ conversation.lastMessageSend }}</p>
-            
-          </button>
-         
-        <!-- </div> -->
+        <!-- <button v-on:click="getAllPosts(conversation.user2)"> -->
+        <button
+          class="button-conversation"
+          v-on:click="getAllPosts(conversation.user2)"
+          role="button"
+        >
+          {{ conversation.user2 }}
+          <p>{{ conversation.lastMessageSend }}</p>
+        </button>
 
-        
+        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -109,14 +131,33 @@ export default {
       messages: [],
       recipient: "",
       content: "",
+      users: [],
     };
   },
   computed: {},
   beforeMount() {
     this.getAllConversations();
+    this.getAllUsers();
   },
 
   methods: {
+    async getAllUsers() {
+      //console.logs("workung (UserList funct.)");
+
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+      let uri = "http://localhost:8090/getUsers";
+
+      let response = await axios
+        .get(uri, { headers: headers })
+        .then((response) => {
+          this.users = response.data;
+        });
+      console.log(response);
+    },
+
     //Get all Messages for one conversation using the other users username as a parameter
     async getAllPosts(name) {
       localStorage.setItem("recipient", name);
@@ -199,7 +240,7 @@ export default {
     },
     //Create a message
     async createMessage() {
-      if (this.recipient.length >0) {
+      if (this.recipient.length > 0) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
@@ -300,21 +341,89 @@ export default {
   overflow-x: hidden;
 }
 
+.chat::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+.chat::-webkit-scrollbar {
+  background-color: #f5f5f5;
+}
+.chat::-webkit-scrollbar-thumb {
+  background-color: #e1e7f7;
+  border-radius: 1.3125em;
+}
+.chat::-webkit-scrollbar-button:single-button {
+  background-color: #bbbbbb;
+  display: block;
+  border-style: solid;
+  height: 13px;
+  width: 16px;
+}
+.chat::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #97a6ce transparent;
+}
+
+.chat::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 8px 8px 0 8px;
+  border-color: #97a6ce transparent transparent transparent;
+}
+
+.chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+  border-color: #778dc9 transparent transparent transparent;
+}
+.chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  border-color: transparent transparent #778dc9 transparent;
+}
+
 .conversationview {
   position: absolute;
   width: 25.125em;
-  height: 39.4em;
+  height: 34.4em;
   left: 45.1875em;
-  top: 4.375em;
-
+  top: 9.375em;
   background: #f4f7ff;
   border-radius: 1.3125em;
   margin-top: 6em;
   margin-left: 25em;
-  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  border: 1px solid #f4f7ff;
+  //box-shadow: 2px 2px 7px rgb(198, 227, 255);
 
   overflow: scroll;
   overflow-x: hidden;
+}
+
+.conversationview::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+.conversationview::-webkit-scrollbar {
+  background-color: #f5f5f5;
+}
+.conversationview::-webkit-scrollbar-thumb {
+  background-color: #e1e7f7;
+  border-radius: 1.3125em;
+}
+.conversationview::-webkit-scrollbar-button:single-button {
+  background-color: #bbbbbb;
+  display: block;
+  border-style: solid;
+  height: 13px;
+  width: 16px;
+}
+.conversationview::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #97a6ce transparent;
+}
+
+.conversationview::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 8px 8px 0 8px;
+  border-color: #97a6ce transparent transparent transparent;
+}
+
+.conversationview::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+  border-color: #778dc9 transparent transparent transparent;
+}
+.conversationview::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  border-color: transparent transparent #778dc9 transparent;
 }
 
 .timeStamp {
@@ -327,7 +436,7 @@ export default {
   margin-left: 1.5em;
   color: rgb(255, 40, 165);
 }
-.directionState{
+.directionState {
   padding-left: 23px;
   padding-block-end: 12px;
 }
@@ -338,7 +447,7 @@ export default {
   text-align: left;
 }
 .postsInside {
-  background-color:#ffffff;
+  background-color: #ffffff;
   text-align: left;
   margin: 0%;
   align-items: flex-start;
@@ -367,8 +476,8 @@ export default {
   margin-left: 3em;
   margin-top: 5%;
   margin-right: 3em;
-	word-wrap: break-word;
-	word-break: break-all;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .input-recipient {
@@ -451,7 +560,7 @@ input:focus {
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   // position: absolute;
 }
-.message-textarea-div{
+.message-textarea-div {
   height: 5em;
 }
 .textarea-content {
@@ -469,14 +578,14 @@ input:focus {
   padding-left: 3px;
   padding-right: 3px;
 }
-.send-button-div{
+.send-button-div {
   width: 22%;
   height: 100%;
   float: right;
   padding-right: 1em;
   display: flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
 }
 /* CSS */
 .button-81 {
@@ -516,29 +625,54 @@ input:focus {
     padding: 0.8rem 0.5rem;
   }
 }
-
-
- .button-conversation {
-//   background-color: rgba(244, 247, 255, 255);
-//   border: 0 solid #e2e8f0;
-//   border-radius: 1.5rem;
-//   box-sizing: border-box;
- height: 8em;
-  width: 30.7em;
-  background: rgb(230, 246, 255);
+.own_user {
+  position: absolute;
+  width: 25.235em;
+  height: 39.4em;
+  left: 45.17em;
+  top: 4.375em;
+  background: #f4f7ff;
+  border-radius: 1.3125em;
+  margin-top: 6em;
+  margin-left: 25em;
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+}
+/*.own_user{
+  height: 3.2em;
+  width: 20.7em;
+  background: #f4f7ff;
   text-align: center;
   border-radius: 1.3125em;
-  margin-top: 1.5em;
+  margin-top: 0.4em;
   margin-left: 0.4em;
-  margin-bottom: -0.5em;
+  margin-bottom: -0,5em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
   border: 1px solid rgb(230, 230, 230);
-  padding: 0.2em;
- }
+  padding: 1.2em;
+
+}
+*/
+.button-conversation {
+  height: 7em;
+  width: 27.7em;
+  background: #f4f7ff;
+  text-align: center;
+  //border-radius: 1.3125em;
+  margin-top: 0em;
+  margin-left: 0.4em;
+  margin-bottom: -0.5em;
+  //box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  border: 1px solid #f4f7ff;
+  border: 1px solid rgb(230, 230, 230);
+  padding: 1.2em;
+}
 
 .button-conversation:hover {
   background-color: rgba(102, 194, 247, 0.25);
   color: rgb(0, 0, 0);
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  border: 1px solid rgb(230, 230, 230);
+  //border-radius: 1.3125em;
 }
 
 @media (min-width: 768px) {
