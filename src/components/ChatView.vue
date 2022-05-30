@@ -26,12 +26,28 @@
     </div>
     <div class="insert_message">
       <div>
-        <input
+        <!-- <input
           type="text"
           class="input-recipient"
           placeholder="Recipient..."
           v-model="recipient"
-        />
+        /> -->
+        <!-- <label for="recipient">Choose a car:</label> -->
+
+        <select
+          name="recipient"
+          class="input-recipient"
+          placeholder="Recipient..."
+          v-model="recipient"
+        >
+          <option
+            v-for="user in users"
+            :key="user.username"
+            @click="getAllPosts(user.username)"
+          >
+            {{ user.username }}
+          </option>
+        </select>
       </div>
       <div class="popup">
         <div class="popup-inner">
@@ -51,13 +67,13 @@
                 >
                 </textarea>
                 <div class="send-button-div">
-              <button
-                class="button-81"
-                v-on:click="createMessage()"
-                role="button"
-              >
-                Send Message
-              </button>
+                  <button
+                    class="button-81"
+                    v-on:click="createMessage()"
+                    role="button"
+                  >
+                    Send Message
+                  </button>
                 </div>
               </div>
             </div>
@@ -69,11 +85,18 @@
     </div>
 
     <div class="own_user">
-        user.getUsername()
-      </div> 
-    
-        <div class="conversationview">
-       <!--<div class="own_user">
+      <!-- <button @click="getAllUsers();">Show Users</button>
+      <div class="layoutUser" v-for="user in users" :key="user.username">
+
+      <h1 class="userUsername">{{ user.username }}</h1> -->
+
+      <!-- 
+</div> -->
+      <!-- user.getUsername() -->
+    </div>
+
+    <div class="conversationview">
+      <!--<div class="own_user">
         "Issam"
       </div> <!-->
       <div
@@ -82,20 +105,17 @@
         :key="conversation.user1"
       >
         <!-- <div class="conversation_segment"> -->
-          <!-- <button v-on:click="getAllPosts(conversation.user2)"> -->
-            <button
-                class="button-conversation"
-                v-on:click="getAllPosts(conversation.user2)"
-                role="button"
-              >
-               {{ conversation.user2 }} 
-                <p>{{ conversation.lastMessageSend }}</p>
-            
-          </button>
-         
-        <!-- </div> -->
+        <!-- <button v-on:click="getAllPosts(conversation.user2)"> -->
+        <button
+          class="button-conversation"
+          v-on:click="getAllPosts(conversation.user2)"
+          role="button"
+        >
+          {{ conversation.user2 }}
+          <p>{{ conversation.lastMessageSend }}</p>
+        </button>
 
-        
+        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -111,14 +131,33 @@ export default {
       messages: [],
       recipient: "",
       content: "",
+      users: [],
     };
   },
   computed: {},
   beforeMount() {
     this.getAllConversations();
+    this.getAllUsers();
   },
 
   methods: {
+    async getAllUsers() {
+      //console.logs("workung (UserList funct.)");
+
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+      let uri = "http://localhost:8090/getUsers";
+
+      let response = await axios
+        .get(uri, { headers: headers })
+        .then((response) => {
+          this.users = response.data;
+        });
+      console.log(response);
+    },
+
     //Get all Messages for one conversation using the other users username as a parameter
     async getAllPosts(name) {
       localStorage.setItem("recipient", name);
@@ -201,7 +240,7 @@ export default {
     },
     //Create a message
     async createMessage() {
-      if (this.recipient.length >0) {
+      if (this.recipient.length > 0) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
@@ -302,14 +341,14 @@ export default {
   overflow-x: hidden;
 }
 
-.chat::-webkit-scrollbar-track{
-  background-color: #F5F5F5;
+.chat::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
 }
-.chat::-webkit-scrollbar{
-  background-color: #F5F5F5;
+.chat::-webkit-scrollbar {
+  background-color: #f5f5f5;
 }
-.chat::-webkit-scrollbar-thumb:{
-  background-color:#e1e7f7;
+.chat::-webkit-scrollbar-thumb {
+  background-color: #e1e7f7;
   border-radius: 1.3125em;
 }
 .chat::-webkit-scrollbar-button:single-button {
@@ -353,14 +392,14 @@ export default {
   overflow-x: hidden;
 }
 
-.conversationview::-webkit-scrollbar-track{
-  background-color: #F5F5F5;
+.conversationview::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
 }
-.conversationview::-webkit-scrollbar{
-  background-color: #F5F5F5;
+.conversationview::-webkit-scrollbar {
+  background-color: #f5f5f5;
 }
-.conversationview::-webkit-scrollbar-thumb{
-  background-color:#e1e7f7;
+.conversationview::-webkit-scrollbar-thumb {
+  background-color: #e1e7f7;
   border-radius: 1.3125em;
 }
 .conversationview::-webkit-scrollbar-button:single-button {
@@ -387,8 +426,6 @@ export default {
   border-color: transparent transparent #778dc9 transparent;
 }
 
-
-
 .timeStamp {
   margin-right: 2em;
   text-align: right;
@@ -399,7 +436,7 @@ export default {
   margin-left: 1.5em;
   color: rgb(255, 40, 165);
 }
-.directionState{
+.directionState {
   padding-left: 23px;
   padding-block-end: 12px;
 }
@@ -410,7 +447,7 @@ export default {
   text-align: left;
 }
 .postsInside {
-  background-color:#ffffff;
+  background-color: #ffffff;
   text-align: left;
   margin: 0%;
   align-items: flex-start;
@@ -439,8 +476,8 @@ export default {
   margin-left: 3em;
   margin-top: 5%;
   margin-right: 3em;
-	word-wrap: break-word;
-	word-break: break-all;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .input-recipient {
@@ -523,7 +560,7 @@ input:focus {
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   // position: absolute;
 }
-.message-textarea-div{
+.message-textarea-div {
   height: 5em;
 }
 .textarea-content {
@@ -541,14 +578,14 @@ input:focus {
   padding-left: 3px;
   padding-right: 3px;
 }
-.send-button-div{
+.send-button-div {
   width: 22%;
   height: 100%;
   float: right;
   padding-right: 1em;
   display: flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
 }
 /* CSS */
 .button-81 {
@@ -582,14 +619,13 @@ input:focus {
   color: rgb(0, 0, 0);
 }
 
-
 @media (min-width: 768px) {
   .button-81 {
     font-size: 0.9rem;
     padding: 0.8rem 0.5rem;
   }
 }
-.own_user{
+.own_user {
   position: absolute;
   width: 25.235em;
   height: 39.4em;
@@ -600,8 +636,6 @@ input:focus {
   margin-top: 6em;
   margin-left: 25em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
-  
-  
 }
 /*.own_user{
   height: 3.2em;
@@ -618,7 +652,7 @@ input:focus {
 
 }
 */
- .button-conversation {
+.button-conversation {
   height: 7em;
   width: 27.7em;
   background: #f4f7ff;
@@ -628,10 +662,10 @@ input:focus {
   margin-left: 0.4em;
   margin-bottom: -0.5em;
   //box-shadow: 2px 2px 7px rgb(198, 227, 255);
-   border: 1px solid #f4f7ff;
+  border: 1px solid #f4f7ff;
   border: 1px solid rgb(230, 230, 230);
   padding: 1.2em;
- }
+}
 
 .button-conversation:hover {
   background-color: rgba(102, 194, 247, 0.25);
