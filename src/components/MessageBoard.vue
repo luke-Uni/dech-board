@@ -62,22 +62,9 @@ export default {
       await axios
         .request(options)
         .then(function (response) {
-          //console.log(response.data);
-          //console.log(response.translations);
-          //var translation = response.data;
-          //console.log(translation.translations)
-          //console.log(response.data.data.translation)
-          //console.log(response.data.data.translations)
-          // console.log(response.data.data.translations[0].translatedText)
-          //this.postcontent= response.data.data.translations;
           hallo1 = response.data.data.translations[0].translatedText;
           console.log(hallo1);
           console.log(typeof hallo1);
-          // console.log(typeof this.kallo)
-          // this.kallo=hallo1;
-
-          //this.postTranslated =  true;
-          // return response.data;
         })
         .catch(function (error) {
           console.error(error);
