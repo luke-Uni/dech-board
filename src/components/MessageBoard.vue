@@ -11,7 +11,13 @@
         </div>
         <p>
           <b> {{ post.creationDate }} </b>
-          <button @click="translateText(post)">Translate</button>
+
+          <img
+            src="@/assets/chinaLogo.png"
+            alt="ChinaLogo"
+            @click="translateText(post)"
+            id="chinaLogo"
+          />
         </p>
       </div>
     </div>
@@ -108,6 +114,9 @@ export default {
 </script>
 
 <style scoped>
+#chinaLogo {
+  width: 2em;
+}
 .postComplete {
   margin: auto;
   width: 50em;
