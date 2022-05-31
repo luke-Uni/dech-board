@@ -34,7 +34,7 @@ export default {
   methods: {
     showLink() {
       this.inviteLink =
-        "https://6295329f990adc2b2412cef2--dechboard.netlify.app/#/registeruser";
+        "https://6295d65cef6ded1aa8f66ec0--dechboard.netlify.app/#/registeruser";
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
