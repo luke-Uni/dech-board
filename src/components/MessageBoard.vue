@@ -6,10 +6,13 @@
         <h3 :class="[post.important ? 'importantTitle' : 'postTitle']">
           {{ post.title }}
         </h3>
-        <p class="postText">{{ translateText(post.content) }}</p>
+        <div  >
+          
+        <p class="postText" id="hello">{{postcontent}}</p>
+        </div>
         <p>
           <b> {{ post.creationDate }} </b>
-          <!-- <button @click="translateText(post.content)"></button> -->
+          <button @click="translateText(post.content)">Translate</button>
         </p>
       </div>
     </div>
@@ -18,18 +21,26 @@
 
 <script>
 import axios from "axios";
+
+
 export default {
   data() {
     return {
       posts: [],
-      //postcontent: ""
+      postcontent:"",
+      kallo:"hallo ich bin rachid",
+      postTranslated: false
     };
   },
   beforeMount() {
     this.getAllPosts();
   },
   methods: {
+
     async translateText(text) {
+
+      let hallo1 = "";
+
       const axios = require("axios");
 
       const encodedParams = new URLSearchParams();
@@ -45,25 +56,41 @@ export default {
           "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
           "X-RapidAPI-Key":
             // "7d1b34c23cmshf82fb063e5c4987p15f36fjsn2ae75f209a89",
-            "5d1d5e4d29msh38383cbe012e65dp1bc8ecjsnc81fe54408d0",
+            // "5d1d5e4d29msh38383cbe012e65dp1bc8ecjsnc81fe54408d0",
+            // "702f1e51f7msh51a1f9495e6f4e0p10180bjsnba5626672929",
+            "21ec3285f4msh32c045448fe36e4p1c3201jsna2215e8d5989",
         },
         data: encodedParams,
       };
 
-      axios
+      await axios
         .request(options)
         .then(function (response) {
-          console.log(response.data);
-          console.log(response.data.translations);
+          //console.log(response.data);
+          //console.log(response.translations);
+          //var translation = response.data;
+          //console.log(translation.translations)
+          //console.log(response.data.data.translation)
+          //console.log(response.data.data.translations)
+         // console.log(response.data.data.translations[0].translatedText)
+          //this.postcontent= response.data.data.translations;
+           hallo1 = response.data.data.translations[0].translatedText;
+          console.log(hallo1);
+          console.log(typeof hallo1)
+         // console.log(typeof this.kallo)
+         // this.kallo=hallo1;
           
-          
-          return response.data;
+          //this.postTranslated =  true;
+         // return response.data;
          
-        })
+         
+        }
+        
+        )
         .catch(function (error) {
           console.error(error);
         });
-        
+        this.postcontent=hallo1;
         
     },
     //To display all the Posts we need to get them from the Server
