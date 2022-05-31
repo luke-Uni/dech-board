@@ -116,6 +116,7 @@ export default {
 <style scoped>
 #chinaLogo {
   width: 2em;
+  float: right;
 }
 .postComplete {
   margin: auto;
