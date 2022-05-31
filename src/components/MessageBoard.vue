@@ -6,13 +6,12 @@
         <h3 :class="[post.important ? 'importantTitle' : 'postTitle']">
           {{ post.title }}
         </h3>
-        <div  >
-          
-        <p class="postText" id="hello">{{postcontent}}</p>
+        <div>
+          <p class="postText" id="hello">{{ post.content }}</p>
         </div>
         <p>
           <b> {{ post.creationDate }} </b>
-          <button @click="translateText(post.content)">Translate</button>
+          <button @click="translateText(post)">Translate</button>
         </p>
       </div>
     </div>
@@ -22,30 +21,27 @@
 <script>
 import axios from "axios";
 
-
 export default {
   data() {
     return {
       posts: [],
-      postcontent:"",
-      kallo:"hallo ich bin rachid",
-      postTranslated: false
+      postcontent: "",
+      kallo: "hallo ich bin rachid",
+      postTranslated: false,
     };
   },
   beforeMount() {
     this.getAllPosts();
   },
   methods: {
-
     async translateText(text) {
-
       let hallo1 = "";
 
       const axios = require("axios");
 
       const encodedParams = new URLSearchParams();
-      encodedParams.append("q", text);
-      encodedParams.append("target", "de");
+      encodedParams.append("q", text.content);
+      encodedParams.append("target", "zh-CN");
       encodedParams.append("source", "en");
 
       const options = {
@@ -72,26 +68,27 @@ export default {
           //console.log(translation.translations)
           //console.log(response.data.data.translation)
           //console.log(response.data.data.translations)
-         // console.log(response.data.data.translations[0].translatedText)
+          // console.log(response.data.data.translations[0].translatedText)
           //this.postcontent= response.data.data.translations;
-           hallo1 = response.data.data.translations[0].translatedText;
+          hallo1 = response.data.data.translations[0].translatedText;
           console.log(hallo1);
-          console.log(typeof hallo1)
-         // console.log(typeof this.kallo)
-         // this.kallo=hallo1;
-          
+          console.log(typeof hallo1);
+          // console.log(typeof this.kallo)
+          // this.kallo=hallo1;
+
           //this.postTranslated =  true;
-         // return response.data;
-         
-         
-        }
-        
-        )
+          // return response.data;
+        })
         .catch(function (error) {
           console.error(error);
         });
-        this.postcontent=hallo1;
-        
+
+      for (let i = 0; i < this.posts.length; i++) {
+        console.log(this.posts[i].postId + " " + text.postId);
+        if (this.posts[i].postId == text.postId) {
+          this.posts[i].content = hallo1;
+        }
+      }
     },
     //To display all the Posts we need to get them from the Server
     getAllPosts() {
