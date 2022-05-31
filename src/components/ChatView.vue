@@ -12,14 +12,14 @@
             :key="message.username"
           >
             <h4 class="postUsername">User: {{ message.username }}</h4>
-            <div :class="[message.send? 'postsInside2': 'postsInside']">
-               <!-- <div :class="[post.important ? 'importantPost' : 'postsInside']"></div> -->
+            <div :class="[message.send ? 'postsInside2' : 'postsInside']">
+              <!-- <div :class="[post.important ? 'importantPost' : 'postsInside']"></div> -->
               <!-- <p class="recipient">Recipient: {{ message.recipient }}</p> -->
               <p class="recipient">From: {{ message.username }}</p>
 
               <p class="postText">{{ message.content }}</p>
               <p class="timeStamp">{{ message.time }}</p>
-              <br>
+              <br />
               <!-- <p class="directionState">{{ message.state }}</p> -->
             </div>
           </div>
@@ -144,6 +144,13 @@ export default {
   },
 
   methods: {
+    createDate() {
+      for (let index = 0; index < this.messages.length; index++) {
+        let newDate = new Date(this.messages[index].time);
+        this.messages[index].time = newDate.toTimeString();
+        console.log("CreateDate");
+      }
+    },
     async getAllUsers() {
       //console.logs("workung (UserList funct.)");
 
@@ -185,7 +192,9 @@ export default {
           this.errors.push(e);
         });
 
-      console.log(response.constructor);
+      this.createDate();
+
+      console.log(response);
     },
 
     //get all Messages from one Conversation without having to use parameters
@@ -454,10 +463,9 @@ export default {
   text-align: left;
 }
 .postsInside {
-  
-background-color: #ffffff;
+  background-color: #ffffff;
   text-align: left;
- 
+
   margin: 0%;
   align-items: flex-start;
   width: 34em;
@@ -469,8 +477,8 @@ background-color: #ffffff;
 }
 
 .postsInside2 {
-   color: rgb(78, 78, 78);
-    background-color: #94f07b70;
+  color: rgb(78, 78, 78);
+  background-color: #94f07b70;
   text-align: left;
   margin: 0%;
   align-items: flex-start;
@@ -481,7 +489,6 @@ background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 3.4px 2.4px 10px rgba(0, 0, 0, 0.014);
 }
-
 
 .postTitle {
   float: left;
