@@ -6,9 +6,10 @@
         <h3 :class="[post.important ? 'importantTitle' : 'postTitle']">
           {{ post.title }}
         </h3>
-        <p class="postText">{{ post.content }}</p>
+        <p class="postText">{{ translateText(post.content) }}</p>
         <p>
           <b> {{ post.creationDate }} </b>
+          <!-- <button @click="translateText(post.content)"></button> -->
         </p>
       </div>
     </div>
@@ -21,12 +22,50 @@ export default {
   data() {
     return {
       posts: [],
+      //postcontent: ""
     };
   },
   beforeMount() {
     this.getAllPosts();
   },
   methods: {
+    async translateText(text) {
+      const axios = require("axios");
+
+      const encodedParams = new URLSearchParams();
+      encodedParams.append("q", text);
+      encodedParams.append("target", "de");
+      encodedParams.append("source", "en");
+
+      const options = {
+        method: "POST",
+        url: "https://google-translate1.p.rapidapi.com/language/translate/v2",
+        headers: {
+          "content-type": "application/x-www-form-urlencoded",
+          "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
+          "X-RapidAPI-Key":
+            // "7d1b34c23cmshf82fb063e5c4987p15f36fjsn2ae75f209a89",
+            "5d1d5e4d29msh38383cbe012e65dp1bc8ecjsnc81fe54408d0",
+        },
+        data: encodedParams,
+      };
+
+      axios
+        .request(options)
+        .then(function (response) {
+          console.log(response.data);
+          console.log(response.data.translations);
+          
+          
+          return response.data;
+         
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+        
+        
+    },
     //To display all the Posts we need to get them from the Server
     getAllPosts() {
       console.log("I am in the getAllPosts function");
