@@ -1,37 +1,35 @@
 <template>
-  <div class ="buttonAndUser">
+  <div id="app">
     <input type="text" v-model="search">
     <button @click="getAllUsers()" class="getUserButton">All User</button>
-   <div class="layoutUser" v-for="user in filteredPosts" :key="user.username">
-    <h2 class="userUsername" >{{ user.username }}</h2>
+    <div v-for="user in filteredPosts" :key="user.id">
+      <RachidUser :user="user"></RachidUser>
     </div>
   </div>
-  
-
-
 </template>
 
-
-
-
 <script>
+import RachidUser from "./RachidUser.vue";
 import axios from "axios";
+
 export default {
-  name: "UserObjekt",
+  name: "RachidUserObjects",
+  components: {
+    RachidUser
+  },
   data() {
     return {
-      search:"",
-      users: [],
-      //passwort:"123",
-      //email:"arvand@fra-uas.de",
+      search: "",
+      users: []
     };
   },
-  computed:{
-    filteredPosts(){
-    return this.users.filter(user => user.username.toLocaleLowerCase.includes(this.search.toLocaleLowerCase()));
+  computed: {
+    filteredPosts() {
+      return this.users.filter(user =>
+        user.username.toLowerCase().includes(this.search.toLowerCase())
+      );
     }
   },
-
   methods:  {
     getAllUsers() {
       //console.logs("workung (UserList funct.)");
@@ -49,11 +47,14 @@ export default {
     },
     
   },
-  
 };
 </script>
 
-<style scoped>
+<style>
+
+
+
+
 .buttonandUser{
 width: 50em;
   height: 40px;
@@ -98,4 +99,6 @@ width: 50em;
   
   align-content: center;
 }
+
+
 </style>
