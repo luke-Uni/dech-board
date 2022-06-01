@@ -1,6 +1,6 @@
 <template>
   <div class ="buttonAndUser">
-
+    <input type="text" v-model="search">
     <button @click="getAllUsers()" class="getUserButton">All User</button>
    <div class="layoutUser" v-for="user in usernames" :key="user.username">
     <h2 class="userUsername">{{ user.username }}</h2>
@@ -20,13 +20,14 @@ export default {
   name: "UserObjekt",
   data() {
     return {
+      search:"",
       usernames: [],
       //passwort:"123",
       //email:"arvand@fra-uas.de",
     };
   },
 
-  methods: {
+  methods:  {
     getAllUsers() {
       //console.logs("workung (UserList funct.)");
       let headers = {
@@ -41,7 +42,13 @@ export default {
       });
       console.log(response);
     },
+    
   },
+  computed:{
+    filteredPosts(){
+    return this.usernames.filter(user=>user.username.includes(this.search))
+    }
+  }
 };
 </script>
 
