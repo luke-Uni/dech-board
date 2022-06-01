@@ -3,20 +3,20 @@
     <input type="text" v-model="search">
     <button @click="getAllUsers()" class="getUserButton">All User</button>
     <div v-for="user in filteredPosts" :key="user.id">
-      <RachidUser :user="user"></RachidUser>
+      <UserUser :user="user"></UserUser>
       
     </div>
   </div>
 </template>
 
 <script>
-import RachidUser from "./RachidUser.vue";
+import UserUser from "./UserUser.vue";
 import axios from "axios";
 
 export default {
-  name: "RachidUserObjects",
+  name: "UserObjects",
   components: {
-    RachidUser
+    UserUser
   },
   data() {
     return {

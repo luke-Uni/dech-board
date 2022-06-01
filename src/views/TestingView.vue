@@ -7,7 +7,7 @@
     <InvitationLink />
 
     <UserObject />
-    <RachidUserObjects/>
+    <UserObjects/>
 
     <br />
     <br />
@@ -21,14 +21,14 @@ import InvitationLink from "@/components/InvitationLink.vue";
 
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
 import UserObject from "@/components/UserObject.vue";
-import RachidUserObjects from "@/components/RachidUserObjects.vue";
+import UserObjects from "@/components/UserObjects.vue";
 
 export default {
   components: {
     InvitationLink,
     LeftSideMenu,
     UserObject,
-    RachidUserObjects
+    UserObjects
     
 },
 };
