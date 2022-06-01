@@ -4,6 +4,7 @@
     <button @click="getAllUsers()" class="getUserButton">All User</button>
     <div v-for="user in filteredPosts" :key="user.id">
       <RachidUser :user="user"></RachidUser>
+      
     </div>
   </div>
 </template>
