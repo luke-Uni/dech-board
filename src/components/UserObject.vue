@@ -1,14 +1,17 @@
 <template>
-  <div class ="buttonAndUser">
-    <input type="text" v-model="search">
+  <div class="buttonAndUser">
+    <input
+      @click="getAllUsers()"
+      type="text"
+      v-model="search"
+      placeholder="Search User"
+      class="searchUser"
+    />
     <button @click="getAllUsers()" class="getUserButton">All User</button>
-   <div class="layoutUser" v-for="user in filteredPosts" :key="user.username">
-    <h2 class="userUsername" >{{ user.username }}</h2>
+    <div class="layoutUser" v-for="user in filteredPosts" :key="user.username">
+      <h2 class="userUsername">{{ user.username }}</h2>
     </div>
   </div>
-  
-
-
 </template>
 
 
@@ -20,19 +23,23 @@ export default {
   name: "UserObjekt",
   data() {
     return {
-      search:"",
+      search: "",
       users: [],
       //passwort:"123",
       //email:"arvand@fra-uas.de",
     };
   },
-  computed:{
-    filteredPosts(){
-    return this.users.filter(user => user.username.toLocaleLowerCase.includes(this.search.toLocaleLowerCase()));
-    }
+  computed: {
+    filteredPosts() {
+      return this.users.filter((user) =>
+        user.username
+          .toLocaleLowerCase()
+          .includes(this.search.toLocaleLowerCase())
+      );
+    },
   },
 
-  methods:  {
+  methods: {
     getAllUsers() {
       //console.logs("workung (UserList funct.)");
       let headers = {
@@ -47,26 +54,24 @@ export default {
       });
       console.log(response);
     },
-    
   },
-  
 };
 </script>
 
 <style scoped>
-.buttonandUser{
-width: 50em;
+.buttonandUser {
+  width: 50em;
   height: 40px;
   margin-top: 1em;
   margin-bottom: 2em;
-  
+
   border: 0;
   padding: 10;
   border-radius: 20px;
   color: white;
   background-color: #6dfaff;
 }
-.getUserButton{
+.getUserButton {
   width: 10%;
   height: 40px;
   margin-top: 1em;
@@ -80,22 +85,21 @@ width: 50em;
 .layoutUser {
   margin-top: 0em;
   margin-bottom: 0em;
-  
 }
-.userUsername{
-  margin:auto;
-  margin-bottom:0.4em;
+.userUsername {
+  margin: auto;
+  margin-bottom: 0.4em;
   width: 5em;
   border: 1px solid black;
   border: 0;
   padding: 20;
   border-radius: 20px;
-  color:white;
-  background-color:#6dfaff;
+  color: white;
+  background-color: #6dfaff;
 }
 .layoutUser {
   margin: auto;
-  
+
   align-content: center;
 }
 </style>
