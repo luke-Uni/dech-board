@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <input type="text" v-model="search">
+    <input @click="getAllUsers()" type="text" v-model="search">
     <button @click="getAllUsers()" class="getUserButton">All User</button>
     <div v-for="user in filteredPosts" :key="user.id">
       <UserUser :user="user"></UserUser>
@@ -52,9 +52,6 @@ export default {
 </script>
 
 <style>
-
-
-
 
 .buttonandUser{
 width: 50em;
