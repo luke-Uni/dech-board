@@ -9,11 +9,11 @@
     />
     <button @click="getAllUsers()" class="getUserButton">All User</button>
     <div class="layoutUser" v-for="user in filteredPosts" :key="user.username">
-      <h2 class="userUsername">{{ user.username }}</h2>
+      <div class="UserArea"><h2 class="userUsername">{{ user.username }}</h2>
+      </div>
     </div>
   </div>
 </template>
-
 
 
 
@@ -59,6 +59,7 @@ export default {
 </script>
 
 <style scoped>
+
 .buttonandUser {
   width: 50em;
   height: 40px;
@@ -86,7 +87,7 @@ export default {
   margin-top: 0em;
   margin-bottom: 0em;
 }
-.userUsername {
+/* .userUsername {
   margin: auto;
   margin-bottom: 0.4em;
   width: 5em;
@@ -95,8 +96,8 @@ export default {
   padding: 20;
   border-radius: 20px;
   color: white;
-  background-color: #6dfaff;
-}
+  background-color: 6dfaff;
+} */
 .layoutUser {
   margin: auto;
 
