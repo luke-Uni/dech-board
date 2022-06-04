@@ -4,6 +4,7 @@ import TestingView from "../views/TestingView.vue";
 import CreatePost from "../components/CreatePost";
 import RegistrationFrom from "../views/RegistrationForm";
 import LogIn from "../views/LogIn";
+import Friendship from "@/views/Friendship";
 //import MessageRetrieve from "../views/MessageRetrieve";
 import ConversationView from "../views/ConversationView";
 import UserConfirmation from "../views/UserConfirmation";
@@ -54,6 +55,11 @@ const routes = [
     path: "/confirmuser",
     name: "UserConfirmation",
     component: UserConfirmation,
+  },
+  {
+    path: "/friendship",
+    name: "Friendship",
+    component: Friendship,
   }
 ];
 
