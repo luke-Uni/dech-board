@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div>Checked names: {{ checkedNames }}</div>
+    <!-- <div>Checked names: {{ checkedNames }}</div>
 
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
 <label for="jack">Jack</label>
@@ -52,7 +52,7 @@
 <label for="john">John</label>
 
 <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
+<label for="mike">Mike</label> -->
 
     <div class="own_user">
       
@@ -60,22 +60,37 @@
 
     <div class="conversationview">
       
-      <div>Select Users:{{checkedNames}} </div>
+      <!-- <div>Select Users:{{checkedNames}} </div>
     <div v-for="user in users" :key="user.username" class="selectFromUserList">
-    <input type="checkbox" value={{user.username}}  v-model="checkedNames"/>
-
-    <label for={{user.username}}>{{user.username}}</label>
+    <input type="checkbox" value={{user.username}}  v-model="checkedNames"/> -->
+<!-- 
+    <label for={{user.username}}>{{user.username}}</label> -->
     <!-- <label><input type="checkbox" id={{user.username}} value={{user.username}} v-model="checkedNames"> {{user.username}}</label> -->
 
+    <!-- </div> -->
+
+    <v-container fluid>
+    <p>{{recipients }}</p>
+    <div v-for="user in users" :key="user.username">
+    <input type="checkbox"
+      @click="()=>{selectUsers(user.username)}"
+      :value="user.username"
+    >
+    {{user.username}}
     </div>
+  </v-container>
       
     </div>
     
   </div>
+
+  
 </template>
 
 <script>
 import axios from "axios";
+// import VueLodash from 'vue-lodash'
+// import lodash from 'lodash'
 
 export default {
   data() {
@@ -86,7 +101,9 @@ export default {
       content: "",
       users: [],
       recipients: [],
-      checkedNames:[]
+      //checkedNames:[],
+      
+      
     };
   },
   computed: {},
@@ -96,6 +113,16 @@ export default {
   },
 
   methods: {
+    selectUsers(id){
+          //in here you can check what ever condition  before append to array.
+          if(this.recipients.includes(id)){
+            const index = this.recipients.indexOf(id);
+             
+              this.recipients.splice(index, 1);
+          }else{
+              this.recipients.push(id)
+          }
+      },
 
     // setUsername(username){
     //     if(this.recipients.includes(username)){
