@@ -200,7 +200,7 @@ export default {
 .content {
   display: flex;
   flex-direction: column;
-  width: 10em;
+  width: 15em;
 }
 
 .content .des {
@@ -208,7 +208,7 @@ export default {
   color: #aaa;
   font-size: 10px;
   margin-top: 1em;
-  width: 10em;
+  width: 15em;
 }
 
 input {
