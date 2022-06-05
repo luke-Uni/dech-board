@@ -6,7 +6,6 @@
     <h2>bla</h2>
     <InvitationLink />
 
-    <UserObject />
     <UserObjects/>
 
     <br />
@@ -20,14 +19,12 @@
 import InvitationLink from "@/components/InvitationLink.vue";
 
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
-import UserObject from "@/components/UserObject.vue";
 import UserObjects from "@/components/UserObjects.vue";
 
 export default {
   components: {
     InvitationLink,
     LeftSideMenu,
-    UserObject,
     UserObjects
     
 },
