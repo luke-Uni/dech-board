@@ -1,8 +1,7 @@
 <template>
+  <!-- <div class="searchUser">
 
-<div class="searchUser">
-
-</div>
+</div> -->
 
   <div class="menu-container">
     <img src="../assets/1.png" alt="HeNan" id="logo" class="picture" />
@@ -35,7 +34,7 @@ a:hover {
 .menu-container {
   position: absolute;
   width: 232px;
-  height: 900px; 
+  height: 900px;
   padding-left: 0%;
   padding-right: 0%;
   top: 0%;
@@ -67,7 +66,7 @@ a:hover {
   mix-blend-mode: multiply;
 }
 
-  .searchUser{
+/* .searchUser{
     position: absolute;
     width: 340px;
     height: 48px;
@@ -83,7 +82,5 @@ a:hover {
 
     background: #F4F7FF;
     border-radius: 10px;
-}
-
-
+} */
 </style>
