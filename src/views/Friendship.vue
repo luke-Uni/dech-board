@@ -1,45 +1,46 @@
 <template>
-  <LeftSideMenu/>
+  <LeftSideMenu />
   <div class="left">
-    <input type="text" v-model="search">
+    <input type="text" v-model="search" />
     <button @click="getAllUsers()" class="getUserButton">search</button>
     <ul>
       <!-- 渲染好友列表 -->
       <li class="person" v-for="person in personArr" :key="person.id">
         <div class="avatar">
-          <img :src="person.src" :alt="person.des">
+          <img :src="person.src" :alt="person.des" />
         </div>
         <div class="content">
           <div class="name">{{ person.name }}</div>
           <div class="des">{{ person.des }}</div>
         </div>
         <div class="addButton">
-          <button id="add" onclick=addFriend(this.id)>add</button>
+          <button id="add" onclick="addFriend(this.id)">add</button>
         </div>
       </li>
     </ul>
   </div>
   <div class="right">
+    <button @click="getFriendList()">Upadte Friends</button>
     <table>
       <thead>
-      <tr>
-        <th colspan="3">friendList</th>
-      </tr>
-      <tr id="example">
-        <th>name</th>
-        <th>school</th>
-        <th>mange</th>
-      </tr>
+        <tr>
+          <th colspan="3">friendList</th>
+        </tr>
+        <tr id="example">
+          <th>User</th>
+          <th>Mail</th>
+          <th>Manage</th>
+        </tr>
       </thead>
       <tbody>
-      <tr v-for="item in gridData" :key="item">
-        <td>{{ item.name }}</td>
-        <td>{{ item.school }}</td>
-        <td class="mange">
-          <button class="send-message">send</button>
-          <button class="delete">delete</button>
-        </td>
-      </tr>
+        <tr v-for="item in gridData" :key="item">
+          <td>{{ item.username1 }}</td>
+          <td>{{ item.school }}</td>
+          <td class="mange">
+            <button class="send-message" @click="addFriend(item)">Add</button>
+            <button class="delete">Remove</button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -48,6 +49,7 @@
 
 <script>
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
+import axios from "axios";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -55,24 +57,17 @@ export default {
   data() {
     return {
       gridColumns: ["name", "school"],
-      gridData: [
-        {name: "liHao", school: "HTU"},
-        {name: "liHao", school: "HTU"},
-        {name: "liHao", school: "HTU"},
-        {name: "liHao", school: "HTU"},
-        {name: "liHao", school: "HTU"},
-        {name: "liHao", school: "HTU"},
-        {name: "liHao", school: "HTU"},
-        {name: "liHao", school: "HTU"},
+      gridData: [],
+      personArr: [
+        {
+          name: "王港",
+          src: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4005587090,2408158268&fm=26&gp=0.jpg",
+          des: "颈椎不好",
+          sex: "m",
+          id: "056482",
+        },
       ],
-      personArr: [{
-        name: '王港',
-        src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4005587090,2408158268&fm=26&gp=0.jpg',
-        des: '颈椎不好',
-        sex: 'm',
-        id: '056482'
-      }],
-    }
+    };
   },
   components: {
     LeftSideMenu,
@@ -80,21 +75,59 @@ export default {
   methods: {
     // 搜索好友
     getAllUsers() {
-
+      // let headers = {
+      //   "Content-Type": "application/json",
+      //   authorization: localStorage.getItem("token"),
+      // };
+      // let uri = "http://localhost:8090/getUsers";
+      // let response = axios.get(uri, { headers: headers }).then((response) => {
+      //   this.gridData += response.data;
+      // });
+      // console.log(response);
     },
     // 添加好友
-    addFriend() {
+    addFriend(userFriend) {
+      let friendName = userFriend.username1;
 
-    }
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+
+      let uri = "http://localhost:8090/friendship/request";
+
+      if (userFriend.username1 == localStorage.getItem("currentuser")) {
+        friendName = userFriend.username2;
+      }
+
+      let response = axios
+        .post(uri, friendName, { headers: headers })
+        .then((response) => {
+          console.log(response.data);
+        });
+
+      console.log(response.data);
+    },
+
+    getFriendList() {
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+
+      let uri = "http://localhost:8090/friends";
+
+      let response = axios.get(uri, { headers: headers }).then((response) => {
+        this.gridData = response.data;
+        console.log(response.data);
+      });
+      console.log(response.data);
+    },
   },
   computed: {
     // 获取好友列表
-    getFriendList() {
-      return null;
-    }
-  }
-
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -211,5 +244,4 @@ td {
   background-color: red;
   float: right;
 }
-
 </style>
