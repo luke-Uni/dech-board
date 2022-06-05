@@ -73,7 +73,7 @@
       <table>
         <tr>
           <th>
-    <p>{{recipients }}</p>
+    <p>User: {{recipients }}</p>
     </th>
     </tr>
     <div v-for="user in users" :key="user.username">
@@ -98,9 +98,9 @@
   </div>
 
 	
-	
-	
-  
+        
+
+
 </template>
 
 <script>
@@ -264,9 +264,9 @@ export default {
     // },
     //Create a message
     async createMessage() {
-      this.recipients.push(this.recipient);
+      //this.recipients.push(this.recipient);
       console.log(this.recipients);
-      if (this.recipient.length > 0) {
+      if (this.recipients[0]) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
@@ -282,21 +282,21 @@ export default {
         );
         console.log(result);
       } else {
-        let result = await axios.post(
-          "http://localhost:8090/message/create",
-          {
-            recipient: localStorage.getItem("recipient"),
-            //recipient: this.recipient,
-            content: this.content,
-          },
-          {
-            headers: {
-              authorization: localStorage.getItem("token"),
-            },
-          }
-        );
+        // let result = await axios.post(
+        //   "http://localhost:8090/message/create",
+        //   {
+        //     recipient: localStorage.getItem("recipient"),
+        //     //recipient: this.recipient,
+        //     content: this.content,
+        //   },
+        //   {
+        //     headers: {
+        //       authorization: localStorage.getItem("token"),
+        //     },
+        //   }
+        // );
 
-        console.log(result);
+        // console.log(result);
       }
       //this.getAllConversations();
       //this.getAllPostsNoParameter();
