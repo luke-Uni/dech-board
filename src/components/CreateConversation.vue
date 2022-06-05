@@ -70,20 +70,36 @@
     <!-- </div> -->
 
     <v-container fluid>
+      <table>
+        <tr>
+          <th>
     <p>{{recipients }}</p>
+    </th>
+    </tr>
     <div v-for="user in users" :key="user.username">
+    <tr><td>
+      <label for="">
     <input type="checkbox"
       @click="()=>{selectUsers(user.username)}"
-      :value="user.username"
+      :value="user.username" id="checkbox-1-1" class="regular-checkbox"
     >
-    {{user.username}}
+    </label>
+    </td><td>
+    <label class="UserLabel">{{user.username}}</label>
+    </td>
+    
+    </tr>
     </div>
+    </table>
   </v-container>
       
     </div>
     
   </div>
 
+	
+	
+	
   
 </template>
 
@@ -291,7 +307,44 @@ export default {
 
 <style scoped lang="scss">
 
+.UserLabel{
+  font-size: 1.1em;
+ vertical-align: middle;
+ display: block;
+  
+}
 
+
+.regular-checkbox {
+	-webkit-appearance: none;
+	background-color: #ffffff;
+	border: 1px solid rgba(120, 194, 255, 0.966);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+
+.regular-checkbox:active, .regular-checkbox:checked:active {
+	box-shadow: 0 1px 2px rgba(120, 194, 255, 0.966), inset 0px 1px 3px rgba(120, 194, 255, 0.966);
+}
+
+.regular-checkbox:checked {
+	background-color: #ffffff;
+	border: 1px solid rgba(120, 194, 255, 0.966);
+	box-shadow: 0 1px 2px rgba(120, 194, 255, 0.966), inset 0px -15px 10px -12px rgba(120, 194, 255, 0.966), inset 15px 10px -12px rgba(120, 194, 255, 0.966);
+	color: #99a1a7;
+}
+
+.regular-checkbox:checked:after {
+	content: '\2714';
+	font-size: 14px;
+	position: absolute;
+	top: 0px;
+	left: 3px;
+	color: #4fb3ff;
+}
 
 
 
