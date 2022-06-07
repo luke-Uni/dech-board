@@ -3,20 +3,19 @@
 <LeftSideMenu />
 <div>
 <h1>List of all User</h1>
- <UserObject />
  
 </div>
+<UserObjects/>
 </template>
 
 
 <script>
-import UserObject from "@/components/UserObject.vue";
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
+import UserObjects from "@/components/UserObjects.vue";
 
 export default {
   components: {
-    
-    UserObject,
+    UserObjects,
     LeftSideMenu
     
 },
