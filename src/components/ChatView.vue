@@ -37,7 +37,7 @@
         /> -->
         <!-- <label for="recipient">Choose a car:</label> -->
 
-        <select
+        <!-- <select
           name="recipient"
           class="input-recipient"
           placeholder="Recipient..."
@@ -50,7 +50,7 @@
           >
             {{ user.username }}
           </option>
-        </select>
+        </select> -->
       </div>
       <div class="popup">
         <div class="popup-inner">
@@ -93,7 +93,7 @@
 
       <h1 class="userUsername">{{ user.username }}</h1> -->
 
-      <!-- 
+      <!--
 </div> -->
       <!-- user.getUsername() -->
     </div>
@@ -105,16 +105,22 @@
       <div
         class="postComplete"
         v-for="conversation in conversations"
-        :key="conversation.user1"
+        :key="conversation.id"
       >
         <!-- <div class="conversation_segment"> -->
         <!-- <button v-on:click="getAllPosts(conversation.user2)"> -->
-        <button
+        <!-- <button
           class="button-conversation"
           v-on:click="getAllPosts(conversation.user2)"
           role="button"
+        > -->
+        <button
+          class="button-conversation"
+          v-on:click="getAllPosts(conversation.id)"
+          role="button"
         >
-          {{ conversation.user2 }}
+        {{ conversation.conversationParticipants }}
+          <!-- {{ conversation.recipients }} -->
           <p>{{ conversation.lastMessageSend }}</p>
         </button>
 
@@ -135,6 +141,7 @@ export default {
       recipient: "",
       content: "",
       users: [],
+      recipients:[]
     };
   },
   computed: {},
@@ -170,7 +177,8 @@ export default {
 
     //Get all Messages for one conversation using the other users username as a parameter
     async getAllPosts(name) {
-      localStorage.setItem("recipient", name);
+      // localStorage.setItem("recipient", name);
+      localStorage.setItem("conversationID", name);
 
       let headers = {
         "Content-Type": "application/json",
@@ -204,8 +212,8 @@ export default {
         authorization: localStorage.getItem("token"),
       };
 
-      let name = localStorage.getItem("recipient");
-      console.log(localStorage.getItem("recipient"));
+      let name = localStorage.getItem("conversationID");
+      console.log(localStorage.getItem("conversationID"));
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
       let response = await axios
@@ -252,11 +260,55 @@ export default {
     },
     //Create a message
     async createMessage() {
-      if (this.recipient.length > 0) {
+      //this.recipients.push(this.recipient);
+      let name = localStorage.getItem("conversationID")
+      //console.log(this.recipients);
+      //if (this.recipient.length > 0) {
+        let result = await axios.post(
+          "http://localhost:8090/message/" +name,
+          {
+            //recipient: this.recipient,
+            recipients:this.recipients,
+            content: this.content,
+          },
+          {
+            headers: {
+              authorization: localStorage.getItem("token"),
+            },
+          }
+        );
+        console.log(result);
+      // } else {
+      //   let result = await axios.post(
+      //     "http://localhost:8090/message/create",
+      //     {
+      //       recipient: localStorage.getItem("recipient"),
+      //       //recipient: this.recipient,
+      //       content: this.content,
+      //     },
+      //     {
+      //       headers: {
+      //         authorization: localStorage.getItem("token"),
+      //       },
+      //     }
+      //   );
+
+      //   console.log(result);
+      // }
+      this.getAllConversations();
+      this.getAllPostsNoParameter();
+    //}
+    },
+    async createMessage2() {
+      this.recipients[0]= "hallo";
+      //this.recipients.push(this.recipient);
+      console.log(this.recipients);
+      if (this.recipients[0]) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
-            recipient: this.recipient,
+            //recipient: this.recipient,
+            recipients: this.recipients,
             content: this.content,
           },
           {
@@ -267,25 +319,67 @@ export default {
         );
         console.log(result);
       } else {
-        let result = await axios.post(
-          "http://localhost:8090/message/create",
-          {
-            recipient: localStorage.getItem("recipient"),
-            //recipient: this.recipient,
-            content: this.content,
-          },
-          {
-            headers: {
-              authorization: localStorage.getItem("token"),
-            },
-          }
-        );
+        // let result = await axios.post(
+        //   "http://localhost:8090/message/create",
+        //   {
+        //     recipient: localStorage.getItem("recipient"),
+        //     //recipient: this.recipient,
+        //     content: this.content,
+        //   },
+        //   {
+        //     headers: {
+        //       authorization: localStorage.getItem("token"),
+        //     },
+        //   }
+        // );
 
-        console.log(result);
+        // console.log(result);
       }
+      //this.getAllConversations();
+      //this.getAllPostsNoParameter();
       this.getAllConversations();
       this.getAllPostsNoParameter();
     },
+
+    // async createMessage2() {
+    //   //this.recipients.push(this.recipient);
+    //   console.log(this.recipients);
+    //   if (this.recipients[0]) {
+    //     let result = await axios.post(
+    //       "http://localhost:8090/message/create",
+    //       {
+    //         //recipient: this.recipient,
+    //         recipients: this.recipients,
+    //         content: this.content,
+    //       },
+    //       {
+    //         headers: {
+    //           authorization: localStorage.getItem("token"),
+    //         },
+    //       }
+    //     );
+    //     console.log(result);
+    //   } else {
+    //     // let result = await axios.post(
+    //     //   "http://localhost:8090/message/create",
+    //     //   {
+    //     //     recipient: localStorage.getItem("recipient"),
+    //     //     //recipient: this.recipient,
+    //     //     content: this.content,
+    //     //   },
+    //     //   {
+    //     //     headers: {
+    //     //       authorization: localStorage.getItem("token"),
+    //     //     },
+    //     //   }
+    //     // );
+
+    //     // console.log(result);
+    //   }
+    //   //this.getAllConversations();
+    //   //this.getAllPostsNoParameter();
+    // },
+    
   },
 };
 </script>
