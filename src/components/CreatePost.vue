@@ -2,7 +2,7 @@
   <br />
   <div class="popup">
     <div class="popup-inner">
-      <slot />
+      
       <button
         type="button"
         class="btn-close popup-close"
@@ -11,7 +11,7 @@
         <span class="icon-cross"></span>
         <span class="visually-hidden"></span>
       </button>
-      <br />
+     
 
       <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
 
@@ -160,14 +160,7 @@ export default {
   white-space: pre;
 }
 
-.input-username {
-  float: left;
-  background-color: transparent;
-  border: 0px solid;
-  height: 20px;
-  width: 160px;
-  color: rgb(93, 170, 233);
-}
+
 
 .input-title {
   float: left;
@@ -186,19 +179,7 @@ input:focus {
   outline: none;
 }
 
-.important {
-  float: left;
-}
 
-.float-right {
-  float: right;
-}
-
-.label-left {
-  text-align: left;
-  margin-right: 40em;
-  padding-bottom: 10em;
-}
 
 .message-create {
   width: 50em;
@@ -259,45 +240,6 @@ input:focus {
   }
 }
 
-input[type="checkbox"].switch_1 {
-  font-size: 20px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 3.5em;
-  height: 1.5em;
-  background: #ddd;
-  border-radius: 3em;
-  position: relative;
-  cursor: pointer;
-  outline: none;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-input[type="checkbox"].switch_1:checked {
-  background: rgb(253, 78, 78);
-}
-
-input[type="checkbox"].switch_1:after {
-  position: absolute;
-  content: "";
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  background: #fff;
-  -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
-  -webkit-transform: scale(0.7);
-  transform: scale(0.7);
-  left: 0;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-input[type="checkbox"].switch_1:checked:after {
-  left: calc(100% - 1.5em);
-}
 
 @mixin cross($size: 20px, $color: currentColor, $thickness: 1px) {
   margin: 0;

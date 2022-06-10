@@ -5,14 +5,14 @@
     <h1>Only Test Components</h1>
     <h2>bla</h2>
     <InvitationLink />
-    <CreateConversation/>
+    <!-- <CreateConversation/> -->
 
     <UserObjects/>
 
-    <br />
-    <br />
+    <!-- <br />
+    <br /> -->
   </div>
-  <CreateConversation/>
+  <!-- <CreateConversation/> -->
   
 </template>
 
@@ -21,7 +21,7 @@ import InvitationLink from "@/components/InvitationLink.vue";
 
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
 import UserObjects from "@/components/UserObjects.vue";
-import CreateConversation from "@/components/CreateConversation.vue";
+// import CreateConversation from "@/components/CreateConversation.vue";
 
 export default {
   components: {
@@ -29,7 +29,7 @@ export default {
     LeftSideMenu,
     
     UserObjects,
-    CreateConversation
+    // CreateConversation
     
 },
 };
