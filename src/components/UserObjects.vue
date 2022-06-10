@@ -6,8 +6,6 @@
         @click="getAllUsers(), (isVisible = !isVisible)"
         class="selected-User"
       >
-        <!-- <span v-if="selectedUser">{{selectedUser.username}}</span>
-        <span v-else>Search User</span> -->
         <span v-if="!selectedUser[0]">Select User</span>
         <span v-else>{{ selectedUser[0].username }} </span>
 
