@@ -41,7 +41,7 @@
           <td>{{ item.username1 }}</td>
           <td>{{ item.school }}</td>
           <td class="mange">
-            <button class="send-message" @click="addFriend(item)">Add</button>
+            <!-- <button class="send-message" @click="addFriend(item)">Add</button> -->
             <button class="delete" @click="deleteFriend(item)">Remove</button>
           </td>
         </tr>
