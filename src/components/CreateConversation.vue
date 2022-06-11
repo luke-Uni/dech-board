@@ -1,20 +1,59 @@
 
 <template>
+  <transition name="fade" appear>
 
-
-  <div>
-    
-    <div class="send_messages"></div>
-    
-    <div class="insert_message">
-      
-      <div class="popup">
+    <div class="popup">
         <div class="popup-inner">
-          <slot />
+    <button
+        type="button"
+        class="btn-close popup-close"
+        @click="TogglePopup()"
+      >
+        <span class="icon-cross"></span>
+        <span class="visually-hidden"></span>
+      </button>
+     <br />
+     <div class="ChooseUser">
+     <v-container fluid>
+        <table>
+          <tr>
+            <th>
+              <!-- <p>Chosen User: {{ recipients }}</p> -->
+              <!-- <div v-for="user in recipients" :key="user">
+              {{user}} -->
+              <!-- </div> -->
+               
+            </th>
+          </tr>
+          <div v-for="user in users" :key="user.username">
+            <tr>
+              <td>
+                <label for="">
+                  <input
+                    type="checkbox"
+                    @click="
+                      () => {
+                        selectUsers(user.username);
+                      }
+                    "
+                    :value="user.username"
+                    id="checkbox-1-1"
+                    class="regular-checkbox"
+                  />
+                </label>
+              </td>
+              <td>
+                <label class="UserLabel">{{ user.username }}</label>
+              </td>
+            </tr>
+          </div>
+        </table>
+      </v-container>
+      </div>
 
-          <br />
+    <div class="insert_message">
 
-          <div>
+          
             <div class="message-create">
               <div class="message-textarea-div">
                 <textarea
@@ -29,64 +68,46 @@
                 <div class="send-button-div">
                   <button
                     class="button-81"
-                    v-on:click="createMessage()"
+                    v-on:click="createMessage();
+                TogglePopup();"
                     role="button"
                   >
                     Send Message
                   </button>
                 </div>
-              </div>
+              
             </div>
-          </div>
-          <br />
-          <br />
-        </div>
-      </div>
-    </div>
-    <div>Checked names: {{ checkedNames }}</div>
+          
+         
 
-<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-<label for="jack">Jack</label>
-
-<input type="checkbox" id="john" value="John" v-model="checkedNames">
-<label for="john">John</label>
-
-<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
-
-    <div class="own_user">
-      
-    </div>
-
-    <div class="conversationview">
-      
-      <div>Select Users:{{checkedNames}} </div>
-    <div v-for="user in users" :key="user.username" class="selectFromUserList">
-    <input type="checkbox" value={{user.username}}  v-model="checkedNames"/>
-
-    <label for={{user.username}}>{{user.username}}</label>
-    <!-- <label><input type="checkbox" id={{user.username}} value={{user.username}} v-model="checkedNames"> {{user.username}}</label> -->
-
-    </div>
-      
-    </div>
-    
   </div>
+    <!-- <div class="conversationview"> -->
+      
+    </div>
+    </div>
+  </div>
+  </transition>
+  
+    <!-- </div> -->
 </template>
 
 <script>
 import axios from "axios";
+// import VueLodash from 'vue-lodash'
+// import lodash from 'lodash'
 
 export default {
+   props: ["TogglePopup"],
   data() {
+    
     return {
-     // conversations: [],
-     // messages: [],
+      // conversations: [],
+      // messages: [],
       //recipient: "",
       content: "",
       users: [],
       recipients: [],
-      checkedNames:[]
+      //checkedNames:[],
     };
   },
   computed: {},
@@ -96,21 +117,16 @@ export default {
   },
 
   methods: {
+    selectUsers(id) {
+      //in here you can check what ever condition  before append to array.
+      if (this.recipients.includes(id)) {
+        const index = this.recipients.indexOf(id);
 
-    // setUsername(username){
-    //     if(this.recipients.includes(username)){
-    //           this.recipients.without(this.recipients,username)
-    //           var i=0;
-    //           for(i =0; i<this.recipients.length;i++){
-    //             if(username == this.recipients[i]){
-    //               this.recipients.splice(username,1)
-    //             }
-    //           }
-    //           this.recipients.pop(username)
-    //       }else{
-    //           this.recipients.push(username)
-    //       }
-    // },
+        this.recipients.splice(index, 1);
+      } else {
+        this.recipients.push(id);
+      }
+    },
 
     createDate() {
       for (let index = 0; index < this.messages.length; index++) {
@@ -120,8 +136,6 @@ export default {
       }
     },
     async getAllUsers() {
-      //console.logs("workung (UserList funct.)");
-
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
@@ -136,94 +150,11 @@ export default {
       console.log(response);
     },
 
-    //Get all Messages for one conversation using the other users username as a parameter
-    // async getAllPosts(name) {
-    //   // localStorage.setItem("recipient", name);
-    //   localStorage.setItem("conversationID", name);
-
-    //   let headers = {
-    //     "Content-Type": "application/json",
-    //     authorization: localStorage.getItem("token"),
-    //   };
-
-    //   let uri = "http://localhost:8090/message/getall/" + name;
-    //   //send synchron Request to Server
-    //   let response = await axios
-    //     .get(uri, { headers: headers })
-    //     .then((response) => {
-    //       console.log(response);
-
-    //       this.messages = response.data;
-    //     })
-    //     //save all Posts locally
-    //     .then((data) => (this.user = data))
-    //     .catch((e) => {
-    //       this.errors.push(e);
-    //     });
-
-    //   this.createDate();
-
-    //   console.log(response);
-    // },
-
-    //get all Messages from one Conversation without having to use parameters
-    // async getAllPostsNoParameter() {
-    //   let headers = {
-    //     "Content-Type": "application/json",
-    //     authorization: localStorage.getItem("token"),
-    //   };
-
-    //   let name = localStorage.getItem("conversationID");
-    //   console.log(localStorage.getItem("conversationID"));
-    //   let uri = "http://localhost:8090/message/getall/" + name;
-    //   //send synchron Request to Server
-    //   let response = await axios
-    //     .get(uri, { headers: headers })
-    //     .then((response) => {
-    //       console.log(response);
-
-    //       this.messages = response.data;
-    //     })
-    //     //save all Posts locally
-    //     .then((data) => (this.user = data))
-    //     .catch((e) => {
-    //       this.errors.push(e);
-    //     });
-
-    //   console.log(response.constructor);
-    // },
-
-    //To display all the Conversations we need to get them from the Server
-    // async getAllConversations() {
-    //   console.log("I am in the getAllPosts function");
-
-    //   let headers = {
-    //     "Content-Type": "application/json",
-    //     authorization: localStorage.getItem("token"),
-    //   };
-
-    //   let uri = "http://localhost:8090/conversation/getall";
-
-    //   let response = await axios
-    //     .get(uri, { headers: headers })
-    //     .then((response) => {
-    //       console.log(response);
-
-    //       this.conversations = response.data;
-    //     })
-    //     //save all Conversations
-    //     .then((data) => (this.user = data))
-    //     .catch((e) => {
-    //       this.errors.push(e);
-    //     });
-
-    //   console.log(response.constructor);
-    // },
     //Create a message
     async createMessage() {
-      this.recipients.push(this.recipient);
+      //this.recipients.push(this.recipient);
       console.log(this.recipients);
-      if (this.recipient.length > 0) {
+      if (this.recipients[0]) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
@@ -239,24 +170,8 @@ export default {
         );
         console.log(result);
       } else {
-        let result = await axios.post(
-          "http://localhost:8090/message/create",
-          {
-            recipient: localStorage.getItem("recipient"),
-            //recipient: this.recipient,
-            content: this.content,
-          },
-          {
-            headers: {
-              authorization: localStorage.getItem("token"),
-            },
-          }
-        );
-
-        console.log(result);
+        console.log("Else");
       }
-      //this.getAllConversations();
-      //this.getAllPostsNoParameter();
     },
   },
 };
@@ -265,73 +180,43 @@ export default {
 <style scoped lang="scss">
 
 
+// .fade-enter-active,
+// .fade-leave-active{
+
+// transition: opacity 0.5s;
 
 
+// }
+
+// .fade-enter,
+// .fade-leave-to{
+//   opacity: 0;
+// }
 
 
+.ChooseUser{
 
-.insert_message {
-  position: absolute;
+width:20em;
+background-color: rgba(244, 247, 255, 255);
 
-  width: 37.8125em;
-  height: 3.75em;
-  left: 6.25em;
-  top: 3.375em;
-  background: #f4f7ff;
-  border-radius: 0.625em;
-  margin-top: 42.5em;
-  margin-left: 25em;
-  box-shadow: 2px 2px 7px rgb(198, 227, 255);
-}
-
-.messages_view {
-  margin-bottom: 2em;
-  height: 1em;
-}
-
-
-
-
-
-
-
-.conversationview {
-  position: absolute;
-  width: 16.125em;
-  height: 20.4em;
-  left: 27.1875em;
-  top: 16.375em;
-  background: #f4f7ff;
-  border-radius: 1.3125em;
-  margin-top: 6em;
-  margin-left: 25em;
-  border: 1px solid #f4f7ff;
-  padding: 0.5em;
-  //box-shadow: 2px 2px 7px rgb(198, 227, 255);
-
-  overflow: scroll;
-  overflow-x: hidden;
-}
-
-.conversationview::-webkit-scrollbar-track {
-  background-color: #f5f5f5;
-  border-radius: 1em;
-
-}
-.conversationview::-webkit-scrollbar {
-  background-color: #f5f5f5;
-  border-radius: 1em;
-   width: 1.7em;
-}
-.conversationview::-webkit-scrollbar-thumb {
-  background-color: #e1e7f7;
-  border-radius: 1em;
+border-radius: 1em;
+padding: 1em;
+margin-bottom: 2em;
 }
 
 
-
-
-
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .popup-inner {
   background: white;
@@ -339,17 +224,112 @@ export default {
   border-radius: 10px;
 }
 
-.table-left {
-  margin: auto;
+
+
+@mixin cross($size: 20px, $color: currentColor, $thickness: 1px) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  position: relative;
+  width: $size;
+  height: $size;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    top: ($size - $thickness) / 2;
+    left: 0;
+    right: 0;
+    height: $thickness;
+    background: $color;
+    border-radius: $thickness;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+
+  span {
+    display: block;
+  }
 }
 
-.td-left {
-  padding-left: 35em;
+
+
+.btn-close {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: rgb(255, 150, 150);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 150ms;
+  float: right;
+
+  .icon-cross {
+    @include cross(20px, #fff, 6px);
+  }
+
+  &:hover,
+  &:focus {
+    transform: rotateZ(90deg);
+    background: rgb(253, 78, 78);
+  }
 }
 
-.message-create {
+
+.UserLabel {
+  font-size: 1.1em;
+ // vertical-align: middle;
   display: block;
-  white-space: pre;
+}
+
+.regular-checkbox {
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  border: 1px solid rgba(120, 194, 255, 0.966);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 9px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+}
+
+.regular-checkbox:active,
+.regular-checkbox:checked:active {
+  box-shadow: 0 1px 2px rgba(120, 194, 255, 0.966),
+    inset 0px 1px 3px rgba(120, 194, 255, 0.966);
+}
+
+.regular-checkbox:checked {
+  background-color: #ffffff;
+  border: 1px solid rgba(120, 194, 255, 0.966);
+  box-shadow: 0 1px 2px rgba(120, 194, 255, 0.966),
+    inset 0px -15px 10px -12px rgba(120, 194, 255, 0.966),
+    inset 15px 10px -12px rgba(120, 194, 255, 0.966);
+  color: #99a1a7;
+}
+
+.regular-checkbox:checked:after {
+  content: "\2714";
+  font-size: 14px;
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  color: #4fb3ff;
 }
 
 
@@ -359,20 +339,19 @@ export default {
 
 
 
-.message-create {
-  width: 38em;
 
-  padding: 0em;
-  // margin: auto;
-  margin-left: -2em;
-  margin-top: -4.4em;
+
+.message-create {
+  width: 40em;
+
+  padding: 0.5em;
+  margin: auto;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
   background-color: rgba(244, 247, 255, 255);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  // position: absolute;
 }
 .message-textarea-div {
   height: 5em;
@@ -439,8 +418,6 @@ export default {
     padding: 0.8rem 0.5rem;
   }
 }
-
-
 
 @media (min-width: 768px) {
   .button-81 {

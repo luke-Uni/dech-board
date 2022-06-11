@@ -1,7 +1,10 @@
 
 <template>
   <div>
-    <div class="selecteduser"></div>
+    <div class="selecteduser" >
+     
+
+    </div>
 
     <div class="chat">
       <div class="messages_view">
@@ -29,28 +32,7 @@
     </div>
     <div class="insert_message">
       <div>
-        <!-- <input
-          type="text"
-          class="input-recipient"
-          placeholder="Recipient..."
-          v-model="recipient"
-        /> -->
-        <!-- <label for="recipient">Choose a car:</label> -->
-
-        <select
-          name="recipient"
-          class="input-recipient"
-          placeholder="Recipient..."
-          v-model="recipient"
-        >
-          <option
-            v-for="user in users"
-            :key="user.username"
-            @click="getAllPosts(user.username)"
-          >
-            {{ user.username }}
-          </option>
-        </select>
+       
       </div>
       <div class="popup">
         <div class="popup-inner">
@@ -88,15 +70,18 @@
     </div>
 
     <div class="own_user">
-      <!-- <button @click="getAllUsers();">Show Users</button>
-      <div class="layoutUser" v-for="user in users" :key="user.username">
-
-      <h1 class="userUsername">{{ user.username }}</h1> -->
-
-      <!-- 
-</div> -->
-      <!-- user.getUsername() -->
+      
+      <button
+        class="icon-btn add-btn"
+        @click="() => TogglePopup('buttonTrigger')"
+      >
+      Create  Conversation
+      </button>
     </div>
+    <CreateConversation  v-if="popupTriggers.buttonTrigger"
+      :TogglePopup="() => TogglePopup2('buttonTrigger')"/>
+
+    
 
     <div class="conversationview">
       <!--<div class="own_user">
@@ -105,20 +90,33 @@
       <div
         class="postComplete"
         v-for="conversation in conversations"
-        :key="conversation.user1"
+        :key="conversation.id"
       >
-        <!-- <div class="conversation_segment"> -->
-        <!-- <button v-on:click="getAllPosts(conversation.user2)"> -->
+        
         <button
           class="button-conversation"
-          v-on:click="getAllPosts(conversation.user2)"
+          v-on:click="getAllPosts(conversation.id)"
           role="button"
         >
-          {{ conversation.user2 }}
+        <!-- {{conversation.conversationParticipants}} -->
+
+        <table>
+          
+          <div class="TextNextToEachOther"
+            v-for="name in conversation.conversationParticipants"
+            :key="name"
+          >
+            
+          <span class="same">{{ name }}</span>  
+             
+          </div>
+     
+        </table>
+          
           <p>{{ conversation.lastMessageSend }}</p>
         </button>
 
-        <!-- </div> -->
+        
       </div>
     </div>
   </div>
@@ -126,8 +124,34 @@
 
 <script>
 import axios from "axios";
+import { ref } from "vue";
+import CreateConversation from "./CreateConversation.vue";
+
 
 export default {
+
+  components:{
+CreateConversation
+  },
+  setup() {
+    const popupTriggers = ref({
+      buttonTrigger: false,
+    });
+
+    const TogglePopup = (trigger) => {
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+    };
+  
+    const TogglePopup2 = (trigger) => {
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+    };
+
+    return {
+      popupTriggers,
+      TogglePopup,
+      TogglePopup2,
+    };
+  },
   data() {
     return {
       conversations: [],
@@ -135,6 +159,8 @@ export default {
       recipient: "",
       content: "",
       users: [],
+      recipients: [],
+      
     };
   },
   computed: {},
@@ -170,7 +196,8 @@ export default {
 
     //Get all Messages for one conversation using the other users username as a parameter
     async getAllPosts(name) {
-      localStorage.setItem("recipient", name);
+      // localStorage.setItem("recipient", name);
+      localStorage.setItem("conversationID", name);
 
       let headers = {
         "Content-Type": "application/json",
@@ -204,8 +231,8 @@ export default {
         authorization: localStorage.getItem("token"),
       };
 
-      let name = localStorage.getItem("recipient");
-      console.log(localStorage.getItem("recipient"));
+      let name = localStorage.getItem("conversationID");
+      console.log(localStorage.getItem("conversationID"));
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
       let response = await axios
@@ -252,11 +279,55 @@ export default {
     },
     //Create a message
     async createMessage() {
-      if (this.recipient.length > 0) {
+      //this.recipients.push(this.recipient);
+      let name = localStorage.getItem("conversationID");
+      //console.log(this.recipients);
+      //if (this.recipient.length > 0) {
+      let result = await axios.post(
+        "http://localhost:8090/message/" + name,
+        {
+          //recipient: this.recipient,
+          recipients: this.recipients,
+          content: this.content,
+        },
+        {
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log(result);
+      // } else {
+      //   let result = await axios.post(
+      //     "http://localhost:8090/message/create",
+      //     {
+      //       recipient: localStorage.getItem("recipient"),
+      //       //recipient: this.recipient,
+      //       content: this.content,
+      //     },
+      //     {
+      //       headers: {
+      //         authorization: localStorage.getItem("token"),
+      //       },
+      //     }
+      //   );
+
+      //   console.log(result);
+      // }
+      this.getAllConversations();
+      this.getAllPostsNoParameter();
+      //}
+    },
+    async createMessage2() {
+      this.recipients[0] = "hallo";
+      //this.recipients.push(this.recipient);
+      console.log(this.recipients);
+      if (this.recipients[0]) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
-            recipient: this.recipient,
+            //recipient: this.recipient,
+            recipients: this.recipients,
             content: this.content,
           },
           {
@@ -267,30 +338,76 @@ export default {
         );
         console.log(result);
       } else {
-        let result = await axios.post(
-          "http://localhost:8090/message/create",
-          {
-            recipient: localStorage.getItem("recipient"),
-            //recipient: this.recipient,
-            content: this.content,
-          },
-          {
-            headers: {
-              authorization: localStorage.getItem("token"),
-            },
-          }
-        );
-
-        console.log(result);
+        // let result = await axios.post(
+        //   "http://localhost:8090/message/create",
+        //   {
+        //     recipient: localStorage.getItem("recipient"),
+        //     //recipient: this.recipient,
+        //     content: this.content,
+        //   },
+        //   {
+        //     headers: {
+        //       authorization: localStorage.getItem("token"),
+        //     },
+        //   }
+        // );
+        // console.log(result);
       }
+      //this.getAllConversations();
+      //this.getAllPostsNoParameter();
       this.getAllConversations();
       this.getAllPostsNoParameter();
     },
+
+    // async createMessage2() {
+    //   //this.recipients.push(this.recipient);
+    //   console.log(this.recipients);
+    //   if (this.recipients[0]) {
+    //     let result = await axios.post(
+    //       "http://localhost:8090/message/create",
+    //       {
+    //         //recipient: this.recipient,
+    //         recipients: this.recipients,
+    //         content: this.content,
+    //       },
+    //       {
+    //         headers: {
+    //           authorization: localStorage.getItem("token"),
+    //         },
+    //       }
+    //     );
+    //     console.log(result);
+    //   } else {
+    //     // let result = await axios.post(
+    //     //   "http://localhost:8090/message/create",
+    //     //   {
+    //     //     recipient: localStorage.getItem("recipient"),
+    //     //     //recipient: this.recipient,
+    //     //     content: this.content,
+    //     //   },
+    //     //   {
+    //     //     headers: {
+    //     //       authorization: localStorage.getItem("token"),
+    //     //     },
+    //     //   }
+    //     // );
+
+    //     // console.log(result);
+    //   }
+    //   //this.getAllConversations();
+    //   //this.getAllPostsNoParameter();
+    // },
   },
 };
 </script>
 
 <style scoped lang="scss">
+
+.Same{
+  display:inline-block;
+}
+
+
 .insert_message {
   position: absolute;
 
@@ -400,6 +517,7 @@ export default {
   margin-top: 6em;
   margin-left: 25em;
   border: 1px solid #f4f7ff;
+  
   //box-shadow: 2px 2px 7px rgb(198, 227, 255);
 
   overflow: scroll;
@@ -461,6 +579,7 @@ export default {
   width: 50em;
   //border: 1px solid rgb(255, 255, 255);
   text-align: left;
+  //padding: 1em;
 }
 .postsInside {
   background-color: #ffffff;
@@ -684,7 +803,7 @@ input:focus {
 }
 */
 .button-conversation {
-  height: 7em;
+  height: auto;
   width: 27.7em;
   background: #f4f7ff;
   text-align: center;
@@ -693,7 +812,8 @@ input:focus {
   margin-left: 0.4em;
   margin-bottom: -0.5em;
   //box-shadow: 2px 2px 7px rgb(198, 227, 255);
-  border: 1px solid #f4f7ff;
+ column-count:2; column-gap: 20px;
+  
   border: 1px solid rgb(230, 230, 230);
   padding: 1.2em;
 }
