@@ -18,7 +18,7 @@
             <div :class="[message.send ? 'postsInside2' : 'postsInside']">
               <!-- <div :class="[post.important ? 'importantPost' : 'postsInside']"></div> -->
               <!-- <p class="recipient">Recipient: {{ message.recipient }}</p> -->
-              <p class="recipient">From: {{ message.username }}</p>
+              <p class="recipient">{{ message.username }}</p>
 
               <p class="postText">{{ message.content }}</p>
               <p class="timeStamp">{{ message.time }}</p>
