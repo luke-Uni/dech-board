@@ -24,7 +24,7 @@
     </ul>
   </div>
   <div class="right">
-    <button @click="getFriendList()">Upadte Friends</button>
+    <button @click="getFriendList()">Update Friends</button>
     <table>
       <thead>
         <tr>
@@ -178,6 +178,10 @@ export default {
   height: 2em;
 }
 
+#add:hover {
+  cursor: pointer;
+}
+
 .person {
   display: flex;
   align-items: center;
@@ -225,7 +229,12 @@ input {
 .getUserButton {
   height: 3em;
   background-color: coral;
+  border-radius: 5em;
   width: 7em;
+}
+
+.getUserButton:hover {
+  cursor: pointer;
 }
 
 .left {
