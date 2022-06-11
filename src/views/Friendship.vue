@@ -24,7 +24,12 @@
     </ul>
   </div>
   <div class="right">
-    <button @click="getFriendList()">Update Friends</button>
+    <img
+      id="refresh"
+      src="@/assets/Refresh.png"
+      alt="Resfresh Button"
+      @click="getFriendList()"
+    />
     <table>
       <thead>
         <tr>
@@ -162,6 +167,10 @@ export default {
 </script>
 
 <style scoped>
+#refresh {
+  width: 2em;
+}
+
 .addButton {
   width: 10em;
   margin-left: 4em;
