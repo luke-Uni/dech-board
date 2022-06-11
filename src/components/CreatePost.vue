@@ -128,6 +128,9 @@ export default {
 </script>
 
 <style scoped lang="scss" >
+
+
+
 .popup {
   position: fixed;
   top: 0;
@@ -140,28 +143,29 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
 .popup-inner {
   background: white;
   padding: 32px;
   border-radius: 10px;
 }
-
 .table-left {
   margin: auto;
 }
-
 .td-left {
   padding-left: 35em;
 }
-
 .message-create {
   display: block;
   white-space: pre;
 }
-
-
-
+.input-username {
+  float: left;
+  background-color: transparent;
+  border: 0px solid;
+  height: 20px;
+  width: 160px;
+  color: rgb(93, 170, 233);
+}
 .input-title {
   float: left;
   margin-left: 11em;
@@ -174,16 +178,22 @@ export default {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-
 input:focus {
   outline: none;
 }
-
-
-
+.important {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.label-left {
+  text-align: left;
+  margin-right: 40em;
+  padding-bottom: 10em;
+}
 .message-create {
   width: 50em;
-
   padding: 1em;
   margin: auto;
   -webkit-border-radius: 10px;
@@ -201,7 +211,6 @@ input:focus {
   border: none;
   outline: none;
 }
-
 /* CSS */
 .button-81 {
   background-color: rgba(244, 247, 255, 255);
@@ -227,20 +236,52 @@ input:focus {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
 .button-81:hover {
   background-color: rgba(102, 194, 247, 0.25);
   color: rgb(0, 0, 0);
 }
-
 @media (min-width: 768px) {
   .button-81 {
     font-size: 1.125rem;
     padding: 1rem 2rem;
   }
 }
-
-
+input[type="checkbox"].switch_1 {
+  font-size: 20px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 3.5em;
+  height: 1.5em;
+  background: #ddd;
+  border-radius: 3em;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+input[type="checkbox"].switch_1:checked {
+  background: rgb(253, 78, 78);
+}
+input[type="checkbox"].switch_1:after {
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+  left: 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+input[type="checkbox"].switch_1:checked:after {
+  left: calc(100% - 1.5em);
+}
 @mixin cross($size: 20px, $color: currentColor, $thickness: 1px) {
   margin: 0;
   padding: 0;
@@ -249,7 +290,6 @@ input:focus {
   position: relative;
   width: $size;
   height: $size;
-
   &:before,
   &:after {
     content: "";
@@ -261,20 +301,16 @@ input:focus {
     background: $color;
     border-radius: $thickness;
   }
-
   &:before {
     transform: rotate(45deg);
   }
-
   &:after {
     transform: rotate(-45deg);
   }
-
   span {
     display: block;
   }
 }
-
 // Example 1.
 .btn-close {
   margin: 0;
@@ -291,15 +327,16 @@ input:focus {
   cursor: pointer;
   transition: all 150ms;
   float: right;
-
   .icon-cross {
     @include cross(20px, #fff, 6px);
   }
-
   &:hover,
   &:focus {
     transform: rotateZ(90deg);
     background: rgb(253, 78, 78);
   }
 }
+
+
+
 </style>
