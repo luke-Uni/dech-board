@@ -4,7 +4,13 @@
 </div> -->
 
   <div class="menu-container">
-    <img src="../assets/1.png" alt="HeNan" id="logo" class="picture" />
+    <img
+      src="../assets/1.png"
+      alt="HeNan"
+      id="logo"
+      class="picture"
+      @click="this.$router.push('/')"
+    />
     <div class="navbar">
       <a @click="this.$router.push('/')">Home</a>
       <a @click="this.$router.push('/registeruser')">Register</a>

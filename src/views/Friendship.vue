@@ -24,7 +24,7 @@
     </ul>
   </div>
   <div class="right">
-    <button @click="getFriendList()">Upadte Friends</button>
+    <button @click="getFriendList()">Update Friends</button>
     <table>
       <thead>
         <tr>
@@ -41,7 +41,7 @@
           <td>{{ item.username1 }}</td>
           <td>{{ item.school }}</td>
           <td class="mange">
-            <button class="send-message" @click="addFriend(item)">Add</button>
+            <!-- <button class="send-message" @click="addFriend(item)">Add</button> -->
             <button class="delete" @click="deleteFriend(item)">Remove</button>
           </td>
         </tr>
@@ -178,6 +178,10 @@ export default {
   height: 2em;
 }
 
+#add:hover {
+  cursor: pointer;
+}
+
 .person {
   display: flex;
   align-items: center;
@@ -225,7 +229,12 @@ input {
 .getUserButton {
   height: 3em;
   background-color: coral;
+  border-radius: 5em;
   width: 7em;
+}
+
+.getUserButton:hover {
+  cursor: pointer;
 }
 
 .left {
