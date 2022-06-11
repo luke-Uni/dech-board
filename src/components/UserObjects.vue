@@ -1,18 +1,12 @@
 <template>
   <div id="app">
     <div class="postion"></div>
-    
+
     <section class="dropdown-wrapper">
-     
       <div
         @click="getAllUsers(), (isVisible = !isVisible)"
         class="selected-User"
       >
-         <div id="checkboxes">
-        <label >only friends</label>
-        <input type="checkbox" v-model="this.categories"/> {{this.categories}}
-      </div>
-      
         <!-- <span v-if="selectedUser">{{selectedUser.username}}</span>
         <span v-else>Search User</span> -->
         <span v-if="!selectedUser[0]">Select User</span>
@@ -33,14 +27,31 @@
           />
         </svg>
       </div>
-      
+
       <div
         :class="isVisible ? 'visible' : 'invisible'"
         class="dropdown-popover"
       >
+        <div class="friendsCheckbox" id="checkboxes">
+          <table>
+            <tr>
+              <td>
+                <label>only friends</label>
+              </td>
+              <td>
+                <input
+                class="friendsCheckbox2"
+                  type="checkbox"
+                  v-model="this.categories"
+                  @click="getFriends()"
+                />
+              </td>
+            </tr>
+          </table>
+        </div>
+
         <input
           v-model="searchQuery"
-
           type="text"
           placeholder="Search for User"
         />
@@ -77,7 +88,7 @@ export default {
       isVisible: false,
       search: "",
       users: [],
-      categories:""
+      categories: "",
     };
   },
   computed: {
@@ -98,7 +109,7 @@ export default {
       this.selectedUser[0] = user;
       this.isVisible = false;
     },
-    getAllUsers() {
+    async getAllUsers() {
       //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
@@ -106,8 +117,24 @@ export default {
       };
 
       let uri = "http://localhost:8090/getUsers";
-      if (this.categories){
-        uri="http://localhost:8090/friendsobject"
+      // if (this.categories){
+      //   uri="http://localhost:8090/friendsobject"
+      // }
+      let response = axios.get(uri, { headers: headers }).then((response) => {
+        this.users = response.data;
+      });
+      console.log(response);
+    },
+
+    async getFriends() {
+      //console.logs("workung (UserList funct.)");
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+      let uri = "http://localhost:8090/friendsobject";
+      if (this.categories) {
+        uri = "http://localhost:8090/getUsers";
       }
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.users = response.data;
@@ -168,6 +195,14 @@ export default {
       border: 2px solid lightgrey;
       font-size: 16px;
       padding-left: 8px;
+    }
+
+    .friendsCheckbox {
+      font-weight: bold;
+    }
+    .friendsCheckbox2{
+      width: 1em;
+      height: 2em;
     }
 
     .options {
