@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <div class="postion"></div>
-    
+
     <section class="dropdown-wrapper">
-     
       <div
         @click="getAllUsers(), (isVisible = !isVisible)"
         class="selected-User"
       >
-         <div id="checkboxes">
-        <label >only friends</label>
-        <input type="checkbox" v-model="this.categories"/> {{this.categories}}
-      </div>
-      
+        <div id="checkboxes">
+          <label>only friends</label>
+          <input type="checkbox" v-model="this.categories" />
+          {{ this.categories }}
+        </div>
+
         <!-- <span v-if="selectedUser">{{selectedUser.username}}</span>
         <span v-else>Search User</span> -->
         <span v-if="!selectedUser[0]">Select User</span>
@@ -33,14 +33,13 @@
           />
         </svg>
       </div>
-      
+
       <div
         :class="isVisible ? 'visible' : 'invisible'"
         class="dropdown-popover"
       >
         <input
           v-model="searchQuery"
-
           type="text"
           placeholder="Search for User"
         />
@@ -77,7 +76,7 @@ export default {
       isVisible: false,
       search: "",
       users: [],
-      categories:""
+      categories: "",
     };
   },
   computed: {
@@ -106,8 +105,8 @@ export default {
       };
 
       let uri = "http://localhost:8090/getUsers";
-      if (this.categories){
-        uri="http://localhost:8090/friendsobject"
+      if (this.categories) {
+        uri = "http://localhost:8090/friendsobject";
       }
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.users = response.data;

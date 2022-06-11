@@ -1,24 +1,29 @@
 <template>
   <LeftSideMenu />
   <div class="left">
-    <input type="text" v-model="search" />
+    <input type="text" v-model="searchQuery" />
     <button @click="getAllUsers()" class="getUserButton">Search</button>
     <ul>
+      <span v-if="filteredUser.length == 0">No Data Available</span>
       <!-- 渲染好友列表 -->
-      <li class="person" v-for="person in personArr" :key="person.id">
+      <li
+        class="person"
+        v-for="(user, index) in filteredUser"
+        :key="`user-${index}`"
+      >
         <div class="avatar">
           <!-- <img :src="person.src" :alt="person.des" /> -->
           <img
             src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4005587090,2408158268&fm=26&gp=0.jpg"
-            :alt="person.des"
+            :alt="Picture"
           />
         </div>
         <div class="content">
-          <div class="name">{{ person.username }}</div>
-          <div class="des">{{ person.email }}</div>
+          <div class="name">{{ user.username }}</div>
+          <div class="des">{{ user.email }}</div>
         </div>
         <div class="addButton">
-          <button id="add" @click="addFriend(person.username)">add</button>
+          <button id="add" @click="addFriend(user.username)">add</button>
         </div>
       </li>
     </ul>
@@ -65,6 +70,7 @@ export default {
   name: "Friendship",
   data() {
     return {
+      searchQuery: "",
       gridColumns: ["name", "school"],
       gridData: [],
       personArr: [
@@ -77,6 +83,9 @@ export default {
         },
       ],
     };
+  },
+  beforeMount() {
+    this.getAllUsers();
   },
   components: {
     LeftSideMenu,
@@ -161,7 +170,17 @@ export default {
     },
   },
   computed: {
-    // 获取好友列表
+    filteredUser() {
+      const query = this.searchQuery.toLowerCase();
+      if (this.searchQuery == "") {
+        return this.personArr;
+      }
+      return this.personArr.filter((user) => {
+        return Object.values(user).some((word) =>
+          String(word).toLowerCase().includes(query)
+        );
+      });
+    },
   },
 };
 </script>
@@ -169,6 +188,7 @@ export default {
 <style scoped>
 #refresh {
   width: 2em;
+  color: #6dfaff;
 }
 
 .addButton {
