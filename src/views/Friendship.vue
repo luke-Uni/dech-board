@@ -42,14 +42,14 @@
         </tr>
         <tr id="example">
           <th>User</th>
-          <th>Mail</th>
+          <th>Country</th>
           <th>Manage</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in gridData" :key="item">
-          <td>{{ item.username1 }}</td>
-          <td>{{ item.school }}</td>
+          <td>{{ item.username }}</td>
+          <td>{{ item.country }}</td>
           <td class="mange">
             <!-- <button class="send-message" @click="addFriend(item)">Add</button> -->
             <button class="delete" @click="deleteFriend(item)">Remove</button>
@@ -130,16 +130,16 @@ export default {
         authorization: localStorage.getItem("token"),
       };
 
-      let uri = "http://localhost:8090/friends";
+      let uri = "http://localhost:8090/friendsobject";
 
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.gridData = response.data;
         for (let i = 0; i < this.gridData.length; i++) {
-          if (
-            this.gridData[i].username1 == localStorage.getItem("currentuser")
-          ) {
-            this.gridData[i].username1 = response.data[i].username2;
-          }
+          // if (
+          //   this.gridData[i].username1 == localStorage.getItem("currentuser")
+          // ) {
+          //   this.gridData[i].username1 = response.data[i].username2;
+          // }
         }
         console.log(response.data);
       });
