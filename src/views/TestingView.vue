@@ -12,9 +12,11 @@
     
   </div>
   <button  @click="() => TogglePopup('buttonTrigger')">Click me</button>
+
+  <textarea name="" id="" cols="30" rows="10"></textarea>
   
-  <emoji-picker   v-if="popupTriggers.buttonTrigger"
-      :TogglePopup="() => TogglePopup2('buttonTrigger')"></emoji-picker>
+  <emoji-picker    v-if="popupTriggers.buttonTrigger"
+      :TogglePopup="() => TogglePopup2('buttonTrigger')" @click="emojiEvent()"></emoji-picker>
 
  
 
@@ -30,6 +32,8 @@ import { ref } from "vue";
 
 import "emoji-picker-element";
 
+//import insert from 'insert-text-2';
+
 // import CreateConversation from "@/components/CreateConversation.vue";
 
 export default {
@@ -41,6 +45,7 @@ export default {
     // CreateConversation
     
 },
+
 setup() {
     const popupTriggers = ref({
       buttonTrigger: false,
@@ -52,6 +57,9 @@ setup() {
 
     const TogglePopup2 = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+
+
+    
     };
 
     return {
@@ -70,6 +78,29 @@ data() {
 
 methods:{
 
+  emojiEvent(){
+    document.querySelector('emoji-picker')
+  .addEventListener('emoji-click', event => console.log(event.detail));
+
+  },
+
+ addEmoji(emoji) {
+
+      document.querySelector('emoji-picker')
+  .addEventListener('emoji-click', event => console.log(event.detail));
+
+      const textarea = this.$refs.textarea;
+      const cursorPosition = textarea.selectionEnd;
+      const start = this.value.substring(0, textarea.selectionStart);
+      const end = this.value.substring(textarea.selectionStart);
+      const text = start + emoji.native + end;
+      this.$emit("input", text);
+      textarea.focus();
+      this.$nextTick(() => {
+        textarea.selectionEnd = cursorPosition + emoji.native.length;
+      });
+    },
+  
 
 
 }
