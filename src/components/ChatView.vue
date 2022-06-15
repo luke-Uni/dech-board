@@ -65,7 +65,7 @@
     </div>
 
     <div class="own_user">
-      Create Conversation &nbsp; &nbsp; &nbsp;
+      Create a Conversation &nbsp; &nbsp; &nbsp;
       <!-- <button
         class="icon-btn add-btn"
         @click="() => TogglePopup('buttonTrigger')"
