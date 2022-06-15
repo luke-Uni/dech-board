@@ -35,7 +35,7 @@
           <table>
             <tr>
               <td>
-                <label>only friends</label>
+                <label>friends only</label>
               </td>
               <td>
                 <input
@@ -43,6 +43,30 @@
                   type="checkbox"
                   v-model="this.categories"
                   @click="getFriends()"
+                />
+              </td>
+            </tr>
+             <tr>
+              <td>
+                <label>Fra Uas Students</label>
+              </td>
+              <td>
+                <input
+                class="friendsCheckbox2"
+                  type="checkbox"
+                  v-model="this.german"
+                  @click="getGermanUsers()"
+                />
+              </td>
+               <td>
+                <label>Henan Students</label>
+              </td>
+              <td>
+                <input
+                class="friendsCheckbox2"
+                  type="checkbox"
+                  v-model="this.chinese"
+                  @click="getChineseUsers()"
                 />
               </td>
             </tr>
@@ -88,6 +112,8 @@ export default {
       search: "",
       users: [],
       categories: "",
+      german:"",
+      chinese:"",
     };
   },
   computed: {
@@ -133,6 +159,36 @@ export default {
       };
       let uri = "http://localhost:8090/friendsobject";
       if (this.categories) {
+        uri = "http://localhost:8090/getUsers";
+      }
+      let response = axios.get(uri, { headers: headers }).then((response) => {
+        this.users = response.data;
+      });
+      console.log(response);
+    },
+    async getGermanUsers() {
+      //console.logs("workung (UserList funct.)");
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+      let uri = "http://localhost:8090/getGermanUsers";
+      if (this.german) {
+        uri = "http://localhost:8090/getUsers";
+      }
+      let response = axios.get(uri, { headers: headers }).then((response) => {
+        this.users = response.data;
+      });
+      console.log(response);
+    },
+    async getChineseUsers() {
+      //console.logs("workung (UserList funct.)");
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+      let uri = "http://localhost:8090/getChineseUsers";
+      if (this.chinese) {
         uri = "http://localhost:8090/getUsers";
       }
       let response = axios.get(uri, { headers: headers }).then((response) => {
