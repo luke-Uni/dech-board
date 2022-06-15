@@ -13,6 +13,7 @@
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.2.0-beta1",
     "core-js": "^3.8.3",
+    "emoji-picker-element": "^1.11.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3"
   },

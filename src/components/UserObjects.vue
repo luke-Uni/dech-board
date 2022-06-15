@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div class="postion"></div>
-
     <section class="dropdown-wrapper">
       <div
         @click="getAllUsers(), (isVisible = !isVisible)"
@@ -151,7 +150,7 @@ export default {
       });
       console.log(response);
     },
-
+// filter fuction to get only friends 
     async getFriends() {
       //console.logs("workung (UserList funct.)");
       let headers = {
