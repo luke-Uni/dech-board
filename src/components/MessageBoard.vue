@@ -9,10 +9,10 @@
         <!-- Only Works 3 Times, before it shows nothing -->
         <div v-if="post.translationStatus==false">
 
-          <p class="postText" id="hello">{{ post.originalcontent }}</p>
+          <p class="postText" id="hello">{{ post.content }}</p>
         </div>
         <div  v-else-if="post.translationStatus==true">
-          <p class="postText" id="hello">{{ post.content }}</p>
+          <p class="postText" id="hello">{{ post.translatedcontent }}</p>
         </div>
         <p>
           <b> {{ post.creationDate }} </b>
@@ -33,12 +33,12 @@
           />
           <br>
           <br>
-          <img
+          <!-- <img
             src="@/assets/uk.png"
             alt="UK"
             @click="translateTextToEnglish(post)"
             id="ukLogo"
-          />
+          /> -->
         </p>
       </div>
     </div>
@@ -84,7 +84,12 @@ async translateTextToEnglish(text) {
             // "5d1d5e4d29msh38383cbe012e65dp1bc8ecjsnc81fe54408d0",
             //"702f1e51f7msh51a1f9495e6f4e0p10180bjsnba5626672929",
             //"21ec3285f4msh32c045448fe36e4p1c3201jsna2215e8d5989",
-            '6d5d589836mshca9bfd68f2db605p1818f9jsn5dec50884640',
+            //'6d5d589836mshca9bfd68f2db605p1818f9jsn5dec50884640',
+
+            //1. Account
+            '4371de4373msh1114eee19dec596p11b9fcjsn3422372a9f08'
+            //2. Account
+            //'e77a4f3011mshdde71ca27045aa4p15281fjsn9290da687ebd'
         },
         data: encodedParams,
       };
@@ -107,11 +112,11 @@ async translateTextToEnglish(text) {
           console.log("2 TranslationStatus: "+this.posts[i].translationStatus)
           if(this.posts[i].translationStatus == false){
             console.log("3 TranslationStatus: "+this.posts[i].translationStatus)
-            if(  this.posts[i].content != hallo1){
-              this.posts[i].originalcontent =  this.posts[i].content;
-            }
+            //if(  this.posts[i].content != hallo1){
+            //  this.posts[i].originalcontent =  this.posts[i].content;
+           // }
           //this.posts[i].originalcontent =  this.posts[i].content;
-          this.posts[i].content = hallo1;
+          this.posts[i].translatedcontent = hallo1;
           this.posts[i].translationStatus=true;}
           else{
             console.log(" 4TranslationStatus: "+this.posts[i].translationStatus)
@@ -144,8 +149,13 @@ async translateTextToGerman(text) {
             // "7d1b34c23cmshf82fb063e5c4987p15f36fjsn2ae75f209a89",
             // "5d1d5e4d29msh38383cbe012e65dp1bc8ecjsnc81fe54408d0",
             //"702f1e51f7msh51a1f9495e6f4e0p10180bjsnba5626672929",
-            "21ec3285f4msh32c045448fe36e4p1c3201jsna2215e8d5989",
+            //"21ec3285f4msh32c045448fe36e4p1c3201jsna2215e8d5989",
             //'6d5d589836mshca9bfd68f2db605p1818f9jsn5dec50884640',
+
+            //1. Account
+            '4371de4373msh1114eee19dec596p11b9fcjsn3422372a9f08'
+            //2. Account
+            //'e77a4f3011mshdde71ca27045aa4p15281fjsn9290da687ebd'
         },
         data: encodedParams,
       };
@@ -168,11 +178,11 @@ async translateTextToGerman(text) {
           console.log("2 TranslationStatus: "+this.posts[i].translationStatus)
           if(this.posts[i].translationStatus == false){
             console.log("3 TranslationStatus: "+this.posts[i].translationStatus)
-            if(  this.posts[i].content != hallo1){
-              this.posts[i].originalcontent =  this.posts[i].content;
-            }
+            // if(  this.posts[i].content != hallo1){
+            //   this.posts[i].originalcontent =  this.posts[i].content;
+            // }
           //this.posts[i].originalcontent =  this.posts[i].content;
-          this.posts[i].content = hallo1;
+          this.posts[i].translatedcontent = hallo1;
           this.posts[i].translationStatus=true;}
           else{
             console.log(" 4TranslationStatus: "+this.posts[i].translationStatus)
@@ -192,7 +202,7 @@ async translateTextToGerman(text) {
       const axios = require("axios");
 
       const encodedParams = new URLSearchParams();
-      encodedParams.append("q", text.content);
+      encodedParams.append("q", text.originalcontent);
       encodedParams.append("target", "zh-CN");
       encodedParams.append("source", "en");
 
@@ -206,8 +216,13 @@ async translateTextToGerman(text) {
             // "7d1b34c23cmshf82fb063e5c4987p15f36fjsn2ae75f209a89",
             // "5d1d5e4d29msh38383cbe012e65dp1bc8ecjsnc81fe54408d0",
             //"702f1e51f7msh51a1f9495e6f4e0p10180bjsnba5626672929",
-            "21ec3285f4msh32c045448fe36e4p1c3201jsna2215e8d5989",
+            //"21ec3285f4msh32c045448fe36e4p1c3201jsna2215e8d5989",
             //'6d5d589836mshca9bfd68f2db605p1818f9jsn5dec50884640',
+
+            //1. Account
+            '4371de4373msh1114eee19dec596p11b9fcjsn3422372a9f08'
+            //2. Account
+            //'e77a4f3011mshdde71ca27045aa4p15281fjsn9290da687ebd'
         },
         data: encodedParams,
       };
@@ -230,11 +245,11 @@ async translateTextToGerman(text) {
           console.log("2 TranslationStatus: "+this.posts[i].translationStatus)
           if(this.posts[i].translationStatus == false){
             console.log("3 TranslationStatus: "+this.posts[i].translationStatus)
-            if(  this.posts[i].content != hallo1){
-              this.posts[i].originalcontent =  this.posts[i].content;
-            }
+            // if(  this.posts[i].content != hallo1){
+            //   this.posts[i].originalcontent =  this.posts[i].content;
+            // }
           //this.posts[i].originalcontent =  this.posts[i].content;
-          this.posts[i].content = hallo1;
+          this.posts[i].translatedcontent = hallo1;
           this.posts[i].translationStatus=true;}
           else{
             console.log(" 4TranslationStatus: "+this.posts[i].translationStatus)
