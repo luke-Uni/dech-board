@@ -65,12 +65,22 @@
     </div>
 
     <div class="own_user">
-      <button
+      Create Conversation &nbsp; &nbsp; &nbsp;
+      <!-- <button
         class="icon-btn add-btn"
         @click="() => TogglePopup('buttonTrigger')"
-      >
-        Create Conversation
-      </button>
+      > -->
+      
+      <!-- </button> -->
+      <img
+            src="@/assets/edit.png"
+            alt="Create Conversation"
+           @click="() => TogglePopup('buttonTrigger')"
+            id="editIcon"
+            
+            
+          />
+
     </div>
     <CreateConversation
       v-if="popupTriggers.buttonTrigger"
@@ -403,6 +413,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+#editIcon{
+width: 2em;
+margin-right: -2em;
+margin-top: 1.4em;
+cursor: pointer;
+
+}
+
+
 .same {
   // display: flex;
   display: inline-block;
@@ -480,14 +500,17 @@ ul {
 .chat::-webkit-scrollbar-track {
   background-color: #f5f5f5;
   border-radius: 1em;
+  
 }
 .chat::-webkit-scrollbar {
   background-color: #f5f5f5;
   border-radius: 1em;
+  width: 1.6em;
 }
 .chat::-webkit-scrollbar-thumb {
   background-color: #e1e7f7;
   border-radius: 1em;
+  
 }
 // .chat::-webkit-scrollbar-button:single-button {
 //   background-color: #bbbbbb;
@@ -534,14 +557,17 @@ ul {
 .conversationview::-webkit-scrollbar-track {
   background-color: #f5f5f5;
   border-radius: 1em;
+  
 }
 .conversationview::-webkit-scrollbar {
   background-color: #f5f5f5;
   border-radius: 1em;
+  width: 2em;
 }
 .conversationview::-webkit-scrollbar-thumb {
   background-color: #e1e7f7;
   border-radius: 1em;
+  // width: 2em;
 }
 // .conversationview::-webkit-scrollbar-button:single-button {
 //   background-color: #bbbbbb;
@@ -811,7 +837,7 @@ input:focus {
 */
 .button-conversation {
   height: auto;
-  width: 27.7em;
+  width: 26.7em;
   // background: #f4f7ff;
     background: #faf9f9ce;
   text-align: center;
@@ -827,6 +853,7 @@ input:focus {
     border: 0.325em solid rgb(218, 218, 218);
   padding: 2em;
   font-family:"Arial";
+  cursor: pointer;
 }
 
 .button-conversation:hover {

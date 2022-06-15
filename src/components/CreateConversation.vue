@@ -306,6 +306,7 @@ margin-bottom: 2em;
   border-radius: 3px;
   display: inline-block;
   position: relative;
+  cursor: pointer;
 }
 
 .regular-checkbox:active,
