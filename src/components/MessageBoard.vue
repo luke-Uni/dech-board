@@ -6,17 +6,38 @@
         <h3 :class="[post.important ? 'importantTitle' : 'postTitle']">
           {{ post.title }}
         </h3>
-        <div>
+        <!-- Only Works 3 Times, before it shows nothing -->
+        <div v-if="post.translationStatus==false">
+
+          <p class="postText" id="hello">{{ post.originalcontent }}</p>
+        </div>
+        <div  v-else-if="post.translationStatus==true">
           <p class="postText" id="hello">{{ post.content }}</p>
         </div>
         <p>
           <b> {{ post.creationDate }} </b>
 
           <img
-            src="@/assets/chinaLogo.png"
+            src="@/assets/china.png"
             alt="ChinaLogo"
-            @click="translateText(post)"
+            @click="translateTextToChinese(post)"
             id="chinaLogo"
+          />
+          <br>
+          <br>
+          <img
+            src="@/assets/germany.png"
+            alt="Germany"
+            @click="translateTextToGerman(post)"
+            id="germanyLogo"
+          />
+          <br>
+          <br>
+          <img
+            src="@/assets/uk.png"
+            alt="UK"
+            @click="translateTextToEnglish(post)"
+            id="ukLogo"
           />
         </p>
       </div>
@@ -40,7 +61,132 @@ export default {
     this.getAllPosts();
   },
   methods: {
-    async translateText(text) {
+
+//Translate Text to English
+async translateTextToEnglish(text) {
+      let hallo1 = "";
+
+      const axios = require("axios");
+
+      const encodedParams = new URLSearchParams();
+      encodedParams.append("q", text.content);
+      encodedParams.append("target", "en");
+      encodedParams.append("source", "en");
+
+      const options = {
+        method: "POST",
+        url: "https://google-translate1.p.rapidapi.com/language/translate/v2",
+        headers: {
+          "content-type": "application/x-www-form-urlencoded",
+          "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
+          "X-RapidAPI-Key":
+            // "7d1b34c23cmshf82fb063e5c4987p15f36fjsn2ae75f209a89",
+            // "5d1d5e4d29msh38383cbe012e65dp1bc8ecjsnc81fe54408d0",
+            //"702f1e51f7msh51a1f9495e6f4e0p10180bjsnba5626672929",
+            //"21ec3285f4msh32c045448fe36e4p1c3201jsna2215e8d5989",
+            '6d5d589836mshca9bfd68f2db605p1818f9jsn5dec50884640',
+        },
+        data: encodedParams,
+      };
+
+      await axios
+        .request(options)
+        .then(function (response) {
+          hallo1 = response.data.data.translations[0].translatedText;
+          console.log(hallo1);
+          console.log(typeof hallo1);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+
+      for (let i = 0; i < this.posts.length; i++) {
+        console.log(this.posts[i].postId + " " + text.postId);
+        console.log("1 TranslationStatus: "+this.posts[i].translationStatus)
+        if (this.posts[i].postId == text.postId) {
+          console.log("2 TranslationStatus: "+this.posts[i].translationStatus)
+          if(this.posts[i].translationStatus == false){
+            console.log("3 TranslationStatus: "+this.posts[i].translationStatus)
+            if(  this.posts[i].content != hallo1){
+              this.posts[i].originalcontent =  this.posts[i].content;
+            }
+          //this.posts[i].originalcontent =  this.posts[i].content;
+          this.posts[i].content = hallo1;
+          this.posts[i].translationStatus=true;}
+          else{
+            console.log(" 4TranslationStatus: "+this.posts[i].translationStatus)
+            this.posts[i].translationStatus=false;
+        }
+        }
+        
+      }
+    },
+
+
+//Translate Text into German
+async translateTextToGerman(text) {
+      let hallo1 = "";
+
+      const axios = require("axios");
+
+      const encodedParams = new URLSearchParams();
+      encodedParams.append("q", text.content);
+      encodedParams.append("target", "de");
+      encodedParams.append("source", "en");
+
+      const options = {
+        method: "POST",
+        url: "https://google-translate1.p.rapidapi.com/language/translate/v2",
+        headers: {
+          "content-type": "application/x-www-form-urlencoded",
+          "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
+          "X-RapidAPI-Key":
+            // "7d1b34c23cmshf82fb063e5c4987p15f36fjsn2ae75f209a89",
+            // "5d1d5e4d29msh38383cbe012e65dp1bc8ecjsnc81fe54408d0",
+            //"702f1e51f7msh51a1f9495e6f4e0p10180bjsnba5626672929",
+            "21ec3285f4msh32c045448fe36e4p1c3201jsna2215e8d5989",
+            //'6d5d589836mshca9bfd68f2db605p1818f9jsn5dec50884640',
+        },
+        data: encodedParams,
+      };
+
+      await axios
+        .request(options)
+        .then(function (response) {
+          hallo1 = response.data.data.translations[0].translatedText;
+          console.log(hallo1);
+          console.log(typeof hallo1);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+
+      for (let i = 0; i < this.posts.length; i++) {
+        console.log(this.posts[i].postId + " " + text.postId);
+        console.log("1 TranslationStatus: "+this.posts[i].translationStatus)
+        if (this.posts[i].postId == text.postId) {
+          console.log("2 TranslationStatus: "+this.posts[i].translationStatus)
+          if(this.posts[i].translationStatus == false){
+            console.log("3 TranslationStatus: "+this.posts[i].translationStatus)
+            if(  this.posts[i].content != hallo1){
+              this.posts[i].originalcontent =  this.posts[i].content;
+            }
+          //this.posts[i].originalcontent =  this.posts[i].content;
+          this.posts[i].content = hallo1;
+          this.posts[i].translationStatus=true;}
+          else{
+            console.log(" 4TranslationStatus: "+this.posts[i].translationStatus)
+            this.posts[i].translationStatus=false;
+        }
+        }
+        
+      }
+    },
+
+
+
+    //Translate into Chinese
+    async translateTextToChinese(text) {
       let hallo1 = "";
 
       const axios = require("axios");
@@ -59,8 +205,9 @@ export default {
           "X-RapidAPI-Key":
             // "7d1b34c23cmshf82fb063e5c4987p15f36fjsn2ae75f209a89",
             // "5d1d5e4d29msh38383cbe012e65dp1bc8ecjsnc81fe54408d0",
-            // "702f1e51f7msh51a1f9495e6f4e0p10180bjsnba5626672929",
+            //"702f1e51f7msh51a1f9495e6f4e0p10180bjsnba5626672929",
             "21ec3285f4msh32c045448fe36e4p1c3201jsna2215e8d5989",
+            //'6d5d589836mshca9bfd68f2db605p1818f9jsn5dec50884640',
         },
         data: encodedParams,
       };
@@ -78,9 +225,23 @@ export default {
 
       for (let i = 0; i < this.posts.length; i++) {
         console.log(this.posts[i].postId + " " + text.postId);
+        console.log("1 TranslationStatus: "+this.posts[i].translationStatus)
         if (this.posts[i].postId == text.postId) {
+          console.log("2 TranslationStatus: "+this.posts[i].translationStatus)
+          if(this.posts[i].translationStatus == false){
+            console.log("3 TranslationStatus: "+this.posts[i].translationStatus)
+            if(  this.posts[i].content != hallo1){
+              this.posts[i].originalcontent =  this.posts[i].content;
+            }
+          //this.posts[i].originalcontent =  this.posts[i].content;
           this.posts[i].content = hallo1;
+          this.posts[i].translationStatus=true;}
+          else{
+            console.log(" 4TranslationStatus: "+this.posts[i].translationStatus)
+            this.posts[i].translationStatus=false;
         }
+        }
+        
       }
     },
     //To display all the Posts we need to get them from the Server
@@ -100,6 +261,13 @@ export default {
           console.log(response);
 
           this.posts = response.data;
+
+          for(var i=0; i<this.posts.length;i++){
+            this.posts[i].translationStatus= false;
+            this.posts[i].originalcontent=  this.posts[i].content;
+            console.log(this.posts[i].translationStatus)
+            console.log(this.posts[i].originalcontent)
+          }
         })
         //save all Posts locally
         .then((data) => (this.user = data))
@@ -115,9 +283,41 @@ export default {
 
 <style scoped>
 #chinaLogo {
+  
   width: 2em;
-  float: right;
+  /* float: right; */
+  margin-left: 47em;
+   margin-bottom: -2em;
+   position: absolute;
+   cursor: pointer;
+   /* box-shadow: 1px 1px 1px #888888; */
+   
+    border: 1.6px solid gray;
 }
+
+#germanyLogo {
+  width: 2em;
+  
+  
+  
+  margin-left: 47em;
+   
+   position: absolute;
+   cursor: pointer;
+   border: 1.6px solid gray;
+}
+
+#ukLogo {
+  width: 2em;
+  
+   margin-bottom: -2em;
+  /* float: right; */
+  margin-left: 47em;
+  position: absolute;
+  cursor: pointer;
+  border: 1.6px solid gray;
+}
+
 .postComplete {
   margin: auto;
   width: 50em;
@@ -131,7 +331,7 @@ export default {
   align-items: flex-start;
   border: 1px solid black;
   width: 100%;
-  height: 10em;
+  height: 11em;
   margin-bottom: 2%;
   border-radius: 10px;
   box-shadow: 5px 10px 8px #888888;
@@ -143,7 +343,7 @@ export default {
   align-items: flex-start;
   border: 1px solid rgb(220, 46, 46);
   width: 100%;
-  height: 10em;
+  height: 11em;
   margin-bottom: 2%;
   border-radius: 10px;
   box-shadow: 5px 10px 18px red;

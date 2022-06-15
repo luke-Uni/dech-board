@@ -1,10 +1,7 @@
 
 <template>
   <div>
-    <div class="selecteduser" >
-     
-
-    </div>
+    <div class="selecteduser"></div>
 
     <div class="chat">
       <div class="messages_view">
@@ -31,9 +28,7 @@
       <div class="send_messages"></div>
     </div>
     <div class="insert_message">
-      <div>
-       
-      </div>
+      <div></div>
       <div class="popup">
         <div class="popup-inner">
           <slot />
@@ -70,18 +65,27 @@
     </div>
 
     <div class="own_user">
-      
-      <button
+      Create a Conversation &nbsp; &nbsp; &nbsp;
+      <!-- <button
         class="icon-btn add-btn"
         @click="() => TogglePopup('buttonTrigger')"
-      >
-      Create  Conversation
-      </button>
-    </div>
-    <CreateConversation  v-if="popupTriggers.buttonTrigger"
-      :TogglePopup="() => TogglePopup2('buttonTrigger')"/>
+      > -->
+      
+      <!-- </button> -->
+      <img
+            src="@/assets/edit.png"
+            alt="Create Conversation"
+           @click="() => TogglePopup('buttonTrigger')"
+            id="editIcon"
+            
+            
+          />
 
-    
+    </div>
+    <CreateConversation
+      v-if="popupTriggers.buttonTrigger"
+      :TogglePopup="() => TogglePopup2('buttonTrigger')"
+    />
 
     <div class="conversationview">
       <!--<div class="own_user">
@@ -92,31 +96,29 @@
         v-for="conversation in conversations"
         :key="conversation.id"
       >
-        
         <button
           class="button-conversation"
           v-on:click="getAllPosts(conversation.id)"
           role="button"
         >
-        <!-- {{conversation.conversationParticipants}} -->
+         
 
-        <table>
-          
-          <div class="TextNextToEachOther"
-            v-for="name in conversation.conversationParticipants"
-            :key="name"
-          >
+          <ul>
             
-          <span class="same">{{ name }}</span>  
-             
-          </div>
-     
-        </table>
-          
-          <p>{{ conversation.lastMessageSend }}</p>
-        </button>
+            <li
+              class="same"
+              v-for="name in conversation.conversationParticipants"
+              :key="name"
+            >
+              
+              {{ name }},&nbsp; 
+              
+            </li>
+           
+          </ul>
 
-        
+          <!-- <p>{{ conversation.lastMessageSend }}</p> -->
+        </button>
       </div>
     </div>
   </div>
@@ -127,11 +129,9 @@ import axios from "axios";
 import { ref } from "vue";
 import CreateConversation from "./CreateConversation.vue";
 
-
 export default {
-
-  components:{
-CreateConversation
+  components: {
+    CreateConversation,
   },
   setup() {
     const popupTriggers = ref({
@@ -141,7 +141,7 @@ CreateConversation
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
-  
+
     const TogglePopup2 = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
@@ -160,7 +160,6 @@ CreateConversation
       content: "",
       users: [],
       recipients: [],
-      
     };
   },
   computed: {},
@@ -274,8 +273,20 @@ CreateConversation
         .catch((e) => {
           this.errors.push(e);
         });
+        var index;
+        console.log(this.conversations.length)
+    //Delete own username from chat participants
 
-      console.log(response.constructor);
+        for(var i =0; i<this.conversations.length;i++){
+          console.log(this.conversations[i])
+          if(this.conversations[i].conversationParticipants.includes(localStorage.getItem("currentuser"))){
+             index = this.conversations[i].conversationParticipants.indexOf(localStorage.getItem("currentuser"));
+            this.conversations[i].conversationParticipants.splice(index, 1);
+            console.log("Indeex: "+index);
+          }
+        }
+
+      console.log(response);
     },
     //Create a message
     async createMessage() {
@@ -403,10 +414,26 @@ CreateConversation
 
 <style scoped lang="scss">
 
-.Same{
-  display:inline-block;
+#editIcon{
+width: 2em;
+margin-right: -2em;
+margin-top: 1.4em;
+cursor: pointer;
+
 }
 
+
+.same {
+  // display: flex;
+  display: inline-block;
+  font-weight: bold;
+  color: #707070;
+  font-family:"Arial";
+}
+
+ul {
+  list-style: none;
+}
 
 .insert_message {
   position: absolute;
@@ -473,14 +500,17 @@ CreateConversation
 .chat::-webkit-scrollbar-track {
   background-color: #f5f5f5;
   border-radius: 1em;
+  
 }
 .chat::-webkit-scrollbar {
   background-color: #f5f5f5;
   border-radius: 1em;
+  width: 1.6em;
 }
 .chat::-webkit-scrollbar-thumb {
   background-color: #e1e7f7;
   border-radius: 1em;
+  
 }
 // .chat::-webkit-scrollbar-button:single-button {
 //   background-color: #bbbbbb;
@@ -517,7 +547,7 @@ CreateConversation
   margin-top: 6em;
   margin-left: 25em;
   border: 1px solid #f4f7ff;
-  
+
   //box-shadow: 2px 2px 7px rgb(198, 227, 255);
 
   overflow: scroll;
@@ -527,14 +557,17 @@ CreateConversation
 .conversationview::-webkit-scrollbar-track {
   background-color: #f5f5f5;
   border-radius: 1em;
+  
 }
 .conversationview::-webkit-scrollbar {
   background-color: #f5f5f5;
   border-radius: 1em;
+  width: 2em;
 }
 .conversationview::-webkit-scrollbar-thumb {
   background-color: #e1e7f7;
   border-radius: 1em;
+  // width: 2em;
 }
 // .conversationview::-webkit-scrollbar-button:single-button {
 //   background-color: #bbbbbb;
@@ -804,25 +837,31 @@ input:focus {
 */
 .button-conversation {
   height: auto;
-  width: 27.7em;
-  background: #f4f7ff;
+  width: 26.7em;
+  // background: #f4f7ff;
+    background: #faf9f9ce;
   text-align: center;
-  //border-radius: 1.3125em;
-  margin-top: 0em;
+  border-radius: 1.3125em;
+  margin-top: 1em;
   margin-left: 0.4em;
   margin-bottom: -0.5em;
   //box-shadow: 2px 2px 7px rgb(198, 227, 255);
- column-count:2; column-gap: 20px;
-  
-  border: 1px solid rgb(230, 230, 230);
-  padding: 1.2em;
+  column-count: 2;
+  column-gap: 20px;
+
+  // border: 1px solid rgb(230, 230, 230);
+    border: 0.325em solid rgb(218, 218, 218);
+  padding: 2em;
+  font-family:"Arial";
+  cursor: pointer;
 }
 
 .button-conversation:hover {
   background-color: rgba(102, 194, 247, 0.25);
   color: rgb(0, 0, 0);
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
-  border: 1px solid rgb(230, 230, 230);
+  // border: 1px solid rgb(230, 230, 230);
+  border: 0.325em solid rgb(218, 218, 218);
   //border-radius: 1.3125em;
 }
 
