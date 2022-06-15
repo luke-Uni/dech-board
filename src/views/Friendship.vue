@@ -23,7 +23,20 @@
           <div class="des">{{ user.email }}</div>
         </div>
         <div class="addButton">
-          <button id="add" @click="addFriend(user.username)">add</button>
+          <button
+            v-if="user.isFriend"
+            id="delete"
+            @click="deleteFriend(user.username)"
+          >
+            Remove
+          </button>
+          <button
+            v-else-if="!user.isFriend"
+            id="add"
+            @click="addFriend(user.username)"
+          >
+            Add
+          </button>
         </div>
       </li>
     </ul>
@@ -38,21 +51,23 @@
     <table>
       <thead>
         <tr>
-          <th colspan="3">friendList</th>
+          <th colspan="3">Friends</th>
         </tr>
         <tr id="example">
           <th>User</th>
-          <th>Mail</th>
+          <th>Country</th>
           <th>Manage</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in gridData" :key="item">
-          <td>{{ item.username1 }}</td>
-          <td>{{ item.school }}</td>
+          <td>{{ item.username }}</td>
+          <td>{{ item.country }}</td>
           <td class="mange">
             <!-- <button class="send-message" @click="addFriend(item)">Add</button> -->
-            <button class="delete" @click="deleteFriend(item)">Remove</button>
+            <button class="delete" @click="deleteFriend(item.username)">
+              Remove
+            </button>
           </td>
         </tr>
       </tbody>
@@ -92,16 +107,45 @@ export default {
   },
   methods: {
     // 搜索好友
-    getAllUsers() {
+    async getAllUsers() {
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
       let uri = "http://localhost:8090/getUsers";
-      let response = axios.get(uri, { headers: headers }).then((response) => {
-        this.personArr = response.data;
-      });
+      let response = await axios
+        .get(uri, { headers: headers })
+        .then((response) => {
+          this.personArr = response.data;
+        });
+
+      let headers2 = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+
+      let uri2 = "http://localhost:8090/friendsobject";
+
+      let response2 = await axios
+        .get(uri2, { headers: headers2 })
+        .then((response2) => {
+          this.gridData = response2.data;
+          console.log(response2.data);
+        });
+
+      for (let i = 0; i < this.personArr.length; i++) {
+        this.personArr[i]["isFriend"] = false;
+        for (let j = 0; j < this.gridData.length; j++) {
+          if (this.personArr[i].username == this.gridData[j].username) {
+            this.personArr[i]["isFriend"] = true;
+            console.log("Yessir");
+            console.log(this.personArr[i].isFriend);
+          }
+        }
+      }
+
       console.log(response);
+      console.log(response2);
     },
     // 添加好友
     addFriend(friend) {
@@ -130,16 +174,16 @@ export default {
         authorization: localStorage.getItem("token"),
       };
 
-      let uri = "http://localhost:8090/friends";
+      let uri = "http://localhost:8090/friendsobject";
 
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.gridData = response.data;
         for (let i = 0; i < this.gridData.length; i++) {
-          if (
-            this.gridData[i].username1 == localStorage.getItem("currentuser")
-          ) {
-            this.gridData[i].username1 = response.data[i].username2;
-          }
+          // if (
+          //   this.gridData[i].username1 == localStorage.getItem("currentuser")
+          // ) {
+          //   this.gridData[i].username1 = response.data[i].username2;
+          // }
         }
         console.log(response.data);
       });
@@ -147,7 +191,7 @@ export default {
     },
 
     deleteFriend(userFriend) {
-      let friendName = userFriend.username1;
+      let friendName = userFriend;
 
       let headers = {
         "Content-Type": "application/json",
@@ -208,6 +252,19 @@ export default {
 }
 
 #add:hover {
+  cursor: pointer;
+}
+
+#delete {
+  margin-right: 3em;
+  background-color: #f4202e;
+  border-radius: 3em;
+  display: inline-block;
+  width: 7em;
+  height: 2em;
+}
+
+#delete:hover {
   cursor: pointer;
 }
 
