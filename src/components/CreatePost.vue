@@ -2,7 +2,6 @@
   <br />
   <div class="popup">
     <div class="popup-inner">
-      
       <button
         type="button"
         class="btn-close popup-close"
@@ -11,7 +10,6 @@
         <span class="icon-cross"></span>
         <span class="visually-hidden"></span>
       </button>
-     
 
       <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
 
@@ -24,6 +22,26 @@
             v-model="username"
           />  -->
 
+          <div
+            @dragenter.prevent="toggleActive"
+            @dragleave.prevent="toggleActive"
+            @dragover.prevent
+            @drop.prevent="toggleActive"
+            :class="{ 'active-dropzone': active }"
+            class="dropzone"
+          >
+            <span>Drag or Drop File</span>
+            <span>OR</span>
+            <label for="dropzoneFile">Select File</label>
+            <input
+              type="file"
+              ref="uploadImage"
+              accept="image/*"
+              id="dropzoneFile"
+              class="dropzoneFile"
+              @change="onImageUpload()"
+            />
+          </div>
           <input
             type="text"
             class="input-title"
@@ -87,6 +105,8 @@ import axios from "axios";
 export default {
   name: "CreatePost",
 
+  components: {},
+
   props: ["TogglePopup"],
 
   data() {
@@ -95,6 +115,7 @@ export default {
       title: "",
       content: "",
       important: "",
+      imgPost: null,
       // posts:[]
     };
   },
@@ -104,10 +125,34 @@ export default {
     //    MessageBoard.getAllPosts();
     // },
 
+    onImageUpload() {
+      let file = this.$refs.uploadImage.files[0];
+      this.imgPost = new FormData();
+      this.imgPost.append("image", file);
+    },
+
+    startupload(postTitle) {
+      axios({
+        url: "http://localhost:8090/posts/image",
+        method: "Post",
+        data: this.imgPost,
+        headers: {
+          authorization: localStorage.getItem("token"),
+          //post Title should be changed to postId
+          postId: postTitle,
+          "Content-Type": "multipart/form-data",
+          Accept: "application/json",
+        },
+      }).then((response) => {
+        console.log(JSON.stringify(response.data));
+      });
+    },
+
     async createPost() {
       let result = await axios.post(
         //"https://dech-board-rest-server.herokuapp.com/posts/create",
         "http://localhost:8090/posts/create",
+
         {
           //username: this.username,
           title: this.title,
@@ -117,20 +162,20 @@ export default {
         {
           headers: {
             authorization: localStorage.getItem("token"),
+            "Content-Type": undefined,
           },
         }
       );
 
       console.log(result);
+
+      this.startupload(this.title);
     },
   },
 };
 </script>
 
 <style scoped lang="scss" >
-
-
-
 .popup {
   position: fixed;
   top: 0;
@@ -193,7 +238,8 @@ input:focus {
   padding-bottom: 10em;
 }
 .message-create {
-  width: 50em;
+  width: 60em;
+  height: 15em;
   padding: 1em;
   margin: auto;
   -webkit-border-radius: 10px;
@@ -337,6 +383,38 @@ input[type="checkbox"].switch_1:checked:after {
   }
 }
 
-
-
+//Dropzone css
+.dropzone {
+  margin: 1em;
+  float: left;
+  margin-right: 0em;
+  width: 15em;
+  height: 10em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 16px;
+  border: 2px dashed #56d8ff;
+  background-color: #fff;
+  transition: 0.3s ease all;
+  label {
+    padding: 8px 12px;
+    color: #fff;
+    background-color: #56d8ff;
+    transition: 0.3s ease all;
+  }
+  input {
+    display: none;
+  }
+}
+.active-dropzone {
+  color: #fff;
+  border-color: #fff;
+  background-color: #56d8ff;
+  label {
+    background-color: #fff;
+    color: #56d8ff;
+  }
+}
 </style>

@@ -7,13 +7,13 @@
           {{ post.title }}
         </h3>
         <!-- Only Works 3 Times, before it shows nothing -->
-        <div v-if="post.translationStatus==false">
-
+        <div v-if="post.translationStatus == false">
           <p class="postText" id="hello">{{ post.content }}</p>
         </div>
-        <div  v-else-if="post.translationStatus==true">
+        <div v-else-if="post.translationStatus == true">
           <p class="postText" id="hello">{{ post.translatedcontent }}</p>
         </div>
+
         <p>
           <b> {{ post.creationDate }} </b>
 
@@ -23,16 +23,16 @@
             @click="translateTextToChinese(post)"
             id="chinaLogo"
           />
-          <br>
-          <br>
+          <br />
+          <br />
           <img
             src="@/assets/germany.png"
             alt="Germany"
             @click="translateTextToGerman(post)"
             id="germanyLogo"
           />
-          <br>
-          <br>
+          <br />
+          <br />
           <!-- <img
             src="@/assets/uk.png"
             alt="UK"
@@ -41,6 +41,7 @@
           /> -->
         </p>
       </div>
+      <img src="http://localhost:8090/image/xb xfbxb" alt="picture" />
     </div>
   </div>
 </template>
@@ -52,6 +53,7 @@ export default {
   data() {
     return {
       posts: [],
+      postPictureTest: "",
       postcontent: "",
       kallo: "hallo ich bin rachid",
       postTranslated: false,
@@ -61,9 +63,8 @@ export default {
     this.getAllPosts();
   },
   methods: {
-
-//Translate Text to English
-async translateTextToEnglish(text) {
+    //Translate Text to English
+    async translateTextToEnglish(text) {
       let hallo1 = "";
 
       const axios = require("axios");
@@ -87,9 +88,9 @@ async translateTextToEnglish(text) {
             //'6d5d589836mshca9bfd68f2db605p1818f9jsn5dec50884640',
 
             //1. Account
-            '4371de4373msh1114eee19dec596p11b9fcjsn3422372a9f08'
-            //2. Account
-            //'e77a4f3011mshdde71ca27045aa4p15281fjsn9290da687ebd'
+            "4371de4373msh1114eee19dec596p11b9fcjsn3422372a9f08",
+          //2. Account
+          //'e77a4f3011mshdde71ca27045aa4p15281fjsn9290da687ebd'
         },
         data: encodedParams,
       };
@@ -107,29 +108,33 @@ async translateTextToEnglish(text) {
 
       for (let i = 0; i < this.posts.length; i++) {
         console.log(this.posts[i].postId + " " + text.postId);
-        console.log("1 TranslationStatus: "+this.posts[i].translationStatus)
+        console.log("1 TranslationStatus: " + this.posts[i].translationStatus);
         if (this.posts[i].postId == text.postId) {
-          console.log("2 TranslationStatus: "+this.posts[i].translationStatus)
-          if(this.posts[i].translationStatus == false){
-            console.log("3 TranslationStatus: "+this.posts[i].translationStatus)
+          console.log(
+            "2 TranslationStatus: " + this.posts[i].translationStatus
+          );
+          if (this.posts[i].translationStatus == false) {
+            console.log(
+              "3 TranslationStatus: " + this.posts[i].translationStatus
+            );
             //if(  this.posts[i].content != hallo1){
             //  this.posts[i].originalcontent =  this.posts[i].content;
-           // }
-          //this.posts[i].originalcontent =  this.posts[i].content;
-          this.posts[i].translatedcontent = hallo1;
-          this.posts[i].translationStatus=true;}
-          else{
-            console.log(" 4TranslationStatus: "+this.posts[i].translationStatus)
-            this.posts[i].translationStatus=false;
+            // }
+            //this.posts[i].originalcontent =  this.posts[i].content;
+            this.posts[i].translatedcontent = hallo1;
+            this.posts[i].translationStatus = true;
+          } else {
+            console.log(
+              " 4TranslationStatus: " + this.posts[i].translationStatus
+            );
+            this.posts[i].translationStatus = false;
+          }
         }
-        }
-        
       }
     },
 
-
-//Translate Text into German
-async translateTextToGerman(text) {
+    //Translate Text into German
+    async translateTextToGerman(text) {
       let hallo1 = "";
 
       const axios = require("axios");
@@ -153,9 +158,9 @@ async translateTextToGerman(text) {
             //'6d5d589836mshca9bfd68f2db605p1818f9jsn5dec50884640',
 
             //1. Account
-            '4371de4373msh1114eee19dec596p11b9fcjsn3422372a9f08'
-            //2. Account
-            //'e77a4f3011mshdde71ca27045aa4p15281fjsn9290da687ebd'
+            "4371de4373msh1114eee19dec596p11b9fcjsn3422372a9f08",
+          //2. Account
+          //'e77a4f3011mshdde71ca27045aa4p15281fjsn9290da687ebd'
         },
         data: encodedParams,
       };
@@ -173,27 +178,30 @@ async translateTextToGerman(text) {
 
       for (let i = 0; i < this.posts.length; i++) {
         console.log(this.posts[i].postId + " " + text.postId);
-        console.log("1 TranslationStatus: "+this.posts[i].translationStatus)
+        console.log("1 TranslationStatus: " + this.posts[i].translationStatus);
         if (this.posts[i].postId == text.postId) {
-          console.log("2 TranslationStatus: "+this.posts[i].translationStatus)
-          if(this.posts[i].translationStatus == false){
-            console.log("3 TranslationStatus: "+this.posts[i].translationStatus)
+          console.log(
+            "2 TranslationStatus: " + this.posts[i].translationStatus
+          );
+          if (this.posts[i].translationStatus == false) {
+            console.log(
+              "3 TranslationStatus: " + this.posts[i].translationStatus
+            );
             // if(  this.posts[i].content != hallo1){
             //   this.posts[i].originalcontent =  this.posts[i].content;
             // }
-          //this.posts[i].originalcontent =  this.posts[i].content;
-          this.posts[i].translatedcontent = hallo1;
-          this.posts[i].translationStatus=true;}
-          else{
-            console.log(" 4TranslationStatus: "+this.posts[i].translationStatus)
-            this.posts[i].translationStatus=false;
+            //this.posts[i].originalcontent =  this.posts[i].content;
+            this.posts[i].translatedcontent = hallo1;
+            this.posts[i].translationStatus = true;
+          } else {
+            console.log(
+              " 4TranslationStatus: " + this.posts[i].translationStatus
+            );
+            this.posts[i].translationStatus = false;
+          }
         }
-        }
-        
       }
     },
-
-
 
     //Translate into Chinese
     async translateTextToChinese(text) {
@@ -220,9 +228,9 @@ async translateTextToGerman(text) {
             //'6d5d589836mshca9bfd68f2db605p1818f9jsn5dec50884640',
 
             //1. Account
-            '4371de4373msh1114eee19dec596p11b9fcjsn3422372a9f08'
-            //2. Account
-            //'e77a4f3011mshdde71ca27045aa4p15281fjsn9290da687ebd'
+            "4371de4373msh1114eee19dec596p11b9fcjsn3422372a9f08",
+          //2. Account
+          //'e77a4f3011mshdde71ca27045aa4p15281fjsn9290da687ebd'
         },
         data: encodedParams,
       };
@@ -240,23 +248,28 @@ async translateTextToGerman(text) {
 
       for (let i = 0; i < this.posts.length; i++) {
         console.log(this.posts[i].postId + " " + text.postId);
-        console.log("1 TranslationStatus: "+this.posts[i].translationStatus)
+        console.log("1 TranslationStatus: " + this.posts[i].translationStatus);
         if (this.posts[i].postId == text.postId) {
-          console.log("2 TranslationStatus: "+this.posts[i].translationStatus)
-          if(this.posts[i].translationStatus == false){
-            console.log("3 TranslationStatus: "+this.posts[i].translationStatus)
+          console.log(
+            "2 TranslationStatus: " + this.posts[i].translationStatus
+          );
+          if (this.posts[i].translationStatus == false) {
+            console.log(
+              "3 TranslationStatus: " + this.posts[i].translationStatus
+            );
             // if(  this.posts[i].content != hallo1){
             //   this.posts[i].originalcontent =  this.posts[i].content;
             // }
-          //this.posts[i].originalcontent =  this.posts[i].content;
-          this.posts[i].translatedcontent = hallo1;
-          this.posts[i].translationStatus=true;}
-          else{
-            console.log(" 4TranslationStatus: "+this.posts[i].translationStatus)
-            this.posts[i].translationStatus=false;
+            //this.posts[i].originalcontent =  this.posts[i].content;
+            this.posts[i].translatedcontent = hallo1;
+            this.posts[i].translationStatus = true;
+          } else {
+            console.log(
+              " 4TranslationStatus: " + this.posts[i].translationStatus
+            );
+            this.posts[i].translationStatus = false;
+          }
         }
-        }
-        
       }
     },
     //To display all the Posts we need to get them from the Server
@@ -277,11 +290,17 @@ async translateTextToGerman(text) {
 
           this.posts = response.data;
 
-          for(var i=0; i<this.posts.length;i++){
-            this.posts[i].translationStatus= false;
-            this.posts[i].originalcontent=  this.posts[i].content;
-            console.log(this.posts[i].translationStatus)
-            console.log(this.posts[i].originalcontent)
+          for (var i = 0; i < this.posts.length; i++) {
+            this.posts[i].translationStatus = false;
+            this.posts[i].originalcontent = this.posts[i].content;
+            if (this.posts[i].image != null) {
+              console.log("Is not null");
+              this.posts[i].image =
+                "data:image/png;base64," +
+                "http://localhost:8090/image/xb xfbxb";
+            }
+            console.log(this.posts[i].translationStatus);
+            console.log(this.posts[i].originalcontent);
           }
         })
         //save all Posts locally
@@ -298,34 +317,31 @@ async translateTextToGerman(text) {
 
 <style scoped>
 #chinaLogo {
-  
   width: 2em;
   /* float: right; */
   margin-left: 47em;
-   margin-bottom: -2em;
-   position: absolute;
-   cursor: pointer;
-   /* box-shadow: 1px 1px 1px #888888; */
-   
-    border: 1.6px solid gray;
+  margin-bottom: -2em;
+  position: absolute;
+  cursor: pointer;
+  /* box-shadow: 1px 1px 1px #888888; */
+
+  border: 1.6px solid gray;
 }
 
 #germanyLogo {
   width: 2em;
-  
-  
-  
+
   margin-left: 47em;
-   
-   position: absolute;
-   cursor: pointer;
-   border: 1.6px solid gray;
+
+  position: absolute;
+  cursor: pointer;
+  border: 1.6px solid gray;
 }
 
 #ukLogo {
   width: 2em;
-  
-   margin-bottom: -2em;
+
+  margin-bottom: -2em;
   /* float: right; */
   margin-left: 47em;
   position: absolute;

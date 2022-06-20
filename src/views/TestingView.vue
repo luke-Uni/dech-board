@@ -4,31 +4,27 @@
 
     <h1>Only Test Components</h1>
     <h2>bla</h2>
-    <InvitationLink />
+    <DropZone class="dropZone" />
     <!-- <CreateConversation/> -->
 
-    <UserObjects/>
-
-    
+    <UserObjects />
   </div>
-  <button  @click="() => TogglePopup('buttonTrigger')">Click me</button>
+  <button @click="() => TogglePopup('buttonTrigger')">Click me</button>
 
   <textarea name="" id="" cols="30" rows="10"></textarea>
-  
-  <emoji-picker    v-if="popupTriggers.buttonTrigger"
-      :TogglePopup="() => TogglePopup2('buttonTrigger')" @click="emojiEvent()"></emoji-picker>
 
- 
-
+  <emoji-picker
+    v-if="popupTriggers.buttonTrigger"
+    :TogglePopup="() => TogglePopup2('buttonTrigger')"
+    @click="emojiEvent()"
+  ></emoji-picker>
 </template>
 <script>
-import InvitationLink from "@/components/InvitationLink.vue";
-
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
 import UserObjects from "@/components/UserObjects.vue";
+import DropZone from "@/components/DropZone.vue";
 //import axios from "axios";
 import { ref } from "vue";
-
 
 import "emoji-picker-element";
 
@@ -38,15 +34,12 @@ import "emoji-picker-element";
 
 export default {
   components: {
-    InvitationLink,
     LeftSideMenu,
-    
+    DropZone,
     UserObjects,
-    // CreateConversation
-    
-},
+  },
 
-setup() {
+  setup() {
     const popupTriggers = ref({
       buttonTrigger: false,
     });
@@ -57,9 +50,6 @@ setup() {
 
     const TogglePopup2 = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
-
-
-    
     };
 
     return {
@@ -69,25 +59,23 @@ setup() {
     };
   },
 
-data() {
-    
+  data() {
     return {
-      togglePopu:"false"
+      togglePopu: "false",
     };
   },
 
-methods:{
+  methods: {
+    emojiEvent() {
+      document
+        .querySelector("emoji-picker")
+        .addEventListener("emoji-click", (event) => console.log(event.detail));
+    },
 
-  emojiEvent(){
-    document.querySelector('emoji-picker')
-  .addEventListener('emoji-click', event => console.log(event.detail));
-
-  },
-
- addEmoji(emoji) {
-
-      document.querySelector('emoji-picker')
-  .addEventListener('emoji-click', event => console.log(event.detail));
+    addEmoji(emoji) {
+      document
+        .querySelector("emoji-picker")
+        .addEventListener("emoji-click", (event) => console.log(event.detail));
 
       const textarea = this.$refs.textarea;
       const cursorPosition = textarea.selectionEnd;
@@ -100,13 +88,12 @@ methods:{
         textarea.selectionEnd = cursorPosition + emoji.native.length;
       });
     },
-  
-
-
-}
-
+  },
 };
 </script>
 
 <style scoped>
+.dropZone {
+  margin-left: 30em;
+}
 </style>

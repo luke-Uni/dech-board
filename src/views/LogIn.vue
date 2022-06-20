@@ -22,7 +22,7 @@
       />
       <br />
       <button @click="loginUser()" id="loginButton">Log In</button>
-      <p id="feedback"></p>
+      <p id="feedback">{{ feedback }}</p>
       <div class="bottom"></div>
       <button @click="goToRegister()" id="registerButton">
         Create new account
@@ -62,21 +62,32 @@ export default {
         })
         .then((result) => {
           console.log(result);
-
+          console.log(result.status);
           this.tokens[0] = result.data;
 
           //Bug
           localStorage.setItem("token", this.tokens[0].token);
           localStorage.setItem("currentuser", this.username);
           // localStorage.setItem("username", this.username);
+
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          // error.response can be null
+          if (error.response && error.response.status === 417) {
+            this.feedback = "Wrong Password!";
+            console.log(error.response.data.error);
+          } else if (error.response && error.response.status === 400) {
+            this.feedback = "User does not Exist!";
+            console.log(error.response.data.error);
+          }
         });
 
       //     console.log(result.data);
       //     console.log(result.constructor);
       //    // console.log(result.Object.data);
       //     console.log(result.constructor.data);
-      console.log(result);
-      this.$router.push("/");
+      console.log(result.status);
     },
 
     checkPassword(password) {
@@ -204,6 +215,9 @@ export default {
   box-shadow: 0px 0px 5px rgba(146, 196, 224, 255);
   color: white;
 }
+#loginButton:hover {
+  cursor: pointer;
+}
 
 #registerButton {
   border-radius: 20px;
@@ -214,6 +228,10 @@ export default {
   color: white;
   border: 0ch white solid;
   box-shadow: 0px 0px 5px rgba(30, 203, 58, 255);
+}
+
+#registerButton:hover {
+  cursor: pointer;
 }
 
 input {
@@ -228,5 +246,9 @@ input {
   margin-top: 10%;
   border-top: 2px solid black;
   margin-bottom: 10%;
+}
+
+#feedback {
+  color: red;
 }
 </style>
