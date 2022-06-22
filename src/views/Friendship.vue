@@ -51,7 +51,7 @@
     <table>
       <thead>
         <tr>
-          <th colspan="3">Friends</th>
+          <th colspan="3">Contact List</th>
         </tr>
         <tr id="example">
           <th>User</th>
@@ -155,7 +155,7 @@ export default {
         authorization: localStorage.getItem("token"),
       };
 
-      let uri = "http://localhost:8090/friendship/request";
+      let uri = "http://localhost:8090/contact/request";
 
       console.log(friendName);
 
@@ -202,7 +202,7 @@ export default {
         friendName = userFriend.username2;
       }
 
-      let uri = "http://localhost:8090/friends/" + friendName;
+      let uri = "http://localhost:8090/contact/" + friendName;
 
       let response = axios
         .delete(uri, { headers: headers })

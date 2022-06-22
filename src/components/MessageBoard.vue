@@ -41,7 +41,7 @@
           /> -->
         </p>
       </div>
-      <img src="http://localhost:8090/image/xb xfbxb" alt="picture" />
+      <img id="imgPost" :src="post.image" alt="picture" />
     </div>
   </div>
 </template>
@@ -57,6 +57,7 @@ export default {
       postcontent: "",
       kallo: "hallo ich bin rachid",
       postTranslated: false,
+      test: "",
     };
   },
   beforeMount() {
@@ -282,7 +283,7 @@ export default {
       }
     },
     //To display all the Posts we need to get them from the Server
-    getAllPosts() {
+    async getAllPosts() {
       console.log("I am in the getAllPosts function");
 
       let headers = {
@@ -292,7 +293,7 @@ export default {
 
       let uri = "http://localhost:8090/posts/getall";
       //send synchron Request to Server
-      let response = axios
+      let response = await axios
         .get(uri, { headers: headers })
         .then((response) => {
           console.log(response);
@@ -302,14 +303,8 @@ export default {
           for (var i = 0; i < this.posts.length; i++) {
             this.posts[i].translationStatus = false;
             this.posts[i].originalcontent = this.posts[i].content;
-            if (this.posts[i].image != null) {
-              console.log("Is not null");
-              this.posts[i].image =
-                "data:image/png;base64," +
-                "http://localhost:8090/image/xb xfbxb";
-            }
-            console.log(this.posts[i].translationStatus);
-            console.log(this.posts[i].originalcontent);
+            // console.log(this.posts[i].translationStatus);
+            // console.log(this.posts[i].originalcontent);
           }
         })
         //save all Posts locally
@@ -318,7 +313,27 @@ export default {
           this.errors.push(e);
         });
 
+      this.getImages();
+
       console.log(response.constructor);
+    },
+
+    async getImages() {
+      for (var i = 0; i < this.posts.length; i++) {
+        this.posts[i].translationStatus = false;
+        this.posts[i].originalcontent = this.posts[i].content;
+        if (this.posts[i].image != null) {
+          console.log("Is not null");
+          let res = await axios.get(
+            "http://localhost:8090/image/" + this.posts[i].title
+          );
+          console.log(res.data);
+          let img = res.data;
+          this.posts[i].image = "data:image/png;base64," + img;
+        }
+        // console.log(this.posts[i].translationStatus);
+        // console.log(this.posts[i].originalcontent);
+      }
     },
 
     //Translate into Chinese
@@ -486,5 +501,9 @@ export default {
   margin-left: 3em;
   margin-top: 5%;
   margin-right: 3em;
+}
+
+#imgPost {
+  width: 10em;
 }
 </style>
