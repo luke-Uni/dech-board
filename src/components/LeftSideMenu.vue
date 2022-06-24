@@ -12,12 +12,13 @@
       @click="this.$router.push('/')"
     />
     <div class="navbar">
-      <a @click="this.$router.push('/')">Home</a>
+      <a @click="this.$router.push('/')">MessageBoard</a>
       <a @click="this.$router.push('/registeruser')">Register</a>
       <a @click="this.$router.push('/login')">Login</a>
       <a @click="this.$router.push('/test')">Test</a>
-      <a @click="this.$router.push('/userlistview')">Userlist</a>
-      <a @click="this.$router.push('/conversationview')">conversation</a>
+      <a @click="this.$router.push('/userlistview')">User</a>
+      <a @click="this.$router.push('/conversationview')">Conversation</a>
+      <a @click="this.$router.push('/contacts')">Contacts</a>
     </div>
   </div>
 </template>
