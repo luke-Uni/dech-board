@@ -62,6 +62,7 @@ export default {
   },
   beforeMount() {
     this.getAllPosts();
+    localStorage.setItem("conversationID", "");
   },
   methods: {
     //Translate Text to English
