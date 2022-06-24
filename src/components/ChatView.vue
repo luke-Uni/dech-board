@@ -133,6 +133,11 @@ export default {
   components: {
     CreateConversation,
   },
+   created(){
+    this.interval = setInterval(() =>{
+      this.getAllPostsNoParameter()},2000)
+  },
+
   setup() {
     const popupTriggers = ref({
       buttonTrigger: false,
