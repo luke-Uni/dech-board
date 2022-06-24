@@ -10,21 +10,7 @@
                 {{ post.title }}
               </h3>
             </th>
-            <img
-              src="@/assets/china.png"
-              alt="ChinaLogo"
-              @click="translateTextToChinese(post)"
-              id="chinaLogo"
-              class="countryLogo"
-            />
-
-            <img
-              src="@/assets/germany.png"
-              alt="Germany"
-              @click="translateTextToGerman(post)"
-              id="germanyLogo"
-              class="countryLogo"
-            />
+            
           </tr>
           <tr>
             <td>
@@ -48,6 +34,26 @@
               >
                 <p class="postText" id="hello">{{ post.translatedcontent }}</p>
               </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img
+              src="@/assets/china.png"
+              alt="ChinaLogo"
+              @click="translateTextToChinese(post)"
+              id="chinaLogo"
+              class="countryLogo"
+            />
+            <br>
+            
+            <img
+              src="@/assets/germany.png"
+              alt="Germany"
+              @click="translateTextToGerman(post)"
+              id="germanyLogo"
+              class="countryLogo"
+            />
             </td>
           </tr>
         </table>
