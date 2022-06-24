@@ -3,34 +3,60 @@
     <div class="postComplete" v-for="post in posts" :key="post.username">
       <h4 class="postUsername">{{ post.username }}</h4>
       <div :class="[post.important ? 'importantPost' : 'postsInside']">
-        <h3 :class="[post.important ? 'importantTitle' : 'postTitle']">
-          {{ post.title }}
-        </h3>
+        <table>
+          <tr>
+            <th>
+              <h3 :class="[post.important ? 'importantTitle' : 'postTitle']">
+                {{ post.title }}
+              </h3>
+            </th>
+            <img
+              src="@/assets/china.png"
+              alt="ChinaLogo"
+              @click="translateTextToChinese(post)"
+              id="chinaLogo"
+              class="countryLogo"
+            />
+
+            <img
+              src="@/assets/germany.png"
+              alt="Germany"
+              @click="translateTextToGerman(post)"
+              id="germanyLogo"
+              class="countryLogo"
+            />
+          </tr>
+          <tr>
+            <td>
+              <img
+                v-if="post.hasImage"
+                id="imgPost"
+                :src="post.image"
+                alt="picture"
+              />
+            </td>
+            <td>
+              <div
+                v-if="post.translationStatus == false"
+                :class="[post.hasImage ? 'TextWithImage' : '']"
+              >
+                <p class="postText" id="hello">{{ post.content }}</p>
+              </div>
+              <div
+                v-else-if="post.translationStatus == true"
+                class="classPostDiv"
+              >
+                <p class="postText" id="hello">{{ post.translatedcontent }}</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+
         <!-- Only Works 3 Times, before it shows nothing -->
-        <div v-if="post.translationStatus == false">
-          <p class="postText" id="hello">{{ post.content }}</p>
-        </div>
-        <div v-else-if="post.translationStatus == true">
-          <p class="postText" id="hello">{{ post.translatedcontent }}</p>
-        </div>
 
         <p>
           <b> {{ post.creationDate }} </b>
 
-          <img
-            src="@/assets/china.png"
-            alt="ChinaLogo"
-            @click="translateTextToChinese(post)"
-            id="chinaLogo"
-          />
-          <br />
-          <br />
-          <img
-            src="@/assets/germany.png"
-            alt="Germany"
-            @click="translateTextToGerman(post)"
-            id="germanyLogo"
-          />
           <br />
           <br />
           <!-- <img
@@ -41,7 +67,6 @@
           /> -->
         </p>
       </div>
-      <img id="imgPost" :src="post.image" alt="picture" />
     </div>
   </div>
 </template>
@@ -331,6 +356,9 @@ export default {
           console.log(res.data);
           let img = res.data;
           this.posts[i].image = "data:image/png;base64," + img;
+          this.posts[i]["hasImage"] = true;
+        } else {
+          this.posts[i]["hasImage"] = false;
         }
         // console.log(this.posts[i].translationStatus);
         // console.log(this.posts[i].originalcontent);
@@ -460,8 +488,8 @@ export default {
   margin: 0%;
   align-items: flex-start;
   border: 1px solid black;
-  width: 100%;
-  height: 11em;
+
+  height: 20em;
   margin-bottom: 2%;
   border-radius: 10px;
   box-shadow: 5px 10px 8px #888888;
@@ -481,7 +509,7 @@ export default {
 
 .postTitle {
   float: left;
-  margin: 0%;
+  margin: 0em;
   margin-left: 1em;
   margin-top: 0.5em;
 }
@@ -497,14 +525,26 @@ export default {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-.postText {
-  margin: 0%;
-  margin-left: 3em;
-  margin-top: 5%;
-  margin-right: 3em;
+.TextWithImage {
+  width: 25em;
+  height: 10em;
+  background-color: #e9f3fd;
+  border-radius: 10%;
+  padding: 1em;
+}
+
+td {
+  align-content: flex-start;
 }
 
 #imgPost {
-  width: 10em;
+  width: 20em;
+  border-radius: 15%;
+  margin-left: 1em;
+  border: solid rgb(255, 255, 255);
+}
+
+.countryLogo {
+  margin-left: 2em;
 }
 </style>
