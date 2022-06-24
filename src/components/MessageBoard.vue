@@ -10,20 +10,19 @@
                 {{ post.title }}
               </h3>
             </th>
-            
           </tr>
           <tr>
-            <td>
-              <img
+            <!-- <td> -->
+            <img
               src="@/assets/china.png"
               alt="ChinaLogo"
               @click="translateTextToChinese(post)"
               id="chinaLogo"
               class="countryLogo"
             />
-            <br>
-            <br>
-            
+            <br />
+            <br />
+
             <img
               src="@/assets/germany.png"
               alt="Germany"
@@ -31,10 +30,10 @@
               id="germanyLogo"
               class="countryLogo"
             />
-            </td>
+            <!-- </td> -->
           </tr>
-          <br>
-          <br>
+          <br />
+          <br />
           <tr>
             <td>
               <img
@@ -59,11 +58,10 @@
               </div>
             </td>
           </tr>
-          
         </table>
 
         <!-- Only Works 3 Times, before it shows nothing -->
-
+        
         <p>
           <b> {{ post.creationDate }} </b>
 
@@ -457,8 +455,8 @@ export default {
   width: 2em;
   /* float: right; */
   margin-left: 47em;
-  margin-bottom: 1em;
-  
+  margin-top: -2em;
+
   position: absolute;
   cursor: pointer;
   /* box-shadow: 1px 1px 1px #888888; */
@@ -468,6 +466,7 @@ export default {
 
 #germanyLogo {
   width: 2em;
+  margin-top: -2em;
 
   margin-left: 47em;
 
@@ -511,8 +510,8 @@ export default {
   margin: 0%;
   align-items: flex-start;
   border: 1px solid rgb(220, 46, 46);
-  width: 100%;
-  height: 11em;
+  /* width: 100%; */
+  height: 20em;
   margin-bottom: 2%;
   border-radius: 10px;
   box-shadow: 5px 10px 18px red;
@@ -537,6 +536,7 @@ export default {
   margin-bottom: 1em;
 }
 .TextWithImage {
+  margin-top: -2em;
   width: 25em;
   height: 10em;
   background-color: #e9f3fd;
@@ -552,7 +552,10 @@ td {
   width: 20em;
   border-radius: 15%;
   margin-left: 1em;
+  margin-top: -2em;
   border: solid rgb(255, 255, 255);
+  max-height: 14em;
+  max-width: 20em;
 }
 
 .countryLogo {
