@@ -15,6 +15,29 @@
           <tr>
             <td>
               <img
+              src="@/assets/china.png"
+              alt="ChinaLogo"
+              @click="translateTextToChinese(post)"
+              id="chinaLogo"
+              class="countryLogo"
+            />
+            <br>
+            <br>
+            
+            <img
+              src="@/assets/germany.png"
+              alt="Germany"
+              @click="translateTextToGerman(post)"
+              id="germanyLogo"
+              class="countryLogo"
+            />
+            </td>
+          </tr>
+          <br>
+          <br>
+          <tr>
+            <td>
+              <img
                 v-if="post.hasImage"
                 id="imgPost"
                 :src="post.image"
@@ -36,27 +59,7 @@
               </div>
             </td>
           </tr>
-          <tr>
-            <td>
-              <img
-              src="@/assets/china.png"
-              alt="ChinaLogo"
-              @click="translateTextToChinese(post)"
-              id="chinaLogo"
-              class="countryLogo"
-            />
-            <br>
-            <br>
-            
-            <img
-              src="@/assets/germany.png"
-              alt="Germany"
-              @click="translateTextToGerman(post)"
-              id="germanyLogo"
-              class="countryLogo"
-            />
-            </td>
-          </tr>
+          
         </table>
 
         <!-- Only Works 3 Times, before it shows nothing -->
