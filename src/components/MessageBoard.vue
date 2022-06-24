@@ -36,13 +36,8 @@
           <br />
           <br />
           <tr>
-            <td style="width: 25em; align-content: center">
-              <img
-                v-if="post.hasImage"
-                id="imgPost"
-                :src="post.image"
-                alt="picture"
-              />
+            <td v-if="post.hasImage" style="width: 25em; align-content: center">
+              <img id="imgPost" :src="post.image" alt="picture" />
             </td>
 
             <td>
@@ -64,19 +59,16 @@
 
         <!-- Only Works 3 Times, before it shows nothing -->
 
-        <p>
-          <b> {{ post.creationDate }} </b>
-
-          <br />
-          <br />
-          <!-- <img
+        <!-- <img
             src="@/assets/uk.png"
             alt="UK"
             @click="translateTextToEnglish(post)"
             id="ukLogo"
           /> -->
-        </p>
       </div>
+      <b> {{ post.creationDate }} </b>
+      <br />
+      <br />
     </div>
   </div>
 </template>

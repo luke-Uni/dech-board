@@ -57,10 +57,10 @@ const routes = [
     component: UserConfirmation,
   },
   {
-    path: "/friendship",
+    path: "/contacts",
     name: "Friendship",
     component: Friendship,
-  }
+  },
 ];
 
 const router = createRouter({
