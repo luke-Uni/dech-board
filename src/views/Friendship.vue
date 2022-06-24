@@ -332,6 +332,24 @@ input {
   float: left;
   margin-left: 20em;
   margin-right: 5em;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.left::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 1em;
+}
+
+.left::-webkit-scrollbar {
+  background-color: #f5f5f5;
+  border-radius: 1em;
+  width: 1.6em;
+}
+
+.left::-webkit-scrollbar-thumb {
+  background-color: #e1e7f7;
+  border-radius: 1em;
 }
 
 .right {

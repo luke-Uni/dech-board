@@ -70,17 +70,14 @@
         class="icon-btn add-btn"
         @click="() => TogglePopup('buttonTrigger')"
       > -->
-      
+
       <!-- </button> -->
       <img
-            src="@/assets/edit.png"
-            alt="Create Conversation"
-           @click="() => TogglePopup('buttonTrigger')"
-            id="editIcon"
-            
-            
-          />
-
+        src="@/assets/edit.png"
+        alt="Create Conversation"
+        @click="() => TogglePopup('buttonTrigger')"
+        id="editIcon"
+      />
     </div>
     <CreateConversation
       v-if="popupTriggers.buttonTrigger"
@@ -101,20 +98,14 @@
           v-on:click="getAllPosts(conversation.id)"
           role="button"
         >
-         
-
           <ul>
-            
             <li
               class="same"
               v-for="name in conversation.conversationParticipants"
               :key="name"
             >
-              
-              {{ name }},&nbsp; 
-              
+              {{ name }},&nbsp;
             </li>
-           
           </ul>
 
           <!-- <p>{{ conversation.lastMessageSend }}</p> -->
@@ -133,9 +124,10 @@ export default {
   components: {
     CreateConversation,
   },
-   created(){
-    this.interval = setInterval(() =>{
-      this.getAllPostsNoParameter()},2000)
+  created() {
+    this.interval = setInterval(() => {
+      this.getAllPostsNoParameter();
+    }, 2000);
   },
 
   setup() {
@@ -278,18 +270,24 @@ export default {
         .catch((e) => {
           this.errors.push(e);
         });
-        var index;
-        console.log(this.conversations.length)
-    //Delete own username from chat participants
+      var index;
+      console.log(this.conversations.length);
+      //Delete own username from chat participants
 
-        for(var i =0; i<this.conversations.length;i++){
-          console.log(this.conversations[i])
-          if(this.conversations[i].conversationParticipants.includes(localStorage.getItem("currentuser"))){
-             index = this.conversations[i].conversationParticipants.indexOf(localStorage.getItem("currentuser"));
-            this.conversations[i].conversationParticipants.splice(index, 1);
-            console.log("Indeex: "+index);
-          }
+      for (var i = 0; i < this.conversations.length; i++) {
+        console.log(this.conversations[i]);
+        if (
+          this.conversations[i].conversationParticipants.includes(
+            localStorage.getItem("currentuser")
+          )
+        ) {
+          index = this.conversations[i].conversationParticipants.indexOf(
+            localStorage.getItem("currentuser")
+          );
+          this.conversations[i].conversationParticipants.splice(index, 1);
+          console.log("Indeex: " + index);
         }
+      }
 
       console.log(response);
     },
@@ -418,22 +416,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-#editIcon{
-width: 2em;
-margin-right: -2em;
-margin-top: 1.4em;
-cursor: pointer;
-
+#editIcon {
+  width: 2em;
+  margin-right: -2em;
+  margin-top: 1.4em;
+  cursor: pointer;
 }
-
 
 .same {
   // display: flex;
   display: inline-block;
   font-weight: bold;
   color: #707070;
-  font-family:"Arial";
+  font-family: "Arial";
 }
 
 ul {
@@ -505,7 +500,6 @@ ul {
 .chat::-webkit-scrollbar-track {
   background-color: #f5f5f5;
   border-radius: 1em;
-  
 }
 .chat::-webkit-scrollbar {
   background-color: #f5f5f5;
@@ -515,7 +509,6 @@ ul {
 .chat::-webkit-scrollbar-thumb {
   background-color: #e1e7f7;
   border-radius: 1em;
-  
 }
 // .chat::-webkit-scrollbar-button:single-button {
 //   background-color: #bbbbbb;
@@ -562,7 +555,6 @@ ul {
 .conversationview::-webkit-scrollbar-track {
   background-color: #f5f5f5;
   border-radius: 1em;
-  
 }
 .conversationview::-webkit-scrollbar {
   background-color: #f5f5f5;
@@ -844,7 +836,7 @@ input:focus {
   height: auto;
   width: 26.7em;
   // background: #f4f7ff;
-    background: #faf9f9ce;
+  background: #faf9f9ce;
   text-align: center;
   border-radius: 1.3125em;
   margin-top: 1em;
@@ -855,9 +847,9 @@ input:focus {
   column-gap: 20px;
 
   // border: 1px solid rgb(230, 230, 230);
-    border: 0.325em solid rgb(218, 218, 218);
+  border: 0.325em solid rgb(218, 218, 218);
   padding: 2em;
-  font-family:"Arial";
+  font-family: "Arial";
   cursor: pointer;
 }
 
