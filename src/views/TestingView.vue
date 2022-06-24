@@ -8,6 +8,7 @@
     <!-- <CreateConversation/> -->
 
     <UserObjects />
+    <MessageBoardSelection/>
   </div>
   <button @click="() => TogglePopup('buttonTrigger')">Click me</button>
 
@@ -26,6 +27,8 @@ import DropZone from "@/components/DropZone.vue";
 //import axios from "axios";
 import { ref } from "vue";
 
+import MessageBoardSelection from "@/components/MessageBoardSelection.vue";
+
 import "emoji-picker-element";
 
 //import insert from 'insert-text-2';
@@ -37,6 +40,7 @@ export default {
     LeftSideMenu,
     DropZone,
     UserObjects,
+    MessageBoardSelection
   },
 
   setup() {

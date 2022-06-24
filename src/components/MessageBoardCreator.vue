@@ -13,14 +13,10 @@
         </button>
         <br />
         <div class="MessageBoardName">
-          <!-- <input
-            type="text"
-            v-model="MessageBoardName"
-            placeholder="New Messageboard"
-          /> -->
+          
         <div class="form__group field">
-  <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
-  <label for="name" class="form__label">MessageBoard</label>
+  <input type="input" class="form__field" v-model="messageBoardName" placeholder="Name" name="name" id='name' required />
+  <label for="name" class="form__label" >MessageBoard</label>
 </div>
 <br>
         </div>
@@ -59,20 +55,14 @@
         <div class="insert_message">
           <div class="message-create">
             <div class="message-textarea-div">
-              <!-- <textarea
-                class="textarea-content"
-                name="content"
-                rows="3"
-                cols="55"
-                v-model="content"
-                placeholder="Your first Message..."
-              >
-              </textarea> -->
+              
+              
+
               <div class="send-button-div">
                 <button
                   class="button-81"
                   v-on:click="
-                    createMessage();
+                    createMessageBoard();
                     TogglePopupSecond();
                   "
                   role="button"
@@ -99,14 +89,12 @@ export default {
   props: ["TogglePopupSecond"],
   data() {
     return {
-      // conversations: [],
-      // messages: [],
-      //recipient: "",
-      MessageBoardName: "",
+      
+      messageBoardName: "",
       users: [],
-      recipients: [],
+      participants: [],
       admin: "",
-      //checkedNames:[],
+      
     };
   },
   computed: {},
@@ -118,12 +106,12 @@ export default {
   methods: {
     selectUsers(id) {
       //in here you can check what ever condition  before append to array.
-      if (this.recipients.includes(id)) {
-        const index = this.recipients.indexOf(id);
+      if (this.participants.includes(id)) {
+        const index = this.participants.indexOf(id);
 
-        this.recipients.splice(index, 1);
+        this.participants.splice(index, 1);
       } else {
-        this.recipients.push(id);
+        this.participants.push(id);
       }
     },
 
@@ -150,16 +138,16 @@ export default {
     },
 
     //Create a message
-    async createMessage() {
+    async createMessageBoard() {
       //this.recipients.push(this.recipient);
-      console.log(this.recipients);
-      if (this.recipients[0]) {
+      console.log(this.participants);
+      if (this.participants[0]) {
         let result = await axios.post(
-          "http://localhost:8090/message/create",
+          "http://localhost:8090/messageboard/create",
           {
             //recipient: this.recipient,
-            recipients: this.recipients,
-            content: this.content,
+            participants: this.participants,
+            messageBoardName: this.messageBoardName,
           },
           {
             headers: {

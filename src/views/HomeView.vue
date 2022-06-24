@@ -1,6 +1,10 @@
 <template>
 
+
+
 <LeftSideMenu />
+
+<MessageBoardSelection/>
 
 <button
         class="icon-btn add-btn"
@@ -42,6 +46,7 @@
 
     ></AlluserList>
   </div>
+  
 </template>
 
 <script>
@@ -51,7 +56,7 @@ import MessageBoard from "@/components/MessageBoard.vue";
 import CreatePost from "@/components/CreatePost.vue";
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
 import MessageBoardCreator from "@/components/MessageBoardCreator.vue";
-
+import MessageBoardSelection from "@/components/MessageBoardSelection.vue";
 
 export default {
   setup() {
@@ -105,7 +110,8 @@ const popupTriggersSecond = ref({
     MessageBoard,
     CreatePost,
     LeftSideMenu,
-    MessageBoardCreator
+    MessageBoardCreator,
+    MessageBoardSelection
 },
   methods: {},
 };
