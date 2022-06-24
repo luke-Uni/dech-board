@@ -25,7 +25,7 @@
 
     
     
-    <MessageBoard />
+    <MessageBoard/>
 
     <div class="" style="text-align: center; margin-top: 5%">
       <button
