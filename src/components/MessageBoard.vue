@@ -10,14 +10,20 @@
                 {{ post.title }}
               </h3>
             </th>
-            <img
+            
+          </tr>
+          <tr>
+            <td>
+              <img
               src="@/assets/china.png"
               alt="ChinaLogo"
               @click="translateTextToChinese(post)"
               id="chinaLogo"
               class="countryLogo"
             />
-
+            <br>
+            <br>
+            
             <img
               src="@/assets/germany.png"
               alt="Germany"
@@ -25,7 +31,10 @@
               id="germanyLogo"
               class="countryLogo"
             />
+            </td>
           </tr>
+          <br>
+          <br>
           <tr>
             <td>
               <img
@@ -50,6 +59,7 @@
               </div>
             </td>
           </tr>
+          
         </table>
 
         <!-- Only Works 3 Times, before it shows nothing -->
@@ -450,7 +460,8 @@ export default {
   width: 2em;
   /* float: right; */
   margin-left: 47em;
-  margin-bottom: -2em;
+  margin-bottom: 1em;
+  
   position: absolute;
   cursor: pointer;
   /* box-shadow: 1px 1px 1px #888888; */

@@ -1,6 +1,21 @@
 <template>
 
 <LeftSideMenu />
+
+<button
+        class="icon-btn add-btn"
+        @click="() => TogglePopupSecond('buttonTrigger')"
+      >
+        <div class="add-icon"></div>
+        <div class="btn-txt">Add Post</div>
+      </button>
+    
+
+    <MessageBoardCreator
+      v-if="popupTriggersSecond.buttonTrigger"
+      :TogglePopupSecond="() => TogglePopup2Second('buttonTrigger')"
+    />
+
   <div class="home">
 
 
@@ -35,10 +50,25 @@ import { ref } from "vue";
 import MessageBoard from "@/components/MessageBoard.vue";
 import CreatePost from "@/components/CreatePost.vue";
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
+import MessageBoardCreator from "@/components/MessageBoardCreator.vue";
 
 
 export default {
   setup() {
+
+const popupTriggersSecond = ref({
+    buttonTriggerSecond:false,
+
+});
+
+  const TogglePopupSecond = (trigger) => {
+    popupTriggersSecond.value[trigger] = !popupTriggersSecond.value[trigger];
+  };
+
+  const TogglePopup2Second = (trigger) =>{
+     popupTriggersSecond.value[trigger] = !popupTriggersSecond.value[trigger];
+  }
+
     const popupTriggers = ref({
       buttonTrigger: false,
     });
@@ -55,13 +85,27 @@ export default {
       popupTriggers,
       TogglePopup,
       TogglePopup2,
+      TogglePopupSecond,
+      TogglePopup2Second,
+      popupTriggersSecond
     };
+  //
+  
+  
+  
+
+
+
   },
+
+  
+
 
   components: {
     MessageBoard,
     CreatePost,
-    LeftSideMenu
+    LeftSideMenu,
+    MessageBoardCreator
 },
   methods: {},
 };
