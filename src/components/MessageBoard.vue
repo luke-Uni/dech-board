@@ -20,6 +20,7 @@
               id="chinaLogo"
               class="countryLogo"
             />
+
             <br />
             <br />
 
@@ -35,7 +36,7 @@
           <br />
           <br />
           <tr>
-            <td>
+            <td style="width: 25em; align-content: center">
               <img
                 v-if="post.hasImage"
                 id="imgPost"
@@ -43,6 +44,7 @@
                 alt="picture"
               />
             </td>
+
             <td>
               <div
                 v-if="post.translationStatus == false"
@@ -61,7 +63,7 @@
         </table>
 
         <!-- Only Works 3 Times, before it shows nothing -->
-        
+
         <p>
           <b> {{ post.creationDate }} </b>
 
@@ -547,18 +549,14 @@ export default {
   padding: 1em;
 }
 
-td {
-  align-content: flex-start;
-}
-
 #imgPost {
-  max-height: 25em;
-  max-width: 20em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 15%;
-  margin-left: 1em;
-  margin-top: -2em;
+  margin-top: -3em;
   border: solid rgb(255, 255, 255);
-  max-height: 14em;
+  max-height: 13em;
   max-width: 20em;
 }
 
