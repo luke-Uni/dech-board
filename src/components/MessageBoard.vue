@@ -46,6 +46,7 @@
               class="countryLogo"
             />
             <br>
+            <br>
             
             <img
               src="@/assets/germany.png"
@@ -453,7 +454,8 @@ export default {
   width: 2em;
   /* float: right; */
   margin-left: 47em;
-  margin-bottom: -2em;
+  margin-bottom: 1em;
+  
   position: absolute;
   cursor: pointer;
   /* box-shadow: 1px 1px 1px #888888; */
