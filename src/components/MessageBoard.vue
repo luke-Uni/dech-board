@@ -356,6 +356,9 @@ export default {
       for (var i = 0; i < this.posts.length; i++) {
         this.posts[i].translationStatus = false;
         this.posts[i].originalcontent = this.posts[i].content;
+        this.posts[i].creationDate = new Date(
+          this.posts[i].creationDate
+        ).toDateString();
         if (this.posts[i].image != null) {
           console.log("Is not null");
           let res = await axios.get(
@@ -549,7 +552,8 @@ td {
 }
 
 #imgPost {
-  width: 20em;
+  max-height: 25em;
+  max-width: 20em;
   border-radius: 15%;
   margin-left: 1em;
   margin-top: -2em;

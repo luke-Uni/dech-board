@@ -1,41 +1,14 @@
 <template>
-  <nav>
-    <table class="margin_class">
-      <tr>
-        <td>
-          <router-link class="router-link_class" to="/">Home</router-link>
-          |
-        </td>
-        <td>
-          <router-link class="router-link_class" to="/registeruser">Register</router-link>
-          |
-        </td>
-        <td>
-          <router-link class="router-link_class" to="/login">Login</router-link>
-          |
-        </td>
-        <td>
-          <router-link class="router-link_class" to="test">Test</router-link>
-          |
-        </td>
-        <td>
-          <router-link class="router-link_class" to="/userlistview">Userlist</router-link>
-          |
-        </td>
-        <td>
-          <!-- <router-link to="/Messages">Messages</router-link> | -->
-          <router-link class="router-link_class" to="/conversationview">conversationview</router-link>
-          |
-        </td>
-        <td>
-          <router-link class="router-link_class" to="/friendship">friendship</router-link>
-          |
-        </td>
-      </tr>
-    </table>
-  </nav>
-  <router-view/>
+  <router-view />
 </template>
+
+<script>
+export default {
+  methods: {
+    isLoggedIn() {},
+  },
+};
+</script>
 
 <style>
 #app {
@@ -48,7 +21,6 @@
 
 .margin_class {
   margin-left: 30em;
-
 }
 
 nav {
@@ -62,11 +34,9 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #6dfaff;
-
 }
 
 .router-link_class {
   margin-right: 1em;
 }
-
 </style>
