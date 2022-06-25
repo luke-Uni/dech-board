@@ -1,6 +1,7 @@
 <template>
   <div>
     <LeftSideMenu />
+    <SlideShow/> 
 
     <h1>Only Test Components</h1>
     <h2>bla</h2>
@@ -21,6 +22,7 @@
   ></emoji-picker>
 </template>
 <script>
+import SlideShow from "@/components/SlideShow.vue";
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
 import UserObjects from "@/components/UserObjects.vue";
 import DropZone from "@/components/DropZone.vue";
@@ -31,16 +33,13 @@ import MessageBoardSelection from "@/components/MessageBoardSelection.vue";
 
 import "emoji-picker-element";
 
-//import insert from 'insert-text-2';
-
-// import CreateConversation from "@/components/CreateConversation.vue";
-
 export default {
   components: {
     LeftSideMenu,
     DropZone,
     UserObjects,
-    MessageBoardSelection
+    MessageBoardSelection,
+    SlideShow
   },
 
   setup() {
