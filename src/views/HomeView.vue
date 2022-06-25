@@ -19,8 +19,9 @@
   />
 
   <div class="home">
+    <div v-show="false">
     <MessageBoard />
-
+</div>
     <div class="" style="text-align: center; margin-top: 5%">
       <button
         class="icon-btn add-btn"
@@ -100,10 +101,10 @@ export default {
     MessageBoardCreator,
   },
   methods: {
-    // changeBoard(title) {
-    //   console.log(`hello world ${title}`);
-    //   this.boardName = title;
-    // },
+    changeBoard(title) {
+      console.log(`hello world ${title}`);
+      this.boardName = title;
+    },
   },
 };
 </script>

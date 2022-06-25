@@ -316,6 +316,7 @@ export default {
     let id = localStorage.getItem("messageBoardId");
       console.log(`Board id: ${boardId}`);
       console.log("id: "+ id);
+      localStorage.setItem("messageboardid","0" );
 
       let headers = {
         "Content-Type": "application/json",
