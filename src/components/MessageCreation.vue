@@ -113,18 +113,46 @@ export default {
       recipient: "",
       content: "",
       users: [],
+      censoredcontent: "",
     };
   },
 
   methods: {
+// async profanityFilter(content){
+//         var myHeaders = new Headers();
+// myHeaders.append("apikey", "eUHPlznMstdcjKPfpY5QdtZYrDN042b5");
+
+// var raw = "{body}";
+
+// var requestOptions = {
+//   method: 'POST',
+//   redirect: 'follow',
+//   headers: myHeaders,
+//   body: raw
+// };
+
+// fetch("https://api.apilayer.com/bad_words?censor_character={censor_character}", requestOptions)
+//   .then(response => response.text())
+//   .then(result => console.log(result),
+//   this.censoredcontent = result.data,
+//   console.log(this.censoredcontent))
+//   .catch(error => console.log('error', error));
+
+
+  
+
+//       },
+
     async createMessage() {
+      // this.profanityFilter(this.content);
+
       let result = await axios.post(
         //"https://dech-board-rest-server.herokuapp.com/posts/create",
         "http://localhost:8090/message/create",
         {
           // username: this.username,
           recipient: this.recipient,
-          content: this.content,
+          content: this.censoredcontent,
         },
         {
           headers: {
