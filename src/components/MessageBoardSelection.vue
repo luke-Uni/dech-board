@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    
-    
-    
     <div class="postion"></div>
     <section class="dropdown-wrapper">
       <div
@@ -62,7 +59,6 @@
     </section>
     <MessageBoard ref="messageBoard" />
   </div>
-  
 </template>
 
 <script>
@@ -105,16 +101,15 @@ export default {
   methods: {
     changeBoard(board) {
       //localStorage.setItem("messageBoardId",board.messageBoardId);
-     // console.log("Board id:sasad "+board.messageBoardName)
+      // console.log("Board id:sasad "+board.messageBoardName)
       // this.selectedUser[0] = user;
       // this.isVisible = false;
 
       this.$refs.messageBoard.getAllPosts(board.messageBoardId);
 
-      
       this.$emit("changeBoard", board.messageBoardName);
       //this.$emit("messageboardid", board.messageBoardId);
-      localStorage.setItem("messageboardid",board.messageBoardId );
+      localStorage.setItem("messageboardid", board.messageBoardId);
       //localStorage.setItem("messageBoardId",board.messageBoardId);
       //this.$emit("boardId", board.messageBoardId);
 
