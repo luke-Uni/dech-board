@@ -31,7 +31,7 @@
       </button>
     </div>
 
-    <CreatePost
+    <CreatePost @Messageboard="messageboard"
       v-if="popupTriggers.buttonTrigger"
       :TogglePopup="() => TogglePopup2('buttonTrigger')"
     >
@@ -100,10 +100,10 @@ export default {
     MessageBoardCreator,
   },
   methods: {
-    changeBoard(title) {
-      console.log(`hello world ${title}`);
-      this.boardName = title;
-    },
+    // changeBoard(title) {
+    //   console.log(`hello world ${title}`);
+    //   this.boardName = title;
+    // },
   },
 };
 </script>

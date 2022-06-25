@@ -313,8 +313,9 @@ export default {
     //To display all the Posts we need to get them from the Server
     async getAllPosts(boardId) {
       console.log("I am in the getAllPosts function");
-
+    let id = localStorage.getItem("messageBoardId");
       console.log(`Board id: ${boardId}`);
+      console.log("id: "+ id);
 
       let headers = {
         "Content-Type": "application/json",
@@ -326,8 +327,8 @@ export default {
       } else {
         uri = "http://localhost:8090/posts/" + boardId;
       }
-
-      this.posts.length = 0;
+      
+      this.posts = [];
 
       //send asynchron Request to Server
       let response = await axios
@@ -352,7 +353,7 @@ export default {
 
       this.getImages();
 
-      console.log(response.constructor);
+      console.log(response);
     },
 
     async getImages() {
@@ -367,7 +368,7 @@ export default {
           let res = await axios.get(
             "http://localhost:8090/image/" + this.posts[i].title
           );
-          console.log(res.data);
+          //console.log(res.data);
           let img = res.data;
           this.posts[i].image = "data:image/png;base64," + img;
           this.posts[i]["hasImage"] = true;

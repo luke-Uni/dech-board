@@ -116,6 +116,7 @@ export default {
       content: "",
       important: "",
       imgPost: null,
+      messageBoardId:"",
       // posts:[]
     };
   },
@@ -149,15 +150,26 @@ export default {
     },
 
     async createPost() {
+      let url="";
+      if(localStorage.getItem("messageboardid") !=null){
+            this.messageBoardId= localStorage.getItem("messageboardid");
+            url = "http://localhost:8090/posts/create/" +localStorage.getItem("messageboardid");
+          }
+          else{
+            this.messageBoardId=0;
+            url = "http://localhost:8090/posts/create"
+          }
+
       let result = await axios.post(
         //"https://dech-board-rest-server.herokuapp.com/posts/create",
-        "http://localhost:8090/posts/create",
+        url,
 
         {
           //username: this.username,
           title: this.title,
           content: this.content,
           important: this.important,
+         // messageBoardId: this.messageBoardId,
         },
         {
           headers: {
