@@ -146,7 +146,7 @@ a {
   position: relative;
   top: 20%;
   left: 0%;
-  width: 100%;
+  width: 22em;
   height: 60%;
   max-width: 93%;
   max-height: 80%;
@@ -260,48 +260,42 @@ a:hover {
 
 /* Icons at left side bar*/
 .home-icon {
-  width: 17px;
-  height: 17px;
+  width: 1.2em;
   mix-blend-mode: multiply;
   position: absolute;
   left: 5%;
 }
 
 .register-icon {
-  width: 17px;
-  height: 17px;
+  width: 1.2em;
   mix-blend-mode: multiply;
   position: absolute;
   left: 5%;
 }
 
 .login-icon {
-  width: 17px;
-  height: 17px;
+  width: 1.2em;
   mix-blend-mode: multiply;
   position: absolute;
   left: 5%;
 }
 
 .test-icon {
-  width: 17px;
-  height: 17px;
+  width: 1.2em;
   mix-blend-mode: multiply;
   position: absolute;
   left: 5%;
 }
 
 .userlist-icon {
-  width: 17px;
-  height: 17px;
+  width: 1.2em;
   mix-blend-mode: multiply;
   position: absolute;
   left: 5%;
 }
 
 .conversation-icon {
-  width: 17px;
-  height: 17px;
+  width: 1.2em;
   mix-blend-mode: multiply;
   position: absolute;
   left: 5%;
