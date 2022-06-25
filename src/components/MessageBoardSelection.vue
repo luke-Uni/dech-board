@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <MessageBoard ref="messageBoard" />
+    
+    
+    
     <div class="postion"></div>
     <section class="dropdown-wrapper">
       <div
@@ -58,7 +60,9 @@
         </div>
       </div>
     </section>
+    <MessageBoard ref="messageBoard" />
   </div>
+  
 </template>
 
 <script>
@@ -109,7 +113,7 @@ export default {
 
       
       this.$emit("changeBoard", board.messageBoardName);
-      this.$emit("messageboardid", board.messageBoardId);
+      //this.$emit("messageboardid", board.messageBoardId);
       localStorage.setItem("messageboardid",board.messageBoardId );
       //localStorage.setItem("messageBoardId",board.messageBoardId);
       //this.$emit("boardId", board.messageBoardId);
