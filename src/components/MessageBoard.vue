@@ -311,16 +311,25 @@ export default {
       }
     },
     //To display all the Posts we need to get them from the Server
-    async getAllPosts() {
+    async getAllPosts(boardId) {
       console.log("I am in the getAllPosts function");
+
+      console.log(`Board id: ${boardId}`);
 
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
+      let uri;
+      if (boardId == undefined || boardId == null) {
+        uri = "http://localhost:8090/posts/0";
+      } else {
+        uri = "http://localhost:8090/posts/" + boardId;
+      }
 
-      let uri = "http://localhost:8090/posts/getall";
-      //send synchron Request to Server
+      this.posts.length = 0;
+
+      //send asynchron Request to Server
       let response = await axios
         .get(uri, { headers: headers })
         .then((response) => {

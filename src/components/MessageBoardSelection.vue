@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <MessageBoard ref="messageBoard" />
     <div class="postion"></div>
     <section class="dropdown-wrapper">
       <div
@@ -31,8 +32,6 @@
         :class="isVisible ? 'visible' : 'invisible'"
         class="dropdown-popover"
       >
-        
-
         <input
           v-model="searchQuery"
           type="text"
@@ -49,13 +48,12 @@
               {{ user.username }}
             </li> -->
             <li
-              @click="selectUser(user)"
+              @click="changeBoard(messageboard)"
               v-for="messageboard in messageboards"
-              :key="messageboard.messageBoardName"
+              :key="messageboard.MessageBoardId"
             >
               {{ messageboard.messageBoardName }}
             </li>
-
           </ul>
         </div>
       </div>
@@ -66,9 +64,11 @@
 <script>
 // import UserUser from "./UserUser.vue";
 import axios from "axios";
+import MessageBoard from "@/components/MessageBoard.vue";
 
 export default {
   components: {
+    MessageBoard,
     // UserUser
   },
   data() {
@@ -79,10 +79,10 @@ export default {
       isVisible: false,
       search: "",
       users: [],
-      messageboards:[],
+      messageboards: [],
       categories: "",
-      german:"",
-      chinese:"",
+      german: "",
+      chinese: "",
     };
   },
   computed: {
@@ -99,9 +99,15 @@ export default {
     },
   },
   methods: {
-    selectUser(user) {
-      this.selectedUser[0] = user;
-      this.isVisible = false;
+    changeBoard(board) {
+      // this.selectedUser[0] = user;
+      // this.isVisible = false;
+
+      this.$refs.messageBoard.getAllPosts(1);
+
+      this.$emit("changeBoard", board.messageBoardName);
+
+      // this.$refs.MessageBoard.getAllPosts(0);
     },
     async getAllUsers() {
       //console.logs("workung (UserList funct.)");
@@ -120,7 +126,6 @@ export default {
       });
       console.log(response);
     },
-    
   },
 };
 </script>
@@ -130,7 +135,7 @@ export default {
   position: relative;
   margin: 0 auto;
   margin-top: 0em;
-  margin-left: 60em;
+  margin-left: 80em;
   .selected-User {
     height: 40px;
     border: 2px solid lightgray;
@@ -180,7 +185,7 @@ export default {
     .friendsCheckbox {
       font-weight: bold;
     }
-    .friendsCheckbox2{
+    .friendsCheckbox2 {
       width: 1em;
       height: 2em;
     }

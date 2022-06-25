@@ -1,31 +1,25 @@
 <template>
+  <h1>{{ boardName }}</h1>
 
+  <LeftSideMenu />
 
+  <MessageBoardSelection @changeBoard="changeBoard" />
 
-<LeftSideMenu />
+  <button
+    class="icon-btn add-btn"
+    @click="() => TogglePopupSecond('buttonTrigger')"
+  >
+    <div class="add-icon"></div>
+    <div class="btn-txt">Add Post</div>
+  </button>
 
-<MessageBoardSelection/>
-
-<button
-        class="icon-btn add-btn"
-        @click="() => TogglePopupSecond('buttonTrigger')"
-      >
-        <div class="add-icon"></div>
-        <div class="btn-txt">Add Post</div>
-      </button>
-    
-
-    <MessageBoardCreator
-      v-if="popupTriggersSecond.buttonTrigger"
-      :TogglePopupSecond="() => TogglePopup2Second('buttonTrigger')"
-    />
+  <MessageBoardCreator
+    v-if="popupTriggersSecond.buttonTrigger"
+    :TogglePopupSecond="() => TogglePopup2Second('buttonTrigger')"
+  />
 
   <div class="home">
-
-
-    
-    
-    <MessageBoard/>
+    <MessageBoard />
 
     <div class="" style="text-align: center; margin-top: 5%">
       <button
@@ -42,11 +36,8 @@
       :TogglePopup="() => TogglePopup2('buttonTrigger')"
     >
     </CreatePost>
-    <AlluserList
-
-    ></AlluserList>
+    <AlluserList></AlluserList>
   </div>
-  
 </template>
 
 <script>
@@ -60,19 +51,17 @@ import MessageBoardSelection from "@/components/MessageBoardSelection.vue";
 
 export default {
   setup() {
+    const popupTriggersSecond = ref({
+      buttonTriggerSecond: false,
+    });
 
-const popupTriggersSecond = ref({
-    buttonTriggerSecond:false,
+    const TogglePopupSecond = (trigger) => {
+      popupTriggersSecond.value[trigger] = !popupTriggersSecond.value[trigger];
+    };
 
-});
-
-  const TogglePopupSecond = (trigger) => {
-    popupTriggersSecond.value[trigger] = !popupTriggersSecond.value[trigger];
-  };
-
-  const TogglePopup2Second = (trigger) =>{
-     popupTriggersSecond.value[trigger] = !popupTriggersSecond.value[trigger];
-  }
+    const TogglePopup2Second = (trigger) => {
+      popupTriggersSecond.value[trigger] = !popupTriggersSecond.value[trigger];
+    };
 
     const popupTriggers = ref({
       buttonTrigger: false,
@@ -81,7 +70,7 @@ const popupTriggersSecond = ref({
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
-  
+
     const TogglePopup2 = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
@@ -92,28 +81,30 @@ const popupTriggersSecond = ref({
       TogglePopup2,
       TogglePopupSecond,
       TogglePopup2Second,
-      popupTriggersSecond
+      popupTriggersSecond,
     };
-  //
-  
-  
-  
-
-
-
+    //
   },
 
-  
-
+  data() {
+    return {
+      boardName: "Dech-Board",
+    };
+  },
 
   components: {
     MessageBoard,
     CreatePost,
     LeftSideMenu,
+    MessageBoardSelection,
     MessageBoardCreator,
-    MessageBoardSelection
-},
-  methods: {},
+  },
+  methods: {
+    changeBoard(title) {
+      console.log(`hello world ${title}`);
+      this.boardName = title;
+    },
+  },
 };
 </script>
 
