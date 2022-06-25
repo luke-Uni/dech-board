@@ -12,9 +12,16 @@
           <span class="visually-hidden"></span>
         </button>
         <br />
+         <p v-if="errors.length">
+    
+    <ul>
+      <li v-for="error in errors" :key="error" class="errors">{{ error }}</li>
+    </ul>
+  </p>
         <div class="MessageBoardName">
           
         <div class="form__group field">
+         
   <input type="input" class="form__field" v-model="messageBoardName" placeholder="Name" name="name" id='name' required />
   <label for="name" class="form__label" >MessageBoard</label>
 </div>
@@ -61,9 +68,8 @@
               <div class="send-button-div">
                 <button
                   class="button-81"
-                  v-on:click="
-                    createMessageBoard();
-                    TogglePopupSecond();
+                  v-on:click="checkForm();
+                    
                   "
                   role="button"
                 >
@@ -94,6 +100,7 @@ export default {
       users: [],
       participants: [],
       admin: "",
+      errors: [],
       
     };
   },
@@ -104,6 +111,26 @@ export default {
   },
 
   methods: {
+
+checkForm: function (e) {
+      if (this.messageBoardName && this.participants[0]) {
+        this.createMessageBoard();
+        this.TogglePopupSecond();
+        return true;
+      }
+
+      this.errors = [];
+
+      if (!this.messageBoardName) {
+        this.errors.push('Name required.');
+      }
+      if (!this.participants[0]) {
+        this.errors.push('Participants required.');
+      }
+
+      e.preventDefault();
+    },
+
     selectUsers(id) {
       //in here you can check what ever condition  before append to array.
       if (this.participants.includes(id)) {
@@ -165,6 +192,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.errors{
+  color: rgb(255, 122, 122);
+}
+
 
 $primary: #838383;
 $secondary: #b9b9b9;
