@@ -225,7 +225,9 @@ export default {
         .catch((e) => {
           this.errors.push(e);
         });
-      console.log(response.constructor);
+        let hallo= response;
+        hallo +"";
+      //console.log(response);
     },
     //To display all the Conversations we need to get them from the Server
     async getAllConversations() {

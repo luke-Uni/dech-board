@@ -204,7 +204,7 @@ export default {
   max-width: 350px;
   position: relative;
   margin: 0 auto;
-  margin-top: -10em;
+  margin-top: 0em;
   margin-left: 80em;
   .selected-User {
     height: 40px;
