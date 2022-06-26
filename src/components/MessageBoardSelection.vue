@@ -1,6 +1,19 @@
 <template>
   <div id="app">
-    <MessageBoard ref="messageBoard" />
+    <h1>
+      <img
+        src="@/assets/blue-arrow_left.png"
+        alt="Blue Arrow Left"
+        class="arrow"
+      />
+      {{ boardName }}
+      <img
+        src="@/assets/blue-arrow.png"
+        alt="Blue Arrow Right"
+        class="arrow"
+        @click="nextBoard()"
+      />
+    </h1>
     <div class="postion"></div>
     <section class="dropdown-wrapper">
       <div
@@ -58,6 +71,7 @@
         </div>
       </div>
     </section>
+    <MessageBoard ref="messageBoard" />
   </div>
 </template>
 
@@ -71,6 +85,9 @@ export default {
     MessageBoard,
     // UserUser
   },
+  beforeMount() {
+    this.saveBoards();
+  },
   data() {
     return {
       searchQuery: "",
@@ -79,10 +96,11 @@ export default {
       isVisible: false,
       search: "",
       users: [],
-      messageboards: [],
       categories: "",
       german: "",
       chinese: "",
+      boardName: "Dech-Board",
+      messageboards: [],
     };
   },
   computed: {
@@ -100,15 +118,14 @@ export default {
   },
   methods: {
     changeBoard(board) {
-      // this.selectedUser[0] = user;
-      // this.isVisible = false;
-
-      this.$refs.messageBoard.getAllPosts(1);
-
-      this.$emit("changeBoard", board.messageBoardName);
-
-      // this.$refs.MessageBoard.getAllPosts(0);
+      console.log("Board name: " + board.messageBoardName);
+      this.boardName = board.messageBoardName;
+      this.$refs.messageBoard.getAllPosts(board.messageBoardId);
     },
+
+    // messageBoardIdTransmit(board){
+    //   this.$emit("messageboardid", board.messageBoardId);
+    // },
     async getAllUsers() {
       //console.logs("workung (UserList funct.)");
       let headers = {
@@ -125,6 +142,48 @@ export default {
         this.messageboards = response.data;
       });
       console.log(response);
+    },
+    saveBoards() {
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+
+      let uri = "http://localhost:8090/messageboard/get";
+
+      let response = axios.get(uri, { headers: headers }).then((response) => {
+        this.messageboards = response.data;
+      });
+      console.log(response);
+    },
+    nextBoard() {
+      console.log("Go to next Board!");
+
+      let currentBoardId = localStorage.getItem("messageboardid");
+      console.log(this.messageboards.length);
+      for (let index = 0; index < this.messageboards.length; index++) {
+        console.log(
+          this.messageboards[index].messageBoardId + "--=--" + currentBoardId
+        );
+        if (this.messageboards[index].messageBoardId == currentBoardId) {
+          console.log("Old" + this.messageboards[index].messageBoardId);
+          let newIndex = index;
+          localStorage.setItem(
+            "messageboardid",
+            this.messageboards[newIndex + 1].messageBoardId
+          );
+          this.changeBoard(this.messageboards[newIndex + 1]);
+          return;
+        } else if (currentBoardId == 0) {
+          console.log("Neew" + this.messageboards[index].messageBoardId);
+          localStorage.setItem(
+            "messageboardid",
+            this.messageboards[index].messageBoardId
+          );
+          this.changeBoard(this.messageboards[index]);
+          return;
+        }
+      }
     },
   },
 };
@@ -217,5 +276,10 @@ export default {
       }
     }
   }
+}
+.arrow {
+  width: 1em;
+  margin-left: 5em;
+  margin-right: 5em;
 }
 </style>
