@@ -5,7 +5,7 @@
 
     <div class="chat">
       <div class="messages_view">
-        <div>
+        
           <div
             class="postComplete"
             v-for="message in messages"
@@ -23,7 +23,7 @@
               <!-- <p class="directionState">{{ message.state }}</p> -->
             </div>
           </div>
-        </div>
+        
       </div>
       <div class="send_messages"></div>
     </div>
@@ -440,12 +440,11 @@ ul {
 
   width: 37.8125em;
   height: 3.75em;
-  left: 6.25em;
-  top: 3.375em;
-  background: #f4f7ff;
+  left: 2em;
+  bottom: 8.7em;
+  
   border-radius: 0.625em;
-  margin-top: 42.5em;
-  margin-left: 25em;
+  
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
 
@@ -473,27 +472,29 @@ ul {
 
   width: 37.8125em;
   height: 3.75em;
-  left: 6.25em;
+  left: 2em;
   top: 3.375em;
   background: #f4f7ff;
   border-radius: 0.625em;
-  margin-top: 7em;
-  margin-left: 25em;
+  // margin-top: 7em;
+  // margin-left: 25em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
 
 .chat {
   position: absolute;
+  background-color: #f4f7ff;
+
+  left: 2em;
   width: 37.8125em;
   height: 28.9em;
-  left: 6.25em;
+  
   top: 8.375em;
-  background: #f4f7ff;
+
   border-radius: 1.1875em;
-  margin-top: 6.6375em;
-  margin-left: 25em;
+  
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
-  overflow: scroll;
+  // overflow: scroll;
   overflow-x: hidden;
 }
 
@@ -510,29 +511,29 @@ ul {
   background-color: #e1e7f7;
   border-radius: 1em;
 }
-// .chat::-webkit-scrollbar-button:single-button {
-//   background-color: #bbbbbb;
-//   display: block;
-//   border-style: solid;
-//   height: 13px;
-//   width: 16px;
-// }
-// .chat::-webkit-scrollbar-button:single-button:vertical:decrement {
-//   border-width: 0 8px 8px 8px;
-//   border-color: transparent transparent #97a6ce transparent;
-// }
+.chat::-webkit-scrollbar-button:single-button {
+  background-color: #bbbbbb;
+  display: block;
+  border-style: solid;
+  height: 13px;
+  width: 16px;
+}
+.chat::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #97a6ce transparent;
+}
 
-// .chat::-webkit-scrollbar-button:single-button:vertical:increment {
-//   border-width: 8px 8px 0 8px;
-//   border-color: #97a6ce transparent transparent transparent;
-// }
+.chat::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 8px 8px 0 8px;
+  border-color: #97a6ce transparent transparent transparent;
+}
 
-// .chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
-//   border-color: #778dc9 transparent transparent transparent;
-// }
-// .chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-//   border-color: transparent transparent #778dc9 transparent;
-// }
+.chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+  border-color: #778dc9 transparent transparent transparent;
+}
+.chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  border-color: transparent transparent #778dc9 transparent;
+}
 
 .conversationview {
   position: absolute;
@@ -807,31 +808,21 @@ input:focus {
 }
 .own_user {
   position: absolute;
-  width: 25.235em;
-  height: 39.4em;
-  left: 45.17em;
+
+ 
+
+  background-color: black;
+ 
+  
+  left:3em;
   top: 4.375em;
   background: #f4f7ff;
   border-radius: 1.3125em;
-  margin-top: 6em;
-  margin-left: 25em;
-  box-shadow: 2px 2px 7px rgb(198, 227, 255);
-}
-/*.own_user{
-  height: 3.2em;
-  width: 20.7em;
-  background: #f4f7ff;
-  text-align: center;
-  border-radius: 1.3125em;
-  margin-top: 0.4em;
-  margin-left: 0.4em;
-  margin-bottom: -0,5em;
-  box-shadow: 2px 2px 7px rgb(198, 227, 255);
-  border: 1px solid rgb(230, 230, 230);
-  padding: 1.2em;
 
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
-*/
+
+
 .button-conversation {
   height: auto;
   width: 26.7em;

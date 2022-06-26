@@ -1,12 +1,10 @@
 <template>
-  <!-- <div class="searchUser">
 
-</div> -->
 
   <nav class="menu-container">
     <div class="logo-div">
       <img
-        src="../assets/1.png"
+        src="../assets/social-media.png"
         alt="HeNan"
         class="logo"
         @click="this.$router.push('/')"
@@ -68,15 +66,7 @@ a {
   text-decoration: none;
 }
 
-.picture {
-  position: absolute;
-  width: 232px;
-  height: 73px;
-  left: 0px;
-  top: 35px;
 
-  mix-blend-mode: multiply;
-}
 
 /* .searchUser{
     position: absolute;
@@ -171,19 +161,39 @@ a {
   color: #ffffff;
   cursor: pointer;
 }
+.navbar {
+  display: flex;
+  justify-content: space-around;
 
-a:hover {
-  background-position: left;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+ 
+
+
+  position: absolute;
+  top: 6em;
+
+  width: 10em;
+
+  
+ 
+  
 }
+
+/* a:hover {
+  background-position: left;
+} */
 
 .menu-container {
   display: flex;
 
   position: absolute;
-  width: 15%;
-  height: 100%;
+  width: 10em;
+  height: auto;
   max-width: 100%;
-  max-height: 100%;
+  
 
   padding-left: 0%;
   padding-right: 0%;
@@ -197,60 +207,34 @@ a:hover {
     border-bottom: #506698; */
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-around;
 
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 3%;
-
-  position: absolute;
-  top: 15%;
-
-  width: 100%;
-  height: 40%;
-  max-width: 100%;
-  max-height: 100%;
-}
 
 /* Logo Inside the Side bar */
 .logo {
-  width: 100%;
-  height: 80%;
-  max-width: 100%;
-  max-height: 80%;
-  min-width: 100%;
-  min-height: 80%;
-  mix-blend-mode: multiply;
+  position: absolute;
+
+  top: 0.16em;
+  left: 3.33em;
+
+  width: 3.33em;
+  height: 3em;
+
+  /* mix-blend-mode: multiply; */
 }
 
 .logo-div {
   position: absolute;
-  top: 0px;
-  width: 100%;
-  height: 7.5%;
-  margin: 0%;
-  border: 0%;
-  padding: 0%;
+
+  top: 1em;
+  left: 0em;
+  
+  width: 10em;
+  height: 3.33em;
+
+ 
 }
 
-/* Add Post Button */
-.home {
-  margin: 0px;
-  border: 0px;
-  padding: 0px;
 
-  width: 50px;
-  height: 50px;
-
-  position: absolute;
-  bottom: 60%;
-  left: 50%;
-}
 
 /* Register top blue bar */
 .top {
