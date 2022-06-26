@@ -88,7 +88,7 @@ export default {
     };
   },
   beforeMount() {
-    this.getAllPosts();
+    this.getAllPostsNoId();
     localStorage.setItem("conversationID", "");
   },
   methods: {
@@ -427,10 +427,13 @@ export default {
     //To display all the Posts we need to get them from the Server
     async getAllPosts(boardId) {
       console.log("I am in the getAllPosts function");
-      let id = localStorage.getItem("messageBoardId");
+      let id = localStorage.getItem("messageboardid");
       console.log(`Board id: ${boardId}`);
       console.log("id: " + id);
-      localStorage.setItem("messageboardid", "0");
+      if(`${boardId}` == undefined || `${boardId}`== null){
+         localStorage.setItem("messageboardid", "0");
+      }
+     
 
       let headers = {
         "Content-Type": "application/json",
@@ -442,6 +445,56 @@ export default {
       } else {
         uri = "http://localhost:8090/posts/" + boardId;
       }
+
+      this.posts = [];
+
+      //send asynchron Request to Server
+      let response = await axios
+        .get(uri, { headers: headers })
+        .then((response) => {
+          console.log(response);
+
+          this.posts = response.data;
+
+          for (var i = 0; i < this.posts.length; i++) {
+            this.posts[i].translationStatus = false;
+            this.posts[i].originalcontent = this.posts[i].content;
+            // console.log(this.posts[i].translationStatus);
+            // console.log(this.posts[i].originalcontent);
+          }
+        })
+        //save all Posts locally
+        .then((data) => (this.user = data))
+        .catch((e) => {
+          this.errors.push(e);
+        });
+
+      this.getImages();
+
+      console.log(response);
+    },
+
+
+    async getAllPostsNoId() {
+      console.log("I am in the getAllPosts function");
+      //let id = localStorage.getItem("messageboardid");
+      //console.log(`Board id: ${boardId}`);
+     // console.log("id: " + id);
+     // if(`${boardId}` == undefined || `${boardId}`== null){
+         localStorage.setItem("messageboardid", "0");
+    //  }
+     
+
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+      let uri;
+     // if (boardId == undefined || boardId == null) {
+        uri = "http://localhost:8090/posts/0";
+     // } else {
+      //  uri = "http://localhost:8090/posts/" + boardId;
+      //}
 
       this.posts = [];
 
