@@ -1,5 +1,18 @@
 <template>
-  <h1>{{ boardName }}</h1>
+  <!-- <h1>
+    <img
+      src="@/assets/blue-arrow_left.png"
+      alt="Blue Arrow Left"
+      class="arrow"
+    />
+    {{ boardName }}
+    <img
+      src="@/assets/blue-arrow.png"
+      alt="Blue Arrow Right"
+      class="arrow"
+      @click="nextBoard()"
+    />
+  </h1> -->
 
   <LeftSideMenu />
 
@@ -20,8 +33,8 @@
 
   <div class="home">
     <div v-show="false">
-    <MessageBoard />
-</div>
+      <MessageBoard />
+    </div>
     <div class="" style="text-align: center; margin-top: 5%">
       <button
         class="icon-btn add-btn"
@@ -32,7 +45,8 @@
       </button>
     </div>
 
-    <CreatePost @Messageboard="messageboard"
+    <CreatePost
+      @Messageboard="messageboard"
       v-if="popupTriggers.buttonTrigger"
       :TogglePopup="() => TogglePopup2('buttonTrigger')"
     >
@@ -49,6 +63,7 @@ import CreatePost from "@/components/CreatePost.vue";
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
 import MessageBoardCreator from "@/components/MessageBoardCreator.vue";
 import MessageBoardSelection from "@/components/MessageBoardSelection.vue";
+import axios from "axios";
 
 export default {
   setup() {
@@ -87,9 +102,14 @@ export default {
     //
   },
 
+  beforeMount() {
+    this.saveBoards();
+  },
+
   data() {
     return {
       boardName: "Dech-Board",
+      messageboards: [],
     };
   },
 
@@ -101,9 +121,50 @@ export default {
     MessageBoardCreator,
   },
   methods: {
+    saveBoards() {
+      let headers = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+
+      let uri = "http://localhost:8090/messageboard/get";
+
+      let response = axios.get(uri, { headers: headers }).then((response) => {
+        this.messageboards = response.data;
+      });
+      console.log(response);
+    },
+
     changeBoard(title) {
       console.log(`hello world ${title}`);
       this.boardName = title;
+    },
+    nextBoard() {
+      console.log("Go to next Board!");
+
+      let currentBoardId = localStorage.getItem("messageboardid");
+      console.log(this.messageboards.length);
+      for (let index = 0; index < this.messageboards.length; index++) {
+        console.log(
+          this.messageboards[index].messageBoardId + "--=--" + currentBoardId
+        );
+        if (this.messageboards[index].messageBoardId == currentBoardId) {
+          console.log("Old" + this.messageboards[index].messageBoardId);
+          let newIndex = index;
+          localStorage.setItem(
+            "messageboardid",
+            this.messageboards[newIndex + 1].messageBoardId
+          );
+          return;
+        } else if (currentBoardId == 0) {
+          console.log("Neew" + this.messageboards[index].messageBoardId);
+          localStorage.setItem(
+            "messageboardid",
+            this.messageboards[index].messageBoardId
+          );
+          return;
+        }
+      }
     },
   },
 };
@@ -194,5 +255,11 @@ export default {
   right: 15px;
   height: 4px;
   top: calc(50% - 2px);
+}
+
+.arrow {
+  width: 1em;
+  margin-left: 5em;
+  margin-right: 5em;
 }
 </style>

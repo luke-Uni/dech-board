@@ -9,6 +9,7 @@
         id="username"
         placeholder="Username"
         v-model="username"
+        maxlength="25"
         required
       />
       <br />
@@ -18,6 +19,7 @@
         id="password"
         placeholder="Password"
         v-model="password"
+        maxlength="30"
         required
       />
       <br />

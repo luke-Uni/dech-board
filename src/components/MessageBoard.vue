@@ -427,10 +427,10 @@ export default {
     //To display all the Posts we need to get them from the Server
     async getAllPosts(boardId) {
       console.log("I am in the getAllPosts function");
-    let id = localStorage.getItem("messageBoardId");
+      let id = localStorage.getItem("messageBoardId");
       console.log(`Board id: ${boardId}`);
-      console.log("id: "+ id);
-      localStorage.setItem("messageboardid","0" );
+      console.log("id: " + id);
+      localStorage.setItem("messageboardid", "0");
 
       let headers = {
         "Content-Type": "application/json",
@@ -442,7 +442,7 @@ export default {
       } else {
         uri = "http://localhost:8090/posts/" + boardId;
       }
-      
+
       this.posts = [];
 
       //send asynchron Request to Server

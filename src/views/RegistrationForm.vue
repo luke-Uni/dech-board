@@ -17,15 +17,17 @@
         required
         placeholder=" &nbsp;&nbsp;Username"
         v-model="username"
+        maxlength="25"
       />
       <br />
       <label for="password"></label>
       <input
-      required
+        required
         type="password"
         id="password"
         placeholder=" &nbsp;&nbsp;Password"
         v-model="password"
+        maxlength="30"
       />
       <br />
       <label for="username"></label>
@@ -46,7 +48,7 @@
         v-model="lastName"
       />
       <br />
-      
+
       <label for="email"></label>
       <input
         type="text"
@@ -54,6 +56,7 @@
         id="birthdy"
         placeholder=" &nbsp;&nbsp;E-Mail"
         v-model="email"
+        maxlength="40"
       />
 
       <br />
@@ -118,24 +121,18 @@ export default {
       this.$router.push("/login");
     },
 
-    
-    checkForm:function(e) {
-      if(this.username && this.email) return true;
+    checkForm: function (e) {
+      if (this.username && this.email) return true;
       this.errors = [];
-      if(!this.username) this.errors.push("Username required.");
-      if(!this.email) this.errors.push("E-Mail required.");
+      if (!this.username) this.errors.push("Username required.");
+      if (!this.email) this.errors.push("E-Mail required.");
       e.preventDefault();
-    }
-  
-}
-
-
-  
+    },
+  },
 };
 </script>
 
 <style scoped>
-
 input:required:focus {
   border: 1px solid red;
   outline: none;

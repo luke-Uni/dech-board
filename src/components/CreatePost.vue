@@ -47,6 +47,7 @@
             class="input-title"
             placeholder="Title..."
             v-model="title"
+            maxlength="25"
           />
           <br />
           <br />
@@ -58,6 +59,7 @@
             cols="55"
             placeholder="content..."
             v-model="content"
+            maxlength="700"
           >
           </textarea>
         </div>
@@ -116,7 +118,7 @@ export default {
       content: "",
       important: "",
       imgPost: null,
-      messageBoardId:"",
+      messageBoardId: "",
       // posts:[]
     };
   },
@@ -150,15 +152,16 @@ export default {
     },
 
     async createPost() {
-      let url="";
-      if(localStorage.getItem("messageboardid") !=null){
-            this.messageBoardId= localStorage.getItem("messageboardid");
-            url = "http://localhost:8090/posts/create/" +localStorage.getItem("messageboardid");
-          }
-          else{
-            this.messageBoardId=0;
-            url = "http://localhost:8090/posts/create"
-          }
+      let url = "";
+      if (localStorage.getItem("messageboardid") != null) {
+        this.messageBoardId = localStorage.getItem("messageboardid");
+        url =
+          "http://localhost:8090/posts/create/" +
+          localStorage.getItem("messageboardid");
+      } else {
+        this.messageBoardId = 0;
+        url = "http://localhost:8090/posts/create";
+      }
 
       let result = await axios.post(
         //"https://dech-board-rest-server.herokuapp.com/posts/create",
@@ -169,7 +172,7 @@ export default {
           title: this.title,
           content: this.content,
           important: this.important,
-         // messageBoardId: this.messageBoardId,
+          // messageBoardId: this.messageBoardId,
         },
         {
           headers: {
