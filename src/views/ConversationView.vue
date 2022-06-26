@@ -44,3 +44,17 @@ export default {
   methods: {},
 };
 </script>
+<style scoped>
+
+.home{
+  position: absolute; 
+  top: 0em;
+  left: 10em;
+
+  width: 90%;
+  height: 100%;
+
+  background-color: crisom;
+}
+
+</style>

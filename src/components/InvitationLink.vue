@@ -1,5 +1,5 @@
 <template>
-  <div id="invitation">
+  <div class="invitation">
     <table>
       <tr>
         <td>
@@ -72,11 +72,16 @@ export default {
 </script>
 
 <style scoped>
-#invitation {
+.invitation {
   position: absolute;
-  margin-left: 50em;
-  margin-top: 48em;
-  padding-bottom: 5em;
+  
+  bottom: 1em;
+  left: 12em;
+
+  width:  37.8125em;
+  
+
+
 }
 
 table {
