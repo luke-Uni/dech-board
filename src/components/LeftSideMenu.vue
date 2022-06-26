@@ -180,9 +180,10 @@ a {
 } */
 
 .menu-container {
-  position: absolute;
+  position: fixed;
+  
   width: 11em;
-  height: auto;
+  height: 100;
   margin: 0em;
   border: 0em;
   padding: 0em;
