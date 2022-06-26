@@ -201,11 +201,15 @@ export default {
 </script>
 <style scoped lang="scss">
 .dropdown-wrapper {
+  
   max-width: 350px;
   position: relative;
   margin: 0 auto;
   margin-top: 0em;
   margin-left: 80em;
+  
+  
+
   .selected-User {
     height: 40px;
     border: 2px solid lightgray;

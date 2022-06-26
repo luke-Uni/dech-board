@@ -13,11 +13,13 @@
       @click="nextBoard()"
     />
   </h1> -->
+  <div class="sticky">
   <UserObjects/>
-
+</div>
+<!-- <div class="sticky"> -->
   <LeftSideMenu />
   
-  
+  <!-- </div> -->
   <MessageBoardSelection @changeBoard="changeBoard" />
    
 
@@ -177,6 +179,19 @@ export default {
 </script>
 
 <style scoped>
+
+.sticky{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.sticky{
+position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
 .main-hr {
   width: 30%;
   border: none;

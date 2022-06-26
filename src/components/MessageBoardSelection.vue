@@ -270,6 +270,9 @@ export default {
   margin: 0 auto;
   margin-top: 0em;
   margin-left: 80em;
+  // position: -webkit-sticky;
+  // position: sticky;
+  // top: 0;
   .selected-User {
     height: 40px;
     border: 2px solid lightgray;
