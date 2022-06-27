@@ -1,6 +1,4 @@
 <template>
-
-
   <nav class="menu-container">
     <div class="logo-div">
       <img
@@ -35,8 +33,8 @@
         >Test
         <img class="test-icon" src="../assets/test-icon.png" alt="test-icon" />
       </a>
-      <a class="navbar-a" @click="this.$router.push('/userlistview')"
-        >Userlist
+      <a class="navbar-a" @click="this.$router.push('/contacts')"
+        >Contacts
         <img
           class="userlist-icon"
           src="../assets/users-alt.png"
@@ -65,8 +63,6 @@ a {
   color: #506698;
   text-decoration: none;
 }
-
-
 
 /* .searchUser{
     position: absolute;
@@ -141,8 +137,6 @@ a {
 
   margin: 0em;
   padding: 0em;
-  
-
 
   /* line-height: 150%; */
 
@@ -181,7 +175,7 @@ a {
 
 .menu-container {
   position: fixed;
-  
+
   width: 11em;
   height: 100;
   margin: 0em;
@@ -211,14 +205,10 @@ a {
 
   top: 1em;
   left: 0em;
-  
+
   width: 10em;
   height: 3.33em;
-
- 
 }
-
-
 
 /* Register top blue bar */
 .top {
