@@ -31,6 +31,16 @@
               id="germanyLogo"
               class="countryLogo"
             />
+            <br />
+            <br />
+
+            <img
+              src="@/assets/uk.png"
+              alt="Germany"
+              @click="translateTextToEnglish(post)"
+              id="germanyLogo"
+              class="countryLogo"
+            />
             <!-- </td> -->
           </tr>
           <br />
@@ -102,6 +112,64 @@ export default {
             text: text.content,
             source: "auto",
             target: "de",
+          },
+          {
+            // headers: {
+            //   authorization: localStorage.getItem("token"),
+            //   "Content-Type": undefined,
+            // },
+          }
+        )
+        .then(function (result) {
+          // console.log("-------------------------"+response.data.data);
+          // console.log("-------------------------"+response.data.data.TargetText);
+          //  console.log("-------------------------"+response.data.data.targeText);
+          hallo1 = result.data.TargetText;
+          console.log(hallo1);
+          console.log(typeof hallo1);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+      for (let i = 0; i < this.posts.length; i++) {
+        console.log(this.posts[i].postId + " " + text.postId);
+        console.log("1 TranslationStatus: " + this.posts[i].translationStatus);
+        if (this.posts[i].postId == text.postId) {
+          console.log(
+            "2 TranslationStatus: " + this.posts[i].translationStatus
+          );
+          if (this.posts[i].translationStatus == false) {
+            console.log(
+              "3 TranslationStatus: " + this.posts[i].translationStatus
+            );
+            //if(  this.posts[i].content != hallo1){
+            //  this.posts[i].originalcontent =  this.posts[i].content;
+            // }
+            //this.posts[i].originalcontent =  this.posts[i].content;
+            this.posts[i].translatedcontent = hallo1;
+            this.posts[i].translationStatus = true;
+          } else {
+            console.log(
+              " 4TranslationStatus: " + this.posts[i].translationStatus
+            );
+            this.posts[i].translationStatus = false;
+          }
+        }
+      }
+
+      console.log(result);
+    },
+
+    async translateTextToEnglish(text) {
+      let hallo1 = "";
+      let url = "http://localhost:8090/translatePost";
+      let result = await axios
+        .post(
+          url,
+          {
+            text: text.content,
+            source: "auto",
+            target: "en",
           },
           {
             // headers: {
