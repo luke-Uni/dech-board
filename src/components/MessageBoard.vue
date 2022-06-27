@@ -432,10 +432,9 @@ export default {
       let id = localStorage.getItem("messageboardid");
       console.log(`Board id: ${boardId}`);
       console.log("id: " + id);
-      if(`${boardId}` == undefined || `${boardId}`== null){
-         localStorage.setItem("messageboardid", "0");
+      if (`${boardId}` == undefined || `${boardId}` == null) {
+        localStorage.setItem("messageboardid", "0");
       }
-     
 
       let headers = {
         "Content-Type": "application/json",
@@ -467,8 +466,11 @@ export default {
         })
         //save all Posts locally
         .then((data) => (this.user = data))
-        .catch((e) => {
-          this.errors.push(e);
+        .catch((error) => {
+          if (error.response && error.response.status === 401) {
+            this.$router.push("/login");
+          }
+          //this.errors.push(error.response && error.response.status);
         });
 
       this.getImages();
@@ -476,25 +478,23 @@ export default {
       console.log(response);
     },
 
-
     async getAllPostsNoId() {
       console.log("I am in the getAllPosts function");
       //let id = localStorage.getItem("messageboardid");
       //console.log(`Board id: ${boardId}`);
-     // console.log("id: " + id);
-     // if(`${boardId}` == undefined || `${boardId}`== null){
-         localStorage.setItem("messageboardid", "0");
-    //  }
-     
+      // console.log("id: " + id);
+      // if(`${boardId}` == undefined || `${boardId}`== null){
+      localStorage.setItem("messageboardid", "0");
+      //  }
 
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
       let uri;
-     // if (boardId == undefined || boardId == null) {
-        uri = "http://localhost:8090/posts/0";
-     // } else {
+      // if (boardId == undefined || boardId == null) {
+      uri = "http://localhost:8090/posts/0";
+      // } else {
       //  uri = "http://localhost:8090/posts/" + boardId;
       //}
 
@@ -517,9 +517,7 @@ export default {
         })
         //save all Posts locally
         .then((data) => (this.user = data))
-        .catch((e) => {
-          this.errors.push(e);
-        });
+        .catch(() => {});
 
       this.getImages();
 
