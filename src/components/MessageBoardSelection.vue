@@ -167,7 +167,21 @@ export default {
         console.log(
           this.messageboards[index].messageBoardId + "--=--" + currentBoardId
         );
-        if (this.messageboards[index].messageBoardId == currentBoardId) {
+          if(index ==  this.messageboards.length-1 ){
+            localStorage.setItem(
+            "messageboardid",
+            "0"
+          );
+          let hallo = this.messageboards[0];
+          hallo.messageBoardId= "0";
+          hallo.messageBoardName= "Dech-Board"
+          hallo.participants=[];
+          hallo.admin="";
+          this.changeBoard(hallo);
+          return;
+          }
+        
+       else if (this.messageboards[index].messageBoardId == currentBoardId) {
           console.log("Old" + this.messageboards[index].messageBoardId);
           let newIndex = index;
           if(index+1== this.array2.length){
@@ -270,6 +284,9 @@ export default {
   margin: 0 auto;
   margin-top: 0em;
   margin-left: 80em;
+  // position: -webkit-sticky;
+  // position: sticky;
+  // top: 0;
   .selected-User {
     height: 40px;
     border: 2px solid lightgray;

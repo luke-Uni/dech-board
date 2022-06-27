@@ -13,10 +13,15 @@
       @click="nextBoard()"
     />
   </h1> -->
-
+  <div class="sticky">
+  <UserObjects/>
+</div>
+<!-- <div class="sticky"> -->
   <LeftSideMenu />
-
+  
+  <!-- </div> -->
   <MessageBoardSelection @changeBoard="changeBoard" />
+   
 
   <button
     class="icon-btn add-btn"
@@ -53,6 +58,7 @@
     </CreatePost>
     <AlluserList></AlluserList>
   </div>
+ 
 </template>
 
 <script>
@@ -64,6 +70,7 @@ import LeftSideMenu from "@/components/LeftSideMenu.vue";
 import MessageBoardCreator from "@/components/MessageBoardCreator.vue";
 import MessageBoardSelection from "@/components/MessageBoardSelection.vue";
 import axios from "axios";
+import UserObjects from "@/components/UserObjects.vue";
 
 export default {
   setup() {
@@ -119,6 +126,7 @@ export default {
     LeftSideMenu,
     MessageBoardSelection,
     MessageBoardCreator,
+    UserObjects
   },
   methods: {
     saveBoards() {
@@ -171,6 +179,19 @@ export default {
 </script>
 
 <style scoped>
+
+.sticky{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.sticky{
+position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
 .main-hr {
   width: 30%;
   border: none;
