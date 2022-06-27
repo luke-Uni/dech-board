@@ -1,8 +1,8 @@
 <template>
-  
+<div class="top"></div>
   <div class="container">
     <form class="form">
-      <img src="../assets/1.png" alt="HeNan" id="logo" />
+      <img src="../assets/social-media.png" alt="HeNan" class="logo" />
       <label for="username"></label>
       <input
         type="text"
@@ -124,10 +124,11 @@ export default {
   margin: 0;
   padding: 0;
 }
-#logo {
-  margin-bottom: 10%;
-  width: 80%;
-  margin-left: 10%;
+.logo {
+  position: relative;
+  top: -1.3em;
+  width: 10em;
+  height: 7.5em;
 }
 
 #rightImg {
@@ -155,26 +156,32 @@ export default {
   width: 80%;
   float: right;
 }
-
-.top,
 .footer {
   bottom: 0%;
+  left: 0%;
   background-color: rgba(146, 196, 224, 255);
   box-sizing: border-box;
   position: absolute;
-  width: 99.5%;
-
+  width: 100%;
 }
 .top {
-  /* position: absolute; */
-  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0%;
+  left:0%;
+  width: 100em;
+  height: 4em;
+background-color: rgba(146, 196, 224, 255);
 }
 
 .container {
   border: 1px solid black;
-  width: 20em;
-  border-radius: 15px;
-  margin: 3% auto;
+  position: absolute;
+  top: 7em;
+  left:40%;
+  width: 20%;
+  border-radius: 35px;
+
 
 }
 
