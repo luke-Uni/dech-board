@@ -35,16 +35,29 @@
           <br />
 
           <div>
+            
             <div class="message-create">
+              
+              
+              
               <div class="message-textarea-div">
+                <button
+                style="border: none"
+                @click="() => TogglePopupThird('buttonTriggerThird')"
+              >
+                Emoji😀
+              </button>
                 <textarea
                   class="textarea-content"
                   name="content"
                   rows="3"
                   cols="55"
                   v-model="content"
+                  id="input"
                 >
+                
                 </textarea>
+                
                 <div class="send-button-div">
                   <button
                     class="button-81"
@@ -53,8 +66,18 @@
                   >
                     Send Message
                   </button>
+                  
+                  
+                  
                 </div>
+                <emoji-picker
+    v-if="popupTriggersThird.buttonTriggerThird"
+    @click="emojiEvent()"
+    
+  ></emoji-picker>
+                 
               </div>
+             
             </div>
           </div>
           <br />
@@ -118,16 +141,27 @@
 import axios from "axios";
 import { ref } from "vue";
 import CreateConversation from "./CreateConversation.vue";
+import "emoji-picker-element";
 export default {
   components: {
     CreateConversation,
+   
   },
   created() {
     this.interval = setInterval(() => {
       this.getAllPostsNoParameter();
-    }, 2000);
+    }, 4000);
   },
   setup() {
+    //Third
+  const popupTriggersThird = ref({
+      buttonTriggerThird: false,
+    });
+    const TogglePopupThird = (trigger) => {
+      popupTriggersThird.value[trigger] = !popupTriggersThird.value[trigger];
+    };
+    
+
     const popupTriggers = ref({
       buttonTrigger: false,
     });
@@ -141,6 +175,8 @@ export default {
       popupTriggers,
       TogglePopup,
       TogglePopup2,
+      popupTriggersThird,
+      TogglePopupThird,
     };
   },
   data() {
@@ -159,6 +195,27 @@ export default {
     this.getAllUsers();
   },
   methods: {
+
+    emojiEvent() {
+      document
+        .querySelector("emoji-picker")
+        .addEventListener("emoji-click", (event) => {
+          let input = document.getElementById("input");
+          let startPos = input.selectionStart;
+          let endPos = input.selectionEnd;
+          let resultText =
+            input.value.substring(0, startPos) +
+            event.detail.unicode +
+            input.value.substring(endPos);
+          input.value = resultText;
+          input.focus();
+          input.selectionStart = startPos + event.detail.unicode.length;
+          console.log(input.selectionStart)
+          input.selectionEnd = startPos + event.detail.unicode.length;
+          console.log(input.selectionEnd)
+          this.content = resultText;
+        });
+    },
     createDate() {
       for (let index = 0; index < this.messages.length; index++) {
         let newDate = new Date(this.messages[index].time);
@@ -225,8 +282,8 @@ export default {
         .catch((e) => {
           this.errors.push(e);
         });
-        let hallo= response;
-        hallo +"";
+      let hallo = response;
+      hallo + "";
       //console.log(response);
     },
     //To display all the Conversations we need to get them from the Server
@@ -389,6 +446,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.abolutePosition{
+  position: absolute;
+}
+
 #editIcon {
   width: 2em;
   margin-right: -2em;
