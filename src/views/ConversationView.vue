@@ -49,7 +49,7 @@ export default {
 .home{
   position: absolute; 
   top: 0em;
-  left: 10em;
+  left: 11em;
 
   width: 90%;
   height: 100%;
