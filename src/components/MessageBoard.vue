@@ -14,7 +14,7 @@
           <tr>
             <!-- <td> -->
             <img
-              src="@/assets/china.png"
+              src="@/assets/chinapicture.png"
               alt="ChinaLogo"
               @click="translateTextToChinese(post)"
               id="chinaLogo"
@@ -22,13 +22,23 @@
             />
 
             <br />
-            <br />
+            
 
             <img
               src="@/assets/germany.png"
               alt="Germany"
               @click="translateTextToGerman(post)"
               id="germanyLogo"
+              class="countryLogo"
+            />
+            <br />
+            
+
+            <img
+              src="@/assets/uk.png"
+              alt="Germany"
+              @click="translateTextToEnglish(post)"
+              id="ukLogo"
               class="countryLogo"
             />
             <!-- </td> -->
@@ -102,6 +112,64 @@ export default {
             text: text.content,
             source: "auto",
             target: "de",
+          },
+          {
+            // headers: {
+            //   authorization: localStorage.getItem("token"),
+            //   "Content-Type": undefined,
+            // },
+          }
+        )
+        .then(function (result) {
+          // console.log("-------------------------"+response.data.data);
+          // console.log("-------------------------"+response.data.data.TargetText);
+          //  console.log("-------------------------"+response.data.data.targeText);
+          hallo1 = result.data.TargetText;
+          console.log(hallo1);
+          console.log(typeof hallo1);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+      for (let i = 0; i < this.posts.length; i++) {
+        console.log(this.posts[i].postId + " " + text.postId);
+        console.log("1 TranslationStatus: " + this.posts[i].translationStatus);
+        if (this.posts[i].postId == text.postId) {
+          console.log(
+            "2 TranslationStatus: " + this.posts[i].translationStatus
+          );
+          if (this.posts[i].translationStatus == false) {
+            console.log(
+              "3 TranslationStatus: " + this.posts[i].translationStatus
+            );
+            //if(  this.posts[i].content != hallo1){
+            //  this.posts[i].originalcontent =  this.posts[i].content;
+            // }
+            //this.posts[i].originalcontent =  this.posts[i].content;
+            this.posts[i].translatedcontent = hallo1;
+            this.posts[i].translationStatus = true;
+          } else {
+            console.log(
+              " 4TranslationStatus: " + this.posts[i].translationStatus
+            );
+            this.posts[i].translationStatus = false;
+          }
+        }
+      }
+
+      console.log(result);
+    },
+
+    async translateTextToEnglish(text) {
+      let hallo1 = "";
+      let url = "http://localhost:8090/translatePost";
+      let result = await axios
+        .post(
+          url,
+          {
+            text: text.content,
+            source: "auto",
+            target: "en",
           },
           {
             // headers: {
@@ -626,11 +694,18 @@ export default {
 </script>
 
 <style scoped>
+br {
+  content: " ";
+  
+  margin: 1em;
+}
+
 #chinaLogo {
-  width: 2em;
+  width: 1.8em;
   /* float: right; */
-  margin-left: 47em;
+  margin-left: 40em;
   margin-top: -2em;
+  
 
   position: absolute;
   cursor: pointer;
@@ -643,7 +718,7 @@ export default {
   width: 2em;
   margin-top: -2em;
 
-  margin-left: 47em;
+  margin-left: 41em;
 
   position: absolute;
   cursor: pointer;
@@ -652,10 +727,10 @@ export default {
 
 #ukLogo {
   width: 2em;
-
+  margin-top: -2em;
   margin-bottom: -2em;
   /* float: right; */
-  margin-left: 47em;
+  margin-left: 42em;
   position: absolute;
   cursor: pointer;
   border: 1.6px solid gray;
