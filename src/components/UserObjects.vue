@@ -213,7 +213,7 @@ export default {
   right: 1em;
   width: 20em;
   height: 20em; 
-
+  
   .selected-User {
     position: absolute;
     width: 120px;
@@ -248,7 +248,7 @@ export default {
     max-width: 100%;
     
     visibility: hidden;
-    transition: all 0.5s linear;
+    transition: all 0.3s linear;
     box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
    
     overflow: hidden;

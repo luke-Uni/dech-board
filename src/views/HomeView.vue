@@ -24,7 +24,7 @@
    
 
   <button
-    class="icon-btn add-btn"
+    class="icon-btn add-btn" id="message-board"
     @click="() => TogglePopupSecond('buttonTrigger')"
   >
     <div class="add-icon"></div>
@@ -180,10 +180,28 @@ export default {
 
 <style scoped>
 
+#message-board {
+  position: absolute;
+  Bottom: 50%;
+}
+.home{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: auto;
+  height: auto;
+}
+
 .sticky{
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+}
+.icon-btn add-btn{
+  position: absolute;
+
+  width: 100em;
+  height:10em; 
 }
 
 .main-hr {
