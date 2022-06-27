@@ -1,6 +1,5 @@
 <template>
   <div class="app">
-   
     <section class="dropdown-wrapper">
       <div
         @click="getAllUsers(), (isVisible = !isVisible)"
@@ -35,35 +34,35 @@
           <table>
             <tr>
               <td>
-                <label>friends only</label>
+                <label>contacts only</label>
               </td>
               <td>
                 <input
-                class="friendsCheckbox2"
+                  class="Checkbox2"
                   type="checkbox"
                   v-model="this.categories"
                   @click="getFriends()"
                 />
               </td>
             </tr>
-             <tr>
+            <tr>
               <td>
                 <label>Fra Uas Students</label>
               </td>
               <td>
                 <input
-                class="friendsCheckbox2"
+                  class="Checkbox2"
                   type="checkbox"
                   v-model="this.german"
-                  @click="getGermanUsers()"
+                  @click="getFriendsAndGerman()"
                 />
               </td>
-               <td>
+              <td>
                 <label>Henan Students</label>
               </td>
               <td>
                 <input
-                class="friendsCheckbox2"
+                  class="Checkbox2"
                   type="checkbox"
                   v-model="this.chinese"
                   @click="getChineseUsers()"
@@ -111,9 +110,10 @@ export default {
       isVisible: false,
       search: "",
       users: [],
+      secondUsers: [],
       categories: "",
-      german:"",
-      chinese:"",
+      german: "",
+      chinese: "",
     };
   },
   computed: {
@@ -150,7 +150,7 @@ export default {
       });
       console.log(response);
     },
-// filter fuction to get only friends 
+    // filter fuction to get only friends
     async getFriends() {
       //console.logs("workung (UserList funct.)");
       let headers = {
@@ -167,6 +167,10 @@ export default {
       console.log(response);
     },
     async getGermanUsers() {
+      if (this.chinese) {
+        this.getAllUsers();
+        return;
+      }
       //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
@@ -177,11 +181,17 @@ export default {
         uri = "http://localhost:8090/getUsers";
       }
       let response = axios.get(uri, { headers: headers }).then((response) => {
+        this.secondUsers = response.data;
         this.users = response.data;
+        
       });
       console.log(response);
     },
     async getChineseUsers() {
+      if (this.german) {
+        this.getAllUsers();
+        return;
+      }
       //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
@@ -196,6 +206,27 @@ export default {
       });
       console.log(response);
     },
+    async getFriendsAndGerman() {
+
+      if (this.categories) {
+         console.log("-------------------------huhuuhbhbjh");
+        this.getGermanUsers();
+        this.getFriends();
+        
+        console.log(this.users);
+        console.log(this.secondUsers);
+
+
+        this.users = this.users.filter(function (n) {
+          return this.secondUsers.indexOf(n) !== -1;
+        });
+
+       
+        return;
+      }
+      console.log("-------------------------");
+      this.getGermanUsers();
+    },
   },
 };
 </script>
@@ -203,24 +234,24 @@ export default {
 .app {
   position: absolute;
   left: 10em;
-  width: 100% ;
+  width: 100%;
   height: 100%;
-  top:0%;
+  top: 0%;
 }
 .dropdown-wrapper {
   position: absolute;
-  top: 10em;
+  top: 5em;
   right: 1em;
   width: 20em;
-  height: 20em; 
-  
+  height: 20em;
+
   .selected-User {
     position: absolute;
-    width: 120px;
+    width: 250px;
     height: 50px;
     border: 2px solid black;
     border-radius: 5px;
-  
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -230,6 +261,8 @@ export default {
     box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
 
     .drop-down-icon {
+      cursor: pointer;
+      font-size: 16px;
       transform: rotate(0deg);
       transition: all.4s ease;
       &.dropdown {
@@ -246,15 +279,14 @@ export default {
     border-radius: 5px;
     background-color: lightgrey;
     max-width: 100%;
-    
+
     visibility: hidden;
     transition: all 0.3s linear;
     box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
-   
+
     overflow: hidden;
 
     width: 20em;
- 
 
     &.visible {
       position: absolute;
@@ -262,7 +294,6 @@ export default {
       max-height: 450px;
       visibility: visible;
       background-color: lightgrey;
-   
     }
 
     input {
@@ -272,13 +303,13 @@ export default {
       font-size: 16px;
       padding-left: 8px;
       border-radius: 5px;
-       border: 2px solid black;
+      border: 2px solid black;
     }
 
     .friendsCheckbox {
       font-weight: bold;
     }
-    .friendsCheckbox2{
+    .Checkbox2 {
       width: 1em;
       height: 2em;
     }
