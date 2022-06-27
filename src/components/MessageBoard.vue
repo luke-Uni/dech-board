@@ -92,27 +92,28 @@ export default {
     localStorage.setItem("conversationID", "");
   },
   methods: {
-    async translateTextToGerman(text){
-
-  let hallo1 = "";        
-      let url="http://localhost:8090/translatePost";
-      let result = await axios.post( url,{
-        text: text.content,
-        source:"auto",
-        target:"de"
-      },
-      {
-          // headers: {
-          //   authorization: localStorage.getItem("token"),
-          //   "Content-Type": undefined,
-          // },
-        }
-
-      )
-      .then(function (result) {
-       // console.log("-------------------------"+response.data.data);
-       // console.log("-------------------------"+response.data.data.TargetText);
-      //  console.log("-------------------------"+response.data.data.targeText);
+    async translateTextToGerman(text) {
+      let hallo1 = "";
+      let url = "http://localhost:8090/translatePost";
+      let result = await axios
+        .post(
+          url,
+          {
+            text: text.content,
+            source: "auto",
+            target: "de",
+          },
+          {
+            // headers: {
+            //   authorization: localStorage.getItem("token"),
+            //   "Content-Type": undefined,
+            // },
+          }
+        )
+        .then(function (result) {
+          // console.log("-------------------------"+response.data.data);
+          // console.log("-------------------------"+response.data.data.TargetText);
+          //  console.log("-------------------------"+response.data.data.targeText);
           hallo1 = result.data.TargetText;
           console.log(hallo1);
           console.log(typeof hallo1);
@@ -120,7 +121,7 @@ export default {
         .catch(function (error) {
           console.error(error);
         });
-    for (let i = 0; i < this.posts.length; i++) {
+      for (let i = 0; i < this.posts.length; i++) {
         console.log(this.posts[i].postId + " " + text.postId);
         console.log("1 TranslationStatus: " + this.posts[i].translationStatus);
         if (this.posts[i].postId == text.postId) {
@@ -146,30 +147,31 @@ export default {
         }
       }
 
-   console.log(result);
+      console.log(result);
     },
 
-    async translateTextToChinese(text){
-
-  let hallo1 = "";        
-      let url="http://localhost:8090/translatePost";
-      let result = await axios.post( url,{
-        text: text.content,
-        source:"auto",
-        target:"zh"
-      },
-      {
-          // headers: {
-          //   authorization: localStorage.getItem("token"),
-          //   "Content-Type": undefined,
-          // },
-        }
-
-      )
-      .then(function (result) {
-       // console.log("-------------------------"+response.data.data);
-       // console.log("-------------------------"+response.data.data.TargetText);
-      //  console.log("-------------------------"+response.data.data.targeText);
+    async translateTextToChinese(text) {
+      let hallo1 = "";
+      let url = "http://localhost:8090/translatePost";
+      let result = await axios
+        .post(
+          url,
+          {
+            text: text.content,
+            source: "auto",
+            target: "zh",
+          },
+          {
+            // headers: {
+            //   authorization: localStorage.getItem("token"),
+            //   "Content-Type": undefined,
+            // },
+          }
+        )
+        .then(function (result) {
+          // console.log("-------------------------"+response.data.data);
+          // console.log("-------------------------"+response.data.data.TargetText);
+          //  console.log("-------------------------"+response.data.data.targeText);
           hallo1 = result.data.TargetText;
           console.log(hallo1);
           console.log(typeof hallo1);
@@ -177,7 +179,7 @@ export default {
         .catch(function (error) {
           console.error(error);
         });
-    for (let i = 0; i < this.posts.length; i++) {
+      for (let i = 0; i < this.posts.length; i++) {
         console.log(this.posts[i].postId + " " + text.postId);
         console.log("1 TranslationStatus: " + this.posts[i].translationStatus);
         if (this.posts[i].postId == text.postId) {
@@ -203,7 +205,7 @@ export default {
         }
       }
 
-   console.log(result);
+      console.log(result);
     },
 
     // //Translate Text to English
@@ -485,7 +487,7 @@ export default {
           );
           //console.log(res.data);
           let img = res.data;
-          this.posts[i].image = "data:image/png;base64," + img;
+          this.posts[i].image = "data:image/*;base64," + img;
           this.posts[i]["hasImage"] = true;
         } else {
           this.posts[i]["hasImage"] = false;

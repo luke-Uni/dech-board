@@ -64,7 +64,9 @@
           <input type="radio" />i've read and accepted the
           <a href="">Privacy Policy</a> -->
       <!-- </div> -->
+      <p id="feedback">{{ feedback }}</p>
       <br />
+
       <button class="primary" @click="registerAcc()" id="loginButton">
         Sign up
       </button>
@@ -98,6 +100,7 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
+      feedback: "",
       errors: [],
     };
   },
@@ -109,16 +112,45 @@ export default {
     },
     async registerAcc() {
       let headers = { "Content-Type": "application/json" };
-      let res = await axios.post(
-        "http://localhost:8090/register",
-        // "https://dech-board-rest-server.herokuapp.com/register",
-        { username: this.username, password: this.password, email: this.email },
-        {
-          headers: headers,
-        }
-      );
+      let res = await axios
+        .post(
+          "http://localhost:8090/register",
+          // "https://dech-board-rest-server.herokuapp.com/register",
+          {
+            username: this.username,
+            password: this.password,
+            email: this.email,
+          },
+          {
+            headers: headers,
+          }
+        )
+        .then((res) => {
+          this.$router.push("/login");
+          console.log(res.status);
+        })
+        .catch((error) => {
+          // error.response can be null
+          console.log(error.response.data);
+          console.log(error.response.status);
+          if (error.response && error.response.status == 417) {
+            if (error.response.data == "Username already exists!") {
+              this.feedback = "Username already exists!";
+            } else if (
+              error.response.data == "Email has to be from University!"
+            ) {
+              this.feedback = "Email has to be from University!";
+            } else if (error.response.data == "Email is already in use!") {
+              this.feedback = "Email is already in use!";
+            }
+
+            console.log(error.res.data.error.data);
+          } else if (error.response && error.response.status === 400) {
+            this.feedback = "User does not Exist!";
+            console.log(error.response.data.error);
+          }
+        });
       console.log(res.status);
-      this.$router.push("/login");
     },
 
     checkForm: function (e) {
@@ -267,5 +299,9 @@ input {
   widows: 80%;
   margin-left: 10%;
   /* text-align: center; */
+}
+
+#feedback {
+  color: red;
 }
 </style>
