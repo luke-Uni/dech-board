@@ -1,6 +1,6 @@
 <template>
 
-    <div class="see Users">
+    <div class="seeUsers">
    
         <UserObject/>
 

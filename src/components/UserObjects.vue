@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <div class="postion"></div>
+  <div class="app">
+   
     <section class="dropdown-wrapper">
       <div
         @click="getAllUsers(), (isVisible = !isVisible)"
@@ -200,22 +200,34 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.app {
+  position: absolute;
+  left: 10em;
+  width: 100% ;
+  height: 100%;
+  top:0%;
+}
 .dropdown-wrapper {
-  max-width: 350px;
-  position: relative;
-  margin: 0 auto;
-  margin-top: -10em;
-  margin-left: 80em;
+  position: absolute;
+  top: 10em;
+  right: 1em;
+  width: 20em;
+  height: 20em; 
+  
   .selected-User {
-    height: 40px;
-    border: 2px solid lightgray;
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    border: 2px solid black;
     border-radius: 5px;
-    padding: 5px 10px;
+  
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 18px;
-    font-weight: 400;
+    box-shadow: 5px;
+    background-color: lightgrey;
+    box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
 
     .drop-down-icon {
       transform: rotate(0deg);
@@ -227,21 +239,30 @@ export default {
   }
   .dropdown-popover {
     position: absolute;
-    border: 2px solid lightgray;
-    top: 46px;
+    border: 2px solid black;
+    top: 4px;
     left: 0;
     right: 0;
-    background-color: #fff;
+    border-radius: 5px;
+    background-color: lightgrey;
     max-width: 100%;
-    padding: 10px;
+    
     visibility: hidden;
-    transition: all 0.5s linear;
-    max-height: 0px;
+    transition: all 0.3s linear;
+    box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
+   
     overflow: hidden;
 
+    width: 20em;
+ 
+
     &.visible {
+      position: absolute;
+      top: 5em;
       max-height: 450px;
       visibility: visible;
+      background-color: lightgrey;
+   
     }
 
     input {
@@ -250,6 +271,8 @@ export default {
       border: 2px solid lightgrey;
       font-size: 16px;
       padding-left: 8px;
+      border-radius: 5px;
+       border: 2px solid black;
     }
 
     .friendsCheckbox {

@@ -1,5 +1,5 @@
 <template>
-  <div class="top"></div>
+  
   <div class="container">
     <form class="form">
       <img src="../assets/1.png" alt="HeNan" id="logo" />
@@ -158,12 +158,12 @@ export default {
 
 .top,
 .footer {
-  /* top: 0; */
+  bottom: 0%;
   background-color: rgba(146, 196, 224, 255);
   box-sizing: border-box;
-  /* position: absolute; */
-  width: 100%;
-  height: 80px;
+  position: absolute;
+  width: 99.5%;
+
 }
 .top {
   /* position: absolute; */
@@ -173,14 +173,15 @@ export default {
 .container {
   border: 1px solid black;
   width: 20em;
-  border-radius: 35px;
+  border-radius: 15px;
   margin: 3% auto;
+
 }
 
 .form {
   display: block;
   margin: 10% auto;
-  width: 2oem;
+  width: 20em;
 }
 
 #username {

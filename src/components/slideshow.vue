@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="Eingabe">
     <input @click="profanityFilter()" type="text" />
   </div>
@@ -32,5 +32,5 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style scoped>
+</style> -->

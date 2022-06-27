@@ -1,10 +1,11 @@
 <template>
-  <div id="app">
+  <div class="app2">
     <h1>
       <img
         src="@/assets/blue-arrow_left.png"
         alt="Blue Arrow Left"
         class="arrow"
+        @click="previousBoard()"
       />
       {{ boardName }}
       <img
@@ -101,6 +102,7 @@ export default {
       chinese: "",
       boardName: "Dech-Board",
       messageboards: [],
+      array2:[],
     };
   },
   computed: {
@@ -165,16 +167,50 @@ export default {
         console.log(
           this.messageboards[index].messageBoardId + "--=--" + currentBoardId
         );
-        if (this.messageboards[index].messageBoardId == currentBoardId) {
+          if(index ==  this.messageboards.length-1 ){
+            localStorage.setItem(
+            "messageboardid",
+            "0"
+          );
+          let hallo = this.messageboards[0];
+          hallo.messageBoardId= "0";
+          hallo.messageBoardName= "Dech-Board"
+          hallo.participants=[];
+          hallo.admin="";
+          this.changeBoard(hallo);
+          return;
+          }
+        
+       else if (this.messageboards[index].messageBoardId == currentBoardId) {
           console.log("Old" + this.messageboards[index].messageBoardId);
           let newIndex = index;
+          if(index+1== this.array2.length){
+            localStorage.setItem(
+            "messageboardid",
+            "0"
+          );
+          let hallo = this.messageboards[0];
+          hallo.messageBoardId= "0";
+          hallo.messageBoardName= "Dech-Board"
+          hallo.participants=[];
+          hallo.admin="";
+          this.changeBoard(hallo);
+          return;
+          }
+          else{
+          
+          //Error
           localStorage.setItem(
             "messageboardid",
             this.messageboards[newIndex + 1].messageBoardId
           );
+        }
+          
+          
           this.changeBoard(this.messageboards[newIndex + 1]);
           return;
         } else if (currentBoardId == 0) {
+          console.log("++++++++++++++++++++++++++");
           console.log("Neew" + this.messageboards[index].messageBoardId);
           localStorage.setItem(
             "messageboardid",
@@ -185,48 +221,111 @@ export default {
         }
       }
     },
+
+    previousBoard() {
+      console.log("Go to previous Board!");
+        this.array2 = structuredClone(this.messageboards)
+        //this.array2 = [].concat(this.messageboards).reverse();
+        console.log(this.array2);
+        //dto = this.messageboards;
+       this.array2.reverse();
+       console.log(this.array2);
+
+      let currentBoardId = localStorage.getItem("messageboardid");
+      //console.log(this.array2.length);
+      for (let index = 0; index < this.array2.length; index++) {
+        console.log(
+          this.array2[index].messageBoardId + "--=--" + currentBoardId
+        );
+        if (this.array2[index].messageBoardId == currentBoardId) {
+          console.log("Old" + this.array2[index].messageBoardId);
+          //let newIndex = index;
+          if(index+1== this.array2.length){
+            localStorage.setItem(
+            "messageboardid",
+            "0"
+          );
+          let hallo = this.messageboards[0];
+          hallo.messageBoardId= "0";
+          hallo.messageBoardName= "Dech-Board"
+          hallo.participants=[];
+          hallo.admin="";
+
+          this.changeBoard(hallo);
+          return;
+          }
+          else{
+          localStorage.setItem(
+            "messageboardid",
+            this.array2[index + 1].messageBoardId
+          );
+        }
+          this.changeBoard(this.array2[index + 1]);
+          return;
+        } else if (currentBoardId == 0) {
+          console.log("++++++++++++++++++++++++++");
+          console.log("Neew" + this.array2[index].messageBoardId);
+          localStorage.setItem(
+            "messageboardid",
+            this.array2[index].messageBoardId
+          );
+          this.changeBoard(this.array2[index]);
+          return;
+        }
+      }
+    },
   },
 };
 </script>
 <style scoped lang="scss">
+.app2{
+  position: absolute;
+  left: 10em;
+  right: 0%;
+  top:0%;
+}
 .dropdown-wrapper {
-  max-width: 350px;
-  position: relative;
-  margin: 0 auto;
-  margin-top: 0em;
-  margin-left: 80em;
+  position: absolute;
+  top: 28em;
+  right: -3.5em; 
+  width: 15em;
   .selected-User {
     height: 40px;
-    border: 2px solid lightgray;
+    border: 2px solid black;
+    background-color: lightgrey;
     border-radius: 5px;
-    padding: 5px 10px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 18px;
     font-weight: 400;
+    box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
 
     .drop-down-icon {
       transform: rotate(0deg);
       transition: all.4s ease;
       &.dropdown {
         transform: rotate(180deg);
+
       }
     }
   }
   .dropdown-popover {
     position: absolute;
-    border: 2px solid lightgray;
+    border: 2px solid black;
+    border-radius: 5px;
     top: 46px;
     left: 0;
     right: 0;
-    background-color: #fff;
+    background-color: lightgrey;
     max-width: 100%;
     padding: 10px;
     visibility: hidden;
     transition: all 0.5s linear;
     max-height: 0px;
     overflow: hidden;
+    box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
 
     &.visible {
       max-height: 450px;
@@ -236,7 +335,8 @@ export default {
     input {
       width: 90%;
       height: 30px;
-      border: 2px solid lightgrey;
+      border: 2px solid black;
+      border-radius: 5px;
       font-size: 16px;
       padding-left: 8px;
     }

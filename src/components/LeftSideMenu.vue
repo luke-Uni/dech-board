@@ -104,7 +104,7 @@ a {
   /* the color */
   --b: 0.5em;
   /* border length*/
-  --d: 15px;
+  --d: 1em;
   /* the cube depth */
 
   --_s: calc(var(--d) + var(--b));
@@ -136,12 +136,15 @@ a {
   position: relative;
   top: 20%;
   left: 0%;
-  width: 22em;
+  width: 10em;
   height: 60%;
-  max-width: 93%;
-  max-height: 80%;
 
-  line-height: 150%;
+  margin: 0em;
+  padding: 0em;
+  
+
+
+  /* line-height: 150%; */
 
   background-color: #92c4e0;
   /* Same color as sidebar background */
@@ -164,22 +167,12 @@ a {
 .navbar {
   display: flex;
   justify-content: space-around;
-
-  
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
- 
-
-
   position: absolute;
   top: 6em;
-
+  left: 0em;
   width: 10em;
-
-  
- 
-  
 }
 
 /* a:hover {
@@ -187,28 +180,19 @@ a {
 } */
 
 .menu-container {
-  display: flex;
-
-  position: absolute;
-  width: 10em;
-  height: auto;
-  max-width: 100%;
+  position: fixed;
   
-
-  padding-left: 0%;
-  padding-right: 0%;
+  width: 11em;
+  height: 100;
+  margin: 0em;
+  border: 0em;
+  padding: 0em;
   top: 0%;
   bottom: 0%;
   margin-left: -0.5em;
   background: #92c4e0;
-
   box-shadow: 2px 2px 20px rgb(172, 197, 221);
-  /* border-top: #506698;
-    border-bottom: #506698; */
 }
-
-
-
 /* Logo Inside the Side bar */
 .logo {
   position: absolute;

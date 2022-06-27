@@ -1,11 +1,10 @@
-
 <template>
   <div>
     <div class="selecteduser"></div>
 
     <div class="chat">
       <div class="messages_view">
-        
+        <div>
           <div
             class="postComplete"
             v-for="message in messages"
@@ -23,7 +22,7 @@
               <!-- <p class="directionState">{{ message.state }}</p> -->
             </div>
           </div>
-        
+        </div>
       </div>
       <div class="send_messages"></div>
     </div>
@@ -36,16 +35,29 @@
           <br />
 
           <div>
+            
             <div class="message-create">
+              
+              
+              
               <div class="message-textarea-div">
+                <button
+                style="border: none"
+                @click="() => TogglePopupThird('buttonTriggerThird')"
+              >
+                Emoji😀
+              </button>
                 <textarea
                   class="textarea-content"
                   name="content"
                   rows="3"
                   cols="55"
                   v-model="content"
+                  id="input"
                 >
+                
                 </textarea>
+                
                 <div class="send-button-div">
                   <button
                     class="button-81"
@@ -54,8 +66,18 @@
                   >
                     Send Message
                   </button>
+                  
+                  
+                  
                 </div>
+                <emoji-picker
+    v-if="popupTriggersThird.buttonTriggerThird"
+    @click="emojiEvent()"
+    
+  ></emoji-picker>
+                 
               </div>
+             
             </div>
           </div>
           <br />
@@ -119,34 +141,42 @@
 import axios from "axios";
 import { ref } from "vue";
 import CreateConversation from "./CreateConversation.vue";
-
+import "emoji-picker-element";
 export default {
   components: {
     CreateConversation,
+   
   },
   created() {
     this.interval = setInterval(() => {
       this.getAllPostsNoParameter();
-    }, 2000);
+    }, 4000);
   },
-
   setup() {
+    //Third
+  const popupTriggersThird = ref({
+      buttonTriggerThird: false,
+    });
+    const TogglePopupThird = (trigger) => {
+      popupTriggersThird.value[trigger] = !popupTriggersThird.value[trigger];
+    };
+    
+
     const popupTriggers = ref({
       buttonTrigger: false,
     });
-
     const TogglePopup = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
-
     const TogglePopup2 = (trigger) => {
       popupTriggers.value[trigger] = !popupTriggers.value[trigger];
     };
-
     return {
       popupTriggers,
       TogglePopup,
       TogglePopup2,
+      popupTriggersThird,
+      TogglePopupThird,
     };
   },
   data() {
@@ -164,8 +194,28 @@ export default {
     this.getAllConversations();
     this.getAllUsers();
   },
-
   methods: {
+
+    emojiEvent() {
+      document
+        .querySelector("emoji-picker")
+        .addEventListener("emoji-click", (event) => {
+          let input = document.getElementById("input");
+          let startPos = input.selectionStart;
+          let endPos = input.selectionEnd;
+          let resultText =
+            input.value.substring(0, startPos) +
+            event.detail.unicode +
+            input.value.substring(endPos);
+          input.value = resultText;
+          input.focus();
+          input.selectionStart = startPos + event.detail.unicode.length;
+          console.log(input.selectionStart)
+          input.selectionEnd = startPos + event.detail.unicode.length;
+          console.log(input.selectionEnd)
+          this.content = resultText;
+        });
+    },
     createDate() {
       for (let index = 0; index < this.messages.length; index++) {
         let newDate = new Date(this.messages[index].time);
@@ -175,13 +225,11 @@ export default {
     },
     async getAllUsers() {
       //console.logs("workung (UserList funct.)");
-
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
       let uri = "http://localhost:8090/getUsers";
-
       let response = await axios
         .get(uri, { headers: headers })
         .then((response) => {
@@ -189,24 +237,20 @@ export default {
         });
       console.log(response);
     },
-
     //Get all Messages for one conversation using the other users username as a parameter
     async getAllPosts(name) {
       // localStorage.setItem("recipient", name);
       localStorage.setItem("conversationID", name);
-
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
       let response = await axios
         .get(uri, { headers: headers })
         .then((response) => {
           console.log(response);
-
           this.messages = response.data;
         })
         //save all Posts locally
@@ -214,19 +258,15 @@ export default {
         .catch((e) => {
           this.errors.push(e);
         });
-
       this.createDate();
-
       console.log(response);
     },
-
     //get all Messages from one Conversation without having to use parameters
     async getAllPostsNoParameter() {
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-
       let name = localStorage.getItem("conversationID");
       console.log(localStorage.getItem("conversationID"));
       let uri = "http://localhost:8090/message/getall/" + name;
@@ -235,7 +275,6 @@ export default {
         .get(uri, { headers: headers })
         .then((response) => {
           console.log(response);
-
           this.messages = response.data;
         })
         //save all Posts locally
@@ -243,26 +282,22 @@ export default {
         .catch((e) => {
           this.errors.push(e);
         });
-
-      console.log(response.constructor);
+      let hallo = response;
+      hallo + "";
+      //console.log(response);
     },
-
     //To display all the Conversations we need to get them from the Server
     async getAllConversations() {
       console.log("I am in the getAllPosts function");
-
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-
       let uri = "http://localhost:8090/conversation/getall";
-
       let response = await axios
         .get(uri, { headers: headers })
         .then((response) => {
           console.log(response);
-
           this.conversations = response.data;
         })
         //save all Conversations
@@ -273,7 +308,6 @@ export default {
       var index;
       console.log(this.conversations.length);
       //Delete own username from chat participants
-
       for (var i = 0; i < this.conversations.length; i++) {
         console.log(this.conversations[i]);
         if (
@@ -288,7 +322,6 @@ export default {
           console.log("Indeex: " + index);
         }
       }
-
       console.log(response);
     },
     //Create a message
@@ -325,7 +358,6 @@ export default {
       //       },
       //     }
       //   );
-
       //   console.log(result);
       // }
       this.getAllConversations();
@@ -372,7 +404,6 @@ export default {
       this.getAllConversations();
       this.getAllPostsNoParameter();
     },
-
     // async createMessage2() {
     //   //this.recipients.push(this.recipient);
     //   console.log(this.recipients);
@@ -405,7 +436,6 @@ export default {
     //     //     },
     //     //   }
     //     // );
-
     //     // console.log(result);
     //   }
     //   //this.getAllConversations();
@@ -416,13 +446,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.abolutePosition{
+  position: absolute;
+}
+
 #editIcon {
   width: 2em;
   margin-right: -2em;
   margin-top: 1.4em;
   cursor: pointer;
 }
-
 .same {
   // display: flex;
   display: inline-block;
@@ -430,29 +464,25 @@ export default {
   color: #707070;
   font-family: "Arial";
 }
-
 ul {
   list-style: none;
 }
-
 .insert_message {
   position: absolute;
-
   width: 37.8125em;
   height: 3.75em;
-  left: 2em;
-  bottom: 8.7em;
-  
+  left: 6.25em;
+  top: 3.375em;
+  background: #f4f7ff;
   border-radius: 0.625em;
-  
+  margin-top: 42.5em;
+  margin-left: 8em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
-
 .messages_view {
   margin-bottom: 2em;
   height: 1em;
 }
-
 .conversation_segment {
   height: 5em;
   width: 23.7em;
@@ -466,38 +496,32 @@ ul {
   border: 1px solid rgb(230, 230, 230);
   padding: 0.2em;
 }
-
 .selecteduser {
   position: absolute;
-
   width: 37.8125em;
   height: 3.75em;
-  left: 2em;
+  left: 6.25em;
   top: 3.375em;
   background: #f4f7ff;
   border-radius: 0.625em;
-  // margin-top: 7em;
-  // margin-left: 25em;
+  margin-top: 7em;
+  margin-left: 8em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
-
 .chat {
   position: absolute;
-  background-color: #f4f7ff;
-
-  left: 2em;
   width: 37.8125em;
   height: 28.9em;
-  
+  left: 6.25em;
   top: 8.375em;
-
+  background: #f4f7ff;
   border-radius: 1.1875em;
-  
+  margin-top: 6.6375em;
+  margin-left: 8em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
-  // overflow: scroll;
+  overflow: scroll;
   overflow-x: hidden;
 }
-
 .chat::-webkit-scrollbar-track {
   background-color: #f5f5f5;
   border-radius: 1em;
@@ -511,30 +535,27 @@ ul {
   background-color: #e1e7f7;
   border-radius: 1em;
 }
-.chat::-webkit-scrollbar-button:single-button {
-  background-color: #bbbbbb;
-  display: block;
-  border-style: solid;
-  height: 13px;
-  width: 16px;
-}
-.chat::-webkit-scrollbar-button:single-button:vertical:decrement {
-  border-width: 0 8px 8px 8px;
-  border-color: transparent transparent #97a6ce transparent;
-}
-
-.chat::-webkit-scrollbar-button:single-button:vertical:increment {
-  border-width: 8px 8px 0 8px;
-  border-color: #97a6ce transparent transparent transparent;
-}
-
-.chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
-  border-color: #778dc9 transparent transparent transparent;
-}
-.chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-  border-color: transparent transparent #778dc9 transparent;
-}
-
+// .chat::-webkit-scrollbar-button:single-button {
+//   background-color: #bbbbbb;
+//   display: block;
+//   border-style: solid;
+//   height: 13px;
+//   width: 16px;
+// }
+// .chat::-webkit-scrollbar-button:single-button:vertical:decrement {
+//   border-width: 0 8px 8px 8px;
+//   border-color: transparent transparent #97a6ce transparent;
+// }
+// .chat::-webkit-scrollbar-button:single-button:vertical:increment {
+//   border-width: 8px 8px 0 8px;
+//   border-color: #97a6ce transparent transparent transparent;
+// }
+// .chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+//   border-color: #778dc9 transparent transparent transparent;
+// }
+// .chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+//   border-color: transparent transparent #778dc9 transparent;
+// }
 .conversationview {
   position: absolute;
   width: 25.125em;
@@ -544,15 +565,12 @@ ul {
   background: #f4f7ff;
   border-radius: 1.3125em;
   margin-top: 6em;
-  margin-left: 25em;
+  margin-left: 8em;
   border: 1px solid #f4f7ff;
-
   //box-shadow: 2px 2px 7px rgb(198, 227, 255);
-
   overflow: scroll;
   overflow-x: hidden;
 }
-
 .conversationview::-webkit-scrollbar-track {
   background-color: #f5f5f5;
   border-radius: 1em;
@@ -578,24 +596,20 @@ ul {
 //   border-width: 0 8px 8px 8px;
 //   border-color: transparent transparent #97a6ce transparent;
 // }
-
 // .conversationview::-webkit-scrollbar-button:single-button:vertical:increment {
 //   border-width: 8px 8px 0 8px;
 //   border-color: #97a6ce transparent transparent transparent;
 // }
-
 // .conversationview::-webkit-scrollbar-button:vertical:single-button:increment:hover {
 //   border-color: #778dc9 transparent transparent transparent;
 // }
 // .conversationview::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
 //   border-color: transparent transparent #778dc9 transparent;
 // }
-
 .timeStamp {
   margin-right: 2em;
   text-align: right;
 }
-
 .recipient {
   padding-top: 10px;
   margin-left: 1.5em;
@@ -615,7 +629,6 @@ ul {
 .postsInside {
   background-color: #ffffff;
   text-align: left;
-
   margin: 0%;
   align-items: flex-start;
   width: 34em;
@@ -625,7 +638,6 @@ ul {
   border-radius: 10px;
   box-shadow: 3.4px 2.4px 10px rgba(0, 0, 0, 0.014);
 }
-
 .postsInside2 {
   color: rgb(78, 78, 78);
   background-color: #94f07b70;
@@ -639,14 +651,12 @@ ul {
   border-radius: 10px;
   box-shadow: 3.4px 2.4px 10px rgba(0, 0, 0, 0.014);
 }
-
 .postTitle {
   float: left;
   margin: 0%;
   margin-left: 1em;
   margin-top: 0.5em;
 }
-
 .postUsername {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -660,32 +670,26 @@ ul {
   word-wrap: break-word;
   word-break: break-all;
 }
-
 .input-recipient {
   position: absolute;
   margin-top: -41.5em;
   margin-left: -20em;
 }
-
 .popup-inner {
   background: white;
   padding: 32px;
   border-radius: 10px;
 }
-
 .table-left {
   margin: auto;
 }
-
 .td-left {
   padding-left: 35em;
 }
-
 .message-create {
   display: block;
   white-space: pre;
 }
-
 .input-username {
   float: left;
   background-color: transparent;
@@ -694,7 +698,6 @@ ul {
   width: 160px;
   color: rgb(93, 170, 233);
 }
-
 .input-title {
   float: left;
   margin-left: 11em;
@@ -707,28 +710,22 @@ ul {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-
 input:focus {
   outline: none;
 }
-
 .important {
   float: left;
 }
-
 .float-right {
   float: right;
 }
-
 .label-left {
   text-align: left;
   margin-right: 40em;
   padding-bottom: 10em;
 }
-
 .message-create {
   width: 38em;
-
   padding: 0em;
   // margin: auto;
   margin-left: -2em;
@@ -794,12 +791,10 @@ input:focus {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
 .button-81:hover {
   background-color: rgba(102, 194, 247, 0.25);
   color: rgb(0, 0, 0);
 }
-
 @media (min-width: 768px) {
   .button-81 {
     font-size: 0.9rem;
@@ -808,21 +803,30 @@ input:focus {
 }
 .own_user {
   position: absolute;
-
- 
-
-  background-color: black;
- 
-  
-  left:3em;
+  width: 25.235em;
+  height: 39.4em;
+  left: 45.17em;
   top: 4.375em;
   background: #f4f7ff;
   border-radius: 1.3125em;
-
+  margin-top: 6em;
+  margin-left: 8em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
-
-
+/*.own_user{
+  height: 3.2em;
+  width: 20.7em;
+  background: #f4f7ff;
+  text-align: center;
+  border-radius: 1.3125em;
+  margin-top: 0.4em;
+  margin-left: 0.4em;
+  margin-bottom: -0,5em;
+  box-shadow: 2px 2px 7px rgb(198, 227, 255);
+  border: 1px solid rgb(230, 230, 230);
+  padding: 1.2em;
+}
+*/
 .button-conversation {
   height: auto;
   width: 26.7em;
@@ -836,14 +840,12 @@ input:focus {
   //box-shadow: 2px 2px 7px rgb(198, 227, 255);
   column-count: 2;
   column-gap: 20px;
-
   // border: 1px solid rgb(230, 230, 230);
   border: 0.325em solid rgb(218, 218, 218);
   padding: 2em;
   font-family: "Arial";
   cursor: pointer;
 }
-
 .button-conversation:hover {
   background-color: rgba(102, 194, 247, 0.25);
   color: rgb(0, 0, 0);
@@ -852,7 +854,6 @@ input:focus {
   border: 0.325em solid rgb(218, 218, 218);
   //border-radius: 1.3125em;
 }
-
 @media (min-width: 768px) {
   .button-81 {
     font-size: 0.9rem;

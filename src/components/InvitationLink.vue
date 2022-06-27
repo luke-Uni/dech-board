@@ -75,12 +75,10 @@ export default {
 .invitation {
   position: absolute;
   
-  bottom: 1em;
-  left: 12em;
+  top: 1em;
+  right: 1em;
 
   width:  37.8125em;
-  
-
 
 }
 
