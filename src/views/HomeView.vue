@@ -186,12 +186,6 @@ export default {
   top: 0;
 }
 
-.sticky{
-position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-
 .main-hr {
   width: 30%;
   border: none;

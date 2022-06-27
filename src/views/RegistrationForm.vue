@@ -156,15 +156,15 @@ input {
   margin-left: 10%;
 }
 #rightImg {
-  /* background-color: blue; */
-  /* height: 80%; */
+  background-color: blue;
+  height: 100%;
   width: 10%;
   float: right;
   background-color: white;
 }
 #leftImg {
   /* background-color: black; */
-  /* height: 80%; */
+  height: 100%;
   width: 10%;
   float: left;
   background-color: white;
@@ -174,24 +174,28 @@ input {
   /* opacity: 0.7; */
 }
 #rightImg img {
-  width: 80%;
+  width: 100%;
   float: right;
 }
 .top,
 .footer {
-  /* top: 0; */
-  background-color: rgba(146, 196, 224, 255);
+  bottom: 0%;
+  background-color: #92c4e0;
   box-sizing: border-box;
-  /* position: absolute; */
-  width: 100%;
-  height: 80px;
+  position: absolute;
+  width: 90%;
+  height: 5em;
+  left: 10em; 
 }
 
 .container {
+  position: absolute;
+  left: 45%;
+  top: 5em;
   border: 1px solid black;
   /* width: 23%; */
-  margin: 3% auto;
-  border-radius: 35px;
+  
+  border-radius: 15px;
   width: 20em;
 }
 
