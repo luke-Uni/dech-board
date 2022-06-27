@@ -701,7 +701,7 @@ br {
 }
 
 #chinaLogo {
-  width: 1.9em;
+  width: 1.8em;
   /* float: right; */
   margin-left: 40em;
   margin-top: -2em;
