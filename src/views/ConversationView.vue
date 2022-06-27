@@ -50,11 +50,8 @@ export default {
   position: absolute; 
   top: 0em;
   left: 11em;
-
   width: 90%;
   height: 100%;
-
-  background-color: crisom;
 }
 
 </style>

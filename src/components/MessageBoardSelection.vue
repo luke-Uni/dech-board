@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app2">
     <h1>
       <img
         src="@/assets/blue-arrow_left.png"
@@ -278,20 +278,24 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.app2{
+  position: absolute;
+  top: 0%;
+  width: 100em ;
+  height: 100em;
+}
 .dropdown-wrapper {
-  max-width: 350px;
-  position: relative;
-  margin: 0 auto;
-  margin-top: 0em;
-  margin-left: 80em;
-  // position: -webkit-sticky;
-  // position: sticky;
-  // top: 0;
+  position: absolute;
+  top: 22em;
+  right: 5%; 
+  width: 20em;
+  height: 8em;
   .selected-User {
     height: 40px;
-    border: 2px solid lightgray;
+    border: 2px solid black;
+    background-color: lightgrey;
     border-radius: 5px;
-    padding: 5px 10px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -308,11 +312,12 @@ export default {
   }
   .dropdown-popover {
     position: absolute;
-    border: 2px solid lightgray;
+    border: 2px solid black;
+    border-radius: 5px;
     top: 46px;
     left: 0;
     right: 0;
-    background-color: #fff;
+    background-color: lightgrey;
     max-width: 100%;
     padding: 10px;
     visibility: hidden;
@@ -328,7 +333,8 @@ export default {
     input {
       width: 90%;
       height: 30px;
-      border: 2px solid lightgrey;
+      border: 2px solid black;
+      border-radius: 5px;
       font-size: 16px;
       padding-left: 8px;
     }
