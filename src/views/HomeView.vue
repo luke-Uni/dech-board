@@ -28,7 +28,7 @@
     @click="() => TogglePopupSecond('buttonTrigger')"
   >
     <div class="add-icon"></div>
-    <div class="btn-txt">Add Post</div>
+    <div class="btn-txt">Create Board</div>
   </button>
 
   <MessageBoardCreator

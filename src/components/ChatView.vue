@@ -218,8 +218,16 @@ export default {
     },
     createDate() {
       for (let index = 0; index < this.messages.length; index++) {
-        let newDate = new Date(this.messages[index].time);
-        this.messages[index].time = newDate.toTimeString();
+        //let newDate = new Date(this.messages[index].time);
+        //this.messages[index].time = newDate.toTimeString();
+        let time = new Date(
+          this.messages[index].time
+        ).toLocaleTimeString();
+        this.messages[index].time = new Date(
+          this.messages[index].time
+        ).toLocaleDateString();
+        this.messages[index].time = this.messages[index].time +",  "+ time;
+        
         console.log("CreateDate");
       }
     },
@@ -285,6 +293,7 @@ export default {
       let hallo = response;
       hallo + "";
       //console.log(response);
+      this.createDate();
     },
     //To display all the Conversations we need to get them from the Server
     async getAllConversations() {
@@ -613,7 +622,7 @@ ul {
 .recipient {
   padding-top: 10px;
   margin-left: 1.5em;
-  color: rgb(255, 40, 165);
+  color: rgb(64, 191, 250);
 }
 .directionState {
   padding-left: 23px;
@@ -640,7 +649,7 @@ ul {
 }
 .postsInside2 {
   color: rgb(78, 78, 78);
-  background-color: #94f07b70;
+  background-color: #b5f1a570;
   text-align: left;
   margin: 0%;
   align-items: flex-start;
@@ -669,6 +678,7 @@ ul {
   margin-right: 3em;
   word-wrap: break-word;
   word-break: break-all;
+  font-weight: 600;
 }
 .input-recipient {
   position: absolute;

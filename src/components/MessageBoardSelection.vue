@@ -295,6 +295,8 @@ export default {
     box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
 
     .drop-down-icon {
+       cursor: pointer;
+          font-size: 16px;
       transform: rotate(0deg);
       transition: all.4s ease;
       &.dropdown {
