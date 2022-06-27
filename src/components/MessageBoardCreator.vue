@@ -288,11 +288,27 @@ body {
 
 .ChooseUser {
   width: 20em;
+  height: 20em;
   background-color: rgba(244, 247, 255, 255);
 
   border-radius: 1em;
   padding: 1em;
   margin-bottom: 2em;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.ChooseUser::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 1em;
+}
+.ChooseUser::-webkit-scrollbar {
+  background-color: #f5f5f5;
+  border-radius: 1em;
+  width: 1.6em;
+}
+.ChooseUser::-webkit-scrollbar-thumb {
+  background-color: #e1e7f7;
+  border-radius: 1em;
 }
 
 .popup {
