@@ -102,7 +102,7 @@ export default {
       chinese: "",
       boardName: "Dech-Board",
       messageboards: [],
-      array2:[],
+      array2: [],
     };
   },
   computed: {
@@ -153,9 +153,16 @@ export default {
 
       let uri = "http://localhost:8090/messageboard/get";
 
-      let response = axios.get(uri, { headers: headers }).then((response) => {
-        this.messageboards = response.data;
-      });
+      let response = axios
+        .get(uri, { headers: headers })
+        .then((response) => {
+          this.messageboards = response.data;
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 401) {
+            this.$router.push("/login");
+          }
+        });
       console.log(response);
     },
     nextBoard() {
@@ -167,46 +174,35 @@ export default {
         console.log(
           this.messageboards[index].messageBoardId + "--=--" + currentBoardId
         );
-          if(index ==  this.messageboards.length-1 ){
-            localStorage.setItem(
-            "messageboardid",
-            "0"
-          );
+        if (index == this.messageboards.length - 1) {
+          localStorage.setItem("messageboardid", "0");
           let hallo = this.messageboards[0];
-          hallo.messageBoardId= "0";
-          hallo.messageBoardName= "Dech-Board"
-          hallo.participants=[];
-          hallo.admin="";
+          hallo.messageBoardId = "0";
+          hallo.messageBoardName = "Dech-Board";
+          hallo.participants = [];
+          hallo.admin = "";
           this.changeBoard(hallo);
           return;
-          }
-        
-       else if (this.messageboards[index].messageBoardId == currentBoardId) {
+        } else if (this.messageboards[index].messageBoardId == currentBoardId) {
           console.log("Old" + this.messageboards[index].messageBoardId);
           let newIndex = index;
-          if(index+1== this.array2.length){
+          if (index + 1 == this.array2.length) {
+            localStorage.setItem("messageboardid", "0");
+            let hallo = this.messageboards[0];
+            hallo.messageBoardId = "0";
+            hallo.messageBoardName = "Dech-Board";
+            hallo.participants = [];
+            hallo.admin = "";
+            this.changeBoard(hallo);
+            return;
+          } else {
+            //Error
             localStorage.setItem(
-            "messageboardid",
-            "0"
-          );
-          let hallo = this.messageboards[0];
-          hallo.messageBoardId= "0";
-          hallo.messageBoardName= "Dech-Board"
-          hallo.participants=[];
-          hallo.admin="";
-          this.changeBoard(hallo);
-          return;
+              "messageboardid",
+              this.messageboards[newIndex + 1].messageBoardId
+            );
           }
-          else{
-          
-          //Error
-          localStorage.setItem(
-            "messageboardid",
-            this.messageboards[newIndex + 1].messageBoardId
-          );
-        }
-          
-          
+
           this.changeBoard(this.messageboards[newIndex + 1]);
           return;
         } else if (currentBoardId == 0) {
@@ -224,12 +220,12 @@ export default {
 
     previousBoard() {
       console.log("Go to previous Board!");
-        this.array2 = structuredClone(this.messageboards)
-        //this.array2 = [].concat(this.messageboards).reverse();
-        console.log(this.array2);
-        //dto = this.messageboards;
-       this.array2.reverse();
-       console.log(this.array2);
+      this.array2 = structuredClone(this.messageboards);
+      //this.array2 = [].concat(this.messageboards).reverse();
+      console.log(this.array2);
+      //dto = this.messageboards;
+      this.array2.reverse();
+      console.log(this.array2);
 
       let currentBoardId = localStorage.getItem("messageboardid");
       //console.log(this.array2.length);
@@ -240,26 +236,22 @@ export default {
         if (this.array2[index].messageBoardId == currentBoardId) {
           console.log("Old" + this.array2[index].messageBoardId);
           //let newIndex = index;
-          if(index+1== this.array2.length){
-            localStorage.setItem(
-            "messageboardid",
-            "0"
-          );
-          let hallo = this.messageboards[0];
-          hallo.messageBoardId= "0";
-          hallo.messageBoardName= "Dech-Board"
-          hallo.participants=[];
-          hallo.admin="";
+          if (index + 1 == this.array2.length) {
+            localStorage.setItem("messageboardid", "0");
+            let hallo = this.messageboards[0];
+            hallo.messageBoardId = "0";
+            hallo.messageBoardName = "Dech-Board";
+            hallo.participants = [];
+            hallo.admin = "";
 
-          this.changeBoard(hallo);
-          return;
+            this.changeBoard(hallo);
+            return;
+          } else {
+            localStorage.setItem(
+              "messageboardid",
+              this.array2[index + 1].messageBoardId
+            );
           }
-          else{
-          localStorage.setItem(
-            "messageboardid",
-            this.array2[index + 1].messageBoardId
-          );
-        }
           this.changeBoard(this.array2[index + 1]);
           return;
         } else if (currentBoardId == 0) {
@@ -278,23 +270,23 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.app2{
+.app2 {
   position: absolute;
   left: 10em;
   right: 0%;
-  top:0%;
+  top: 0%;
 }
 .dropdown-wrapper {
   position: absolute;
   top: 28em;
-  right: -3.5em; 
+  right: -3.5em;
   width: 15em;
   .selected-User {
     height: 40px;
     border: 2px solid black;
     background-color: lightgrey;
     border-radius: 5px;
-    
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -307,7 +299,6 @@ export default {
       transition: all.4s ease;
       &.dropdown {
         transform: rotate(180deg);
-
       }
     }
   }
