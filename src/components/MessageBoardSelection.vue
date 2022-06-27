@@ -280,16 +280,15 @@ export default {
 <style scoped lang="scss">
 .app2{
   position: absolute;
-  top: 0%;
-  width: 100em ;
-  height: 100em;
+  left: 10em;
+  right: 0%;
+  top:0%;
 }
 .dropdown-wrapper {
   position: absolute;
-  top: 22em;
-  right: 5%; 
-  width: 20em;
-  height: 8em;
+  top: 28em;
+  right: -3.5em; 
+  width: 15em;
   .selected-User {
     height: 40px;
     border: 2px solid black;
@@ -301,12 +300,14 @@ export default {
     align-items: center;
     font-size: 18px;
     font-weight: 400;
+    box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
 
     .drop-down-icon {
       transform: rotate(0deg);
       transition: all.4s ease;
       &.dropdown {
         transform: rotate(180deg);
+
       }
     }
   }
@@ -324,6 +325,7 @@ export default {
     transition: all 0.5s linear;
     max-height: 0px;
     overflow: hidden;
+    box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
 
     &.visible {
       max-height: 450px;

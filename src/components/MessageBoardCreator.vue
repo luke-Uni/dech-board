@@ -261,17 +261,6 @@ $gray: #8d8d8d;
 .form__field{
   &:required,&:invalid { box-shadow:none; }
 }
-/* demo */
-body {
-  font-family: 'Poppins', sans-serif; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-size: 1.5rem;
-  background-color:#222222;
-}
 body {
   font-family: 'Poppins', sans-serif; 
   display: flex;

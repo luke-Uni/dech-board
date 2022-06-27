@@ -203,27 +203,19 @@ export default {
 .app {
   position: absolute;
   left: 10em;
-
   width: 100% ;
-  height: 100em;
-
-  top:-2em;
-
-// background-color: yellow;
-
- 
+  height: 100%;
+  top:0%;
 }
 .dropdown-wrapper {
   position: absolute;
-  top: 5%;
-  right: 12.5%;
+  top: 10em;
+  right: 1em;
   width: 20em;
   height: 20em; 
 
   .selected-User {
     position: absolute;
-   
-   
     width: 120px;
     height: 50px;
     border: 2px solid black;
@@ -235,6 +227,7 @@ export default {
     font-size: 18px;
     box-shadow: 5px;
     background-color: lightgrey;
+    box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
 
     .drop-down-icon {
       transform: rotate(0deg);
@@ -247,18 +240,20 @@ export default {
   .dropdown-popover {
     position: absolute;
     border: 2px solid black;
-    top: 40px;
+    top: 4px;
     left: 0;
     right: 0;
     border-radius: 5px;
     background-color: lightgrey;
     max-width: 100%;
-    padding: 10px;
+    
     visibility: hidden;
     transition: all 0.5s linear;
-    max-height: 0px;
+    box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
+   
     overflow: hidden;
 
+    width: 20em;
  
 
     &.visible {
@@ -294,7 +289,7 @@ export default {
       ul {
         list-style: none;
         text-align: left;
-        // padding-left: 8px;
+        padding-left: 8px;
         max-height: 180px;
         overflow-y: scroll;
         overflow-x: hidden;
