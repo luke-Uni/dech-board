@@ -14,7 +14,7 @@
           <tr>
             <!-- <td> -->
             <img
-              src="@/assets/china.png"
+              src="@/assets/chinapicture.png"
               alt="ChinaLogo"
               @click="translateTextToChinese(post)"
               id="chinaLogo"
@@ -22,7 +22,7 @@
             />
 
             <br />
-            <br />
+            
 
             <img
               src="@/assets/germany.png"
@@ -32,13 +32,13 @@
               class="countryLogo"
             />
             <br />
-            <br />
+            
 
             <img
               src="@/assets/uk.png"
               alt="Germany"
               @click="translateTextToEnglish(post)"
-              id="germanyLogo"
+              id="ukLogo"
               class="countryLogo"
             />
             <!-- </td> -->
@@ -694,11 +694,18 @@ export default {
 </script>
 
 <style scoped>
+br {
+  content: " ";
+  
+  margin: 1em;
+}
+
 #chinaLogo {
-  width: 2em;
+  width: 1.9em;
   /* float: right; */
-  margin-left: 47em;
+  margin-left: 40em;
   margin-top: -2em;
+  
 
   position: absolute;
   cursor: pointer;
@@ -711,7 +718,7 @@ export default {
   width: 2em;
   margin-top: -2em;
 
-  margin-left: 47em;
+  margin-left: 41em;
 
   position: absolute;
   cursor: pointer;
@@ -720,10 +727,10 @@ export default {
 
 #ukLogo {
   width: 2em;
-
+  margin-top: -2em;
   margin-bottom: -2em;
   /* float: right; */
-  margin-left: 47em;
+  margin-left: 42em;
   position: absolute;
   cursor: pointer;
   border: 1.6px solid gray;
