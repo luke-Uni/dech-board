@@ -22,7 +22,6 @@
             />
 
             <br />
-            
 
             <img
               src="@/assets/germany.png"
@@ -32,7 +31,6 @@
               class="countryLogo"
             />
             <br />
-            
 
             <img
               src="@/assets/uk.png"
@@ -59,7 +57,7 @@
               </div>
               <div
                 v-else-if="post.translationStatus == true"
-                class="classPostDiv"
+                :class="[post.hasImage ? 'TextWithImage' : 'classPostDiv']"
               >
                 <p class="postText" id="hello">{{ post.translatedcontent }}</p>
               </div>
@@ -696,7 +694,7 @@ export default {
 <style scoped>
 br {
   content: " ";
-  
+
   margin: 1em;
 }
 
@@ -705,7 +703,6 @@ br {
   /* float: right; */
   margin-left: 40em;
   margin-top: -2em;
-  
 
   position: absolute;
   cursor: pointer;

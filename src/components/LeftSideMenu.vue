@@ -210,6 +210,10 @@ a {
   height: 3.33em;
 }
 
+.logo-div:hover {
+  cursor: pointer;
+}
+
 /* Register top blue bar */
 .top {
   background-color: black;

@@ -33,8 +33,7 @@ export default {
 
   methods: {
     showLink() {
-      this.inviteLink =
-        "https://6295d65cef6ded1aa8f66ec0--dechboard.netlify.app/#/registeruser";
+      this.inviteLink = "http://localhost:8080/?#/registeruser";
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
@@ -74,12 +73,11 @@ export default {
 <style scoped>
 .invitation {
   position: absolute;
-  
+
   top: 1em;
   right: 1em;
 
-  width:  37.8125em;
-
+  width: 37.8125em;
 }
 
 table {
