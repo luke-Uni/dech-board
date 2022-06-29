@@ -43,7 +43,7 @@
     <div class="" style="text-align: center; margin-top: 5%">
       <button
         class="icon-btn add-btn"
-        @click="() => TogglePopup('buttonTrigger')"
+        @click="() => TogglePopup('buttonTrigger')" id="home"
       >
         <div class="add-icon"></div>
         <div class="btn-txt">Add Post</div>
@@ -179,10 +179,28 @@ export default {
 </script>
 
 <style scoped>
+#home{
+  position: absolute;
+  top: 7em;
+  left: -30em;
+  width: 50px;
+  height: 50px;
+  border-radius:25px;
+ 
+}
+
 
 #message-board {
+  
   position: absolute;
-  Bottom: 50%;
+  top: 7em;
+  left: 12em;
+  width: 50px;
+  height: 50px;
+  border-radius:25px;
+ 
+
+
 }
 .home{
   position: absolute;
