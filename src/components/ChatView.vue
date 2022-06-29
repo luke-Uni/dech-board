@@ -142,10 +142,16 @@ import axios from "axios";
 import { ref } from "vue";
 import CreateConversation from "./CreateConversation.vue";
 import "emoji-picker-element";
+import { useCookies } from "vue3-cookies";
 export default {
   components: {
     CreateConversation,
    
+  },
+  mounted() {
+    let my_cookie_value = this.cookies.get("myCoookie");
+    console.log(my_cookie_value);
+    this.cookies.set("myCoookie", "abcdefg",60+30);
   },
   created() {
     this.interval = setInterval(() => {
@@ -153,6 +159,8 @@ export default {
     }, 4000);
   },
   setup() {
+    const { cookies } = useCookies();
+    
     //Third
   const popupTriggersThird = ref({
       buttonTriggerThird: false,
@@ -177,6 +185,7 @@ export default {
       TogglePopup2,
       popupTriggersThird,
       TogglePopupThird,
+      cookies
     };
   },
   data() {
@@ -249,6 +258,7 @@ export default {
     async getAllPosts(name) {
       // localStorage.setItem("recipient", name);
       localStorage.setItem("conversationID", name);
+      this.cookies.set("conversationID", name, 60+30);
       let headers = {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
@@ -275,8 +285,10 @@ export default {
         "Content-Type": "application/json",
         authorization: localStorage.getItem("token"),
       };
-      let name = localStorage.getItem("conversationID");
-      console.log(localStorage.getItem("conversationID"));
+      //let name = localStorage.getItem("conversationID");
+      let name = this.cookies.get("conversationID") ;
+     // console.log(localStorage.getItem("conversationID"));
+      console.log(this.cookies.get("conversationID"));
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
       let response = await axios
@@ -336,7 +348,8 @@ export default {
     //Create a message
     async createMessage() {
       //this.recipients.push(this.recipient);
-      let name = localStorage.getItem("conversationID");
+      //let name = localStorage.getItem("conversationID");
+      let name = this.cookies.get("conversationID");
       //console.log(this.recipients);
       //if (this.recipient.length > 0) {
       let result = await axios.post(
