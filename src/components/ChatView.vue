@@ -326,6 +326,7 @@ export default {
         .catch((e) => {
           this.errors.push(e);
         });
+        //
       var index;
       console.log(this.conversations.length);
       //Delete own username from chat participants
