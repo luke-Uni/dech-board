@@ -130,6 +130,10 @@ export default {
 
     onImageUpload() {
       let file = this.$refs.uploadImage.files[0];
+      console.log(file.size);
+      if (file.size > 8000) {
+        alert("Maximal Image size is 8 KB");
+      }
       this.imgPost = new FormData();
       this.imgPost.append("image", file);
     },

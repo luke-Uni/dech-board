@@ -798,7 +798,7 @@ br {
   border-radius: 15%;
   margin-top: -3em;
   border: solid rgb(255, 255, 255);
-  max-height: 13em;
+  max-height: 12em;
   max-width: 20em;
 }
 
