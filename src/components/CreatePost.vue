@@ -30,10 +30,13 @@
             :class="{ 'active-dropzone': active }"
             class="dropzone"
           >
-            <span>Drag or Drop File</span>
-            <span>OR</span>
-            <label for="dropzoneFile">Select File</label>
+            <span v-show="!this.imgIsUploaded">Drag and Drop File</span>
+            <span v-show="!this.imgIsUploaded">OR</span>
+            <label for="dropzoneFile" v-show="!this.imgIsUploaded"
+              >Select File</label
+            >
             <input
+              v-show="!this.imgIsUploaded"
               type="file"
               ref="uploadImage"
               accept="image/*"
@@ -41,7 +44,14 @@
               class="dropzoneFile"
               @change="onImageUpload()"
             />
+            <img
+              src="@/assets/blue-tick.png"
+              alt="blue tick"
+              id="blue-tick"
+              v-show="this.imgIsUploaded"
+            />
           </div>
+
           <input
             type="text"
             class="input-title"
@@ -119,6 +129,7 @@ export default {
       important: "",
       imgPost: null,
       messageBoardId: "",
+      imgIsUploaded: false,
       // posts:[]
     };
   },
@@ -134,6 +145,8 @@ export default {
 
       this.imgPost = new FormData();
       this.imgPost.append("image", file);
+
+      this.imgIsUploaded = true;
     },
 
     startupload(postTitle) {
@@ -433,5 +446,9 @@ input[type="checkbox"].switch_1:checked:after {
     background-color: #fff;
     color: #56d8ff;
   }
+}
+
+#blue-tick {
+  max-width: 5em;
 }
 </style>
