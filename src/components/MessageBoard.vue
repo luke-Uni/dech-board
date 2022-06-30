@@ -1,13 +1,12 @@
 <template>
-<div class="ring" v-if="!this.allPostsAvailable.value">Loading
-  <span></span>
-</div>
+  <!-- <div class="ring" v-if="!this.allPostsAvailable.value">
+    Loading
+    <span></span>
+  </div> -->
 
-  <div v-if="this.allPostsAvailable.value == true" class="loader">
-      
-  </div>
-  
-  <div v-else-if="this.allPostsAvailable == true">
+  <!-- <div v-if="this.allPostsAvailable.value == true" class="loader"></div> -->
+
+  <div>
     <div class="postComplete" v-for="post in posts" :key="post.username">
       <h4 class="postUsername">{{ post.username }}</h4>
       <div :class="[post.important ? 'importantPost' : 'postsInside']">
@@ -53,7 +52,13 @@
           <br />
           <tr>
             <td v-if="post.hasImage" style="width: 25em; align-content: center">
-              <img id="imgPost" :src="post.image" alt="picture" />
+              <div class="ring" v-if="!this.allPostsAvailable.value">
+                Loading
+                <span></span>
+              </div>
+              <div v-if="this.allPostsAvailable == true">
+                <img id="imgPost" :src="post.image" alt="picture" />
+              </div>
             </td>
 
             <td>
@@ -101,12 +106,12 @@ export default {
       kallo: "hallo ich bin rachid",
       postTranslated: false,
       test: "",
-      allPostsAvailable: "false"
+      allPostsAvailable: "false",
     };
   },
   beforeMount() {
     this.getAllPostsNoId();
-    
+
     localStorage.setItem("conversationID", "");
   },
   methods: {
@@ -555,7 +560,7 @@ export default {
     },
 
     async getAllPostsNoId() {
-      console.log("Boolean Status before:  "+this.allPostsAvailable);
+      console.log("Boolean Status before:  " + this.allPostsAvailable);
       console.log("I am in the getAllPosts function");
       //let id = localStorage.getItem("messageboardid");
       //console.log(`Board id: ${boardId}`);
@@ -603,6 +608,7 @@ export default {
 
     async getImages() {
       for (var i = 0; i < this.posts.length; i++) {
+        
         this.posts[i].translationStatus = false;
         this.posts[i].originalcontent = this.posts[i].content;
         this.posts[i].creationDate = new Date(
@@ -624,8 +630,8 @@ export default {
         // console.log(this.posts[i].translationStatus);
         // console.log(this.posts[i].originalcontent);
       }
-      this.allPostsAvailable= true;
-      console.log("Boolean Status after:  "+this.allPostsAvailable);
+      this.allPostsAvailable = true;
+      console.log("Boolean Status after:  " + this.allPostsAvailable);
     },
 
     //Translate into Chinese
@@ -706,89 +712,78 @@ export default {
 </script>
 
 <style scoped>
-
-.ring
-{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:150px;
-  height:150px;
-  background:transparent;
-  border:3px solid #3c3c3c;
-  border-radius:50%;
-  text-align:center;
-  line-height:150px;
-  font-family:sans-serif;
-  font-size:20px;
-  color:#fff000;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  text-shadow:0 0 10px #fff000;
-  box-shadow:0 0 20px rgba(0,0,0,.5);
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  border: 3px solid #3c3c3c;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 150px;
+  font-family: sans-serif;
+  font-size: 20px;
+  color: #97deff;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #97deff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin-top: 15em;
 }
-.ring:before
-{
-  content:'';
-  position:absolute;
-  top:-3px;
-  left:-3px;
-  width:100%;
-  height:100%;
-  border:3px solid transparent;
-  border-top:3px solid #fff000;
-  border-right:3px solid #fff000;
-  border-radius:50%;
-  animation:animateC 2s linear infinite;
+.ring:before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-top: 3px solid #97deff;
+  border-right: 3px solid #97deff;
+  border-radius: 50%;
+  animation: animateC 2s linear infinite;
 }
-span
-{
-  display:block;
-  position:absolute;
-  top:calc(50% - 2px);
-  left:50%;
-  width:50%;
-  height:4px;
-  background:transparent;
-  transform-origin:left;
-  animation:animate 2s linear infinite;
+span {
+  display: block;
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 50%;
+  width: 50%;
+  height: 4px;
+  background: transparent;
+  transform-origin: left;
+  animation: animate 2s linear infinite;
 }
-span:before
-{
-  content:'';
-  position:absolute;
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  background:#fff000;
-  top:-6px;
-  right:-8px;
-  box-shadow:0 0 20px #fff000;
+span:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #97deff;
+  top: -6px;
+  right: -8px;
+  box-shadow: 0 0 20px #97deff;
 }
-@keyframes animateC
-{
-  0%
-  {
-    transform:rotate(0deg);
+@keyframes animateC {
+  0% {
+    transform: rotate(0deg);
   }
-  100%
-  {
-    transform:rotate(360deg);
+  100% {
+    transform: rotate(360deg);
   }
 }
-@keyframes animate
-{
-  0%
-  {
-    transform:rotate(45deg);
+@keyframes animate {
+  0% {
+    transform: rotate(45deg);
   }
-  100%
-  {
-    transform:rotate(405deg);
+  100% {
+    transform: rotate(405deg);
   }
 }
-
 
 .loader {
   border: 16px solid #f3f3f3;
@@ -798,21 +793,26 @@ span:before
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
-
-  
 }
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
 
 br {
   content: " ";
