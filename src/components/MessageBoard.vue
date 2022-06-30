@@ -52,13 +52,13 @@
           <br />
           <tr>
             <td v-if="post.hasImage" style="width: 25em; align-content: center">
-              <div class="ring" v-if="!this.allPostsAvailable.value">
+              <!-- <div class="ring" v-if="!this.allPostsAvailable.value">
                 Loading
                 <span></span>
-              </div>
-              <div v-if="this.allPostsAvailable == true">
+              </div> -->
+              
                 <img id="imgPost" :src="post.image" alt="picture" />
-              </div>
+             
             </td>
 
             <td>
