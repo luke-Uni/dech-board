@@ -31,11 +31,18 @@
             Remove
           </button>
           <button
-            v-else-if="!user.isFriend"
+            v-else-if="!user.isFriend && !user.requested"
             id="add"
             @click="addFriend(user.username)"
           >
             Add
+          </button>
+          <button
+            v-else-if="!user.isFriend && user.requested"
+            id="accept"
+            @click="addFriend(user.username)"
+          >
+            Accept
           </button>
         </div>
       </li>
@@ -88,6 +95,7 @@ export default {
       searchQuery: "",
       gridColumns: ["name", "school"],
       gridData: [],
+      requests: [],
       personArr: [
         {
           name: "王港",
@@ -144,8 +152,36 @@ export default {
         }
       }
 
+      let headers3 = {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      };
+
+      let uri3 = "http://localhost:8090/requests";
+
+      let response3 = await axios
+        .get(uri3, { headers: headers3 })
+        .then((response3) => {
+          this.requests = response3.data;
+          console.log(response3.data);
+        });
+
+      for (let i = 0; i < this.requests.length; i++) {
+        this.personArr[i]["requested"] = false;
+        for (let j = 0; j < this.personArr.length; j++) {
+          console.log(
+            this.personArr[j].username + " --=-- " + this.requests[i].from
+          );
+          if (this.personArr[j].username == this.requests[i].from) {
+            console.log(this.personArr[j].requested + " requested");
+            this.personArr[j]["requested"] = true;
+          }
+        }
+      }
+
       console.log(response);
       console.log(response2);
+      console.log(response3);
     },
     // 添加好友
     addFriend(friend) {
@@ -244,11 +280,12 @@ export default {
 
 #add {
   margin-right: 3em;
-  background-color: #778dc9;
+  background-color: rgb(93, 93, 191);
   border-radius: 3em;
   display: inline-block;
   width: 7em;
   height: 2em;
+  border: 0em;
 }
 
 #add:hover {
@@ -257,17 +294,30 @@ export default {
 
 #delete {
   margin-right: 3em;
-  background-color: #f4202e;
+  background-color: rgb(185, 76, 76);
   border-radius: 3em;
   display: inline-block;
   width: 7em;
   height: 2em;
+  border: 0em;
 }
 
 #delete:hover {
   cursor: pointer;
 }
+#accept {
+  margin-right: 3em;
+  background-color: rgb(73, 153, 73);
+  border-radius: 3em;
+  display: inline-block;
+  width: 7em;
+  height: 2em;
+  border: 0em;
+}
 
+#accept:hover {
+  cursor: pointer;
+}
 .person {
   display: flex;
   align-items: center;
