@@ -97,11 +97,17 @@
 <script>
 // import UserUser from "./UserUser.vue";
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
 
 export default {
   components: {
     // UserUser
   },
+   setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };},
   data() {
     return {
       searchQuery: "",
@@ -138,7 +144,7 @@ export default {
       //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/getUsers";
@@ -155,7 +161,7 @@ export default {
       //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
       let uri = "http://localhost:8090/friendsobject";
       if (this.categories) {
@@ -174,7 +180,7 @@ export default {
       //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
       let uri = "http://localhost:8090/getGermanUsers";
       if (this.german) {
@@ -195,7 +201,7 @@ export default {
       //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
       let uri = "http://localhost:8090/getChineseUsers";
       if (this.chinese) {

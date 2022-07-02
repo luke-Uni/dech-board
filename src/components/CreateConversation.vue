@@ -93,6 +93,7 @@
 
 <script>
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
 // import VueLodash from 'vue-lodash'
 // import lodash from 'lodash'
 
@@ -115,6 +116,11 @@ export default {
     //this.getAllConversations();
     this.getAllUsers();
   },
+     setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };},
 
   methods: {
     selectUsers(id) {
@@ -138,7 +144,7 @@ export default {
     async getAllUsers() {
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
       let uri = "http://localhost:8090/getUsers";
 
@@ -164,7 +170,7 @@ export default {
           },
           {
             headers: {
-              authorization: localStorage.getItem("token"),
+              authorization: this.cookies.get("token"),
             },
           }
         );

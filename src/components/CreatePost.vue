@@ -95,6 +95,7 @@
             <button
               class="button-81"
               v-on:click="
+              badWordsFilterAPIAxios(this.content);
                 createPost();
                 TogglePopup();
                 getAllPosts();
@@ -112,6 +113,8 @@
 
 <script>
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
+
 // import MessageBoard from "./MessageBoard.vue";
 
 export default {
@@ -133,11 +136,91 @@ export default {
       // posts:[]
     };
   },
+   setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };},
 
   methods: {
     // async getAllPosts(){
     //    MessageBoard.getAllPosts();
     // },
+    // async badWordsFilterAPI() {
+    //   var myHeaders = new Headers();
+    //   myHeaders.append("apikey", "eUHPlznMstdcjKPfpY5QdtZYrDN042b5");
+  
+    //   var raw = "Son of a Bitch I love you";
+
+    //   var requestOptions = {
+    //     method: "POST",
+    //     redirect: "follow",
+    //     headers: myHeaders,
+    //     body: raw,
+        
+    //   };
+
+    //   fetch(
+    //     "https://api.apilayer.com/bad_words?censor_character={censor_character}",
+    //     requestOptions
+    //   )
+    //     .then((response) => response.text())
+    //     .then((result) => console.log(result)
+    //     )
+    //     .catch((error) => console.log("error", error));
+        
+    // },
+    async badWordsFilterAPIAxios(text) {
+      var hallo1 = "";
+      var myHeaders = new Headers();
+      myHeaders.append("apikey", "eUHPlznMstdcjKPfpY5QdtZYrDN042b5");
+  
+      var raw = text;
+
+      var requestOptions = {
+        method: "POST",
+        redirect: "follow",
+        //headers: myHeaders,
+        body: raw,
+        
+      };
+      let result = await axios
+        .post(
+          "https://api.apilayer.com/bad_words?censor_character={censor_character}",
+          {
+            requestOptions
+          },
+          {
+             headers: {
+            "apikey": "eUHPlznMstdcjKPfpY5QdtZYrDN042b5"
+             },
+          
+    })
+        .then(function (result) {
+          // console.log("-------------------------"+response.data.data);
+          // console.log("-------------------------"+response.data.data.TargetText);
+          //  console.log("-------------------------"+response.data.data.targeText);
+          hallo1 = result.data.censored_content.requestOptions;
+          console.log(result.data);
+          console.log( hallo1);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    console.log(result);
+        
+
+    //  let response = await fetch(
+    //     "https://api.apilayer.com/bad_words?censor_character={censor_character}",
+    //     requestOptions
+    //   )
+    //     .then((response) => response.text())
+    //     .then((result) => console.log(result.censored_content)
+    //     )
+    //     .catch((error) => console.log("error", error));
+    //     console.log(response.censored_content);
+        
+    },
 
     onImageUpload() {
       let file = this.$refs.uploadImage.files[0];
@@ -155,7 +238,7 @@ export default {
         method: "Post",
         data: this.imgPost,
         headers: {
-          authorization: localStorage.getItem("token"),
+          authorization: this.cookies.get("token"),
           //post Title should be changed to postId
           postId: postTitle,
           "Content-Type": "multipart/form-data",
@@ -168,11 +251,11 @@ export default {
 
     async createPost() {
       let url = "";
-      if (localStorage.getItem("messageboardid") != null) {
-        this.messageBoardId = localStorage.getItem("messageboardid");
+      if (this.cookies.get("messageboardid") != null) {
+        this.messageBoardId = this.cookies.get("messageboardid");
         url =
           "http://localhost:8090/posts/create/" +
-          localStorage.getItem("messageboardid");
+          this.cookies.get("messageboardid");
       } else {
         this.messageBoardId = 0;
         url = "http://localhost:8090/posts/create";
@@ -191,7 +274,7 @@ export default {
         },
         {
           headers: {
-            authorization: localStorage.getItem("token"),
+            authorization: this.cookies.get("token"),
             "Content-Type": undefined,
           },
         }

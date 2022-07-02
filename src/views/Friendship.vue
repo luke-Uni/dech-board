@@ -86,6 +86,7 @@
 <script>
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -113,12 +114,17 @@ export default {
   components: {
     LeftSideMenu,
   },
+  setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };},
   methods: {
     // 搜索好友
     async getAllUsers() {
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization:this.cookies.get("token"),
       };
       let uri = "http://localhost:8090/getUsers";
       let response = await axios
@@ -129,7 +135,7 @@ export default {
 
       let headers2 = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
 
       let uri2 = "http://localhost:8090/friendsobject";
@@ -154,7 +160,8 @@ export default {
 
       let headers3 = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        //authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token")
       };
 
       let uri3 = "http://localhost:8090/requests";
@@ -188,7 +195,7 @@ export default {
       let friendName = friend;
 
       let headers = {
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token")
       };
 
       let uri = "http://localhost:8090/contact/request";
@@ -207,7 +214,7 @@ export default {
     getFriendList() {
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token")
       };
 
       let uri = "http://localhost:8090/friendsobject";
@@ -231,10 +238,11 @@ export default {
 
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token")
+        //authorization : 
       };
 
-      if (userFriend.username1 == localStorage.getItem("currentuser")) {
+      if (userFriend.username1 == this.cookies.get("token")) {
         friendName = userFriend.username2;
       }
 

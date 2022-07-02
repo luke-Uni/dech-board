@@ -26,17 +26,24 @@
 
 <script>
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
+
 export default {
   data() {
     return { inviteLink: "Invite Link", tooltipText: "" };
   },
+     setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };},
 
   methods: {
     showLink() {
       this.inviteLink = "http://localhost:8080/?#/registeruser";
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/posts/getall";

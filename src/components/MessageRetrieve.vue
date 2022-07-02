@@ -20,6 +20,7 @@
 
 <script>
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
 // import LeftSideMenu from "@/components/LeftSideMenu.vue";
 export default {
   components: {
@@ -33,6 +34,11 @@ export default {
   beforeMount() {
     this.getAllPosts();
   },
+  setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };},
   methods: {
     //To display all the Posts we need to get them from the Server
     getAllPosts() {
@@ -40,11 +46,11 @@ export default {
 
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
       //console.log(localStorage.getItem("currentuser"));
       // let uri = "http://localhost:8090/message/getall";
-      var name = localStorage.getItem("recipient");
+      var name = this.cookies.get("recipient");
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
       let response = axios

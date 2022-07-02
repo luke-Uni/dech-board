@@ -90,6 +90,7 @@
 import axios from "axios";
 // import VueLodash from 'vue-lodash'
 // import lodash from 'lodash'
+import { useCookies } from "vue3-cookies";
 
 export default {
   props: ["TogglePopupSecond"],
@@ -109,7 +110,11 @@ export default {
     //this.getAllConversations();
     this.getAllUsers();
   },
-
+ setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };},
   methods: {
 
 checkForm: function (e) {
@@ -152,7 +157,7 @@ checkForm: function (e) {
     async getAllUsers() {
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
       let uri = "http://localhost:8090/getUsers";
 
@@ -178,7 +183,7 @@ checkForm: function (e) {
           },
           {
             headers: {
-              authorization: localStorage.getItem("token"),
+              authorization: this.cookies.get("token"),
             },
           }
         );

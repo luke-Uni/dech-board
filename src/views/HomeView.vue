@@ -71,9 +71,11 @@ import MessageBoardCreator from "@/components/MessageBoardCreator.vue";
 import MessageBoardSelection from "@/components/MessageBoardSelection.vue";
 import axios from "axios";
 import UserObjects from "@/components/UserObjects.vue";
+import { useCookies } from "vue3-cookies";
 
 export default {
   setup() {
+    const { cookies } = useCookies();
     const popupTriggersSecond = ref({
       buttonTriggerSecond: false,
     });
@@ -105,6 +107,7 @@ export default {
       TogglePopupSecond,
       TogglePopup2Second,
       popupTriggersSecond,
+      cookies
     };
     //
   },
@@ -132,7 +135,9 @@ export default {
     saveBoards() {
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        //authorization: localStorage.getItem("token"),
+        authorization:  this.cookies.get("token")
+          
       };
 
       let uri = "http://localhost:8090/messageboard/get";
@@ -150,7 +155,8 @@ export default {
     nextBoard() {
       console.log("Go to next Board!");
 
-      let currentBoardId = localStorage.getItem("messageboardid");
+       let currentBoardId =    this.cookies.get("messageboardid");
+      //let currentBoardId = localStorage.getItem("messageboardid");
       console.log(this.messageboards.length);
       for (let index = 0; index < this.messageboards.length; index++) {
         console.log(
@@ -159,16 +165,20 @@ export default {
         if (this.messageboards[index].messageBoardId == currentBoardId) {
           console.log("Old" + this.messageboards[index].messageBoardId);
           let newIndex = index;
-          localStorage.setItem(
+          this.cookies.set(
             "messageboardid",
-            this.messageboards[newIndex + 1].messageBoardId
+            this.messageboards[newIndex + 1].messageBoardId, 0
           );
           return;
         } else if (currentBoardId == 0) {
           console.log("Neew" + this.messageboards[index].messageBoardId);
-          localStorage.setItem(
+          // localStorage.setItem(
+          //   "messageboardid",
+          //   this.messageboards[index].messageBoardId
+          // );
+          this.cookies.set(
             "messageboardid",
-            this.messageboards[index].messageBoardId
+            this.messageboards[index].messageBoardId, 0
           );
           return;
         }

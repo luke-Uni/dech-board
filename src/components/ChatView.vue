@@ -244,7 +244,7 @@ export default {
       //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
       let uri = "http://localhost:8090/getUsers";
       let response = await axios
@@ -257,11 +257,11 @@ export default {
     //Get all Messages for one conversation using the other users username as a parameter
     async getAllPosts(name) {
       // localStorage.setItem("recipient", name);
-      localStorage.setItem("conversationID", name);
-      this.cookies.set("conversationID", name, 60+30);
+      this.cookies.set("conversationID", name,0);
+      this.cookies.set("conversationID", name, 0);
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
@@ -283,7 +283,7 @@ export default {
     async getAllPostsNoParameter() {
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
       //let name = localStorage.getItem("conversationID");
       let name = this.cookies.get("conversationID") ;
@@ -312,7 +312,7 @@ export default {
       console.log("I am in the getAllPosts function");
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
       let uri = "http://localhost:8090/conversation/getall";
       let response = await axios
@@ -334,11 +334,11 @@ export default {
         console.log(this.conversations[i]);
         if (
           this.conversations[i].conversationParticipants.includes(
-            localStorage.getItem("currentuser")
+            this.cookies.get("currentuser")
           )
         ) {
           index = this.conversations[i].conversationParticipants.indexOf(
-            localStorage.getItem("currentuser")
+            this.cookies.get("currentuser")
           );
           this.conversations[i].conversationParticipants.splice(index, 1);
           console.log("Indeex: " + index);
@@ -362,7 +362,7 @@ export default {
         },
         {
           headers: {
-            authorization: localStorage.getItem("token"),
+            authorization: this.cookies.get("token"),
           },
         }
       );
@@ -401,7 +401,7 @@ export default {
           },
           {
             headers: {
-              authorization: localStorage.getItem("token"),
+              authorization: this.cookies.get("token"),
             },
           }
         );

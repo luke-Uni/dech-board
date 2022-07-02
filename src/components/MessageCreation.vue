@@ -100,6 +100,7 @@
 
 <script>
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
 
 export default {
   name: "MessageCreation",
@@ -116,7 +117,11 @@ export default {
       censoredcontent: "",
     };
   },
-
+setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };},
   methods: {
 // async profanityFilter(content){
 //         var myHeaders = new Headers();
@@ -156,11 +161,11 @@ export default {
         },
         {
           headers: {
-            authorization: localStorage.getItem("token"),
+            authorization: this.cookies.get("token"),
           },
         }
       );
-     localStorage.setItem("recipient", this.recipient);
+     this.cookies.set("recipient", this.recipient,0);
       console.log(result);
     },
 //     async getUserList(){

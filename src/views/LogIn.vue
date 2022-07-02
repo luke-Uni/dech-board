@@ -43,6 +43,7 @@
 
 <script>
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
 
 export default {
   data() {
@@ -54,6 +55,12 @@ export default {
       tokens: [],
     };
   },
+  setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };
+    },
 
   methods: {
     loginUser() {
@@ -68,8 +75,10 @@ export default {
           this.tokens[0] = result.data;
 
           //Bug
-          localStorage.setItem("token", this.tokens[0].token);
-          localStorage.setItem("currentuser", this.username);
+          this.cookies.set("token", this.tokens[0].token, 0);
+          this.cookies.set("currentuser", this.username, 0);
+          //localStorage.setItem("token", this.tokens[0].token);
+         // localStorage.setItem("currentuser", this.username);
           // localStorage.setItem("username", this.username);
 
           this.$router.push("/");

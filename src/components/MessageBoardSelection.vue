@@ -80,6 +80,7 @@
 // import UserUser from "./UserUser.vue";
 import axios from "axios";
 import MessageBoard from "@/components/MessageBoard.vue";
+import { useCookies } from "vue3-cookies";
 
 export default {
   components: {
@@ -118,6 +119,11 @@ export default {
       });
     },
   },
+  setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };},
   methods: {
     changeBoard(board) {
       console.log("Board name: " + board.messageBoardName);
@@ -132,7 +138,7 @@ export default {
       //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/messageboard/get";
@@ -148,7 +154,7 @@ export default {
     saveBoards() {
       let headers = {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
+        authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/messageboard/get";
@@ -168,14 +174,14 @@ export default {
     nextBoard() {
       console.log("Go to next Board!");
 
-      let currentBoardId = localStorage.getItem("messageboardid");
+      let currentBoardId = this.cookies.get("messageboardid");
       console.log(this.messageboards.length);
       for (let index = 0; index < this.messageboards.length; index++) {
         console.log(
           this.messageboards[index].messageBoardId + "--=--" + currentBoardId
         );
         if (index == this.messageboards.length - 1) {
-          localStorage.setItem("messageboardid", "0");
+         this.cookies.set("messageboardid", "0", 0);
           let hallo = this.messageboards[0];
           hallo.messageBoardId = "0";
           hallo.messageBoardName = "Dech-Board";
@@ -187,7 +193,7 @@ export default {
           console.log("Old" + this.messageboards[index].messageBoardId);
           let newIndex = index;
           if (index + 1 == this.array2.length) {
-            localStorage.setItem("messageboardid", "0");
+            this.cookies.set("messageboardid", "0",0);
             let hallo = this.messageboards[0];
             hallo.messageBoardId = "0";
             hallo.messageBoardName = "Dech-Board";
@@ -197,9 +203,9 @@ export default {
             return;
           } else {
             //Error
-            localStorage.setItem(
+            this.cookies.set(
               "messageboardid",
-              this.messageboards[newIndex + 1].messageBoardId
+              this.messageboards[newIndex + 1].messageBoardId, 0
             );
           }
 
@@ -208,9 +214,9 @@ export default {
         } else if (currentBoardId == 0) {
           console.log("++++++++++++++++++++++++++");
           console.log("Neew" + this.messageboards[index].messageBoardId);
-          localStorage.setItem(
+          this.cookies.set(
             "messageboardid",
-            this.messageboards[index].messageBoardId
+            this.messageboards[index].messageBoardId, 0
           );
           this.changeBoard(this.messageboards[index]);
           return;
@@ -227,7 +233,7 @@ export default {
       this.array2.reverse();
       console.log(this.array2);
 
-      let currentBoardId = localStorage.getItem("messageboardid");
+      let currentBoardId = this.cookies.get("messageboardid");
       //console.log(this.array2.length);
       for (let index = 0; index < this.array2.length; index++) {
         console.log(
@@ -237,7 +243,7 @@ export default {
           console.log("Old" + this.array2[index].messageBoardId);
           //let newIndex = index;
           if (index + 1 == this.array2.length) {
-            localStorage.setItem("messageboardid", "0");
+            this.cookies.set("messageboardid", "0", 0);
             let hallo = this.messageboards[0];
             hallo.messageBoardId = "0";
             hallo.messageBoardName = "Dech-Board";
@@ -247,9 +253,9 @@ export default {
             this.changeBoard(hallo);
             return;
           } else {
-            localStorage.setItem(
+            this.cookies.set(
               "messageboardid",
-              this.array2[index + 1].messageBoardId
+              this.array2[index + 1].messageBoardId, 0
             );
           }
           this.changeBoard(this.array2[index + 1]);
@@ -257,9 +263,9 @@ export default {
         } else if (currentBoardId == 0) {
           console.log("++++++++++++++++++++++++++");
           console.log("Neew" + this.array2[index].messageBoardId);
-          localStorage.setItem(
+          this.cookies.set(
             "messageboardid",
-            this.array2[index].messageBoardId
+            this.array2[index].messageBoardId, 0
           );
           this.changeBoard(this.array2[index]);
           return;
