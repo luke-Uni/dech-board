@@ -49,12 +49,38 @@
           alt="c-icon"
         />
       </a>
+      <a class="navbar-a" @click="deleteCookies();this.$router.push('/login');  "
+        >Log out
+        <img
+          class="conversation-icon"
+          src="../assets/logout-icon.png"
+          alt="c-icon"
+        />
+      </a>
     </div>
   </nav>
 </template>
 <script>
+import { useCookies } from "vue3-cookies";
 export default {
   name: "NavBar",
+   setup() {
+    const { cookies } = useCookies();
+    return{
+      cookies
+    };},
+    methods: {
+      deleteCookies(){
+        //this.cookies.keys().forEach(cookie => this.cookies.remove(cookie));
+        this.cookies.remove("token");
+         this.cookies.remove("messageboardid");
+          this.cookies.remove("conversationID");
+           this.cookies.remove("currentuser");
+           this.cookies.remove("myCoookie");
+            //this.cookies.remove("token");
+            
+      }
+    }
 };
 </script>
 
