@@ -65,7 +65,11 @@ export default {
   methods: {
     loginUser() {
       let result = axios
-        .post("http://localhost:8090/login", {
+        .post(
+           "http://localhost:8090/login", 
+              // "https://dech-board-server.herokuapp.com/login",
+
+          {
           username: this.username,
           password: this.password,
         })

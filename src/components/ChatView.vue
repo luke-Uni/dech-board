@@ -31,22 +31,16 @@
       <div class="popup">
         <div class="popup-inner">
           <slot />
-
           <br />
-
           <div>
-            
             <div class="message-create">
-              
-              
-              
               <div class="message-textarea-div">
                 <button
-                style="border: none"
-                @click="() => TogglePopupThird('buttonTriggerThird')"
-              >
-                Emoji😀
-              </button>
+                  style="border: none"
+                  @click="() => TogglePopupThird('buttonTriggerThird')"
+                >
+                  Emoji😀
+                </button>
                 <textarea
                   class="textarea-content"
                   name="content"
@@ -55,9 +49,8 @@
                   v-model="content"
                   id="input"
                 >
-                
                 </textarea>
-                
+
                 <div class="send-button-div">
                   <button
                     class="button-81"
@@ -66,18 +59,12 @@
                   >
                     Send Message
                   </button>
-                  
-                  
-                  
                 </div>
                 <emoji-picker
-    v-if="popupTriggersThird.buttonTriggerThird"
-    @click="emojiEvent()"
-    
-  ></emoji-picker>
-                 
+                  v-if="popupTriggersThird.buttonTriggerThird"
+                  @click="emojiEvent()"
+                ></emoji-picker>
               </div>
-             
             </div>
           </div>
           <br />
@@ -88,12 +75,6 @@
 
     <div class="own_user">
       Create a Conversation &nbsp; &nbsp; &nbsp;
-      <!-- <button
-        class="icon-btn add-btn"
-        @click="() => TogglePopup('buttonTrigger')"
-      > -->
-
-      <!-- </button> -->
       <img
         src="@/assets/edit.png"
         alt="Create Conversation"
@@ -146,12 +127,11 @@ import { useCookies } from "vue3-cookies";
 export default {
   components: {
     CreateConversation,
-   
   },
   mounted() {
     let my_cookie_value = this.cookies.get("myCoookie");
     console.log(my_cookie_value);
-    this.cookies.set("myCoookie", "abcdefg",60+30);
+    this.cookies.set("myCoookie", "abcdefg", 60 + 30);
   },
   created() {
     this.interval = setInterval(() => {
@@ -160,15 +140,14 @@ export default {
   },
   setup() {
     const { cookies } = useCookies();
-    
+
     //Third
-  const popupTriggersThird = ref({
+    const popupTriggersThird = ref({
       buttonTriggerThird: false,
     });
     const TogglePopupThird = (trigger) => {
       popupTriggersThird.value[trigger] = !popupTriggersThird.value[trigger];
     };
-    
 
     const popupTriggers = ref({
       buttonTrigger: false,
@@ -185,7 +164,7 @@ export default {
       TogglePopup2,
       popupTriggersThird,
       TogglePopupThird,
-      cookies
+      cookies,
     };
   },
   data() {
@@ -204,7 +183,6 @@ export default {
     this.getAllUsers();
   },
   methods: {
-
     emojiEvent() {
       document
         .querySelector("emoji-picker")
@@ -219,9 +197,9 @@ export default {
           input.value = resultText;
           input.focus();
           input.selectionStart = startPos + event.detail.unicode.length;
-          console.log(input.selectionStart)
+          console.log(input.selectionStart);
           input.selectionEnd = startPos + event.detail.unicode.length;
-          console.log(input.selectionEnd)
+          console.log(input.selectionEnd);
           this.content = resultText;
         });
     },
@@ -229,14 +207,12 @@ export default {
       for (let index = 0; index < this.messages.length; index++) {
         //let newDate = new Date(this.messages[index].time);
         //this.messages[index].time = newDate.toTimeString();
-        let time = new Date(
-          this.messages[index].time
-        ).toLocaleTimeString();
+        let time = new Date(this.messages[index].time).toLocaleTimeString();
         this.messages[index].time = new Date(
           this.messages[index].time
         ).toLocaleDateString();
-        this.messages[index].time = this.messages[index].time +",  "+ time;
-        
+        this.messages[index].time = this.messages[index].time + ",  " + time;
+
         console.log("CreateDate");
       }
     },
@@ -257,7 +233,7 @@ export default {
     //Get all Messages for one conversation using the other users username as a parameter
     async getAllPosts(name) {
       // localStorage.setItem("recipient", name);
-      this.cookies.set("conversationID", name,0);
+      this.cookies.set("conversationID", name, 0);
       this.cookies.set("conversationID", name, 0);
       let headers = {
         "Content-Type": "application/json",
@@ -286,8 +262,8 @@ export default {
         authorization: this.cookies.get("token"),
       };
       //let name = localStorage.getItem("conversationID");
-      let name = this.cookies.get("conversationID") ;
-     // console.log(localStorage.getItem("conversationID"));
+      let name = this.cookies.get("conversationID");
+      // console.log(localStorage.getItem("conversationID"));
       console.log(this.cookies.get("conversationID"));
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
@@ -326,7 +302,7 @@ export default {
         .catch((e) => {
           this.errors.push(e);
         });
-        //
+      //
       var index;
       console.log(this.conversations.length);
       //Delete own username from chat participants
@@ -469,8 +445,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-.abolutePosition{
+.abolutePosition {
   position: absolute;
 }
 

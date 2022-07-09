@@ -171,7 +171,8 @@ export default {
         
     // },
     async badWordsFilterAPIAxios(text) {
-      var hallo1 = "";
+      //var hallo1 = "";
+      var data;
       var myHeaders = new Headers();
       myHeaders.append("apikey", "eUHPlznMstdcjKPfpY5QdtZYrDN042b5");
   
@@ -200,9 +201,16 @@ export default {
           // console.log("-------------------------"+response.data.data);
           // console.log("-------------------------"+response.data.data.TargetText);
           //  console.log("-------------------------"+response.data.data.targeText);
-          hallo1 = result.data.censored_content.requestOptions;
-          console.log(result.data);
-          console.log( hallo1);
+         // hallo1 = result.data.censored_content.requestOptions;
+          //console.log(result.data.censored_content);
+           data = JSON.parse(result.data.censored_content);
+          console.log(data.requestOptions.body);
+          console.log(result.data.censored_content.data);
+          //console.log( hallo1);
+          let hallo = data.requestOptions.body;
+          let text = hallo.replace(/{/g, '*');
+          console.log(text);
+          
         })
         .catch(function (error) {
           console.error(error);

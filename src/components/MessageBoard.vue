@@ -117,16 +117,15 @@ export default {
   beforeMount() {
     this.getAllPostsNoId();
 
-    this.cookies.set("conversationID", "", 0 );
+    this.cookies.set("conversationID", "", 0);
   },
-   setup() {
+  setup() {
     const { cookies } = useCookies();
-    return{
-      cookies
-    };},
+    return {
+      cookies,
+    };
+  },
   methods: {
-    
-
     async translateTextToGerman(text) {
       let hallo1 = "";
       let url = "http://localhost:8090/translatePost";
@@ -357,7 +356,7 @@ export default {
       //console.log(`Board id: ${boardId}`);
       // console.log("id: " + id);
       // if(`${boardId}` == undefined || `${boardId}`== null){
-      this.cookies.set("messageboardid", "0", 0 );
+      this.cookies.set("messageboardid", "0", 0);
       //  }
 
       let headers = {
