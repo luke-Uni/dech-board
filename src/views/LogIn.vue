@@ -2,7 +2,7 @@
   <div class="top"></div>
   <div class="container">
     <form class="form">
-      <img src="../assets/social-media.png" alt="HeNan" class="logo" />
+      <img src="../assets/1.png" alt="HeNan" class="logo" />
       <label for="username"></label>
       <input
         type="text"
@@ -128,8 +128,9 @@ export default {
 .logo {
   position: relative;
   top: -1.3em;
-  width: 10em;
-  height: 7.5em;
+  width: 20em;
+  height: 6.1em;
+  border-radius: 2em;
 }
 
 #rightImg {
