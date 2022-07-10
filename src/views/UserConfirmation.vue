@@ -47,9 +47,6 @@ export default {
     return {
       email: "",
       token: "",
-      //    currentUser: "",
-      //feedback: "",
-      //tokens: [],
     };
   },
 
@@ -62,39 +59,10 @@ export default {
         })
         .then((result) => {
           console.log(result);
-
-         // this.tokens[0] = result.data;
-
-          //Bug
-         // localStorage.setItem("token", this.tokens[0].token);
-         // localStorage.setItem("currentuser", this.username);
-          // localStorage.setItem("username", this.username);
         });
-
-      //     console.log(result.data);
-      //     console.log(result.constructor);
-      //    // console.log(result.Object.data);
-      //     console.log(result.constructor.data);
       console.log(result);
       this.$router.push("/login");
     },
-
-    // checkPassword(password) {
-    //   return this.users.filter((user) => password === user.password);
-    // },
-
-    // checkCredentials() {
-    //   //event.preventDefault();
-
-    //   if (
-    //     this.username === this.currentUser &&
-    //     this.checkPassword(this.password).length !== 0
-    //   ) {
-    //     this.feedback = "Korrekte Credentaials";
-    //   } else {
-    //     this.feedback = "Falsche Credentials";
-    //   }
-    // },
     changeUser(name) {
       this.currentUser = name;
     },
@@ -118,16 +86,12 @@ export default {
 }
 
 #rightImg {
-  /* background-color: blue; */
-  /* height: 80%; */
   width: 10%;
   float: right;
   background-color: white;
 }
 
 #leftImg {
-  /* background-color: black; */
-  /* height: 80%; */
   width: 10%;
   float: left;
   background-color: white;
@@ -135,7 +99,6 @@ export default {
 
 #leftImg img {
   width: 100%;
-  /* opacity: 0.7; */
 }
 
 #rightImg img {
@@ -145,15 +108,12 @@ export default {
 
 .top,
 .footer {
-  /* top: 0; */
   background-color: rgba(146, 196, 224, 255);
   box-sizing: border-box;
-  /* position: absolute; */
   width: 100%;
   height: 80px;
 }
 .top {
-  /* position: absolute; */
   top: 0;
 }
 
@@ -207,7 +167,6 @@ export default {
 
 #registerButton {
   border-radius: 20px;
-  /* margin-bottom: 40px; */
   width: 15em;
   height: 40px;
   background-color: rgba(30, 203, 58, 255);
@@ -221,7 +180,6 @@ input {
 }
 
 .bottom {
-  /* background-color: black; */
   width: 80%;
   height: 2px;
   margin-left: 10%;

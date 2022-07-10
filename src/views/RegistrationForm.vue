@@ -2,14 +2,7 @@
   <div class="top"></div>
   <div class="container">
     <form class="form" @submit="checkForm">
-      <!-- <fieldset> -->
       <img src="../assets/1.png" alt="HeNan" id="logo" />
-      <!-- <p v-if="errors.length">
-    <b>Please correct the following error(s):</b>
-    <ul>
-      <li v-for="error in errors" :key="error">{{ error }}</li>
-    </ul>
-  </p> -->
       <label for="username"></label>
       <input
         type="text"
@@ -60,10 +53,6 @@
       />
 
       <br />
-      <!-- <div id="radio">
-          <input type="radio" />i've read and accepted the
-          <a href="">Privacy Policy</a> -->
-      <!-- </div> -->
       <p id="feedback">{{ feedback }}</p>
       <br />
 
@@ -74,7 +63,6 @@
         >Have an account?
         <a href="Login" @click="goToLogin($event)">Log in</a></span
       >
-      <!-- </fieldset> -->
     </form>
   </div>
   <div class="footer">
@@ -107,7 +95,6 @@ export default {
 
   methods: {
     goToLogin() {
-      // event.preventDefault();
       this.$router.push("/login");
     },
     async registerAcc() {
@@ -115,7 +102,6 @@ export default {
       let res = await axios
         .post(
           "http://localhost:8090/register",
-          // "https://dech-board-rest-server.herokuapp.com/register",
           {
             username: this.username,
             password: this.password,
@@ -195,7 +181,6 @@ input {
   background-color: white;
 }
 #leftImg {
-  /* background-color: black; */
   height: 100%;
   width: 10%;
   float: left;
@@ -203,7 +188,6 @@ input {
 }
 #leftImg img {
   width: 100%;
-  /* opacity: 0.7; */
 }
 #rightImg img {
   width: 100%;
@@ -225,24 +209,6 @@ input {
   left: 45%;
   top: 5em;
   border: 1px solid black;
-  /* width: 23%; */
-
-  border-radius: 15px;
-  width: 20em;
-}
-
-.form {
-  display: block;
-  margin: 10% auto;
-}
-
-#username,
-#firstName,
-#lastName,
-#birthdy {
-  border-radius: 20px;
-  margin-bottom: 10%;
-  /* width: 80%; */
   width: 18em;
   height: 40px;
 
@@ -252,22 +218,16 @@ input {
 #password {
   border-radius: 20px;
   margin-bottom: 10%;
-  /* width: 80%; */
-  height: 40px;
-  width: 18em;
-  /* margin-left: 10%; */
   box-shadow: 0px 0px 5px grey;
   border: 0 grey solid;
 }
 #loginButton {
   border-radius: 20px;
   margin-bottom: 10%;
-  /* width: 80%; */
   width: 19em;
   height: 40px;
   background-color: rgba(30, 203, 58, 255);
   border: 0ch white solid;
-  /* margin-left: 10%; */
   box-shadow: 0px 0px 5px rgba(30, 203, 58, 255);
   color: white;
 }
@@ -277,7 +237,6 @@ input {
 #fotgotten {
   display: block;
   margin-left: 30%;
-  /* margin-bottom: 20px; */
   width: 40%;
   font-size: 30%;
   text-align: center;
@@ -293,7 +252,6 @@ input {
   margin: 0 auto;
 }
 .bottom {
-  /* background-color: black; */
   width: 80%;
   height: 2px;
   margin-left: 10%;
@@ -305,7 +263,6 @@ input {
   font-size: 40%;
   widows: 80%;
   margin-left: 10%;
-  /* text-align: center; */
 }
 
 #feedback {
