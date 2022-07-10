@@ -71,14 +71,11 @@ export default {
     };},
     methods: {
       deleteCookies(){
-        //this.cookies.keys().forEach(cookie => this.cookies.remove(cookie));
         this.cookies.remove("token");
          this.cookies.remove("messageboardid");
           this.cookies.remove("conversationID");
            this.cookies.remove("currentuser");
            this.cookies.remove("myCoookie");
-            //this.cookies.remove("token");
-            
       }
     }
 };
@@ -89,24 +86,6 @@ a {
   color: #506698;
   text-decoration: none;
 }
-
-/* .searchUser{
-    position: absolute;
-    width: 340px;
-    height: 48px;
-    left: 844px;
-    top: 46px;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
-
-    margin-top: 2em;
-    margin-left: 80em; 
-
-    background: #F4F7FF;
-    border-radius: 10px;
-} */
 
 * {
   font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
@@ -164,8 +143,6 @@ a {
   margin: 0em;
   padding: 0em;
 
-  /* line-height: 150%; */
-
   background-color: #92c4e0;
   /* Same color as sidebar background */
 }
@@ -194,10 +171,6 @@ a {
   left: 0em;
   width: 10em;
 }
-
-/* a:hover {
-  background-position: left;
-} */
 
 .menu-container {
   position: fixed;
