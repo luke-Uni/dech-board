@@ -11,10 +11,7 @@
         :key="`user-${index}`"
       >
         <div class="avatar">
-          <img
-            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4005587090,2408158268&fm=26&gp=0.jpg"
-            :alt="Picture"
-          />
+          <img src="@/assets/social-media.png" :alt="Picture" />
         </div>
         <div class="content">
           <div class="name">{{ user.username }}</div>

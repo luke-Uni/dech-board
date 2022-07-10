@@ -56,8 +56,10 @@
                   name="filterOptions"
                   value="german"
                   v-model="select"
-            
-                  @click="select != 'german' ? getFriendsAndGerman() : '', toggleRadio('german')"
+                  @click="
+                    select != 'german' ? getFriendsAndGerman() : '',
+                      toggleRadio('german')
+                  "
                 />
               </td>
               <td>
@@ -69,7 +71,10 @@
                   name="filterOptions4"
                   value="chinese"
                   v-model="select"
-                  @click="select != 'chinese' ? getChineseUsers() : '',toggleRadio('chinese')"
+                  @click="
+                    select != 'chinese' ? getChineseUsers() : '',
+                      toggleRadio('chinese')
+                  "
                 />
               </td>
             </tr>
@@ -92,7 +97,6 @@
               {{ user.username }}
             </li>
           </ul>
-          {{select}}
         </div>
       </div>
     </section>
@@ -144,12 +148,11 @@ export default {
     },
   },
   methods: {
-
-     toggleRadio(val){
-      if(val === this.prevSelect){
+    toggleRadio(val) {
+      if (val === this.prevSelect) {
         this.select = false;
 
-         this.getAllUsers()
+        this.getAllUsers();
       }
       this.prevSelect = val;
     },
