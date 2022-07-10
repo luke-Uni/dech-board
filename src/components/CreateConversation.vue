@@ -17,12 +17,7 @@
      <v-container fluid>
         <table>
           <tr>
-            <th>
-              <!-- <p>Chosen User: {{ recipients }}</p> -->
-              <!-- <div v-for="user in recipients" :key="user">
-              {{user}} -->
-              <!-- </div> -->
-               
+            <th>               
             </th>
           </tr>
           <div v-for="user in users" :key="user.username" >
@@ -81,39 +76,28 @@
          
 
   </div>
-    <!-- <div class="conversationview"> -->
-      
     </div>
     </div>
   </div>
   </transition>
-  
-    <!-- </div> -->
 </template>
 
 <script>
 import axios from "axios";
 import { useCookies } from "vue3-cookies";
-// import VueLodash from 'vue-lodash'
-// import lodash from 'lodash'
 
 export default {
    props: ["TogglePopup"],
   data() {
     
     return {
-      // conversations: [],
-      // messages: [],
-      //recipient: "",
       content: "",
       users: [],
       recipients: [],
-      //checkedNames:[],
     };
   },
   computed: {},
   beforeMount() {
-    //this.getAllConversations();
     this.getAllUsers();
   },
      setup() {
@@ -158,13 +142,11 @@ export default {
 
     //Create a message
     async createMessage() {
-      //this.recipients.push(this.recipient);
       console.log(this.recipients);
       if (this.recipients[0]) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
-            //recipient: this.recipient,
             recipients: this.recipients,
             content: this.content,
           },
@@ -184,22 +166,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-
-// .fade-enter-active,
-// .fade-leave-active{
-
-// transition: opacity 0.5s;
-
-
-// }
-
-// .fade-enter,
-// .fade-leave-to{
-//   opacity: 0;
-// }
-
-
 .ChooseUser{
 
 width:20em;
@@ -315,7 +281,6 @@ margin-bottom: 2em;
 
 .UserLabel {
   font-size: 1.1em;
- // vertical-align: middle;
   display: block;
 }
 
@@ -355,16 +320,6 @@ margin-bottom: 2em;
   left: 3px;
   color: #4fb3ff;
 }
-
-
-
-
-
-
-
-
-
-
 .message-create {
   width: 40em;
 
