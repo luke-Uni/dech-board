@@ -238,16 +238,16 @@ export default {
 </script>
 <style scoped lang="scss">
 .app {
-  position: absolute;
-  left: 12em;
+  
+  
   width: 100%;
   height: 100%;
   top: 0%;
 }
 .dropdown-wrapper {
-  position: absolute;
+  position: fixed;
   top: 1.5em;
-  right: 1em;
+  right: 8em;
   width: 17em;
   height: 20em;
   .selected-User {
