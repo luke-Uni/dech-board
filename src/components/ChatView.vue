@@ -345,8 +345,9 @@ export default {
           }
         );
         console.log(result);
-      } else {
-      }
+      } 
+      // else {
+      // }
       this.getAllConversations();
       this.getAllPostsNoParameter();
     },

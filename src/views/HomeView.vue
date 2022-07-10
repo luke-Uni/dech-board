@@ -2,6 +2,27 @@
   <div class="sticky">
     <UserObjects />
   </div>
+  <!-- <div class="sticky"> -->
+  <LeftSideMenu />
+
+  <!-- </div> -->
+  <MessageBoardSelection @changeBoard="changeBoard" />
+  <button
+    class="button-81" id="fixedbuttonBoard"
+    @click="() => TogglePopupSecond('buttonTrigger')"
+    role="button"
+  >
+    Create Board
+  </button>
+  <button
+    class="button-81" id="fixedbuttonPost"
+    @click="() => TogglePopup('buttonTrigger')"
+    role="button"
+  >
+    Create Post
+  </button>
+
+  <!-- <button
   <LeftSideMenu />
   <MessageBoardSelection @changeBoard="changeBoard" />
 
@@ -12,7 +33,7 @@
   >
     <div class="add-icon"></div>
     <div class="btn-txt">Create Board</div>
-  </button>
+  </button> -->
 
   <MessageBoardCreator
     v-if="popupTriggersSecond.buttonTrigger"
@@ -24,14 +45,14 @@
       <MessageBoard />
     </div>
     <div class="" style="text-align: center; margin-top: 5%">
-      <button
+      <!-- <button
         class="icon-btn add-btn"
         @click="() => TogglePopup('buttonTrigger')"
         id="home"
       >
         <div class="add-icon"></div>
         <div class="btn-txt">Add Post</div>
-      </button>
+      </button> -->
     </div>
 
     <CreatePost
@@ -295,5 +316,65 @@ export default {
   width: 1em;
   margin-left: 5em;
   margin-right: 5em;
+}
+#fixedbuttonBoard {
+    position: fixed;
+    bottom: 10em;
+    right: 10em; 
+}
+#fixedbuttonPost {
+    position: fixed;
+    bottom: 17em;
+    right: 10em; 
+}
+
+.button-81 {
+  /* position: sticky; */
+  
+  width: 10em;
+  height: 5em;
+  margin-top: 5em;
+  margin-left: 65em;
+  background-color: rgba(244, 247, 255, 255);
+  border: 1 solid #5f88bd;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  color: #0d222a;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.8rem 0.5rem;
+  text-align: center;
+  text-decoration: none rgba(244, 247, 255, 255) solid;
+  text-decoration-thickness: auto;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0px 1px 2px rgba(118, 162, 255, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-81:hover {
+  background-color: rgba(102, 194, 247, 0.25);
+  color: rgb(0, 0, 0);
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 0.9rem;
+    padding: 0.8rem 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 0.9rem;
+    padding: 0.8rem 0.5rem;
+  }
 }
 </style>

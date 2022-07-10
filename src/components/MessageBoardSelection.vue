@@ -21,7 +21,7 @@
         @click="getAllUsers(), (isVisible = !isVisible)"
         class="selected-User"
       >
-        <span v-if="!selectedUser[0]">Select Message-Board</span>
+        <span v-if="!selectedUser[0]"> Select Message-Board</span>
         <!-- shows the choosen User -->
         <span v-else>{{ selectedUser[0].username }} </span>
         <!-- just the visual element for the dropdown menu -->
@@ -261,20 +261,20 @@ export default {
 </script>
 <style scoped lang="scss">
 .app2 {
-  position: absolute;
+  
   left: 12em;
   right: 0%;
   top: 0%;
 }
 .dropdown-wrapper {
-  position: absolute;
-  top: 2em;
-  margin-left: 80em;
+  position: fixed;
+  top: 1.5em;
+  margin-left: 15em;
   width: 15em;
   .selected-User {
     height: 40px;
-    border: 2px solid black;
-    background-color: lightgrey;
+    border: 2px solid rgba(102, 194, 247, 0.25);
+    background-color: rgba(102, 194, 247, 0.25);
     border-radius: 5px;
 
     display: flex;
@@ -296,12 +296,12 @@ export default {
   }
   .dropdown-popover {
     position: absolute;
-    border: 2px solid black;
+    border: 2px solid rgba(102, 194, 247, 0.25);
     border-radius: 5px;
     top: 46px;
     left: 0;
     right: 0;
-    background-color: lightgrey;
+    background-color: rgb(236, 248, 255);
     max-width: 100%;
     padding: 10px;
     visibility: hidden;
@@ -318,7 +318,7 @@ export default {
     input {
       width: 90%;
       height: 30px;
-      border: 2px solid black;
+      border: 2px solid rgba(102, 194, 247, 0.25);
       border-radius: 5px;
       font-size: 16px;
       padding-left: 8px;
@@ -331,6 +331,15 @@ export default {
       width: 1em;
       height: 2em;
     }
+    ul::-webkit-scrollbar {
+  background-color: #f5f5f5;
+  border-radius: 1em;
+  width: 1em;
+}
+ul::-webkit-scrollbar-thumb {
+  background-color: rgb(165, 220, 252);
+  border-radius: 1em;
+}
 
     .options {
       width: 100%;
@@ -342,17 +351,25 @@ export default {
         max-height: 180px;
         overflow-y: scroll;
         overflow-x: hidden;
+        ul::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 1em;
+}
+
 
         li {
-          width: 100%;
-          border-bottom: 1px solid lightgray;
+          border-radius: 0.5em;
+          border-bottom-left-radius:0.3em;
+          border-top-left-radius:0.3em;
+          width: 75%;
+          border-bottom: 1px solid rgba(102, 194, 247, 0.25);
           padding: 10%;
-          background-color: #f1f1f1;
+          background-color: rgb(208, 238, 255);
           cursor: pointer;
           font-size: 16px;
           &:hover {
-            background: #70878a;
-            color: #fff;
+            background: rgb(208, 238, 255);
+            color: rgb(138, 198, 255);
             font-weight: bold;
           }
         }

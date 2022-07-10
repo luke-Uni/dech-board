@@ -5,6 +5,8 @@
         @click="getAllUsers(), (isVisible = !isVisible)"
         class="selected-User"
       >
+        <!-- <span v-if="selectedUser">{{selectedUser.username}}</span>
+        <span v-else>Search User</span> -->
         <span v-if="!selectedUser[0]">Select User</span>
         <!-- shows the choosen User -->
         <span v-else>{{ selectedUser[0].username }} </span>
@@ -36,8 +38,9 @@
               </td>
               <td>
                 <input
-                  class="Checkbox2"
-                  type="checkbox"
+                  type="radio"
+                  name="filterOptions"
+                  value="contacts"
                   v-model="this.categories"
                   @click="getFriends()"
                 />
@@ -49,8 +52,9 @@
               </td>
               <td>
                 <input
-                  class="Checkbox2"
-                  type="checkbox"
+                  type="radio"
+                  name="filterOptions"
+                  value="contacts"
                   v-model="this.german"
                   @click="getFriendsAndGerman()"
                 />
@@ -60,8 +64,9 @@
               </td>
               <td>
                 <input
-                  class="Checkbox2"
-                  type="checkbox"
+                  type="radio"
+                  name="filterOptions"
+                  value="contacts"
                   v-model="this.chinese"
                   @click="getChineseUsers()"
                 />
@@ -101,14 +106,16 @@ export default {
   components: {
     // UserUser
   },
-   setup() {
+  setup() {
     const { cookies } = useCookies();
-    return{
-      cookies
-    };},
+    return {
+      cookies,
+    };
+  },
   data() {
     return {
       searchQuery: "",
+      // selectedUser: 'none',
       selectedUser: [],
       isVisible: false,
       search: "",
@@ -138,12 +145,16 @@ export default {
       this.isVisible = false;
     },
     async getAllUsers() {
+      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/getUsers";
+      // if (this.categories){
+      //   uri="http://localhost:8090/friendsobject"
+      // }
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.users = response.data;
       });
@@ -151,6 +162,7 @@ export default {
     },
     // filter fuction to get only friends
     async getFriends() {
+      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
@@ -165,10 +177,11 @@ export default {
       console.log(response);
     },
     async getGermanUsers() {
-      if (this.chinese) {
-        this.getAllUsers();
-        return;
-      }
+      // if (this.chinese) {
+      //   this.getAllUsers();
+      //   return;
+      // }
+      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
@@ -180,15 +193,15 @@ export default {
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.secondUsers = response.data;
         this.users = response.data;
-        
       });
       console.log(response);
     },
     async getChineseUsers() {
-      if (this.german) {
-        this.getAllUsers();
-        return;
-      }
+      // if (this.german) {
+      //   this.getAllUsers();
+      //   return;
+      // }
+      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
@@ -203,21 +216,18 @@ export default {
       console.log(response);
     },
     async getFriendsAndGerman() {
-
       if (this.categories) {
-         console.log("-------------------------huhuuhbhbjh");
+        console.log("-------------------------huhuuhbhbjh");
         this.getGermanUsers();
         this.getFriends();
-        
+
         console.log(this.users);
         console.log(this.secondUsers);
-
 
         this.users = this.users.filter(function (n) {
           return this.secondUsers.indexOf(n) !== -1;
         });
 
-       
         return;
       }
       console.log("-------------------------");
@@ -228,32 +238,27 @@ export default {
 </script>
 <style scoped lang="scss">
 .app {
-  position: absolute;
-  left: 10em;
   width: 100%;
   height: 100%;
   top: 0%;
 }
 .dropdown-wrapper {
-  position: absolute;
-  top: 5em;
-  right: 1em;
-  width: 20em;
+  position: fixed;
+  top: 1.5em;
+  right: 8em;
+  width: 17em;
   height: 20em;
-
   .selected-User {
-    position: absolute;
-    width: 250px;
-    height: 50px;
-    border: 2px solid black;
+    height: 40px;
+    border: 2px solid rgba(102, 194, 247, 0.25);
+    background-color: rgba(102, 194, 247, 0.25);
     border-radius: 5px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 18px;
-    box-shadow: 5px;
-    background-color: lightgrey;
+    font-weight: 400;
     box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
 
     .drop-down-icon {
@@ -268,38 +273,32 @@ export default {
   }
   .dropdown-popover {
     position: absolute;
-    border: 2px solid black;
-    top: 4px;
+    border: 2px solid rgba(102, 194, 247, 0.25);
+    border-radius: 5px;
+    top: 46px;
     left: 0;
     right: 0;
-    border-radius: 5px;
-    background-color: lightgrey;
+    background-color: rgba(148, 211, 248, 0.25);
     max-width: 100%;
-
+    padding: 10px;
     visibility: hidden;
-    transition: all 0.3s linear;
+    transition: all 0.5s linear;
+    max-height: 0px;
+    overflow: hidden;
     box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.555);
 
-    overflow: hidden;
-
-    width: 20em;
-
     &.visible {
-      position: absolute;
-      top: 5em;
       max-height: 450px;
       visibility: visible;
-      background-color: lightgrey;
     }
 
     input {
       width: 90%;
       height: 30px;
-      border: 2px solid lightgrey;
+      border: 2px solid rgba(102, 194, 247, 0.25);
+      border-radius: 5px;
       font-size: 16px;
       padding-left: 8px;
-      border-radius: 5px;
-      border: 2px solid black;
     }
 
     .friendsCheckbox {
@@ -308,6 +307,15 @@ export default {
     .Checkbox2 {
       width: 1em;
       height: 2em;
+    }
+    ul::-webkit-scrollbar {
+      background-color: #f5f5f5;
+      border-radius: 1em;
+      width: 1em;
+    }
+    ul::-webkit-scrollbar-thumb {
+      background-color: rgb(165, 220, 252);
+      border-radius: 1em;
     }
 
     .options {
@@ -320,17 +328,21 @@ export default {
         max-height: 180px;
         overflow-y: scroll;
         overflow-x: hidden;
+        ul::-webkit-scrollbar-track {
+          background-color: #f5f5f5;
+          border-radius: 1em;
+        }
 
         li {
           width: 100%;
-          border-bottom: 1px solid lightgray;
+          border-bottom: 1px solid rgba(102, 194, 247, 0.25);
           padding: 10%;
-          background-color: #f1f1f1;
+          background-color: rgba(208, 238, 255, 0.822);
           cursor: pointer;
           font-size: 16px;
           &:hover {
-            background: #70878a;
-            color: #fff;
+            background: rgba(208, 238, 255, 0.822);
+            color: rgb(138, 198, 255);
             font-weight: bold;
           }
         }
