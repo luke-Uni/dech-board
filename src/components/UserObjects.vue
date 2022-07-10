@@ -247,7 +247,7 @@ export default {
 .dropdown-wrapper {
   position: absolute;
   top: 1.5em;
-  right: 10em;
+  right: 1em;
   width: 17em;
   height: 20em;
   .selected-User {
