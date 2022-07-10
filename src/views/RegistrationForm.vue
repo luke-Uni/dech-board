@@ -24,7 +24,7 @@
       />
       <br />
       <label for="username"></label>
-      <input
+      <!-- <input
         type="text"
         id="firstName"
         required
@@ -40,7 +40,7 @@
         placeholder=" &nbsp;&nbsp;Last name"
         v-model="lastName"
       />
-      <br />
+      <br /> -->
 
       <label for="email"></label>
       <input
