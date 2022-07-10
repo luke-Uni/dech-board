@@ -37,13 +37,12 @@
                 <label>contacts only</label>
               </td>
               <td>
-                
                 <input
                   type="radio"
                   name="filterOptions"
                   value="categories"
                   v-model="select"
-                  @click="getFriends(),toggleRadio('categories')"
+                  @click="getFriends(), toggleRadio('categories')"
                 />
               </td>
             </tr>
@@ -57,7 +56,6 @@
                   name="filterOptions"
                   value="german"
                   v-model="select"
-            
                   @click="getFriendsAndGerman(), toggleRadio('german')"
                 />
               </td>
@@ -70,7 +68,7 @@
                   name="filterOptions4"
                   value="chinese"
                   v-model="select"
-                  @click="getChineseUsers(),toggleRadio('chinese')"
+                  @click="getChineseUsers(), toggleRadio('chinese')"
                 />
               </td>
             </tr>
@@ -121,8 +119,8 @@ export default {
       selectedUser: [],
       isVisible: false,
       search: "",
-      select: 'false',
-      prevSelect: 'false',
+      select: "false",
+      prevSelect: "false",
       users: [],
       secondUsers: [],
       categories: "",
@@ -144,9 +142,8 @@ export default {
     },
   },
   methods: {
-
-    toggleRadio(val){
-      if(val === this.prevSelect){
+    toggleRadio(val) {
+      if (val === this.prevSelect) {
         this.select = false;
         this.getAllUsers();
       }
