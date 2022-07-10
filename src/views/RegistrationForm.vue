@@ -1,9 +1,9 @@
 <template>
   <div class="top"></div>
   <div class="container">
-    <form class="form" @submit="checkForm">
-      <img src="../assets/1.png" alt="HeNan" id="logo" />
-      <label for="username"></label>
+    <form class="form">
+      <img src="../assets/1.png" alt="HeNan" class="logo" />
+      
       <input
         type="text"
         id="username"
@@ -55,7 +55,7 @@
       <br />
       <p id="feedback">{{ feedback }}</p>
       <br />
-
+      <br />
       <button class="primary" @click="registerAcc()" id="loginButton">
         Sign up
       </button>
@@ -63,7 +63,8 @@
         >Have an account?
         <a href="Login" @click="goToLogin($event)">Log in</a></span
       >
-    </form>
+      </form>
+     
   </div>
   <div class="footer">
     <div id="leftImg">
@@ -74,6 +75,8 @@
     </div>
   </div>
 </template>
+
+
 
 <script>
 import axios from "axios";
@@ -209,6 +212,22 @@ input {
   left: 45%;
   top: 5em;
   border: 1px solid black;
+
+  border-radius: 15px;
+  width: 20em;
+}
+.form {
+  display: block;
+  margin: 10% auto;
+}
+#username,
+#firstName,
+#lastName,
+#birthdy {
+  border-radius: 20px;
+  margin-bottom: 10%;
+
+
   width: 18em;
   height: 40px;
 
@@ -218,6 +237,8 @@ input {
 #password {
   border-radius: 20px;
   margin-bottom: 10%;
+  height: 40px;
+  width: 18em;
   box-shadow: 0px 0px 5px grey;
   border: 0 grey solid;
 }
@@ -263,6 +284,138 @@ input {
   font-size: 40%;
   widows: 80%;
   margin-left: 10%;
+}
+
+#feedback {
+  color: red;
+}
+
+/* ----------------------------- */
+.logo {
+  position: relative;
+  top: -1.3em;
+  width: 20em;
+  height: 6.1em;
+  border-radius: 2em;
+}
+
+#rightImg {
+  width: 10%;
+  float: right;
+  background-color: white;
+}
+
+#leftImg {
+  width: 10%;
+  float: left;
+  background-color: white;
+}
+
+#leftImg img {
+  width: 100%;
+}
+
+#rightImg img {
+  width: 80%;
+  float: right;
+}
+.footer {
+  bottom: 0%;
+  left: 0%;
+  background-color: rgba(146, 196, 224, 255);
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+}
+.top {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 5em;
+  background-color: rgba(146, 196, 224, 255);
+}
+
+.container {
+  border: 1px solid black;
+  position: absolute;
+  top: 7em;
+  left: 40%;
+  width: 20em;
+  border-radius: 35px;
+}
+
+.form {
+  display: block;
+  margin: 10% auto;
+  width: 20em;
+}
+
+#username {
+  border-radius: 20px;
+  margin-bottom: 10%;
+  left: 12%;
+  width: 64%;
+  height: 40px;
+  padding-left: 5%;
+  padding-right: 5%;
+  box-shadow: 0px 0px 5px grey;
+  border: 0 grey solid;
+}
+
+#password {
+  border-radius: 20px;
+  margin-bottom: 40px;
+  left: 12%;
+  width: 64%;
+  height: 40px;
+  padding-left: 5%;
+  padding-right: 5%;
+  box-shadow: 0px 0px 5px grey;
+  border: 0 grey solid;
+}
+
+#loginButton {
+  border-radius: 20px;
+  margin-bottom: 10%;
+  width: 19em;
+  height: 40px;
+  background-color: rgba(146, 196, 224, 255);
+  border: 0ch white solid;
+  box-shadow: 0px 0px 5px rgba(146, 196, 224, 255);
+  color: white;
+}
+#loginButton:hover {
+  cursor: pointer;
+}
+
+#registerButton {
+  border-radius: 20px;
+  width: 15em;
+  height: 40px;
+  background-color: rgba(30, 203, 58, 255);
+  color: white;
+  border: 0ch white solid;
+  box-shadow: 0px 0px 5px rgba(30, 203, 58, 255);
+  margin-bottom: 2em;
+}
+
+#registerButton:hover {
+  cursor: pointer;
+}
+
+input {
+  margin: 0 auto;
+}
+
+.bottom {
+  width: 80%;
+  height: 2px;
+  margin-left: 10%;
+  margin-top: 10%;
+  border-top: 2px solid black;
+  margin-bottom: 10%;
 }
 
 #feedback {
