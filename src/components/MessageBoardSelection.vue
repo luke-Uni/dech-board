@@ -15,7 +15,7 @@
         @click="nextBoard()"
       />
     </h1>
-    <div class="postion"></div>
+    
     <section class="dropdown-wrapper">
       <div
         @click="getAllUsers(), (isVisible = !isVisible)"
@@ -46,11 +46,7 @@
         :class="isVisible ? 'visible' : 'invisible'"
         class="dropdown-popover"
       >
-        <input
-          v-model="searchQuery"
-          type="text"
-          placeholder="Search for MessageBoard"
-        />
+       
         <span v-if="filteredUser.length == 0">No Data Available</span>
         <div class="options">
           <ul>
@@ -61,6 +57,9 @@
             >
               {{ user.username }}
             </li> -->
+            <li @click="changeBoardMain()">
+              Dech-Board
+            </li>
             <li
               @click="changeBoard(messageboard)"
               v-for="messageboard in messageboards"
@@ -128,7 +127,17 @@ export default {
     changeBoard(board) {
       console.log("Board name: " + board.messageBoardName);
       this.boardName = board.messageBoardName;
+      this.cookies.set("messageboardid", board.messageBoardId, 0);
       this.$refs.messageBoard.getAllPosts(board.messageBoardId);
+    },
+    changeBoardMain(){
+        //console.log("Board name: " + board.messageBoardName);
+        let messageBoardId= "0";
+        let messageBoardName= "Dech-Board";
+        //board.messageBoardId = "0";
+      this.boardName = messageBoardName;
+      this.cookies.set("messageboardid", messageBoardId, 0);
+      this.$refs.messageBoard.getAllPosts(messageBoardId);
     },
 
     // messageBoardIdTransmit(board){
