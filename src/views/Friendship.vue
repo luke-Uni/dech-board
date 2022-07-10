@@ -186,7 +186,7 @@ export default {
       console.log(response2);
       console.log(response3);
     },
-    // 添加好友
+    // adding a friend
     addFriend(friend) {
       let friendName = friend;
 
@@ -217,8 +217,6 @@ export default {
 
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.gridData = response.data;
-        // for (let i = 0; i < this.gridData.length; i++) {
-        // }
         console.log(response.data);
       });
       console.log(response.data);
