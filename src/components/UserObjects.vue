@@ -37,13 +37,12 @@
                 <label>contacts only</label>
               </td>
               <td>
-                
                 <input
                   type="radio"
                   name="filterOptions"
                   value="categories"
                   v-model="select"
-                  @click="getFriends(),toggleRadio('categories')"
+                  @click="getFriends(), toggleRadio('categories')"
                 />
               </td>
             </tr>
@@ -122,8 +121,8 @@ export default {
       selectedUser: [],
       isVisible: false,
       search: "",
-      select: 'false',
-      prevSelect: 'false',
+      select: "false",
+      prevSelect: "false",
       users: [],
       secondUsers: [],
       categories: "",
