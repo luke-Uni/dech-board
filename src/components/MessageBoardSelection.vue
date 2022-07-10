@@ -298,8 +298,8 @@ export default {
   width: 15em;
   .selected-User {
     height: 40px;
-    border: 2px solid black;
-    background-color: lightgrey;
+    border: 2px solid rgba(102, 194, 247, 0.25);
+    background-color: rgba(102, 194, 247, 0.25);
     border-radius: 5px;
 
     display: flex;
@@ -321,12 +321,12 @@ export default {
   }
   .dropdown-popover {
     position: absolute;
-    border: 2px solid black;
+    border: 2px solid rgba(102, 194, 247, 0.25);
     border-radius: 5px;
     top: 46px;
     left: 0;
     right: 0;
-    background-color: lightgrey;
+    background-color: rgba(148, 211, 248, 0.25);
     max-width: 100%;
     padding: 10px;
     visibility: hidden;
@@ -343,7 +343,7 @@ export default {
     input {
       width: 90%;
       height: 30px;
-      border: 2px solid black;
+      border: 2px solid rgba(102, 194, 247, 0.25);
       border-radius: 5px;
       font-size: 16px;
       padding-left: 8px;
@@ -370,14 +370,14 @@ export default {
 
         li {
           width: 100%;
-          border-bottom: 1px solid lightgray;
+          border-bottom: 1px solid rgba(102, 194, 247, 0.25);
           padding: 10%;
-          background-color: #f1f1f1;
+          background-color: rgba(208, 238, 255, 0.822);
           cursor: pointer;
           font-size: 16px;
           &:hover {
-            background: #70878a;
-            color: #fff;
+            background: rgba(208, 238, 255, 0.822);
+            color: rgb(138, 198, 255);
             font-weight: bold;
           }
         }
