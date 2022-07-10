@@ -10,18 +10,8 @@
         <span class="icon-cross"></span>
         <span class="visually-hidden"></span>
       </button>
-
-      <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
-
       <div>
         <div class="message-create">
-          <!-- <input
-            type="text"
-            class="input-username"
-            placeholder="Username"
-            v-model="username"
-          />  -->
-
           <div
             @dragenter.prevent="toggleActive"
             @dragleave.prevent="toggleActive"
@@ -114,9 +104,6 @@
 <script>
 import axios from "axios";
 import { useCookies } from "vue3-cookies";
-
-// import MessageBoard from "./MessageBoard.vue";
-
 export default {
   name: "CreatePost",
 
@@ -126,14 +113,12 @@ export default {
 
   data() {
     return {
-      //  username: "",
       title: "",
       content: "",
       important: "",
       imgPost: null,
       messageBoardId: "",
       imgIsUploaded: false,
-      // posts:[]
     };
   },
   setup() {
@@ -144,35 +129,7 @@ export default {
   },
 
   methods: {
-    // async getAllPosts(){
-    //    MessageBoard.getAllPosts();
-    // },
-    // async badWordsFilterAPI() {
-    //   var myHeaders = new Headers();
-    //   myHeaders.append("apikey", "eUHPlznMstdcjKPfpY5QdtZYrDN042b5");
-
-    //   var raw = "Son of a Bitch I love you";
-
-    //   var requestOptions = {
-    //     method: "POST",
-    //     redirect: "follow",
-    //     headers: myHeaders,
-    //     body: raw,
-
-    //   };
-
-    //   fetch(
-    //     "https://api.apilayer.com/bad_words?censor_character={censor_character}",
-    //     requestOptions
-    //   )
-    //     .then((response) => response.text())
-    //     .then((result) => console.log(result)
-    //     )
-    //     .catch((error) => console.log("error", error));
-
-    // },
     async badWordsFilterAPIAxios(text) {
-      //var hallo1 = "";
       var data;
       var myHeaders = new Headers();
       myHeaders.append("apikey", "eUHPlznMstdcjKPfpY5QdtZYrDN042b5");
@@ -182,7 +139,6 @@ export default {
       var requestOptions = {
         method: "POST",
         redirect: "follow",
-        //headers: myHeaders,
         body: raw,
       };
       let result = await axios
@@ -198,15 +154,9 @@ export default {
           }
         )
         .then(function (result) {
-          // console.log("-------------------------"+response.data.data);
-          // console.log("-------------------------"+response.data.data.TargetText);
-          //  console.log("-------------------------"+response.data.data.targeText);
-          // hallo1 = result.data.censored_content.requestOptions;
-          //console.log(result.data.censored_content);
           data = JSON.parse(result.data.censored_content);
           console.log(data.requestOptions.body);
           console.log(result.data.censored_content.data);
-          //console.log( hallo1);
           let hallo = data.requestOptions.body;
           let text = hallo.replace(/{/g, "*");
           console.log(text);
@@ -215,16 +165,6 @@ export default {
           console.error(error);
         });
       console.log(result);
-
-      //  let response = await fetch(
-      //     "https://api.apilayer.com/bad_words?censor_character={censor_character}",
-      //     requestOptions
-      //   )
-      //     .then((response) => response.text())
-      //     .then((result) => console.log(result.censored_content)
-      //     )
-      //     .catch((error) => console.log("error", error));
-      //     console.log(response.censored_content);
     },
 
     onImageUpload() {
@@ -267,15 +207,12 @@ export default {
       }
 
       let result = await axios.post(
-        //"https://dech-board-rest-server.herokuapp.com/posts/create",
         url,
 
         {
-          //username: this.username,
           title: this.title,
           content: this.content,
           important: this.important,
-          // messageBoardId: this.messageBoardId,
         },
         {
           headers: {
