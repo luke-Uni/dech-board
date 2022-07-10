@@ -95,7 +95,7 @@
             <button
               class="button-81"
               v-on:click="
-              badWordsFilterAPIAxios(this.content);
+                badWordsFilterAPIAxios(this.content);
                 createPost();
                 TogglePopup();
                 getAllPosts();
@@ -136,11 +136,12 @@ export default {
       // posts:[]
     };
   },
-   setup() {
+  setup() {
     const { cookies } = useCookies();
-    return{
-      cookies
-    };},
+    return {
+      cookies,
+    };
+  },
 
   methods: {
     // async getAllPosts(){
@@ -149,7 +150,7 @@ export default {
     // async badWordsFilterAPI() {
     //   var myHeaders = new Headers();
     //   myHeaders.append("apikey", "eUHPlznMstdcjKPfpY5QdtZYrDN042b5");
-  
+
     //   var raw = "Son of a Bitch I love you";
 
     //   var requestOptions = {
@@ -157,7 +158,7 @@ export default {
     //     redirect: "follow",
     //     headers: myHeaders,
     //     body: raw,
-        
+
     //   };
 
     //   fetch(
@@ -168,14 +169,14 @@ export default {
     //     .then((result) => console.log(result)
     //     )
     //     .catch((error) => console.log("error", error));
-        
+
     // },
     async badWordsFilterAPIAxios(text) {
       //var hallo1 = "";
       var data;
       var myHeaders = new Headers();
       myHeaders.append("apikey", "eUHPlznMstdcjKPfpY5QdtZYrDN042b5");
-  
+
       var raw = text;
 
       var requestOptions = {
@@ -183,51 +184,47 @@ export default {
         redirect: "follow",
         //headers: myHeaders,
         body: raw,
-        
       };
       let result = await axios
         .post(
           "https://api.apilayer.com/bad_words?censor_character={censor_character}",
           {
-            requestOptions
+            requestOptions,
           },
           {
-             headers: {
-            "apikey": "eUHPlznMstdcjKPfpY5QdtZYrDN042b5"
-             },
-          
-    })
+            headers: {
+              apikey: "eUHPlznMstdcjKPfpY5QdtZYrDN042b5",
+            },
+          }
+        )
         .then(function (result) {
           // console.log("-------------------------"+response.data.data);
           // console.log("-------------------------"+response.data.data.TargetText);
           //  console.log("-------------------------"+response.data.data.targeText);
-         // hallo1 = result.data.censored_content.requestOptions;
+          // hallo1 = result.data.censored_content.requestOptions;
           //console.log(result.data.censored_content);
-           data = JSON.parse(result.data.censored_content);
+          data = JSON.parse(result.data.censored_content);
           console.log(data.requestOptions.body);
           console.log(result.data.censored_content.data);
           //console.log( hallo1);
           let hallo = data.requestOptions.body;
-          let text = hallo.replace(/{/g, '*');
+          let text = hallo.replace(/{/g, "*");
           console.log(text);
-          
         })
         .catch(function (error) {
           console.error(error);
         });
-    console.log(result);
-        
+      console.log(result);
 
-    //  let response = await fetch(
-    //     "https://api.apilayer.com/bad_words?censor_character={censor_character}",
-    //     requestOptions
-    //   )
-    //     .then((response) => response.text())
-    //     .then((result) => console.log(result.censored_content)
-    //     )
-    //     .catch((error) => console.log("error", error));
-    //     console.log(response.censored_content);
-        
+      //  let response = await fetch(
+      //     "https://api.apilayer.com/bad_words?censor_character={censor_character}",
+      //     requestOptions
+      //   )
+      //     .then((response) => response.text())
+      //     .then((result) => console.log(result.censored_content)
+      //     )
+      //     .catch((error) => console.log("error", error));
+      //     console.log(response.censored_content);
     },
 
     onImageUpload() {

@@ -14,17 +14,17 @@
     />
   </h1> -->
   <div class="sticky">
-  <UserObjects/>
-</div>
-<!-- <div class="sticky"> -->
+    <UserObjects />
+  </div>
+  <!-- <div class="sticky"> -->
   <LeftSideMenu />
-  
+
   <!-- </div> -->
   <MessageBoardSelection @changeBoard="changeBoard" />
-   
 
   <button
-    class="icon-btn add-btn" id="message-board"
+    class="icon-btn add-btn"
+    id="message-board"
     @click="() => TogglePopupSecond('buttonTrigger')"
   >
     <div class="add-icon"></div>
@@ -43,7 +43,8 @@
     <div class="" style="text-align: center; margin-top: 5%">
       <button
         class="icon-btn add-btn"
-        @click="() => TogglePopup('buttonTrigger')" id="home"
+        @click="() => TogglePopup('buttonTrigger')"
+        id="home"
       >
         <div class="add-icon"></div>
         <div class="btn-txt">Add Post</div>
@@ -58,7 +59,6 @@
     </CreatePost>
     <AlluserList></AlluserList>
   </div>
- 
 </template>
 
 <script>
@@ -107,7 +107,7 @@ export default {
       TogglePopupSecond,
       TogglePopup2Second,
       popupTriggersSecond,
-      cookies
+      cookies,
     };
     //
   },
@@ -129,15 +129,14 @@ export default {
     LeftSideMenu,
     MessageBoardSelection,
     MessageBoardCreator,
-    UserObjects
+    UserObjects,
   },
   methods: {
     saveBoards() {
       let headers = {
         "Content-Type": "application/json",
         //authorization: localStorage.getItem("token"),
-        authorization:  this.cookies.get("token")
-          
+        authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/messageboard/get";
@@ -155,7 +154,7 @@ export default {
     nextBoard() {
       console.log("Go to next Board!");
 
-       let currentBoardId =    this.cookies.get("messageboardid");
+      let currentBoardId = this.cookies.get("messageboardid");
       //let currentBoardId = localStorage.getItem("messageboardid");
       console.log(this.messageboards.length);
       for (let index = 0; index < this.messageboards.length; index++) {
@@ -167,7 +166,8 @@ export default {
           let newIndex = index;
           this.cookies.set(
             "messageboardid",
-            this.messageboards[newIndex + 1].messageBoardId, 0
+            this.messageboards[newIndex + 1].messageBoardId,
+            0
           );
           return;
         } else if (currentBoardId == 0) {
@@ -178,7 +178,8 @@ export default {
           // );
           this.cookies.set(
             "messageboardid",
-            this.messageboards[index].messageBoardId, 0
+            this.messageboards[index].messageBoardId,
+            0
           );
           return;
         }
@@ -189,30 +190,24 @@ export default {
 </script>
 
 <style scoped>
-#home{
+#home {
   position: absolute;
   top: 7em;
   left: -30em;
   width: 50px;
   height: 50px;
-  border-radius:25px;
- 
+  border-radius: 25px;
 }
 
-
 #message-board {
-  
   position: absolute;
   top: 7em;
   left: 12em;
   width: 50px;
   height: 50px;
-  border-radius:25px;
- 
-
-
+  border-radius: 25px;
 }
-.home{
+.home {
   position: absolute;
   top: 20%;
   left: 50%;
@@ -220,16 +215,16 @@ export default {
   height: auto;
 }
 
-.sticky{
+.sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
 }
-.icon-btn add-btn{
+.icon-btn add-btn {
   position: absolute;
 
   width: 100em;
-  height:10em; 
+  height: 10em;
 }
 
 .main-hr {
@@ -249,6 +244,7 @@ export default {
 }
 .add-btn:hover {
   width: 120px;
+  cursor: pointer;
 }
 .add-btn::before,
 .add-btn::after {
