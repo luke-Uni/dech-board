@@ -82,14 +82,10 @@
       </div>
     </div>
   </transition>
-
-  <!-- </div> -->
 </template>
 
 <script>
 import axios from "axios";
-// import VueLodash from 'vue-lodash'
-// import lodash from 'lodash'
 import { useCookies } from "vue3-cookies";
 
 export default {
@@ -107,7 +103,6 @@ export default {
   },
   computed: {},
   beforeMount() {
-    //this.getAllConversations();
     this.getAllUsers();
   },
  setup() {
@@ -171,13 +166,11 @@ checkForm: function (e) {
 
     //Create a message
     async createMessageBoard() {
-      //this.recipients.push(this.recipient);
       console.log(this.participants);
       if (this.participants[0]) {
         let result = await axios.post(
           "http://localhost:8090/messageboard/create",
           {
-            //recipient: this.recipient,
             participants: this.participants,
             messageBoardName: this.messageBoardName,
           },
@@ -276,20 +269,6 @@ body {
   font-size: 1.5rem;
   background-color:#222222;
 }
-
-
-
-// .fade-enter-active,
-// .fade-leave-active{
-
-// transition: opacity 0.5s;
-
-// }
-
-// .fade-enter,
-// .fade-leave-to{
-//   opacity: 0;
-// }
 
 .ChooseUser {
   width: 20em;
@@ -398,7 +377,6 @@ body {
 
 .UserLabel {
   font-size: 1.1em;
-  // vertical-align: middle;
   display: block;
 }
 
@@ -472,8 +450,7 @@ body {
 .send-button-div {
   width: 22%;
   height: 100%;
-  
-  // padding-right: 1em;
+
   display: flex;
   justify-content: center;
   align-items: center;

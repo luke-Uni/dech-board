@@ -21,8 +21,6 @@
         @click="getAllUsers(), (isVisible = !isVisible)"
         class="selected-User"
       >
-        <!-- <span v-if="selectedUser">{{selectedUser.username}}</span>
-        <span v-else>Search User</span> -->
         <span v-if="!selectedUser[0]">Select Message-Board</span>
         <!-- shows the choosen User -->
         <span v-else>{{ selectedUser[0].username }} </span>
@@ -50,13 +48,6 @@
         <span v-if="filteredUser.length == 0">No Data Available</span>
         <div class="options">
           <ul>
-            <!-- <li
-              @click="selectUser(user)"
-              v-for="(user, index) in filteredUser"
-              :key="`user-${index}`"
-            >
-              {{ user.username }}
-            </li> -->
             <li @click="changeBoardMain()">
               Dech-Board
             </li>
@@ -84,7 +75,6 @@ import { useCookies } from "vue3-cookies";
 export default {
   components: {
     MessageBoard,
-    // UserUser
   },
   beforeMount() {
     this.saveBoards();
@@ -92,7 +82,6 @@ export default {
   data() {
     return {
       searchQuery: "",
-      // selectedUser: 'none',
       selectedUser: [],
       isVisible: false,
       search: "",
@@ -131,29 +120,19 @@ export default {
       this.$refs.messageBoard.getAllPosts(board.messageBoardId);
     },
     changeBoardMain(){
-        //console.log("Board name: " + board.messageBoardName);
         let messageBoardId= "0";
         let messageBoardName= "Dech-Board";
-        //board.messageBoardId = "0";
       this.boardName = messageBoardName;
       this.cookies.set("messageboardid", messageBoardId, 0);
       this.$refs.messageBoard.getAllPosts(messageBoardId);
     },
-
-    // messageBoardIdTransmit(board){
-    //   this.$emit("messageboardid", board.messageBoardId);
-    // },
     async getAllUsers() {
-      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/messageboard/get";
-      // if (this.categories){
-      //   uri="http://localhost:8090/friendsobject"
-      // }
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.users = response.data;
         this.messageboards = response.data;
@@ -236,21 +215,17 @@ export default {
     previousBoard() {
       console.log("Go to previous Board!");
       this.array2 = structuredClone(this.messageboards);
-      //this.array2 = [].concat(this.messageboards).reverse();
       console.log(this.array2);
-      //dto = this.messageboards;
       this.array2.reverse();
       console.log(this.array2);
 
       let currentBoardId = this.cookies.get("messageboardid");
-      //console.log(this.array2.length);
       for (let index = 0; index < this.array2.length; index++) {
         console.log(
           this.array2[index].messageBoardId + "--=--" + currentBoardId
         );
         if (this.array2[index].messageBoardId == currentBoardId) {
           console.log("Old" + this.array2[index].messageBoardId);
-          //let newIndex = index;
           if (index + 1 == this.array2.length) {
             this.cookies.set("messageboardid", "0", 0);
             let hallo = this.messageboards[0];

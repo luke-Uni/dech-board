@@ -12,14 +12,11 @@
           >
             <h4 class="postUsername">User: {{ message.username }}</h4>
             <div :class="[message.send ? 'postsInside2' : 'postsInside']">
-              <!-- <div :class="[post.important ? 'importantPost' : 'postsInside']"></div> -->
-              <!-- <p class="recipient">Recipient: {{ message.recipient }}</p> -->
               <p class="recipient">{{ message.username }}</p>
 
               <p class="postText">{{ message.content }}</p>
               <p class="timeStamp">{{ message.time }}</p>
               <br />
-              <!-- <p class="directionState">{{ message.state }}</p> -->
             </div>
           </div>
         </div>
@@ -88,9 +85,6 @@
     />
 
     <div class="conversationview">
-      <!--<div class="own_user">
-        "Issam"
-      </div> <!-->
       <div
         class="postComplete"
         v-for="conversation in conversations"
@@ -110,8 +104,6 @@
               {{ name }},&nbsp;
             </li>
           </ul>
-
-          <!-- <p>{{ conversation.lastMessageSend }}</p> -->
         </button>
       </div>
     </div>
@@ -205,8 +197,6 @@ export default {
     },
     createDate() {
       for (let index = 0; index < this.messages.length; index++) {
-        //let newDate = new Date(this.messages[index].time);
-        //this.messages[index].time = newDate.toTimeString();
         let time = new Date(this.messages[index].time).toLocaleTimeString();
         this.messages[index].time = new Date(
           this.messages[index].time
@@ -217,7 +207,6 @@ export default {
       }
     },
     async getAllUsers() {
-      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
@@ -232,7 +221,6 @@ export default {
     },
     //Get all Messages for one conversation using the other users username as a parameter
     async getAllPosts(name) {
-      // localStorage.setItem("recipient", name);
       this.cookies.set("conversationID", name, 0);
       this.cookies.set("conversationID", name, 0);
       let headers = {
@@ -263,7 +251,6 @@ export default {
       };
       //let name = localStorage.getItem("conversationID");
       let name = this.cookies.get("conversationID");
-      // console.log(localStorage.getItem("conversationID"));
       console.log(this.cookies.get("conversationID"));
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server
@@ -280,7 +267,6 @@ export default {
         });
       let hallo = response;
       hallo + "";
-      //console.log(response);
       this.createDate();
     },
     //To display all the Conversations we need to get them from the Server
@@ -324,15 +310,10 @@ export default {
     },
     //Create a message
     async createMessage() {
-      //this.recipients.push(this.recipient);
-      //let name = localStorage.getItem("conversationID");
       let name = this.cookies.get("conversationID");
-      //console.log(this.recipients);
-      //if (this.recipient.length > 0) {
       let result = await axios.post(
         "http://localhost:8090/message/" + name,
         {
-          //recipient: this.recipient,
           recipients: this.recipients,
           content: this.content,
         },
@@ -343,35 +324,17 @@ export default {
         }
       );
       console.log(result);
-      // } else {
-      //   let result = await axios.post(
-      //     "http://localhost:8090/message/create",
-      //     {
-      //       recipient: localStorage.getItem("recipient"),
-      //       //recipient: this.recipient,
-      //       content: this.content,
-      //     },
-      //     {
-      //       headers: {
-      //         authorization: localStorage.getItem("token"),
-      //       },
-      //     }
-      //   );
-      //   console.log(result);
-      // }
       this.getAllConversations();
       this.getAllPostsNoParameter();
       //}
     },
     async createMessage2() {
       this.recipients[0] = "hallo";
-      //this.recipients.push(this.recipient);
       console.log(this.recipients);
       if (this.recipients[0]) {
         let result = await axios.post(
           "http://localhost:8090/message/create",
           {
-            //recipient: this.recipient,
             recipients: this.recipients,
             content: this.content,
           },
@@ -383,63 +346,10 @@ export default {
         );
         console.log(result);
       } else {
-        // let result = await axios.post(
-        //   "http://localhost:8090/message/create",
-        //   {
-        //     recipient: localStorage.getItem("recipient"),
-        //     //recipient: this.recipient,
-        //     content: this.content,
-        //   },
-        //   {
-        //     headers: {
-        //       authorization: localStorage.getItem("token"),
-        //     },
-        //   }
-        // );
-        // console.log(result);
       }
-      //this.getAllConversations();
-      //this.getAllPostsNoParameter();
       this.getAllConversations();
       this.getAllPostsNoParameter();
     },
-    // async createMessage2() {
-    //   //this.recipients.push(this.recipient);
-    //   console.log(this.recipients);
-    //   if (this.recipients[0]) {
-    //     let result = await axios.post(
-    //       "http://localhost:8090/message/create",
-    //       {
-    //         //recipient: this.recipient,
-    //         recipients: this.recipients,
-    //         content: this.content,
-    //       },
-    //       {
-    //         headers: {
-    //           authorization: localStorage.getItem("token"),
-    //         },
-    //       }
-    //     );
-    //     console.log(result);
-    //   } else {
-    //     // let result = await axios.post(
-    //     //   "http://localhost:8090/message/create",
-    //     //   {
-    //     //     recipient: localStorage.getItem("recipient"),
-    //     //     //recipient: this.recipient,
-    //     //     content: this.content,
-    //     //   },
-    //     //   {
-    //     //     headers: {
-    //     //       authorization: localStorage.getItem("token"),
-    //     //     },
-    //     //   }
-    //     // );
-    //     // console.log(result);
-    //   }
-    //   //this.getAllConversations();
-    //   //this.getAllPostsNoParameter();
-    // },
   },
 };
 </script>
@@ -456,7 +366,6 @@ export default {
   cursor: pointer;
 }
 .same {
-  // display: flex;
   display: inline-block;
   font-weight: bold;
   color: #707070;
@@ -533,27 +442,6 @@ ul {
   background-color: #e1e7f7;
   border-radius: 1em;
 }
-// .chat::-webkit-scrollbar-button:single-button {
-//   background-color: #bbbbbb;
-//   display: block;
-//   border-style: solid;
-//   height: 13px;
-//   width: 16px;
-// }
-// .chat::-webkit-scrollbar-button:single-button:vertical:decrement {
-//   border-width: 0 8px 8px 8px;
-//   border-color: transparent transparent #97a6ce transparent;
-// }
-// .chat::-webkit-scrollbar-button:single-button:vertical:increment {
-//   border-width: 8px 8px 0 8px;
-//   border-color: #97a6ce transparent transparent transparent;
-// }
-// .chat::-webkit-scrollbar-button:vertical:single-button:increment:hover {
-//   border-color: #778dc9 transparent transparent transparent;
-// }
-// .chat::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-//   border-color: transparent transparent #778dc9 transparent;
-// }
 .conversationview {
   position: absolute;
   width: 25.125em;
@@ -565,7 +453,6 @@ ul {
   margin-top: 6em;
   margin-left: 8em;
   border: 1px solid #f4f7ff;
-  //box-shadow: 2px 2px 7px rgb(198, 227, 255);
   overflow: scroll;
   overflow-x: hidden;
 }
@@ -581,29 +468,7 @@ ul {
 .conversationview::-webkit-scrollbar-thumb {
   background-color: #e1e7f7;
   border-radius: 1em;
-  // width: 2em;
 }
-// .conversationview::-webkit-scrollbar-button:single-button {
-//   background-color: #bbbbbb;
-//   display: block;
-//   border-style: solid;
-//   height: 13px;
-//   width: 16px;
-// }
-// .conversationview::-webkit-scrollbar-button:single-button:vertical:decrement {
-//   border-width: 0 8px 8px 8px;
-//   border-color: transparent transparent #97a6ce transparent;
-// }
-// .conversationview::-webkit-scrollbar-button:single-button:vertical:increment {
-//   border-width: 8px 8px 0 8px;
-//   border-color: #97a6ce transparent transparent transparent;
-// }
-// .conversationview::-webkit-scrollbar-button:vertical:single-button:increment:hover {
-//   border-color: #778dc9 transparent transparent transparent;
-// }
-// .conversationview::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-//   border-color: transparent transparent #778dc9 transparent;
-// }
 .timeStamp {
   margin-right: 2em;
   text-align: right;
@@ -620,9 +485,7 @@ ul {
 .postComplete {
   margin: auto;
   width: 50em;
-  //border: 1px solid rgb(255, 255, 255);
   text-align: left;
-  //padding: 1em;
 }
 .postsInside {
   background-color: #ffffff;
@@ -726,7 +589,6 @@ input:focus {
 .message-create {
   width: 38em;
   padding: 0em;
-  // margin: auto;
   margin-left: -2em;
   margin-top: -4.4em;
   -webkit-border-radius: 10px;
@@ -735,7 +597,6 @@ input:focus {
   background-color: rgba(244, 247, 255, 255);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  // position: absolute;
 }
 .message-textarea-div {
   height: 5em;
@@ -812,34 +673,18 @@ input:focus {
   margin-left: 8em;
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
 }
-/*.own_user{
-  height: 3.2em;
-  width: 20.7em;
-  background: #f4f7ff;
-  text-align: center;
-  border-radius: 1.3125em;
-  margin-top: 0.4em;
-  margin-left: 0.4em;
-  margin-bottom: -0,5em;
-  box-shadow: 2px 2px 7px rgb(198, 227, 255);
-  border: 1px solid rgb(230, 230, 230);
-  padding: 1.2em;
-}
-*/
+
 .button-conversation {
   height: auto;
   width: 26.7em;
-  // background: #f4f7ff;
   background: #faf9f9ce;
   text-align: center;
   border-radius: 1.3125em;
   margin-top: 1em;
   margin-left: 0.4em;
   margin-bottom: -0.5em;
-  //box-shadow: 2px 2px 7px rgb(198, 227, 255);
   column-count: 2;
   column-gap: 20px;
-  // border: 1px solid rgb(230, 230, 230);
   border: 0.325em solid rgb(218, 218, 218);
   padding: 2em;
   font-family: "Arial";
@@ -849,9 +694,7 @@ input:focus {
   background-color: rgba(102, 194, 247, 0.25);
   color: rgb(0, 0, 0);
   box-shadow: 2px 2px 7px rgb(198, 227, 255);
-  // border: 1px solid rgb(230, 230, 230);
   border: 0.325em solid rgb(218, 218, 218);
-  //border-radius: 1.3125em;
 }
 @media (min-width: 768px) {
   .button-81 {
