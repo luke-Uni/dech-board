@@ -113,15 +113,16 @@ export default {
   },
   setup() {
     const { cookies } = useCookies();
-    return{
-      cookies
-    };},
+    return {
+      cookies,
+    };
+  },
   methods: {
     // 搜索好友
     async getAllUsers() {
       let headers = {
         "Content-Type": "application/json",
-        authorization:this.cookies.get("token"),
+        authorization: this.cookies.get("token"),
       };
       let uri = "http://localhost:8090/getUsers";
       let response = await axios
@@ -157,7 +158,7 @@ export default {
 
       let headers3 = {
         "Content-Type": "application/json",
-        authorization: this.cookies.get("token")
+        authorization: this.cookies.get("token"),
       };
 
       let uri3 = "http://localhost:8090/requests";
@@ -191,7 +192,7 @@ export default {
       let friendName = friend;
 
       let headers = {
-        authorization: this.cookies.get("token")
+        authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/contact/request";
@@ -210,7 +211,7 @@ export default {
     getFriendList() {
       let headers = {
         "Content-Type": "application/json",
-        authorization: this.cookies.get("token")
+        authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/friendsobject";
@@ -227,7 +228,7 @@ export default {
 
       let headers = {
         "Content-Type": "application/json",
-        authorization: this.cookies.get("token")
+        authorization: this.cookies.get("token"),
       };
 
       if (userFriend.username1 == this.cookies.get("token")) {
@@ -265,6 +266,29 @@ export default {
 #refresh {
   width: 2em;
   color: #6dfaff;
+}
+
+#refresh:hover {
+  -webkit-animation: spin 2s linear infinite;
+  -moz-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  cursor: pointer;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 .addButton {
