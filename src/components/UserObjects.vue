@@ -38,8 +38,9 @@
               </td>
               <td>
                 <input
-                  class="Checkbox2"
-                  type="checkbox"
+                  type="radio"
+                  name="filterOptions"
+                  value="contacts"
                   v-model="this.categories"
                   @click="getFriends()"
                 />
@@ -51,8 +52,9 @@
               </td>
               <td>
                 <input
-                  class="Checkbox2"
-                  type="checkbox"
+                  type="radio"
+                  name="filterOptions"
+                  value="contacts"
                   v-model="this.german"
                   @click="getFriendsAndGerman()"
                 />
@@ -62,8 +64,9 @@
               </td>
               <td>
                 <input
-                  class="Checkbox2"
-                  type="checkbox"
+                  type="radio"
+                  name="filterOptions"
+                  value="contacts"
                   v-model="this.chinese"
                   @click="getChineseUsers()"
                 />
@@ -103,11 +106,12 @@ export default {
   components: {
     // UserUser
   },
-   setup() {
+  setup() {
     const { cookies } = useCookies();
-    return{
-      cookies
-    };},
+    return {
+      cookies,
+    };
+  },
   data() {
     return {
       searchQuery: "",
@@ -189,7 +193,6 @@ export default {
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.secondUsers = response.data;
         this.users = response.data;
-        
       });
       console.log(response);
     },
@@ -213,21 +216,18 @@ export default {
       console.log(response);
     },
     async getFriendsAndGerman() {
-
       if (this.categories) {
-         console.log("-------------------------huhuuhbhbjh");
+        console.log("-------------------------huhuuhbhbjh");
         this.getGermanUsers();
         this.getFriends();
-        
+
         console.log(this.users);
         console.log(this.secondUsers);
-
 
         this.users = this.users.filter(function (n) {
           return this.secondUsers.indexOf(n) !== -1;
         });
 
-       
         return;
       }
       console.log("-------------------------");
@@ -246,9 +246,9 @@ export default {
 }
 .dropdown-wrapper {
   position: absolute;
-  top: 5em;
-  right: 1em;
-  width: 20em;
+  top: 40em;
+  right: 0em;
+  width: 13em;
   height: 20em;
 
   .selected-User {
