@@ -13,30 +13,9 @@
 
     <div class="popup-inner">
       <slot />
-       
-      <!-- <button
-        type="button"
-        class="btn-close popup-close"
-        @click="TogglePopup()"
-      >
-        <span class="icon-cross"></span>
-        <span class="visually-hidden"></span>
-      </button> -->
       <br />
-     
-
-      <!-- <button class="popup-close" @click="TogglePopup()">Close Popup</button> -->
-
       <div>
         <div class="message-create">
-          <!--  -->
-          <!-- <br />
-          <br /> -->
-          <!-- <button v-on:click="getUserList()">GetUser</button> -->
-          
-         
-         
-          
           <br />
           <br />
           
@@ -55,7 +34,6 @@
               class="button-81"
               v-on:click="
                 createMessage()
-                // TogglePopup();
               "
               role="button"
             >
@@ -65,35 +43,6 @@
       </div>
       <br />
       <br />
-      <!-- <table class="table-left">
-        <tr>
-          <br />
-          <td> -->
-             <!-- <input
-              type="checkbox"
-              name="Important"
-              v-model="important"
-              value="Important"
-              class="switch_1"
-            /> -->
-            <!-- <br /> -->
-            <!-- <label for="important">Important</label> -->
-          <!-- </td>
-
-          <td class="td-left"> -->
-            <!-- <button
-              class="button-81"
-              v-on:click="
-                createMessage()
-                // TogglePopup();
-              "
-              role="button"
-            >
-              Create Post
-            </button> -->
-          <!-- </td>
-        </tr>
-      </table> -->
     </div>
   </div>
 </template>
@@ -104,13 +53,8 @@ import { useCookies } from "vue3-cookies";
 
 export default {
   name: "MessageCreation",
-
-
-  //   props: ["TogglePopup"],
-
   data() {
     return {
-      //username: "",
       recipient: "",
       content: "",
       users: [],
@@ -123,39 +67,11 @@ setup() {
       cookies
     };},
   methods: {
-// async profanityFilter(content){
-//         var myHeaders = new Headers();
-// myHeaders.append("apikey", "eUHPlznMstdcjKPfpY5QdtZYrDN042b5");
-
-// var raw = "{body}";
-
-// var requestOptions = {
-//   method: 'POST',
-//   redirect: 'follow',
-//   headers: myHeaders,
-//   body: raw
-// };
-
-// fetch("https://api.apilayer.com/bad_words?censor_character={censor_character}", requestOptions)
-//   .then(response => response.text())
-//   .then(result => console.log(result),
-//   this.censoredcontent = result.data,
-//   console.log(this.censoredcontent))
-//   .catch(error => console.log('error', error));
-
-
-  
-
-//       },
 
     async createMessage() {
-      // this.profanityFilter(this.content);
-
       let result = await axios.post(
-        //"https://dech-board-rest-server.herokuapp.com/posts/create",
         "http://localhost:8090/message/create",
         {
-          // username: this.username,
           recipient: this.recipient,
           content: this.censoredcontent,
         },
@@ -168,45 +84,11 @@ setup() {
      this.cookies.set("recipient", this.recipient,0);
       console.log(result);
     },
-//     async getUserList(){
-
-//  let headers = {
-//         "Content-Type": "application/json",
-//         authorization: localStorage.getItem("token"),
-//       };
-
-//       let response = await axios.get(
-//         "http://localhost:8090/user/getall",
-//       { headers: headers }
-
-//       ).then((response) => {
-//             this.users=response.data;
-//       }).then((data) => (this.user = data))
-//         .catch((e) => {
-//           this.errors.push(e);
-//         });
-
-//         console.log(response);
-
-
-//     }
   },
 };
 </script>
 
 <style scoped lang="scss" >
-// .popup {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   z-index: 99;
-//   background-color: rgba(0, 0, 0, 0.2);
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
 
 .input-recipient{
   position: absolute;
@@ -278,7 +160,6 @@ input:focus {
   width: 38em;
 
   padding: 0em;
-  // margin: auto;
   margin-left: -2em;
   margin-top: -3em;
   -webkit-border-radius: 10px;

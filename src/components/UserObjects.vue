@@ -5,8 +5,6 @@
         @click="getAllUsers(), (isVisible = !isVisible)"
         class="selected-User"
       >
-        <!-- <span v-if="selectedUser">{{selectedUser.username}}</span>
-        <span v-else>Search User</span> -->
         <span v-if="!selectedUser[0]">Select User</span>
         <!-- shows the choosen User -->
         <span v-else>{{ selectedUser[0].username }} </span>
@@ -115,7 +113,6 @@ export default {
   data() {
     return {
       searchQuery: "",
-      // selectedUser: 'none',
       selectedUser: [],
       isVisible: false,
       search: "",
@@ -145,16 +142,12 @@ export default {
       this.isVisible = false;
     },
     async getAllUsers() {
-      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/getUsers";
-      // if (this.categories){
-      //   uri="http://localhost:8090/friendsobject"
-      // }
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.users = response.data;
       });
@@ -162,7 +155,6 @@ export default {
     },
     // filter fuction to get only friends
     async getFriends() {
-      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
@@ -181,7 +173,6 @@ export default {
         this.getAllUsers();
         return;
       }
-      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
@@ -201,7 +192,6 @@ export default {
         this.getAllUsers();
         return;
       }
-      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),

@@ -2,12 +2,10 @@
   <div>
     <HelloWorld/>
     <LeftSideMenu />
-    <!-- <SlideShow/>  -->
 
     <h1>Only Test Components</h1>
     <h2>bla</h2>
     <DropZone class="dropZone" />
-    <!-- <CreateConversation/> -->
 
     <UserObjects />
     <MessageBoardSelection/>
@@ -23,12 +21,10 @@
   ></emoji-picker>
 </template>
 <script>
-// import SlideShow from "@/components/SlideShow.vue";
 import LeftSideMenu from "@/components/LeftSideMenu.vue";
 import UserObjects from "@/components/UserObjects.vue";
 import DropZone from "@/components/DropZone.vue";
 import HelloWorld from "@/components/HelloWorld.vue";
-//import axios from "axios";
 import { ref } from "vue";
 
 import MessageBoardSelection from "@/components/MessageBoardSelection.vue";
@@ -42,7 +38,6 @@ export default {
     UserObjects,
     MessageBoardSelection,
     HelloWorld
-    // SlideShow
   },
 
   setup() {

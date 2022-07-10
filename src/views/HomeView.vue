@@ -1,35 +1,39 @@
 <template>
-  <!-- <h1>
-    <img
-      src="@/assets/blue-arrow_left.png"
-      alt="Blue Arrow Left"
-      class="arrow"
-    />
-    {{ boardName }}
-    <img
-      src="@/assets/blue-arrow.png"
-      alt="Blue Arrow Right"
-      class="arrow"
-      @click="nextBoard()"
-    />
-  </h1> -->
   <div class="sticky">
-  <UserObjects/>
-</div>
-<!-- <div class="sticky"> -->
+    <UserObjects />
+  </div>
+  <!-- <div class="sticky"> -->
   <LeftSideMenu />
-  
+
   <!-- </div> -->
   <MessageBoardSelection @changeBoard="changeBoard" />
-   
+  <button
+    class="button-81" id="fixedbuttonBoard"
+    @click="() => TogglePopupSecond('buttonTrigger')"
+    role="button"
+  >
+    Create Board
+  </button>
+  <button
+    class="button-81" id="fixedbuttonPost"
+    @click="() => TogglePopup('buttonTrigger')"
+    role="button"
+  >
+    Create Post
+  </button>
+
+  <!-- <button
+  <LeftSideMenu />
+  <MessageBoardSelection @changeBoard="changeBoard" />
 
   <button
-    class="icon-btn add-btn" id="message-board"
+    class="icon-btn add-btn"
+    id="message-board"
     @click="() => TogglePopupSecond('buttonTrigger')"
   >
     <div class="add-icon"></div>
     <div class="btn-txt">Create Board</div>
-  </button>
+  </button> -->
 
   <MessageBoardCreator
     v-if="popupTriggersSecond.buttonTrigger"
@@ -41,13 +45,14 @@
       <MessageBoard />
     </div>
     <div class="" style="text-align: center; margin-top: 5%">
-      <button
+      <!-- <button
         class="icon-btn add-btn"
-        @click="() => TogglePopup('buttonTrigger')" id="home"
+        @click="() => TogglePopup('buttonTrigger')"
+        id="home"
       >
         <div class="add-icon"></div>
         <div class="btn-txt">Add Post</div>
-      </button>
+      </button> -->
     </div>
 
     <CreatePost
@@ -58,7 +63,6 @@
     </CreatePost>
     <AlluserList></AlluserList>
   </div>
- 
 </template>
 
 <script>
@@ -107,7 +111,7 @@ export default {
       TogglePopupSecond,
       TogglePopup2Second,
       popupTriggersSecond,
-      cookies
+      cookies,
     };
     //
   },
@@ -129,15 +133,13 @@ export default {
     LeftSideMenu,
     MessageBoardSelection,
     MessageBoardCreator,
-    UserObjects
+    UserObjects,
   },
   methods: {
     saveBoards() {
       let headers = {
         "Content-Type": "application/json",
-        //authorization: localStorage.getItem("token"),
-        authorization:  this.cookies.get("token")
-          
+        authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/messageboard/get";
@@ -155,8 +157,7 @@ export default {
     nextBoard() {
       console.log("Go to next Board!");
 
-       let currentBoardId =    this.cookies.get("messageboardid");
-      //let currentBoardId = localStorage.getItem("messageboardid");
+      let currentBoardId = this.cookies.get("messageboardid");
       console.log(this.messageboards.length);
       for (let index = 0; index < this.messageboards.length; index++) {
         console.log(
@@ -167,18 +168,16 @@ export default {
           let newIndex = index;
           this.cookies.set(
             "messageboardid",
-            this.messageboards[newIndex + 1].messageBoardId, 0
+            this.messageboards[newIndex + 1].messageBoardId,
+            0
           );
           return;
         } else if (currentBoardId == 0) {
           console.log("Neew" + this.messageboards[index].messageBoardId);
-          // localStorage.setItem(
-          //   "messageboardid",
-          //   this.messageboards[index].messageBoardId
-          // );
           this.cookies.set(
             "messageboardid",
-            this.messageboards[index].messageBoardId, 0
+            this.messageboards[index].messageBoardId,
+            0
           );
           return;
         }
@@ -189,30 +188,24 @@ export default {
 </script>
 
 <style scoped>
-#home{
+#home {
   position: absolute;
   top: 7em;
   left: -30em;
   width: 50px;
   height: 50px;
-  border-radius:25px;
- 
+  border-radius: 25px;
 }
 
-
 #message-board {
-  
   position: absolute;
   top: 7em;
   left: 12em;
   width: 50px;
   height: 50px;
-  border-radius:25px;
- 
-
-
+  border-radius: 25px;
 }
-.home{
+.home {
   position: absolute;
   top: 20%;
   left: 50%;
@@ -220,16 +213,16 @@ export default {
   height: auto;
 }
 
-.sticky{
+.sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
 }
-.icon-btn add-btn{
+.icon-btn add-btn {
   position: absolute;
 
   width: 100em;
-  height:10em; 
+  height: 10em;
 }
 
 .main-hr {
@@ -249,6 +242,7 @@ export default {
 }
 .add-btn:hover {
   width: 120px;
+  cursor: pointer;
 }
 .add-btn::before,
 .add-btn::after {
@@ -322,5 +316,65 @@ export default {
   width: 1em;
   margin-left: 5em;
   margin-right: 5em;
+}
+#fixedbuttonBoard {
+    position: fixed;
+    bottom: 10em;
+    right: 10em; 
+}
+#fixedbuttonPost {
+    position: fixed;
+    bottom: 17em;
+    right: 10em; 
+}
+
+.button-81 {
+  /* position: sticky; */
+  
+  width: 10em;
+  height: 5em;
+  margin-top: 5em;
+  margin-left: 65em;
+  background-color: rgba(244, 247, 255, 255);
+  border: 1 solid #5f88bd;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  color: #0d222a;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.8rem 0.5rem;
+  text-align: center;
+  text-decoration: none rgba(244, 247, 255, 255) solid;
+  text-decoration-thickness: auto;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0px 1px 2px rgba(118, 162, 255, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-81:hover {
+  background-color: rgba(102, 194, 247, 0.25);
+  color: rgb(0, 0, 0);
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 0.9rem;
+    padding: 0.8rem 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 0.9rem;
+    padding: 0.8rem 0.5rem;
+  }
 }
 </style>

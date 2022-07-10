@@ -24,7 +24,6 @@ import { useCookies } from "vue3-cookies";
 // import LeftSideMenu from "@/components/LeftSideMenu.vue";
 export default {
   components: {
-    // LeftSideMenu,
   },
   data() {
     return {
@@ -42,14 +41,10 @@ export default {
   methods: {
     //To display all the Posts we need to get them from the Server
     getAllPosts() {
-      //console.log("I am in the getAllPosts function");
-
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
       };
-      //console.log(localStorage.getItem("currentuser"));
-      // let uri = "http://localhost:8090/message/getall";
       var name = this.cookies.get("recipient");
       let uri = "http://localhost:8090/message/getall/" + name;
       //send synchron Request to Server

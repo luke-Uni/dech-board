@@ -15,14 +15,12 @@
         @click="nextBoard()"
       />
     </h1>
-    <div class="postion"></div>
+    
     <section class="dropdown-wrapper">
       <div
         @click="getAllUsers(), (isVisible = !isVisible)"
         class="selected-User"
       >
-        <!-- <span v-if="selectedUser">{{selectedUser.username}}</span>
-        <span v-else>Search User</span> -->
         <span v-if="!selectedUser[0]">Select Message-Board</span>
         <!-- shows the choosen User -->
         <span v-else>{{ selectedUser[0].username }} </span>
@@ -46,21 +44,13 @@
         :class="isVisible ? 'visible' : 'invisible'"
         class="dropdown-popover"
       >
-        <input
-          v-model="searchQuery"
-          type="text"
-          placeholder="Search for MessageBoard"
-        />
+       
         <span v-if="filteredUser.length == 0">No Data Available</span>
         <div class="options">
           <ul>
-            <!-- <li
-              @click="selectUser(user)"
-              v-for="(user, index) in filteredUser"
-              :key="`user-${index}`"
-            >
-              {{ user.username }}
-            </li> -->
+            <li @click="changeBoardMain()">
+              Dech-Board
+            </li>
             <li
               @click="changeBoard(messageboard)"
               v-for="messageboard in messageboards"
@@ -85,7 +75,6 @@ import { useCookies } from "vue3-cookies";
 export default {
   components: {
     MessageBoard,
-    // UserUser
   },
   beforeMount() {
     this.saveBoards();
@@ -93,7 +82,6 @@ export default {
   data() {
     return {
       searchQuery: "",
-      // selectedUser: 'none',
       selectedUser: [],
       isVisible: false,
       search: "",
@@ -128,23 +116,23 @@ export default {
     changeBoard(board) {
       console.log("Board name: " + board.messageBoardName);
       this.boardName = board.messageBoardName;
+      this.cookies.set("messageboardid", board.messageBoardId, 0);
       this.$refs.messageBoard.getAllPosts(board.messageBoardId);
     },
-
-    // messageBoardIdTransmit(board){
-    //   this.$emit("messageboardid", board.messageBoardId);
-    // },
+    changeBoardMain(){
+        let messageBoardId= "0";
+        let messageBoardName= "Dech-Board";
+      this.boardName = messageBoardName;
+      this.cookies.set("messageboardid", messageBoardId, 0);
+      this.$refs.messageBoard.getAllPosts(messageBoardId);
+    },
     async getAllUsers() {
-      //console.logs("workung (UserList funct.)");
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token"),
       };
 
       let uri = "http://localhost:8090/messageboard/get";
-      // if (this.categories){
-      //   uri="http://localhost:8090/friendsobject"
-      // }
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.users = response.data;
         this.messageboards = response.data;
@@ -227,21 +215,17 @@ export default {
     previousBoard() {
       console.log("Go to previous Board!");
       this.array2 = structuredClone(this.messageboards);
-      //this.array2 = [].concat(this.messageboards).reverse();
       console.log(this.array2);
-      //dto = this.messageboards;
       this.array2.reverse();
       console.log(this.array2);
 
       let currentBoardId = this.cookies.get("messageboardid");
-      //console.log(this.array2.length);
       for (let index = 0; index < this.array2.length; index++) {
         console.log(
           this.array2[index].messageBoardId + "--=--" + currentBoardId
         );
         if (this.array2[index].messageBoardId == currentBoardId) {
           console.log("Old" + this.array2[index].messageBoardId);
-          //let newIndex = index;
           if (index + 1 == this.array2.length) {
             this.cookies.set("messageboardid", "0", 0);
             let hallo = this.messageboards[0];
@@ -278,19 +262,19 @@ export default {
 <style scoped lang="scss">
 .app2 {
   position: absolute;
-  left: 10em;
+  left: 12em;
   right: 0%;
   top: 0%;
 }
 .dropdown-wrapper {
   position: absolute;
-  top: 28em;
-  right: -3.5em;
+  top: 2em;
+  margin-left: 80em;
   width: 15em;
   .selected-User {
     height: 40px;
-    border: 2px solid black;
-    background-color: lightgrey;
+    border: 2px solid rgba(102, 194, 247, 0.25);
+    background-color: rgba(102, 194, 247, 0.25);
     border-radius: 5px;
 
     display: flex;
@@ -312,12 +296,12 @@ export default {
   }
   .dropdown-popover {
     position: absolute;
-    border: 2px solid black;
+    border: 2px solid rgba(102, 194, 247, 0.25);
     border-radius: 5px;
     top: 46px;
     left: 0;
     right: 0;
-    background-color: lightgrey;
+    background-color: rgba(148, 211, 248, 0.25);
     max-width: 100%;
     padding: 10px;
     visibility: hidden;
@@ -334,7 +318,7 @@ export default {
     input {
       width: 90%;
       height: 30px;
-      border: 2px solid black;
+      border: 2px solid rgba(102, 194, 247, 0.25);
       border-radius: 5px;
       font-size: 16px;
       padding-left: 8px;
@@ -361,14 +345,14 @@ export default {
 
         li {
           width: 100%;
-          border-bottom: 1px solid lightgray;
+          border-bottom: 1px solid rgba(102, 194, 247, 0.25);
           padding: 10%;
-          background-color: #f1f1f1;
+          background-color: rgba(208, 238, 255, 0.822);
           cursor: pointer;
           font-size: 16px;
           &:hover {
-            background: #70878a;
-            color: #fff;
+            background: rgba(208, 238, 255, 0.822);
+            color: rgb(138, 198, 255);
             font-weight: bold;
           }
         }
