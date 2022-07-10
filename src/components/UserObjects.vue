@@ -42,7 +42,10 @@
                   name="filterOptions"
                   value="categories"
                   v-model="select"
-                  @click="getFriends(), toggleRadio('categories')"
+                  @click="
+                    select != 'categories' ? getFriendsAndGerman() : '',
+                      toggleRadio('categories')
+                  "
                 />
               </td>
             </tr>

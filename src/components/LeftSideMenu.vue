@@ -2,7 +2,7 @@
   <nav class="menu-container">
     <div class="logo-div">
       <img
-        src="../assets/social-media.png"
+        src="../assets/1.png"
         alt="HeNan"
         class="logo"
         @click="this.$router.push('/')"
@@ -190,11 +190,15 @@ a {
 .logo {
   position: absolute;
 
-  top: 0.16em;
-  left: 3.33em;
+  margin-top: -0.8em;
+  left: 0em;
 
-  width: 3.33em;
+  width: 10.5em;
   height: 3em;
+  border-radius: 0.65em;
+  border-top-right-radius: 0.65em;
+  border-bottom-right-radius: 0.65em;
+  box-shadow: 3px 3px 15px rgba(101, 128, 134, 0.384);
 
   /* mix-blend-mode: multiply; */
 }
