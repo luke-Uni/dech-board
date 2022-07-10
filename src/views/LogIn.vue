@@ -67,8 +67,6 @@ export default {
       let result = axios
         .post(
           "http://localhost:8090/login",
-          // "https://dech-board-server.herokuapp.com/login",
-
           {
             username: this.username,
             password: this.password,
@@ -82,10 +80,6 @@ export default {
           //Bug
           this.cookies.set("token", this.tokens[0].token, 0);
           this.cookies.set("currentuser", this.username, 0);
-          //localStorage.setItem("token", this.tokens[0].token);
-          // localStorage.setItem("currentuser", this.username);
-          // localStorage.setItem("username", this.username);
-
           this.$router.push("/");
         })
         .catch((error) => {
@@ -98,11 +92,6 @@ export default {
             console.log(error.response.data.error);
           }
         });
-
-      //     console.log(result.data);
-      //     console.log(result.constructor);
-      //    // console.log(result.Object.data);
-      //     console.log(result.constructor.data);
       console.log(result.status);
     },
 
@@ -111,7 +100,6 @@ export default {
     },
 
     checkCredentials() {
-      //event.preventDefault();
 
       if (
         this.username === this.currentUser &&
@@ -126,7 +114,6 @@ export default {
       this.currentUser = name;
     },
     goToRegister() {
-      //event.preventDefault();
       this.$router.push("registeruser");
     },
   },
@@ -146,16 +133,12 @@ export default {
 }
 
 #rightImg {
-  /* background-color: blue; */
-  /* height: 80%; */
   width: 10%;
   float: right;
   background-color: white;
 }
 
 #leftImg {
-  /* background-color: black; */
-  /* height: 80%; */
   width: 10%;
   float: left;
   background-color: white;
@@ -163,7 +146,6 @@ export default {
 
 #leftImg img {
   width: 100%;
-  /* opacity: 0.7; */
 }
 
 #rightImg img {
@@ -243,7 +225,6 @@ export default {
 
 #registerButton {
   border-radius: 20px;
-  /* margin-bottom: 40px; */
   width: 15em;
   height: 40px;
   background-color: rgba(30, 203, 58, 255);
@@ -262,7 +243,6 @@ input {
 }
 
 .bottom {
-  /* background-color: black; */
   width: 80%;
   height: 2px;
   margin-left: 10%;

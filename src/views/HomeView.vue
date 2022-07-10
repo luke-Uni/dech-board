@@ -1,25 +1,8 @@
 <template>
-  <!-- <h1>
-    <img
-      src="@/assets/blue-arrow_left.png"
-      alt="Blue Arrow Left"
-      class="arrow"
-    />
-    {{ boardName }}
-    <img
-      src="@/assets/blue-arrow.png"
-      alt="Blue Arrow Right"
-      class="arrow"
-      @click="nextBoard()"
-    />
-  </h1> -->
   <div class="sticky">
     <UserObjects />
   </div>
-  <!-- <div class="sticky"> -->
   <LeftSideMenu />
-
-  <!-- </div> -->
   <MessageBoardSelection @changeBoard="changeBoard" />
 
   <button
@@ -135,7 +118,6 @@ export default {
     saveBoards() {
       let headers = {
         "Content-Type": "application/json",
-        //authorization: localStorage.getItem("token"),
         authorization: this.cookies.get("token"),
       };
 
@@ -155,7 +137,6 @@ export default {
       console.log("Go to next Board!");
 
       let currentBoardId = this.cookies.get("messageboardid");
-      //let currentBoardId = localStorage.getItem("messageboardid");
       console.log(this.messageboards.length);
       for (let index = 0; index < this.messageboards.length; index++) {
         console.log(
@@ -172,10 +153,6 @@ export default {
           return;
         } else if (currentBoardId == 0) {
           console.log("Neew" + this.messageboards[index].messageBoardId);
-          // localStorage.setItem(
-          //   "messageboardid",
-          //   this.messageboards[index].messageBoardId
-          // );
           this.cookies.set(
             "messageboardid",
             this.messageboards[index].messageBoardId,

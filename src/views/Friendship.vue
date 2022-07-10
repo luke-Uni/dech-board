@@ -5,14 +5,12 @@
     <button @click="getAllUsers()" class="getUserButton">Search</button>
     <ul>
       <span v-if="filteredUser.length == 0">No Data Available</span>
-      <!-- 渲染好友列表 -->
       <li
         class="person"
         v-for="(user, index) in filteredUser"
         :key="`user-${index}`"
       >
         <div class="avatar">
-          <!-- <img :src="person.src" :alt="person.des" /> -->
           <img
             src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4005587090,2408158268&fm=26&gp=0.jpg"
             :alt="Picture"
@@ -71,7 +69,6 @@
           <td>{{ item.username }}</td>
           <td>{{ item.country }}</td>
           <td class="mange">
-            <!-- <button class="send-message" @click="addFriend(item)">Add</button> -->
             <button class="delete" @click="deleteFriend(item.username)">
               Remove
             </button>
@@ -160,7 +157,6 @@ export default {
 
       let headers3 = {
         "Content-Type": "application/json",
-        //authorization: localStorage.getItem("token"),
         authorization: this.cookies.get("token")
       };
 
@@ -222,11 +218,6 @@ export default {
       let response = axios.get(uri, { headers: headers }).then((response) => {
         this.gridData = response.data;
         for (let i = 0; i < this.gridData.length; i++) {
-          // if (
-          //   this.gridData[i].username1 == localStorage.getItem("currentuser")
-          // ) {
-          //   this.gridData[i].username1 = response.data[i].username2;
-          // }
         }
         console.log(response.data);
       });
@@ -239,7 +230,6 @@ export default {
       let headers = {
         "Content-Type": "application/json",
         authorization: this.cookies.get("token")
-        //authorization : 
       };
 
       if (userFriend.username1 == this.cookies.get("token")) {
@@ -283,7 +273,6 @@ export default {
   width: 10em;
   margin-left: 4em;
   float: right;
-  /*display: flex;*/
 }
 
 #add {
@@ -330,7 +319,6 @@ export default {
   display: flex;
   align-items: center;
   padding-bottom: 10px;
-  /*border-left: 3px solid #ccc;*/
 }
 
 .avatar {
@@ -415,7 +403,6 @@ input {
   border-radius: 10px;
   width: 30%;
   height: 500px;
-  /*background-color: #6dfaff;*/
   float: left;
 }
 
