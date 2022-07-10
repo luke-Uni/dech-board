@@ -278,14 +278,14 @@ export default {
 <style scoped lang="scss">
 .app2 {
   position: absolute;
-  left: 10em;
+  left: 12em;
   right: 0%;
   top: 0%;
 }
 .dropdown-wrapper {
   position: absolute;
-  top: 28em;
-  right: -3.5em;
+  top: 2em;
+  margin-left: 80em;
   width: 15em;
   .selected-User {
     height: 40px;
