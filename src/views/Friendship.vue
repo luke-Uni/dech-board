@@ -464,4 +464,8 @@ td {
   border-radius: 8px;
   background-color: red;
 }
+
+.delete:hover {
+  cursor: pointer;
+}
 </style>
