@@ -165,8 +165,8 @@ export default {
   position: absolute;
   top: 0%;
   left: 0%;
-  width: 100em;
-  height: 4em;
+  width: 100%;
+  height: 5em;
   background-color: rgba(146, 196, 224, 255);
 }
 
@@ -175,7 +175,7 @@ export default {
   position: absolute;
   top: 7em;
   left: 40%;
-  width: 20%;
+  width: 20em;
   border-radius: 35px;
 }
 
