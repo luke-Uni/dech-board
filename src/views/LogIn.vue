@@ -1,5 +1,5 @@
 <template>
-<div class="top"></div>
+  <div class="top"></div>
   <div class="container">
     <form class="form">
       <img src="../assets/social-media.png" alt="HeNan" class="logo" />
@@ -26,10 +26,10 @@
       <button @click="loginUser()" id="loginButton">Log In</button>
       <p id="feedback">{{ feedback }}</p>
       <div class="bottom"></div>
-      <button @click="goToRegister()" id="registerButton">
-        Create new account
-      </button>
     </form>
+    <button @click="goToRegister()" id="registerButton">
+      Create new account
+    </button>
   </div>
   <div class="footer">
     <div id="leftImg">
@@ -57,22 +57,23 @@ export default {
   },
   setup() {
     const { cookies } = useCookies();
-    return{
-      cookies
+    return {
+      cookies,
     };
-    },
+  },
 
   methods: {
     loginUser() {
       let result = axios
         .post(
-           "http://localhost:8090/login", 
-              // "https://dech-board-server.herokuapp.com/login",
+          "http://localhost:8090/login",
+          // "https://dech-board-server.herokuapp.com/login",
 
           {
-          username: this.username,
-          password: this.password,
-        })
+            username: this.username,
+            password: this.password,
+          }
+        )
         .then((result) => {
           console.log(result);
           console.log(result.status);
@@ -82,7 +83,7 @@ export default {
           this.cookies.set("token", this.tokens[0].token, 0);
           this.cookies.set("currentuser", this.username, 0);
           //localStorage.setItem("token", this.tokens[0].token);
-         // localStorage.setItem("currentuser", this.username);
+          // localStorage.setItem("currentuser", this.username);
           // localStorage.setItem("username", this.username);
 
           this.$router.push("/");
@@ -124,8 +125,8 @@ export default {
     changeUser(name) {
       this.currentUser = name;
     },
-    goToRegister(event) {
-      event.preventDefault();
+    goToRegister() {
+      //event.preventDefault();
       this.$router.push("registeruser");
     },
   },
@@ -181,21 +182,19 @@ export default {
   box-sizing: border-box;
   position: absolute;
   top: 0%;
-  left:0%;
+  left: 0%;
   width: 100em;
   height: 4em;
-background-color: rgba(146, 196, 224, 255);
+  background-color: rgba(146, 196, 224, 255);
 }
 
 .container {
   border: 1px solid black;
   position: absolute;
   top: 7em;
-  left:40%;
+  left: 40%;
   width: 20%;
   border-radius: 35px;
-
-
 }
 
 .form {
@@ -251,6 +250,7 @@ background-color: rgba(146, 196, 224, 255);
   color: white;
   border: 0ch white solid;
   box-shadow: 0px 0px 5px rgba(30, 203, 58, 255);
+  margin-bottom: 2em;
 }
 
 #registerButton:hover {

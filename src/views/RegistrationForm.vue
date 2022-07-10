@@ -217,7 +217,7 @@ input {
   position: absolute;
   width: 90%;
   height: 5em;
-  left: 10em; 
+  left: 10em;
 }
 
 .container {
@@ -226,7 +226,7 @@ input {
   top: 5em;
   border: 1px solid black;
   /* width: 23%; */
-  
+
   border-radius: 15px;
   width: 20em;
 }
@@ -270,6 +270,9 @@ input {
   /* margin-left: 10%; */
   box-shadow: 0px 0px 5px rgba(30, 203, 58, 255);
   color: white;
+}
+#loginButton:hover {
+  cursor: pointer;
 }
 #fotgotten {
   display: block;
