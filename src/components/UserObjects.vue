@@ -43,7 +43,7 @@
                   value="categories"
                   v-model="select"
                   @click="
-                    select != 'categories' ? getFriendsAndGerman() : '',
+                    select != 'categories' ? getFriends() : '',
                       toggleRadio('categories')
                   "
                 />
